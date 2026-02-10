@@ -1,0 +1,82 @@
+1. Small fry formation
+
+	<---
+	/
+	--->
+	It flies in like this.
+
+	state = 0: First time going straight
+	state = 1: Retreating diagonally backward
+	state = 2: Final straight ahead
+
+2. Small fry chasing you
+
+3 Sin-curve enemies
+
+4 Fixed artillery battery
+
+	flg is 0.... upward
+	flg is 1.... downward
+
+	Try your best to set it so that it doesn't float.
+
+5. Hatch
+
+	flg is 0.... upward
+	flg is 1.... downward
+
+	Spit out the sixth enemy
+
+6. Enemies appearing from hatches
+
+	D ... destination   E ... enemy
+
+ 	 D E<----+
+	 |
+	 |
+	/ \
+
+	It moves like this, but the initial direction of movement is the initial values of vx and vy.
+
+7. Mobile artillery battery
+
+	flg is 0.... upward
+	flg is 1.... downward
+
+	I'll try my best to set this so that it doesn't float.
+	It only moves left and right, so you need to place it on a flat surface.
+
+8. Sin Curve Enemy
+
+	The amplitude is larger than 3.
+	Shift the phase by 180‹ using flg
+
+9. Mobile artillery battery
+
+	flg is 0.... upward
+	flg is 1.... downward
+
+	It's the kind of thing that moves in a way that suits you.
+	This will move up and down on its own, so it's fine to set it to float.
+
+	D ... destination   E ... enemy
+
+	D
+	 \
+	  \
+       E
+
+	or
+
+       D
+	  /
+	 /
+	E
+
+	Move to match the position.
+	Once you're in position, pause for a moment and fire the shot.
+
+10. Boss
+
+	state = 0: First time going straight
+	state = 1: After that

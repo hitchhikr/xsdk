@@ -1,0 +1,110 @@
+.comment - XEXE stage 2 - composed by M.Susukita
+
+(i)
+(z64)
+
+(m1,1000)(a1,1)
+(m2,2000)(a2,2)
+(m3,2000)(a3,3)
+(m4,2000)(a4,4)
+(m5,2000)(a5,5)
+(m6,2000)(a6,6)
+(m7,1000)(a7,7)
+(m8,1000)(a8,8)
+(m9,1000)(aadpcm,9)
+
+/	Bass
+
+(t1)	t140@70o3v12l16@k-5_2
+(t1)	|:3 errr rrre r8d8 rrd+r :|	errr rrre r8a8 rrbr
+(t1)	[do]
+(t1)	|:3 errr rrre r8d8 rrd+r :|	erre rere a4g4
+(t1)	|:3 errr rrre r8d8 rrd+r :|	erre rere d4e4
+(t1)	|: e1&e1 c1&c1 :|
+(t1)	k-4 e1&e1 c1&c1 e1&e1
+(t1)	k0fffr r2 <f>bfr ffrf rfrf r2 [loop]
+
+/	Piano
+
+(t2)	r1r1r1r1 [do] @s3,3 @m7 @h10,5 @a7
+(t2)	@92o5v13l16@k0_14~ r4
+(t2)	'd>b'rrr |:_'d>b'rrr:|~~   'c+>a''d>b'r'd>b'r |:3rrr_'d>b':| rrr ~~~
+(t2)	'd>b'rrr |:_'d>b'rrr:|~~   'd>b''d>b''c+>a''d>b' r4 'a4ec+' 'g4d>b<' r4
+(t2)	'd>b'rrr |:_'d>b'rrr:|~~   'c+>a''d>b'r'd>b'r |:3rrr_'d>b':| rrr ~~~
+(t2)	'd>b'rrr |:_'d>b'rrr:|~~   'd>b''d>b''c+>a''d>b' r4 'a4d>f+' 'b4>g+<e'
+(t2)	@80 v7 o5 @k8
+	b1& b2&(b2b-)&	b-1& b-1
+(t2)	b1& b2&(b2b-)&	b-1 b-1
+(t2)	k-4b1& b2&(b2b-)& b-1 b-1
+(t2)	b1& b1
+(t2)	k0@92 o5 v11 'd+>b''d+>b''d+>b'r r2.	'd+>b''d+>b'r'd+>b' r'd+>b'r'd+>b' r2
+(t2)	[loop]
+
+(t4)	r1 r1 r1 r1 [do]
+(t4)	@92o5v11l16
+(t4)	r1 r1 r1 r1	r1 r1 r1 r1
+(t4)	r4 @80 v4 o5 @k3 p2
+	b1& b2&(b2b-)&  b-1& b-1
+(t4)	b1& b2&(b2b-)&	b-1 b-1
+(t4)	k-4b1& b2&(b2b-)& b-1 b-1
+(t4)	b1& b2.
+(t4)	k0@92o5 v9 >aaa<r r2 . >aara rara< r2 
+(t4)	[loop]
+
+(t5)	r1r1r1r1 r16.
+(t5)	[do]
+(t5)	@92o5v10l16_10~ r4 @k10
+	'd>b'rrr |:_'d>b'rrr:|~~   'c+>a''d>b'r'd>b'r |:3rrr_'d>b':| rrr ~~~
+	'd>b'rrr |:_'d>b'rrr:|~~   'd>b''d>b''c+>a''d>b' r4 'a4e' 'g4d' r4
+	'd>b'rrr |:_'d>b'rrr:|~~   'c+>a''d>b'r'd>b'r |:3rrr_'d>b':| rrr ~~~
+	'd>b'rrr |:_'d>b'rrr:|~~   'd>b''d>b''c+>a''d>b' r4 'a4d' 'b8e<' r32
+(t5)	@91 o4 v12 l16
+	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+(t5)	b-agf+ agf+e gf+ed f+edc	edc>b< dc>b-a< c>b-ag b-agf+
+
+(t5)	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+(t5)	b-agf+ agf+e gf+ed f+edc	edc>b< dc>b-a< c>b-ag b-agf+
+(t5)	k-4
+	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+	b-agf+ agf+e gf+ed f+edc	edc>b< dc>b-a< c>b-ag b-agf+
+	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+(t5)	 r16. k0 @92o5v8l16
+	o5 'd+>b''d+>b''d+>b'r r2.	'd+>b''d+>b'r'd+>b' r'd+>b'r'd+>b' r2
+	[loop]
+
+(t6)	r1r1r1r1
+(t6)	[do]
+(t6)	@92o5v10l16_10~ r1r1r1r1 r1r1r1r1
+(t6)	r16.@91 o4 v8 l16 @k0
+	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+(t6)	b-agf+ agf+e gf+ed f+edc	edc>b< dc>b-a< c>b-ag b-agf+
+
+(t6)	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+(t6)	b-agf+ agf+e gf+ed f+edc	edc>b< dc>b-a< c>b-ag b-agf+
+(t6)	k-4
+	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+	b-agf+ agf+e gf+ed f+edc	edc>b< dc>b-a< c>b-ag b-agf+
+	ef+ga f+gab gab<c+> ab<c+d>	b<c+de> <c+def+ def+g ef+ga
+(t6)	k0 r1r2..r32 [loop]
+
+(t7)	@59o3l8v11 k8
+	|:16 cc :| [do]
+	|: |:14 cc :| r2 :|
+	|:56 {c_10c~}@60c@59 :| r1r1 [loop]
+/(t7)	@59o3l8v11q7 k8
+/(t7)	|:16 cc :| [do]
+/(t7)	|:12 cc :| r1	|:12 cc :| r1
+/(t7)	r1r1r1 r1r1r1r1 r1r1r1r1 r1r1r1r1 r1
+/(t7)	[loop]
+
+
+(t9)	o2l16@r1
+(t9)	|:4 crrr drrc rcrr drrr :| [do]
+(t9)	|:3 crrr drrc rcrr drrr :| crrd rddd <c+4 c+4>
+(t9)	|:3 crrr drrc rcrr drrr :| crrd rddd <c+4 c+4>
+(t9)	|:12 crrr crrr crrr crrr :|
+	|:4crrr:| c4c8d8cd8.d8dd
+(t9)	cccr r2.	ccrc rcrc rdrd rddd
+(t9)	[loop]
+
+(p)

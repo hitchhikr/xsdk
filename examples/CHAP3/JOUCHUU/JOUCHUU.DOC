@@ -1,0 +1,12 @@
+- Skeleton for writing a resident program in C language
+
+jouchuu.x
+		by Matsuura Hiroaki(hal@kmc.kyoto-u.ac.jp)
+
+As an example, I created a program that hooks TIMER-C and guides the mouse cursor to the cursor position.
+You can compile it with pdmake[return].
+
+I've included many comments in the list, so please refer to the main text and analyze and modify it as you see fit.
+
+This program is free and without any compensation.
+Any execution, modification, or distribution of this program is at your own risk.

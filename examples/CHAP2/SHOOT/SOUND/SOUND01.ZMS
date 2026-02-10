@@ -1,0 +1,6 @@
+(i)
+(m7,1000)(aFM7,7)
+
+/	Player shot sound
+(t7)	@2 l8 v14 @k0 l12 o7 @l1 @r0 @o@m @s1@m100(g16>g) @o
+(p)

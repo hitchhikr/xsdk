@@ -1,0 +1,167 @@
+-----------------------------------------------------------------------
+  		  MicroEMACS PRO-68K Short Manual
+
+	How to read this manual
+
+	<ROLL UP>	:Next page
+	<ROLL DOWN>	:Previous Page
+	<ESC>-K		:(Press <ESC> then K) Return to Edit
+
+	* Global Key
+
+	  ^G	:(Ctrl+G) Abort input
+	  ^L	:(Ctrl+L) Refresh the screen
+-----------------------------------------------------------------------
+	* Cursor movement
+
+<left>	| ^S	:Previous character
+<right>	| ^D	:To the next character
+<up>	| ^E	:<ctrl+up> Fast scroll to the next line
+<down>	| ^X	:<ctrl+down> Fast scroll down
+<rollup>| ^C	:Next page <rolldn>| ^R	:Previous Page
+	  ^A	:Previous word	     ^F	:Next word
+<F1>		:First line
+<F2>		:Last line
+<ESC> number<CR>:To the specified line
+-----------------------------------------------------------------------
+	* Deletion/insertion
+
+<BS>		:Delete the previous character
+<DEL>		:Delete the next character
+<ESC>-<BS>	:Delete previous word
+	  ^Y	:Delete one line
+	  ^K	:Delete to the end of the line
+-----------------------------------------------------------------------
+	* Special deletions and insertions
+
+<RETURN>	:Insert a new row        ^J :Insert new lines and indent
+<TAB>		:Go to the next tab stop ^O :Insert/Overwrite Toggle [INS]
+<F6> (Sel)	:Mark the current location
+<F7> (Cut)	:Delete the area from the mark
+                 (added with <F6>) to the cursor position
+<F8> (Copy)	:Save region to kill buffer
+<F9> (Paste)	:Insert kill buffer at current position
+<F10>(TagJump)	:Tag jump
+-----------------------------------------------------------------------
+	* Find/Replace
+
+<F4>	  	:Search forward from the cursor position
+<shift><F4>     :Search backward from the cursor position
+<F5>		:Next consecutive search
+<shift><F5>     :Sequential Previous Search
+<F3>		:Replace the first string entered 
+                 with the next string entered. The string ends with <ESC>
+<shift><F3>	:Interactive replacement.
+
+                 The interactive command is:
+
+	^G  Cancel		.	     Return to previous position
+	!   Replace remaining	Y|<return>   Replace
+	?   Show command menu	N|<space>    Do not replace
+-----------------------------------------------------------------------
+	* Search/Replace #2
+
+<Ctrl+^>	:Search forward for the word under the cursor
+<Ctrl+\>	:Search backward for the word under the cursor
+		 Please use this in conjunction with 
+                 the next consecutive search <F5> and previous 
+                 consecutive search <Shift>+<F5>.
+<ESC> ^		:Enter a search string and then search forward
+<ESC> \		:Enter a search string and then search forward
+-----------------------------------------------------------------------
+	* Lowercase/uppercase conversion
+
+<ESC>-U 	:Convert word to uppercase (all letters)
+<ESC>-C 	:Word capitalization (first letter)
+<ESC>-L 	:Convert word to lowercase (all characters)
+	  ^T	:Swap the previous and next characters
+	  ^V	:Used to input control chords
+<ESC>-]		:Find matching brackets
+-----------------------------------------------------------------------
+	* Multi-window
+
+You can have multiple windows open on the screen at the same time.
+You can view parts of the same file in separate windows, 
+or you can view different files.
+
+<ESC>-P		:Duplicate the current window
+<ESC>-O		:Make the current window fill the screen
+<ESC>-N		:Close the current window
+<shift><F1> 	:Increase the window size
+<shift><F2> 	:Reduce the window size
+<HOME>		:Move to the next window.
+<CLR>  |<ESC>-A	:Move to the next file.
+-----------------------------------------------------------------------
+	* File loading
+
+<ESC>-F 	:Read the file into a new buffer.
+		 A new window is created and displayed.
+<ESC>-R 	:Read a file into the current buffer.
+		 The previous contents of the buffer are lost.
+<ESC>-Y 	:Insert a file at the current cursor position
+<ESC>-V 	:Find the file and create a VIEW mode buffer.
+<ESC>-T 	:Rename files during processing
+-----------------------------------------------------------------------
+	* Write file and exit
+
+<ESC>-W		:Save the current buffer to a filename
+<ESC>-S		:Saves the current buffer to the filename
+                 it was loaded from and closes the buffer and the window.
+<ESC>-E 	:Save all modified buffers to disk and exit MicroEMACS
+<ESC>-Q 	:Exit MicroEMACS
+<ESC>-K		:Discards the current buffer and closes the window.
+-----------------------------------------------------------------------
+	* Shell invocation
+
+<ESC>-! 	:Execute a single OS command
+<shift><F10>	:same as <ESC>-!
+<ESC>-$ 	:Insert the execution result
+                 of the OS command into the buffer
+<ESC>-# 	:Executes OS filter commands on the buffer being processed
+<ESC>-%		:Run Command.x
+                 Command.x must exist in the current directory
+                 or in the directory specified by path.
+-----------------------------------------------------------------------
+	* Others
+
+<ESC>-/		:Toggle line number display
+<ESC>-^T	:Tab stop 4/8 toggle
+<ESC>-^L	:Center the current cursor in the window.
+<ESC>-=		:Show current cursor information
+<ESC>-X		:Executes an Emacs command.
+                :desc [SPACE] bi [SPACE]
+                 This will show you the current key bindings.
+
+	The M- in the display is the same as <ESC>-
+        (press ESC and then press something)
+-----------------------------------------------------------------------
+	* Macros
+
+<ESC>-@ 	:Start/end macro registration
+<UNDO>		:Execute registered macros
+
+	* Repeat
+
+<ESC>-Number-Command	:Execute Command Number times
+
+		When Command=<CR>, move to the specified line number
+		If you get the number wrong, press ^G to exit.
+-----------------------------------------------------------------------
+	* Added commands
+
+toggle-linenum           <ESC>-/	:Line number display switch
+toggle-over              ^O		:Insert/Overwrite switch
+toggle-tab               <ESC>-^T	:8 tabs/4 tabs
+tag-jump		 <F10>		:Tag jump
+get-fence		 <ESC>-]	:Find matching brackets
+-----------------------------------------------------------------------
+	* Startup options
+
+	-v	  Open the file in ViewMODE (cannot be edited).
+	-e	  Open in EditMODE (usually -e)
+	-sSTRING  After loading the file, search for "STRING".
+	-gLINENUM After loading the file, move the cursor to the LINENUM line.
+
+
+
+

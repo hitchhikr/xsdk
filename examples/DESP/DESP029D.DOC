@@ -1,0 +1,84 @@
+----------------------------------------------------------------
+X68000 version of the side-scrolling action game "DesperadO - X"
+				Version 0.29d		                   1995 feb.
+----------------------------------------------------------------
+
+- Introduction
+
+  This game is a remake of the original game "DesperadO," 
+developed for the MZ-2500 by the Kyoto University Microcomputer Club in 1988.
+For the remake, the base game system remained the same,
+but various improvements were made to make it suitable for the X68000.
+I will omit the details, but this distribution includes a slightly improved version
+of the one exhibited at Kyoto University's November school festival in 1992.
+
+----------------------------------------------------------------
+- How to start the game
+
+  Place all the files in this archive in the current directory and run start.bat to start.
+
+----------------------------------------------------------------
+- How to play the game
+
+When you start the game, the title demo will start.
+Press XF1 / XF2 or a button on the pad to start the game. (If you press ESC here...€)
+
+You (the player) control the red ship (Desperado) and defend the planet Bester by defeating enemies that warp out one after another.
+You clear a level by defeating a set number of enemies on each level.
+
+However, an antimatter bomb called "The Tub" has been secretly dropped somewhere on Bester.
+If this falls on Bester, it will greatly reduce Bester's nuclear shield.
+If your nuclear shield reaches 0, the game is over.
+It will be fully restored when you clear a level.
+
+On the next level, you'll encounter enemies that cannot be destroyed in one hit.
+It may be possible to get a hit under certain conditions.
+Well then, good luck with all 9 levels.
+
+The controls for your aircraft during the game are as follows:
+
+8246 on the numeric keypad / D-pad --- Move your ship (Desperado) up, down, left, and right
+                XF2 key / A button --- Reverse the direction of your ship
+                XF1 key / B button --- Firing bullets
+
+You can also do the following during the game (even in the replay demo):
+
+               ESC --- Pause (press ESC again to resume)
+(During pause) TAB --- Frame forward
+          CTRL + G --- Return to title screen
+         (pause) Q --- Quit and return to command line
+
+----------------------------------------------------------------
+- How to view the status area (bottom half of the screen)
+
+                          Desperado's lateral speed
+                                    |
+ +------------------------+--------------------+
+ | SCORE 000000           +--------------------+
+ | ENEMY 32               |       Radar        |
+ | DESPERADO 3            |    (see below)     |
+ +------------------------+--------------------+
+ +---------------------------------------------+
+                  |
+Planet Bester's nuclear shield gauge (decreases dramatically when the basin falls)
+
+ SCORE ------- The current score.
+               Points are added when you defeat enemy characters or clear stages.
+ ENEMY ------- This is the number of enemy characters you must defeat on this level.
+               When it reaches 0, the level is cleared.
+ DESPERADO --- The remaining number of your own ships.
+               The time you are currently playing does not count.
+
+If the nuclear shield reaches 0, the game is over.
+It will recover when the surface is cleared.
+
+How to read the radar:
+
+ +------------------------------+
+ |              .        .      | Red dot (inside the small frame)... Your ship (Desperado)
+ |     .  .      +---+       .  | White dots (lots)               ... enemy aircraft
+ | .             | . |   .      | Light blue dot (one)            ... Antimatter bomb "Tub"
+ |               +---+     .    |
+ +------------------------------+
+                  |
+The contents of the small frame will be displayed on the game screen.

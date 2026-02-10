@@ -1,0 +1,161 @@
+(i)
+
+
+/.ADPCM_BLOCK_DATA = po.zpd
+
+
+(m1,1000)(afm1,1)
+(m2,1000)(afm2,2)
+(m3,1000)(afm3,3)
+(m4,1000)(afm4,4)
+(m5,1000)(afm5,5)
+(m6,1000)(afm6,6)
+(m7,1000)(afm7,7)
+(m8,1000)(afm8,8)
+(m9,1000)(aAdpcm,9)
+
+(z64)
+
+(t1) t220@71o3v12l8@k-5 @q1 _1
+(t2) @31o4v10l8 k-12 _2
+(t3) @31o3v9 _2
+(t4) @31o3v9 _2
+(t5) @74o5v8l8@k2 @s2 @m13 @h19 @q4
+(t6) @74o5v5l8@k10r8.	q8
+(t8) @59o5l8v12q7
+(t9) o2l8@r1
+
+(t1) |:4 cccc cccc :|
+(t2) r1 r1 r1 r1
+(t5) r1 r1 r1 r1
+(t6) r1 r1 r1 r1
+(t8) |:4 c4c4 c4c4 :|
+(t9) |:3 c2 c2 :|cddcdddd
+
+(t1) [do]
+(t2) [do]
+(t5) [do]
+(t6) [do]
+(t8) [do]
+(t9) [do]
+
+(t1) |:
+(t2) |:
+(t5) |:
+(t6) |:
+(t8) |:
+(t9) |:
+
+(t1) cccc cccc		cccc cccc
+(t2) '<c1>ge'&		'<c1>ge'
+(t5) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t6) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t8) cccc cccc		cccc cccc
+(t9) <f+4g4>c<f+>d<f>	c4<gf+> r<f+g4>
+
+(t1) cccc cccc		cccc cccc
+(t2) 'b-1fd'&		'b-1fd'
+(t5) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t6) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t8) cccc cccc		cccc cccc
+(t9) <f+4g4>c<f+>d<f>	c4<gf+> r<f+g4>
+
+(t1) cccc cccc		cccc cccc
+(t2) 'a1fc'&		'a1fc'
+(t5) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t6) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t8) cccc cccc		cccc cccc
+(t9) <f+4g4>c<f+>d<f>	c4<gf+> r<f+g4>
+
+(t1) | cccc cccc		cccc cccc
+(t2) | 'a-1fc'		'b-1fd'
+(t5) | <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t6) | <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t8) | cccc cccc		cccc cccc
+(t9) | <f+4g4>c<f+>d<f>	c4<gf+> r<f+g>d
+
+(t1) :|
+(t2) :|
+(t5) :|
+(t6) :|
+(t8) :|
+(t9) :|
+
+(t1) cccc cccc		cccc cccc
+(t2) 'a-1fc'		'b-1fd'
+(t5) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t6) <c>fg<c> fg<c>f	g<c>fg <c>fgf
+(t8) cccc cccc		cccc cccc
+(t9) <f+4g4>c<f+>d<f>	c4<gf+> cddd
+/(t9) c4d4 ccd4		c4dd cddd
+
+(t1) |:
+(t2) |:
+(t5) |:
+(t6) |:
+(t8) |:
+(t9) |:
+
+(t1) e-e-e-e- e-e-e-e-	e-e-e-e- e-e-e-e-
+(t2) '<e-1>b-g'&	'<e-1>b-g'
+(t5) @32@q0>v11g1&		g4g4a-4b-4
+(t6) @32@q0>v 9g1&		g4g4a-4b-4
+(t8) cccc cccc		cccc cccc
+(t9) c4d4 ccd4		c4d4 ccd4
+
+(t1) d-d-d-d- d-d-d-d-	d-d-d-d- d-d-d-d-
+(t2) '<d-1>a-f'&	'<d-1>a-f'
+(t5) b-1&		b-4b-4<c4>b-4
+(t6) b-1&		b-4b-4<c4>b-4
+(t8) cccc cccc		cccc cccc
+(t9) c4d4 ccd4		c4d4 ccd4
+
+(t1) |cccc cccc		cccc cccc
+(t2) |'<e-1>b-g'&	'<e-1>b-g'
+(t5) |<e-1&		e-4e-4f4g4
+(t6) |<e-1&		e-4e-4f4g4
+(t8) |cccc cccc		cccc cccc
+(t9) |c4d4 ccd4		c4d4 ccd4
+
+(t1) a-a-a-a- a-a-a-a-	b-b-b-b- b-b-b-b-
+(t2) '<e-1>b-g'&'<e-1>b-g'
+(t5) g2.f4&		f2>b-2
+(t6) g2.f4&		f2>b-2
+(t8) cccc cccc		cccc cccc
+(t9) c4dr ccd4		c4dc rdd4
+
+(t1) :|
+(t2) :|
+(t5) :|
+(t6) :|
+(t8) :|
+(t9) :|
+
+(t1) cccc cccc		cccc cccc
+(t2) '<e-1>b-g'&		'<e-1>b-g'
+(t5) <e-1&		e-4e-4f4g4
+(t6) <e-1&		e-4e-4f4g4
+(t8) cccc cccc		cccc cccc
+(t9) c4d4 ccd4		c4d4 ccd4
+
+(t1) a-a-a-a- a-a-a-a-	b-b-b-b- b-b-b-b-
+(t2) '<e-1>b-g'&		'<e-1>b-g'
+(t5) g1			b-1> @74v12
+(t6) g1			b-1> @74v9
+(t8) cccc cccc		cccc cccc
+(t9) c4d4 ccd4		crdd cddd
+
+(t1) [loop]
+(t2) [loop]
+(t5) [loop]
+(t6) [loop]
+(t8) [loop]
+(t9) [loop]
+
+(t1) rffr ffrg		rgrg& g2
+(t2) r'<fc>a''<fc>a'r'<fc>a''<fc>a'r'<gd>b' r'<gd>b'r'<gd>b'&'<g2d>b'
+(t5) r1 r1
+(t8) cccc cccc		cccr r2
+(t9) cddc ddrc		rdr<c+> rrrr
+
+(p)

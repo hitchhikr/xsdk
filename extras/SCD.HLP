@@ -1,0 +1,378 @@
+                 How to use the online help
+
+ROLL UP Read the next topic.
+ROLL DOWN Read the previous topic.
+ESC Exits the online help.
+
+The online help contains information on how to use the menus,
+various commands, C evaluation expressions and their notes,
+information on coprocessors, and startup options.
+
+This help is intended to provide instructions on how to use it, 
+and is not intended as instructional guidance
+for the source code debugger.
+
+For details, please refer to the "Assembler Manual,"
+"Source Code Debugger Manual," "C Compiler User's Manual,"
+and "Extended Manual" that come with
+the "C Compiler PRO-68K ver2.1 NEW KIT."
+
+                    How to use SCD - Part 1
+
+The top menu bar has the following functions:
+
+     ¢¤ File   Find   Watch  Exec   Show     
+
+      Trace  Step   Option User process name    
+
+You can switch between Japanese mode and English mode by
+selecting "Kanji" or "English mode" from the F8 key menu.
+
+ - By adding the /j option when starting the program,
+   it will start in Japanese display mode.
+
+                    How to use SCD - Part 2
+
+The following icon on the menu bar is used
+to move the source window and view the source.
+
+     ¢¤ File   Find   Watch  Exec   Show     
+      ªª
+      bb
+      b„¤„Ÿ Moves the source screen towards higher addresses.
+      b
+      „¤„Ÿ„Ÿ Rewinds the source screen to a lower address.
+
+                    How to use SCD - Part 3
+
+The part that says File is called a "pull-down menu,"
+and in this case it indicates the "File menu."
+
+     ¢¤ File   Find   Watch  Exec   Show     
+            ª
+            b
+            „¤„Ÿ„Ÿ File Menu
+
+This menu can be opened by clicking the mouse button
+or by pressing the F1 key.
+
+                    How to use SCD: Part 4
+
+When you open the File menu, you will see the following:
+
+     ¢¤ File   Find   Watch  Exec   Show     
+          „  Load   „«©
+          „  Shell  „«©  Functional part
+          „  Quit   „«©
+          „¤„ª„ª„ª„ª„®
+
+When you open it with the mouse button,
+drag it (move it without releasing the button).
+If you open it using the F1 key, pressing F1 twice
+will invert the function parts sequentially.
+In this state, if you release the mouse button,
+or if you use the F1 key, press the return key
+to select the menu function.
+
+                    How to use SCD: Part 4
+
+The File menu has the following functions:
+
+     ¢¤ File   Find   Watch  Exec   Show     
+          „  Load   „«
+          „  Shell  „« 
+          „  Quit   „«
+          „¤„ª„ª„ª„ª„®
+
+  Load: Load the executable file into the debugger.
+ Shell: Launch Command.x.
+  Quit: Exit the debugger.
+
+                    How to use SCD: Part 5
+
+The search menu has the following functions:
+
+     ¢¤ File   Find   Watch  Exec   Show     
+                  „ Search  „«
+                  „ Forward „« 
+                  „ Backward„«
+                  „ Symbol  „«
+                  „¤„ª„ª„ª„ª„®
+
+  Search: Search for a string in the source.
+ Forward: Search again from the current position
+          to the end of the source.
+Backward: Search again from the current position
+          to the beginning of the source.
+  Symbol: Search for any global symbol.
+
+                    How to use SCD: Part 6
+
+The watch menu has the following functions:
+
+     ¢¤ File   Find   Watch  Exec   Show     
+                          „ Set     „«
+                          „ Erase   „« 
+                          „ WatchPt „«
+                          „ TracePt „«
+                          „¤„ª„ª„ª„ª„®
+
+    Set: Set the Inspect evaluation expression.
+  Erase: Remove any evaluation expressions.
+WatchPt: Set the watchpoint evaluation formula.
+TracePt: Set the tracepoint evaluation expression.
+
+                    How to use SCD: Part 7
+
+The Execute menu has the following functions:
+
+   Watch  Exec   Show     
+          „ Run     „«    
+          „ Slow    „«   
+          „ Restart „«   
+          „ Clear   „«   
+          „ Return  „«   
+          „¤„ª„ª„ª„ª„®  
+
+
+    Run: Start program execution.
+   Slow: Run the program step by step.
+Restart: Reset the program to its initial state.
+  Clear: Clear the execution state.
+ Return: Trace the current function until it exits.
+
+                    How to use SCD: Part 8
+
+The Show menu has the following features:
+
+   Watch  Exec   Show     
+          „ Assembly„«    
+          „ Register„«    
+          „ Screen  „«    
+          „ Stack   „«    
+          „ Calls   „«    
+          „¤„ª„ª„ª„ª„®    
+
+Assembly: Switch the assembler window display.
+Register: Registers display On/Off
+  Screen: Switch between the user screen and the debug screen.
+   Stack: Display the stack contents.
+   Calls: Display the function call status.
+
+                    How to use SCD: Part 9
+
+Trace, step through program execution.
+
+      Trace  Step   Option User process name    
+              ª     ª
+              b     b
+              b     „¤„Ÿ- Performs step execution.
+              b
+              „¤„Ÿ„Ÿ Performs trace execution.
+
+Trace execution traces all actions.
+However, stepping does not trace inside functions.
+
+By combining and executing these two functions,
+you can efficiently advance the program to the desired position.
+
+
+                    How to Use SCD: Part 10
+
+The options menu has the following features:
+
+    Trace  Step   Option
+                  „ Mix     „«  
+                  „ Symbols „«  
+                  „ Code    „«  
+                  „ Kanji   „«  
+                  „ Custom  „«  
+                  „¤„ª„ª„ª„ª„®  
+
+    Mix: Mixed source code display on/off
+Symbols: Mixed display of symbol definitions on,off
+   Code: Native code mixed display on,off
+  Kanji: Switch between English and Japanese environments.
+ Custom: Change system settings.
+
+                    SCD command list 1
+
+   A[address]               :Assemble
+   AN[address]              :Assemble (no mnemonics)
+   B                        :View Breakpoints
+   B[bp] address [count]    :Set Breakpoint
+   BC bp                    :Delete a breakpoint
+   BD bp                    :Disable a breakpoint
+   BE bp                    :Enable a breakpoint
+   BR                       :Break count initialization
+   C string                 :Command Line Settings
+   D[size][range]           :Memory contents dump
+   E? Cexp[;format]         :Set the C evaluation formula
+   EE num                   :Delete C evaluation formula
+   F[size]range data        :Fill Memory
+   G[=address] [adress]     :Run a program while debugging
+   H                        :Online Help Messages
+   HC                       :Clear the trace history
+   HI [-count]              :View the trace history
+   I[..filename]            :Switch to view source mode
+
+                    SCD command list 2
+
+   I?                       :List of source files
+   L[range]                 :List View (Source/Assembly)
+   ME[size][address] [data] :Edit memory contents
+   MEN[size][address]       :Edit memory contents (no display)
+   MM range address         :Move memory contents
+   MS[size]range data       :Search memory contents
+   O                        :Switch to Assembly View Mode
+   P                        :View System Status
+   PF                       :Display the Function List
+   PL                       :View the local variables list
+   PG                       :View the global variables list
+   PT                       :View Structures
+   PS                       :Display the Symbol Table
+   PS symbol                :Symbol search display
+   P? address               :Address Expression Calculation
+   Q                        :Termination of SCD
+   R filename[,address]     :Load a file
+   S[count]                 :Step execution
+
+                    SCD command list 3
+
+   SR                       :Return from a function
+   T[=address] [count]      :Trace Execution
+   T? Cexp[;length]         :Set trace point
+   U[=address] [count]      :Trace without display
+   V                        :Switch consoles
+   W filename,range         :Write to a file
+   W? Cexp                  :Watchpoint condition settings
+   X                        :Display register contents
+   X reg                    :Change register contents
+   Y/N                      :Pose
+   Z                        :View System Variables
+   Znum=exp                 :Set system variables
+   ? Cexp[;format]          :C language expression evaluation
+   > [filename]             :Output Redirection
+   >> [filename]            :Output redirection (append)
+   >@ [filename]            :Save input commands to a file
+   < filename               :Input redirection
+   ![os_command]            :Execute OS commands
+
+                    SCD command notation 1
+
+  <exp> <address>
+
+  Address can be an expression that specifies
+  an address at the assembler level.
+
+   Available operators
+	+	Addition
+	-	Subtraction
+	*	Multiplication
+	/	Division
+	%	Remainder
+	&	Logical AND
+	|	Logical OR
+	!	Logical negation
+	^	Exclusive OR
+
+                    SCD command notation 2
+
+   Address expressions that can be used
+
+    03c3            (Hexadecimal)
+    \123            (Decimal)
+    _1100011        (Binary)
+    .symbol         (Assembler symbol names)
+    .23             (Source line number addressing)
+    ..filename.12   (Address by filename and line number)
+                     The extension is omitted.
+  <size>
+   size   :   s(byte) w(word) l(long) Either
+              If <size> is omitted, it is considered to be word.
+
+  <range>
+   range  :   <start_address> <end_address>
+              or
+              <start_address> L<length_byte>
+
+                    C language expression notation 1
+
+<Cexp>
+It is written in the same format as expressions in C language.
+Example:
+    123         (Decimal)
+    0x6a000     (Hexadecimal)
+    i           (Variable i)
+    *p          (The memory contents pointed to by pointer p)
+   The scope (visibility) of a variable depends
+   on the program counter currently being traced.
+   In other words, in order of priority,
+   - Variables declared within the current block
+   - Variables declared within the current function
+   - Static variables declared in the current module
+   - Globally declared variables
+It will be searched in the following order.
+If the current program counter does not belong to any function,
+or if the frame pointer is not set at the beginning of
+a function entry, only global variables can be referenced.
+
+                    C language expression notation 2
+
+Most types and operators that can be expressed in C
+are supported, with the exception of the ternary operator (?:)
+and complex cast operators, which cannot be used.
+If you want to change the value of a variable,
+write an assignment expression. (variable name = value)
+Even in other cases, if you write an operator that causes
+side effects (such as assignment, increment, decrement, or
+function call) in an expression, side effects will occur.
+  <format>
+   format specifies the format for displaying C expressions
+   using one of the following characters.
+	  	s  :String
+		c  :Character
+		x  :Hexadecimal
+If format is omitted, the value of the expression
+is normally displayed in decimal.
+Example:    -? argv[0];s
+            Displays the value of argv[0] in string format.
+
+                    Coprocessor Control Commands
+
+XFPCP :FPCP on<>off (/f)
+XDIS  :Change source window floating point representation (/d)
+XFX   :Change register window floating point representation (/d)
+XFP   :Floating point register display on<>off (/x)
+
+Floating-point coprocessor instructions are not available unless
+the optional 68882 floating-point coprocessor is installed.
+No operations are allowed on floating point values.
+
+All that is allowed is to evaluate floating-point expressions
+using C expressions and put the results
+in registers or assembler.
+In addition, string conversion functions such as
+the ECVT function have side effects on their own buffers,
+and simply evaluating an expression with the ? command
+can change the flow of a program.
+The display in parentheses is the option setting
+at the time of operation.
+
+                    Command option settings
+
+/b<Palette code>   :Background color specification
+/c<Memory size>    :Memory size to give to child processes
+/d                 :Register window and register window
+                    floating-point representation (XDIS and XFX) 
+/f                 :Enable FPCP (XFPCP)
+/i<Tab size>       :Set tab size (2=default)
+/j                 :Start in Japanese
+/p<Palette code>   :Pen color specification
+/r                 :Remote Console Mode
+/t                 :Start in console mode
+/x                 :Floating-point register display (XFP)
+
+Options can also be specified in the configuration file
+(SCD.CNF).
+STR@

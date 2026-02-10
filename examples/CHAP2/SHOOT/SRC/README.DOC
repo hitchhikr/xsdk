@@ -1,0 +1,16 @@
+This is the source list for the shooting game created in Chapter 2.
+The parts that each file processes are as follows:
+
+SHOOT.H                         Include files
+ATARI.C ATARI.H                 Hit detection
+BGPUT.C BGSCR.C BG.H            BG related routines
+ENEMOVE.C ENEMOVE.H ENEMY.C 
+ENEMY.H ENEPATTERN.C            Enemy Routines
+ETC.C ETC.H                     Processing routines for titles, game over, etc.
+EVENT.C EVENT.H                 Event Routines
+GRAPHIC.C GRAPHIC.H             Background Star Routine
+MAIN.C                          Main Routine
+MAKEFILE                        Makefile
+SUB.C SUB.H                     Various small functions
+SHIP.C SHIP.H                   Movement routine for the player's ship and bullets
+SOUND.C SOUND.H ZLIB.S ZLIB.H   Sound-related routines

@@ -1,0 +1,25 @@
+
+	cassette streamer tape driver for X680x0/Human68k
+
+There are no restrictions on copying or modifying the source code.
+Furthermore, we assume no responsibility for any damage 
+or malfunction that may occur as a result of using this device driver.
+
+How to use tapedrv.sys
+
+tapedrv.sys [/id=N] [/fn=NAME]
+	N    : SCSI ID (0..7)
+	NAME : Device name
+
+in config.sys:
+
+device = tapedrv.sys
+
+This will search for the tape drive connected to X680x0.
+If a tape-drive is found, the device driver will be built into Human.
+
+device = tapedrv.sys /id=4
+
+will cause the device driver for whatever device has SCSI ID 4 to be built into Human.
+
+The device name is built in to ST0, but you can also specify the device name with the /fn= option.

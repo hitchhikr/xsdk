@@ -1,0 +1,28 @@
+#	battle.cnf
+#	現在、charge max のカウント数は 192 と固定である。
+#
+#################### BEGINNER MODE #######################
+#
+#	hit point の初期値(これをいらう必要はないはずである)
+256
+#なぐるのに必要なcharge	damage(min)	damage(max)
+64			32		120
+#レーザーに必要なcharge	damage(min)	damage(max)
+128			32		96
+# DS			VMAX		LASERS
+128			64		256
+# INVTIME		WDAMAGE		WLASER		WSWORD
+40			20		10		20
+#
+#################### EXPERT MODE #########################
+#
+#	hit point の初期値(これをいらう必要はないはずである)
+256
+#なぐるのに必要なcharge	damage(min)	damage(max)
+64			32		120
+#レーザーに必要なcharge	damage(min)	damage(max)
+128			32		96
+# DS			VMAX		LASERS
+128			64		256
+# INVTIME		WDAMAGE		WLASER		WSWORD
+40			20		10		20

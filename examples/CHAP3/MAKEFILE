@@ -1,0 +1,17 @@
+TARGET = jouchuu.x
+OBJS = jouchuu.o
+CFLAGS = -O -fstrength-reduce -fomit-frame-pointer
+LDFLAGS = -liocs -ldos
+CC = gcc
+
+all : $(TARGET)
+
+.c.o:
+	$(CC) -c $(CFLAGS) $<
+
+$(TARGET) : $(OBJS)
+	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS)
+
+jouchuu.o	:	jouchuu.c
+
+

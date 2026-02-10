@@ -1,0 +1,82 @@
+SPS (Super Processor) X68k version
+
+Function:
+
+	Organize and display information about processes and device drivers.
+
+Usage: sps [options]
+
+Options:
+
+	a	    Prints process and device driver information.
+	b	    Show background information (HUMAN version check available)
+	d	    Displays information about device drivers only.
+	n name	Prints information about only the process or device driver named.
+            If it doesn't exist, it will have errorlevel 2, so it can be used in batch files.
+	p	    Only process information is displayed.
+	s	    64 columns (automatically specified when the display screen is not 768x512)
+	w	    96 columns (automatically specified when the display screen is 768x512)
+	v	    Find out what the vector is hooked to.
+	l	    The v option will make the display more detailed, including vector descriptions.
+	m	    Displayed in memory block order (similar to process.x)
+	t	    Show what the timer is used for (the v option is meaningless).
+	x	    Visually displays how memory is being used.
+
+How to read the display:
+
+	START	Start address of the process body (including PSP)
+	END	    End address of the process body
+	SIZE	The sum of the process body size and MALLOC size (unit: Kbytes) is displayed as a percentage of total memory.
+
+	MALC	For processes
+
+			Number of MALLOC
+
+            For devices
+
+			1st column:	Displays "I" when IOCTL is available.
+			2nd column:	Raw/Cooked
+			3rd column:	Displays N for a null device.
+			4th column:	Displays S for standard input/output.
+
+	STATUS CHAR	Character device driver
+
+            BLOCK	Block device drivers
+            HUMAN	Human68k
+            PROC	Normal process
+            KEEP	Resident process
+            MEMDRV	I wonder what this is. This came up when I analyzed PROCESS.X.
+            SRAM	When BOOT PROGRAM or PROGRAM is specified.
+
+	COMMAND / DEVICE
+
+            The command name or device driver name Human68k displays the version.
+            For normal processes, the command line is displayed.
+
+	Vector Information
+
+            If the v option is specified, it searches the vector area and displays information about the destination 
+            if it is within a process or device driver.
+
+            CPU	    CPU 68000 interrupts
+            IOCS	IOCS Vector
+            DOS	    DOS Vector
+            ETC	    In addition, the number and name of each hidden vector are displayed.
+
+Copyright:
+	
+    We do not waive copyright, but you are free to distribute and improve it.
+
+Comment:
+
+Those who know will know, but it was created with the aim of being similar to sps, a PDS for UNIX/BSD systems.
+Of course, since the OS is completely different, the functions are also completely different.
+
+Also, I made it for the v option.I don't think there are any real bugs.
+
+Since I can't find the source code for the latest version (sobbing), 
+I've included only the executable file compiled with GCC.
+
+An older version of this program is featured in Dennou Club issue 24.
+
+						Ishii @ Kyoto University Microcomputer Club (ici@kmc)

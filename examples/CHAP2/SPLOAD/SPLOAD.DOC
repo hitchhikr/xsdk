@@ -1,0 +1,86 @@
+Sprite data area loader/saver spload.x / spsave.x
+
+                    programmed by chika@kmc
+
+
+
+First
+
+  spload.x / spsave.x is a program that loads and saves sprite PCG areas and sprite palettes.
+  This program solves the complaints such as not being able to save data in def.x
+  and the inconvenience of loading/saving in sm.x (although it's not a particularly great program).
+
+
+
+How to use
+
+  spload.x [options] filename If the filename extension is omitted, 
+  the default extension is .SP for PCG data and .PAL for palette data.
+  If you do not use the -p or -c option, do not include a filename extension.
+
+
+
+Option
+
+  The command line options are:
+    -p      Processes palette data only
+    -c      Processes PCG data only
+    -l      Load (default)
+    -s      Save
+    -b(num) When loading/saving PCG, start from the numth area of the PCG area.
+    -n(num) Save num items when saving PCG
+
+  Example:
+
+    spload aho          Load aho.SP, aho.PAL.
+    spload -c aho       Load aho.PAL into the palette.
+    spload -p aho.pat   Load aho.pat into the PCG area
+    spload -s aho       Save to aho.SP aho.PAL.
+
+
+
+About spsave.x
+
+  spsave.x is simply spload.x with the -s option set as the default.
+  If you use spload.x -s foo when saving, it is obvious that you will get disastrous results 
+  if you forget the -s, so it is better to use spsave.x or make spsave an alias for spload -s and use it as spsave foo.
+
+
+
+Usage example:
+
+For example, if you want to edit foo.SP and foo.PAL using def.x (the sprite editor included with XC).
+
+    spload foo
+    def
+    spsave foo
+
+This will allow you to load/save sprite data.
+
+
+
+About the Source
+
+  If you do nothing, spload.x (default is loaded) will be created, 
+  and if you define the SPSAVE macro and compile it,
+  spsave.x (default is saved) will be created (see makefile).
+
+
+
+No warranty
+
+  This program is written in the hope that it will work properly,
+  but there is absolutely no guarantee that it will work properly.
+  We cannot accept any responsibility for any damages that may arise from the use or inability to use this program.
+  In particular, the -b -n commands are not used often, so they may have bugs, 
+  and there are also some questionable features regarding saving when the disk is full.
+  If the PCG area is not saved properly, the unfortunate event of the data you worked so hard to create not being saved will occur, 
+  so after saving, be sure to check the number of bytes in the file before turning off the power.
+
+
+
+Development tools and creators (titles omitted)
+
+    HAS Ver2.50                 Y.Nakamura
+    HLK Ver2.27                 SALT
+    uEmacs 3.10 J1.43(rel.3)    lika/SALT/PEACE/SHUNA/rima

@@ -1,0 +1,586 @@
+----------------------------------------------------------
+   Source Code Debugger - 68040/68060 compatible version
+               scd060.x version 3.01+12
+                1998.11.27 by M.Kamada
+----------------------------------------------------------
+
+Introduction
+
+scd060.x is a modified version of the genuine SHARP source code debugger "SCD.X v3.00/v3.01" 
+that comes with the XC compiler, so that it can run on both the 68040 and 68060.
+
+scd060.x works on the 68040 and 68060 as well as the 68000 and 68030.
+In addition to supporting the 68040 and 68060, it has many other modifications and fixes, 
+so I think it will be useful even if you are not a 68040 or 68060 user.
+
+For information about SCD.X, see the manual that comes with the XC compiler.
+
+ÅúAbout compatible SCD.X versions
+
+scd060.x is distributed in the form of a binary diff (.bfd) against SCD.X v3.00/v3.01.
+To generate scd060.x, use K. Higashide's bup.x and apply the binary diff file that corresponds to your version of SCD.X.
+
+Each binary diff corresponds to the following versions of SCD.X:
+
+      +------------+------------------------------------------+
+      |Binary Diff |              Compatible SCD.X            |
+      +------------+------------------------------------------+
+      | scd300.bfd | SCD.X v3.00   131152  93-09-15  12:00:00 |
+      | scd301.bfd | SCD.X v3.01   131156  93-12-25  12:00:00 |
+      +------------+------------------------------------------+
+
+We have not confirmed the existence of newer versions of SCD.X than those listed above, but if you have one, please contact us.
+
+The version of SCD.X will be displayed when you start it.
+It will be displayed in full screen mode, but it will disappear immediately, 
+so it is recommended to start it in console mode with "SCD.X -t" to check it.
+
+
+----------------------------------------------------------
+
+              Commands changed to suit DB.X
+
+----------------------------------------------------------
+
+SCD.X is more powerful than DB.X and also has a console mode like DB.X, 
+so even those who don't need full screen mode can use SCD.X as a replacement for DB.X.
+However, there is an inconvenience in that the function of the command "?" in SCD.X is different from that in DB.X.
+Therefore, in this scd060.x, the functions of the commands "?" and "P?" have been swapped.
+
+Also, although it is not written in the SCD.X manual, SCD.X originally had the function of displaying 
+the value of an expression in decimal with "P?? exp" and displaying one character with "P?P exp", 
+treating the least significant byte of the expression value as a character code.
+In DB.X, "??" is the command to display in decimal, so in scd060.x these have also been swapped.
+
+Behavior of "?" and "P?" in scd060.x
+
+      +----------------+-----------------------------------------------------------------------------------------------+
+      |? exp           Ñ†Display the value of an expression in hexadecimal                                              Ñ†
+      |?? exp          Ñ†Display the value of an expression in decimal                                                  Ñ†
+      |?P exp          Ñ†Displays the character whose code is the least significant byte of the value of the expression.Ñ†
+      |P? Cexp;[format]Ñ†C Expression Evaluation                                                                        Ñ†
+      +----------------+-----------------------------------------------------------------------------------------------+
+
+In SCD.X and scd060.x, it is not possible to write multiple commands on one line separated by ":" as in DB.X.
+
+
+----------------------------------------------------------
+
+                     Added commands
+
+----------------------------------------------------------
+
+scd060.x now supports assembling and disassembling instructions newly added for CPUs 68040 and above.
+
+Åú New instructions for 68040 and above
+
+The following instructions are new for the 68040 and above:
+
+        CINVA
+        CINVL
+        CINVP
+        CPUSHA
+        CPUSHL
+        CPUSHP
+        FDABS
+        FDADD
+        FDDIV
+        FDMOVE
+        FDMUL
+        FDNEG
+        FDSQRT
+        FDSUB
+        FSABS
+        FSADD
+        FSDIV
+        FSMOVE
+        FSMUL
+        FSNEG
+        FSSQRT
+        FSSUB
+        LPSTOP
+        MOVE16
+        MOVEC   PCR,Rn
+        MOVEC   BUSCR,Rn
+        MOVEC   Rn,PCR
+        MOVEC   Rn,BUSCR
+        PFLUSH  (An)
+        PFLUSHAN
+        PFLUSHN (An)
+        PLPAR
+        PLPAW
+        PTESTR  (An)
+        PTESTW  (An)
+
+- Instructions whose assembly results differ depending on the CPU used when assembling
+
+- Please note that the assembly results for the following instructions will differ depending 
+  on whether the CPU used at the time of assembly is a 68030 or a 68040 or higher.
+
+        PFLUSHA
+
+
+----------------------------------------------------------
+
+                  Control Register
+
+----------------------------------------------------------
+
+In scd060.x, the following control register names can now be used in the X command and in the 
+.register name description on the command line.
+
+        BUSCR
+        DTT0
+        DTT1
+        ITT0
+        ITT1
+        MMUSR
+        PCR
+        SRP
+        TC
+        URP
+
+The above registers are not visible in the Register window in full screen mode, but can be viewed and modified with the X command.
+However, all of these control registers contain important values, so you should not change them indiscriminately, except for a few bits.
+
+Note that control registers that do not exist in the environment where scd060.x is executed are not normally displayed, 
+but referencing or changing them using the X command will not result in an error, 
+and the values will be retained as simple variables that can only be used on the command line.
+
+
+----------------------------------------------------------
+
+                Exception Stack Frame
+
+----------------------------------------------------------
+
+scd060.x supports the exception stack frames (format $3/$4/$7) added in the 68040 and 68060.
+When these exceptions occur, the bus error status and whether or not there was a branch prediction error are displayed.
+
+- Example of displaying an exception stack frame on a 68060
+
+- In case of a bus error
+
+Let's try to read $00EAFF81, a port that can only be written to and not read.
+
+Exceptional abort by access error
+Access fault or floating-point disabled stack frame
+  Fault or effective address is 00EAFF81
+  at   002896F8 move.b  $00EAFF81,D0
+
+Fault Status Long Word (FSLW) is 01250020
+  Fault was caused by: RE (Bus Error on Read)
+  Fault occurred on: IO=0,MA=0 (Aligned or misaligned first operand access)
+                     LK=0 (Not locked), RW=2 (Read), SIZE=1 (Byte)
+                     TT=0 (Normal Access), TM=5 (Supervisor Data Access)
+
+PC=002896F8 USP=0025CA9A SSP=0025CA9A SR=2000 X:0  N:0  Z:0  V:0  C:0
+HI:1 LS:0 CC(HS):1 CS(LO):0 NE:1 EQ:0 VC:1 VS:0 PL:1 MI:0 GE:1 LT:0 GT:1 LE:0
+SFC=3 DFC=3 VBR=00000000 CACR=A0808000 PCR=04300521 BUSCR=00000000
+TC=0000C210 URP=11EC8000 SRP=11EC8000
+ITT0=00000000 ITT1=00000000 DTT0=00000000 DTT1=00000000
+D  00008364 00000000 00000000 00000000  00000000 00000000 00000000 00000000
+A  002895F0 00289706 0025CD32 11807CB0  002896F0 00000000 00000000 0025CA9A
+move.b  $00EAFF81,D0        ;00EAFF81(??)
+-
+
+- Supervisor protection
+
+Let's try to read from address $00000000 in user mode.
+This address is supervisor protected by the MMU settings and cannot be accessed in user mode.
+The white band for Human shows a bus error, but no bus error actually occurs.
+
+Exceptional abort by access error
+Access fault or floating-point disabled stack frame
+  Fault or effective address is 00000000
+  at   0028B264 move16  (A0)+,(A1)+
+
+Fault Status Long Word (FSLW) is 01690100
+  Fault was caused by: SP (Supervisor Protect)
+  Fault occurred on: IO=0,MA=0 (Aligned or misaligned first operand access)
+                     LK=0 (Not locked), RW=2 (Read), SIZE=3 (Double Precision or MOVE16)
+                     TT=1 (MOVE16 Access), TM=1 (User Data or MOVE16 Access)
+
+PC=0028B264 USP=0025E60E SSP=00008364 SR=0000 X:0  N:0  Z:0  V:0  C:0
+HI:1 LS:0 CC(HS):1 CS(LO):0 NE:1 EQ:0 VC:1 VS:0 PL:1 MI:0 GE:1 LT:0 GT:1 LE:0
+SFC=3 DFC=3 VBR=00000000 CACR=A0808000 PCR=04300521 BUSCR=00000000
+TC=0000C210 URP=11EC8000 SRP=11EC8000
+ITT0=00000000 ITT1=00000000 DTT0=00000000 DTT1=00000000
+D  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000
+A  00000000 00000000 0025E8A2 11807CB0  0028B260 00000000 00000000 0025E60E
+move16  (A0)+,(A1)+
+-
+
+- If write protected
+
+Let's try writing to $00FFFFFF (ROM area).
+Here, the entity at $00FFFFFF is in local memory (RAM) and is write-protected by the MMU settings.
+The white band for Human shows a bus error, but no bus error actually occurs.
+
+Exceptional abort by access error
+Access fault or floating-point disabled stack frame
+  Fault or effective address is 00FFFFFF
+  at   0028C26E clr.b   -(A0)
+
+Fault Status Long Word (FSLW) is 00A50080
+  Fault was caused by: WP (Write Protect)
+  Fault occurred on: IO=0,MA=0 (Aligned or misaligned first operand access)
+                     LK=0 (Not locked), RW=1 (Write), SIZE=1 (Byte)
+                     TT=0 (Normal Access), TM=5 (Supervisor Data Access)
+PC=0028C26E USP=0025F60A SSP=0025F60A SR=2000 X:0  N:0  Z:0  V:0  C:0
+HI:1 LS:0 CC(HS):1 CS(LO):0 NE:1 EQ:0 VC:1 VS:0 PL:1 MI:0 GE:1 LT:0 GT:1 LE:0
+SFC=3 DFC=3 VBR=00000000 CACR=A0808000 PCR=04300521 BUSCR=00000000
+TC=0000C210 URP=11EC8000 SRP=11EC8000
+ITT0=00000000 ITT1=00000000 DTT0=00000000 DTT1=00000000
+D  00008364 00000000 00000000 00000000  00000000 00000000 00000000 00000000
+A  01000000 0028C278 0025F8A2 11807CB0  0028C260 00000000 00000000 0025F60A
+clr.b   -(A0)       ;00FFFFFF(byte $FF)
+-
+
+- Branch prediction error
+
+A branch prediction error occurs when the branch cache hits somewhere other than the branch instruction code.
+This can happen rarely in programs optimized for the 68000.
+This is also a type of access fault, so the white Human band will display a bus error, but no bus error actually occurs.
+If a branch prediction error occurs, it is recommended to flush the branch cache before proceeding.
+
+A program that intentionally causes branch prediction errors:
+
+        bra.s   2f
+    1:  .dc.w   $307C       ;movea.w #<data>,a0
+    2:  bra.s   3f
+        .dc.w   $FF00
+    3:  bra.s   1b
+
+In addition to the Branch Prediction Error, the Bus Error on Write message appears because the bit indicating a bus error is set.
+This may be a bug in the MPU.
+
+Since scd060.x itself flushes the branch cache when an access fault occurs, 
+the program can continue even if a branch prediction error occurs.
+
+Exceptional abort by access error
+Access fault or floating-point disabled stack frame
+  Fault or effective address is 0028D262
+  at   0028D262 movea.w #$6002,A0
+
+Fault Status Long Word (FSLW) is 09428014
+  Fault was caused by: WE (Bus Error on Write)
+                       BPE (Branch Prediction Error)
+  Fault occurred on: IO=1,MA=1 (Extension word fetch access)
+                     LK=0 (Not locked), RW=2 (Read), SIZE=2 (Word)
+                     TT=0 (Normal Access), TM=2 (User Code Access)
+PC=0028D262 USP=0026060E SSP=00008364 SR=0000 X:0  N:0  Z:0  V:0  C:0
+HI:1 LS:0 CC(HS):1 CS(LO):0 NE:1 EQ:0 VC:1 VS:0 PL:1 MI:0 GE:1 LT:0 GT:1 LE:0
+SFC=3 DFC=3 VBR=00000000 CACR=A0808000 PCR=04300521 BUSCR=00000000
+TC=0000C210 URP=11EC8000 SRP=11EC8000
+ITT0=00000000 ITT1=00000000 DTT0=00000000 DTT1=00000000
+D  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000
+A  0028D160 0028D26A 002608A2 11807CB0  0028D260 00000000 00000000 0026060E
+movea.w #$6002,A0
+-
+
+
+----------------------------------------------------------
+
+             DOS / FPACK / SXCALL / IOCS
+
+----------------------------------------------------------
+
+Previously, DOS calls and FPACK (FE function calls) could be handled by name, but in scd060.x, 
+SXCALL and IOCS calls can now also be handled by name.
+Additionally, while previously DOS calls and the like simply had the call name as the instruction, 
+now DOS/FPACK/SXCALL/IOCS can each be treated as an instruction, and the call name can be written as an operand.
+Similarly, when disassembling, the call names DOS/FPACK/SXCALL/IOCS are output.
+In particular, the disassembly results for the IOCS call section are now much easier to read.
+
+- DOS call
+
+DOS calls assemble and disassemble in the following format:
+
+        DOS _Call Name
+
+Of course, you can assemble it by just writing _call name as usual.
+It can also be assembled in lowercase.
+
+Some DOS call names have been added, such as _OS_PATCH.
+It also includes the call name of 060turbo's newly established DOS call.
+
+- FE Function call
+
+FE functions assemble and disassemble in the following format:
+
+        FPACK   __Call Name
+
+Of course, you can assemble it by just writing __call name as usual.
+It can also be assembled in lowercase.
+
+Some FE function call names have been added, such as __ASIN.
+
+- SX Call
+
+It now also supports SX calls.
+
+The assembly and disassembly format for an SX call is as follows:
+
+        SXCALL  __Call Name
+
+Of course, you can also assemble it by just writing __call name like a DOS call.
+It can also be assembled in lowercase.
+
+We have tried to use the most recent call names possible, but there may be some missing.
+If you find any omissions or errors, please let us know.
+
+- IOCS call
+
+IOCS calls are also supported.
+
+The assembly and disassembly format for an IOCS call is as follows:
+
+        IOCS    _Call Name
+
+Of course, you can also assemble it by just writing _call name like a DOS call.
+It can also be assembled in lowercase.
+
+The IOCS call assembles to the following:
+This combination of instructions is also interpreted as an IOCS call and disassembled.
+
+    MOVEQ.L #Call Number,D0
+    TRAP    #15
+
+When you step through the IOCS call, the above two instructions are jumped over together.
+
+
+----------------------------------------------------------
+
+              Other expansions and changes
+
+----------------------------------------------------------
+
+It has been tweaked here and there to suit the modder's preferences.
+
+Changed the search method for config files and help files
+
+As before, SCD.CNF and SCD.HLP will also be searched, but if there are files with the debugger extension changed to .cnf and .hlp 
+in the same directory as the executable file of the launched debugger, those will take priority.
+For example, if the debugger executable is named scd060.x, then scd060.cnf and scd060.hlp take precedence over SCD.CNF and SCD.HLP.
+
+-Display the condition status
+
+The X command display now shows whether the conditions are met, such as 
+"HI:1 LS:0 CC(HS):1 CS(LO):0 NE:1 EQ:0 VC:1VS:0 PL:1 MI:0 GE:1 LT:0 GT:1 LE:0".
+
+- .SR and .CCR can refer to SR and CCR.
+
+- You can write parameters (setting values) after XCCR
+
+- XX, XN, XZ, XV, and XC allow you to manipulate CCR bit by bit.
+
+For example, XC1 sets the C flag, and XC!.C flips the C flag.
+
+- .X, .N, .Z, .V, .C can be used to refer to the CCR bit by bit.
+
+Please note that due to this addition, the single letter symbols X, N, Z, V, and C can no longer be referenced with .~.
+
+- The pull-down menu on the menu bar can be operated by clicking.
+
+It's inconvenient to have to drag to operate the pull-down menus on the menu bar, so you can now operate them by clicking.
+
+Clicking on the menu bar will bring up a pull-down menu, so place the mouse pointer on the item you want to select and click again.
+
+Of course, you can also select by dragging as usual.
+
+- Always output the operation size
+
+When disassembling, instructions with a clear size, such as MOVEQ, now include the size unless they are unsized.
+
+- Write DBF as DBRA
+
+When disassembling, DBF is written as DBRA, and FDBF also becomes FDBRA.
+
+- Aliases that have been available for commands that have been available for a long time.
+
+The following instructions can now be assembled, which are aliases for CC and CS, respectively:
+
+        BHS
+        BLO
+        DBHS
+        DBLO
+        SHS
+        SLO
+        TRAPHS
+        TRAPLO
+
+- Improved SF/ST display
+
+The position of the SF/ST operand was shifted to the left, so it is now displayed in the same position as other instructions.
+
+- Improved character display
+
+Double-byte half-width and quarter-width characters can now be displayed correctly.
+
+We have made sure that the font of the ÅgÅ†Åh does not change.
+
+Improved the speed of mesh display.
+
+- The shell file name is also searched for in the environment variable SHELL
+
+Previously, the shell file name could be specified in the environment variable comspec, but if that is not set, 
+the environment variable SHELL is also searched.
+If neither is set, command.x is used.
+
+In addition, the shell can be started even if the contents of the comspec environment variable are not a full path.
+
+- Change the message
+
+The Japanese translation of "No symbol file" has been changed from "No symbol file" to "File without symbols."
+
+The text in the Custom window has also changed slightly.
+
+- Improvement of floating point number errors
+
+The floating-point power-of-10 table had a large error, so I replaced it with a table that was closer to the accurate value.
+
+
+----------------------------------------------------------
+
+                        Debug
+
+----------------------------------------------------------
+
+The following are bugs that existed in SCD.X v3.00/v3.01 and have been fixed in scd060.x.
+There may be other things too, so if you notice any, please let me know.
+We will also fix minor issues as much as possible.
+
+*Bug where the effective address is incorrect when displaying memory contents along with the disassembled result
+
+The predecrement effective address was calculated incorrectly.
+As a result, the effective addresses and contents of FMOVE.X -(An),FPn etc. were not displayed correctly.
+
+The suppression of full format base registers and indexes was not handled.
+Therefore, for example, the effective address and contents of ($0000.W,ZA0,D0.L) were the same as ($0000.W,A0,D0.L).
+
+Getting the index register value and calculating the scale factor was also incorrect (v3.00 only).
+
+* When disassembling, the immediate operands of PFLUSH/PLOAD/PTEST are displayed incorrectly.
+
+When disassembling, the first and second immediate operands of PFLUSH/PFLUSHS and the first immediate operand 
+of PLOADR/PLOADW/PTESTR/PTESTW were displayed incorrectly.
+
+* FNOP/FBcc/FSAVE/FRESTORE/FBRA cannot be disassembled correctly (v3.00 only)
+
+The FNOP, FBcc, FSAVE, FRESTORE and FBRA instructions could not be correctly disassembled due to a missing disassembly string for FTRAPcc.
+
+Åú FDBcc/PDBcc offset calculation error
+
+When assembling it would print an offset that was 2 more than the correct value, 
+and when disassembling it would show an address that was 2 less than the correct value.
+
+When disassembling, the size of the TTn register becomes a word.
+
+PMOVEFD.L (A0),TT0 was output as PMOVEFD.W (An),TT0.
+
+- FScc Dn cannot be assembled.
+
+  Although FScc (An) could be assembled, an error occurred when trying to assemble FScc Dn.
+
+* When assembling, if the operand size is not specified in PTRAPcc #imm, code without an operand is output.
+
+  PTRAPcc #0 should have been written as PTRAPcc.W #0.
+
+- When assembling, the program could be assembled even if .B or .L was specified as the size of the STOP instruction.
+
+- When assembling, specifying a size for NOP etc. did not result in an error.
+
+* An error occurs when there is a space between the command name of the X command and the name of a non-general register.
+
+  XD0 could also be written as X D0, but X PC had to be written as XPC.
+
+- When writing a value to be set to a non-general register in the command line with the X command, 
+  the separator between the register name and the setting value is incorrect.
+
+X FPSR 0 should have been written as X FPSR,0.
+
+Although XD0.D0+2 could be written, XPC.PC+2 resulted in an error.
+
+- Bug where exception stack frames could not be displayed correctly
+
+  If the program being debugged uses the user stack provided by SCD.X as the supervisor stack, when an exception occurs, 
+  the exception stack frame is destroyed by SCD.X itself, and the contents of the exception stack frame are not displayed correctly.
+
+  The user stack size that scd060.x gives to the program being debugged is 8KB.
+
+- Executable files with the .SYS extension cannot be loaded
+
+  The mode to force the .X format load was specified incorrectly.
+
+- Bug that vectors $3D to $3F are not restored
+
+- FSAVE/FRESTORE, which protects floating-point registers when an exception occurs, was canceled (v3.00 only)
+
+- In the register list display, the DFC value was displayed as the SFC value.
+
+- A bug that changes the usage status of the text screen in console mode
+
+  When invoking a shell with the ! command, the state of the text screen is changed before and after the shell is invoked, 
+  but this also worked in console mode.
+  Therefore, starting a shell in console mode could cause problems with subsequent text screen operations.
+
+
+----------------------------------------------------------
+
+   Differences between SCD.X v3.00 and v3.01 (reference)
+
+----------------------------------------------------------
+
+The only difference between SCD.X v3.00 and v3.01 is that the following three bugs have been fixed:
+
+- FNOP/FBcc/FSAVE/FRESTORE/FBRA could not be disassembled correctly.
+
+- FSAVE/FRESTORE, which protects floating-point registers when an exception occurs, was canceled.
+
+- When disassembling, the memory contents of the effective address are displayed incorrectly, 
+including the effective address of the index register.
+
+
+----------------------------------------------------------
+
+ Modifications to make it work on 68040/68060 (reference)
+
+----------------------------------------------------------
+
+SCD.X v3.00/v3.01 will hang up if run on a 68040/68060 as is.
+Here are some of the modifications I made to make this work properly with the 68040/68060.
+
+- Avoid using unimplemented registers such as CAAR on 68040 or above.
+
+- Select the cache flush procedure depending on the CPU
+
+- Countermeasures for copyback mode (cache flush after self-rewrite)
+
+- Software emulation exceptions no longer cause program interruptions
+
+- The cursor blinks too fast on the 68040/68060, so it has been fixed to keep the blinking interval constant.
+
+- Surround the area where a bus error is expected to occur with NOP
+
+
+----------------------------------------------------------
+
+- Acknowledgments
+
+Thank you to EPO for providing SCD.X v3.01.
+
+We would also like to thank everyone who has sent in bug reports, etc.
+Please continue to provide us with information in the future.
+
+- Promise
+
+I modified it in the hope that it would work properly, but there is no guarantee that scd060.x will work.
+
+- Contact information
+
+    Full Bloom Net: MKSX0109 Kamada
+    E-mail: kamada@mankai.co.jp
+
+
+(EOF)

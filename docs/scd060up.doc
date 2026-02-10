@@ -1,0 +1,137 @@
+SCD060.X Update History
+
+
+1997.10.06Å®1997.10.08
+
+- Avoids the inconvenience of not being able to apply a patch to a file with symbols because the original patch data correction
+  difference did not have symbols (the result of applying the patch was no change at all).
+
+
+1997.10.08Å®1997.10.10
+
+- Fixed a bug in the modified part: Fixed a bug where the shell file name was displayed on the screen when using the command !~
+  (debug code was forgotten to be deleted).
+
+- Fixed a bug where __PMPrintPage was changed to __PMPrintPage_ (a bug in the development kit?).
+
+- Fixed a bug that prevented SXCALL ~ from being assembled (lowercase support was incomplete).
+
+- Fixed an existing bug: The error in the power of 10 table was large,
+  so it was replaced with a table that is closer to the accurate value.
+
+
+1997.10.10 Å® 1997.10.15
+
+- Speed-up Speed up mesh display.
+
+
+1997.10.15 Å® 1997.11.12
+
+- Supports SCD.X v3.01. Fixed a bug where FSAVE/FRESTORE, which protects floating-point registers,
+  was canceled when an exception occurred.
+
+- Fixed a bug that caused the index register to be incorrectly processed when displaying the memory contents
+  of the effective address during disassembly
+  (both the index register value acquisition and the scale factor calculation were incorrect).
+
+- When executing additional steps, IOCS ~ is no longer divided into MOVEQ and TRAP.
+
+Change: Double-byte half-width characters and quarter-width characters can now be displayed correctly.
+Prevented the font of "[]" from changing.
+Speed up mesh display.
+Changed the display of access faults slightly.
+
+- Fixed a bug in the modified part. When displaying the stack frame of an access fault on 68060,
+  the TM displayed was 1 less when the TM was 5 or more.
+
+- Fixed an existing bug: If a program being debugged uses the user stack provided by SCD.X as the supervisor stack,
+  when an exception occurs, the exception stack frame is destroyed by SCD.X itself,
+  and the contents of the exception stack frame are not displayed correctly.
+  This has been fixed.
+
+- Fixed a bug where the first and second immediate operands of PFLUSH/PFLUSHS and the first immediate operand 
+  of PLOADR/PLOADW/PTESTR/PTESTW were displayed incorrectly during disassembly.
+
+- Fixed a bug that caused FDBcc and PDBcc to miscalculate offsets when assembling and disassembling
+  (outputting offsets that were 2 too large when assembling, and addresses that were 2 too small when disassembling).
+
+
+1997.11.12 Å® 1998.01.18
+
+- Fixed incorrect interpretation of the size field in 68040 and 68060 access errors (the 68060 manual was wrong).
+
+
+1998.01.18 Å® 1998.11.18
+
+- Correction of existing bugs Fixed a bug where the full format base register and index suppression was not processed 
+  when displaying the memory contents of the effective address during disassembly.
+
+- Fixed a bug where DFC was displayed as the SFC value in the register list display.
+
+- Fixed a bug in the modified part. Fixed a bug where PCR and BUSCR were displayed when using 68040.
+
+- Fixed a bug where the spaces before and after LK in the access error message were incorrect when using the 68040.
+
+- On the 68030 to 68060, when a program being debugged stopped due to an exception such as a bus error,
+  the contents of unrelated memory (specifically, 28 bytes from .A6+D6 onwards) were corrupted.
+  This has been fixed.
+
+- Changed: Previously, $0CBC.w was used to distinguish between 68030/68040/68060, but now it is distinguished by a custom routine.
+  With this change, it is now possible to start the program even if 040SYSpatch.x or 060turbo.sys is not registered.
+  
+- Changed "access fault" to "access error".
+
+- When using the 68040, the access error display shows not only the effective address but also the fault address.
+
+
+v3.01+09(1998.11.18) Å® v3.01+10(1998.11.23)
+
+- If there is a file with the debugger's main file name plus .cnf or .hlp in the same directory
+  as the executable file of the additionally launched debugger, that file takes precedence.
+
+- When the executable file name of the launched debugger starts with db, the behavior of the commands "?" and "P?" is swapped.
+
+- Added a display of the condition fulfillment status, such as
+  "HI:1 LS:0 CC:1 CS:0 NE:1 EQ:0 VC:1 VS:0 PL:1 MI:0 GE:1LT:0 GT:1 LE:0 HS:1 LO:0" that was present in DB.X (request: Syo).
+
+- .SR and .CCR can now be used to refer to SR and CCR.
+
+- Added the ability to write parameters to XCCR.
+
+- Added the ability to manipulate CCR bit by bit for XX, XN, XZ, XV, and XC.
+  For example, "XC1" sets the C flag, and "XC!.C" inverts the C flag.
+
+- The CCR can now be referenced bit by bit using .X, .N, .Z, .V, and .C.
+  Because of this addition, it is no longer possible to refer to the single letter symbols X, N, Z, V, and C.
+
+- Fixed existing bugs
+
+- When calling a shell with the ! command, 
+  the usage status of the text screen changes before and after the command, but this function also worked in console mode, 
+  so starting a shell in console mode caused problems with subsequent operation of the text screen.
+  This has been fixed (reported by Tachibana Eririn).
+
+- Fixed a bug where writing XPC.PC+2 would result in an error even though XD0.D0+2 could be written (reported by Tachibana Eririn).
+
+
+v3.01+10(1998.11.23) Å® v3.01+11(1998.11.25)
+
+- Change +10: "If the executable file name starts with db..." has been abolished, and ? and P? have been completely swapped.
+
+- ?? had been suppressed separately by a dummy command, so I've brought it back.
+
+- ?? Adjusted so that errors do not occur when used alone.
+
+- Fixed a bug in the modified part.
+
+- Fixed a bug where the cache would be turned off when the debugger was closed when starting in console mode with 68030 
+  (from +10, reported by Igarashi-san).
+
+
+v3.01+11(1998.11.25) Å® v3.01+12(1998.11.27)
+
+- The display of the status of change conditions has been changed to the format 
+  "HI:1 LS:0 CC(HS):1 CS(LO):0 NE:1 EQ:0 VC:1VS:0 PL:1 MI:0 GE:1 LT:0 GT:1 LE:0".
+
+
+(EOF)

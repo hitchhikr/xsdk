@@ -1,0 +1,68 @@
+            ooo SPRITE multiplication package ooo
+
+
+By using this package, you can seemingly increase the number of sprites you can use.
+However, there are limitations.
+
+      (i) The maximum number of items that can be displayed horizontally is 32.
+
+          --> This is a hardware limitation, there is no way to cheat it.
+
+      (ii) Because the transfer is divided into two areas,
+
+           the maximum number of items that can be displayed in each area is determined.
+           --> You can change it to some extent by changing the numbers defined in SP_L_NUM (upper part), 
+               SP_M_NUM (middle part), and SP_H_NUM (upper part) in sp.h.
+               However, SP_L_NUM(or SP_H_NUM) + SP_M_NUM <= 128.
+
+Please refer to the main text for the principle, but it basically consists of the following five functions.
+
+      (i) void sp_init( void ) :
+
+            Call this first, as it will initialize and register the interrupt routine.
+
+      (ii) SP *sp_alloc( void ) :
+
+            Allocates a virtual sprite, limited to 16x16 in size.
+            The return value is a pointer to the SP_DATA structure, and when you want to move the sprite's coordinates,
+            you can do so using the member ((SP *)data)->sp->x.
+            Sprite parameters include:
+
+                - data->sp->x, data->sp->y: Coordinates
+                - data->sp->code:           Pattern data number including palette data
+                - data->sp->prw:            Priority
+
+            Only manipulate these members and leave the other members untouched.
+
+      (iii) void sp_free( SP_DATA * ) :
+
+            Releases the allocated virtual sprite.
+
+      (iv) void sp_set( void ) :
+
+            Now we prepare to send the allocated sprite to the sprite register.
+            In a shooting game, put it at the end of the loop.
+            (You only need to call it once per loop)
+
+      (v) void sp_end( void ) :
+
+            Call me when you finish the game.
+            Remove the interrupt routine.
+
+      (vi) void sp_wait( void ) :
+
+            Wait for the vertical blanking interval.
+            Use this when synchronizing screens.
+
+
+To use it, simply compile sp.c, assemble sp_sub.s, and link it into your program.
+Also, make sure to include sp.h before using the functions above.
+
+The sample program displays 180 sprites on the screen simultaneously.
+Run with start[ret].
+There may be some flickering in the interrupted raster, but this is by design.
+Press ESC to exit.
+
+(Note) 1. We cannot guarantee against any damage caused by using this package.
+       2. Please feel free to distribute it as you wish.
+          Modifications are also free.

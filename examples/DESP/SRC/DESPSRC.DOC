@@ -1,0 +1,38 @@
+----------------------------
+Desperado source description
+----------------------------
+
+There is a lot of Desperado source code and it is not possible to explain everything,
+so I will only explain the files that I think are difficult to understand what they do.
+“xAs a result of the multiple modifications, the code is quite unsightly,
+but please forgive me for that.
+
+Compilation was performed using GCC version X6_SX07 based on 1.40.
+This code uses special features such as // comments and the IRTE() macro,
+so please pay attention to the GCC options when recompiling.
+
+				Chika Yoshida (chika@kmc.kyoto-u.ac.jp)
+----------------------------
+DECODE.S
+
+Extracts compressed data such as .rl, .prl, and .dp.
+----------------------------
+GRAPH.C
+
+Routine to load image data.
+----------------------------
+GTRANS.S
+
+A subroutine used for background scrolling, redrawing the graphic screen.
+----------------------------
+ITEM.C ITEM.H
+
+It processes things like dust clouds on the ground,
+debris that appears when an enemy is blown up,
+and light spots that appear when an enemy shoots a laser.
+----------------------------
+SPS.C SPS.H
+
+Processes sprites.
+It rewrites the sprite's PCG area, assigns the sprite code, and transfers that data.
+----------------------------

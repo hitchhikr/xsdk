@@ -1,0 +1,175 @@
+(i)
+(m1,1000)(a1,1)		/*	base	*/
+(m2,1000)(a2,2)		/*	guitar	*/
+(m3,1000)(a3,3)
+(m4,1000)(a4,4)
+(m5,1000)(a5,5)		/*	melody	*/
+(m6,1000)(a6,6)
+(m8,1000)(a8,8)		/*	hi-hat
+(m7,1000)(a7,7)
+(m10,1000)(aadpcm,10)	/*	drum
+
+(o158)
+
+(t1) @70 o2 v12 l8 @q2
+(t2) @33 o3 v12
+(t4) @33 o3 v10 r4 @k10
+(t8) @59 o5 v13 l12
+(t10) o2 l12 @r1
+
+(t1) [do]
+(t2) [do]
+(t4) [do]
+(t8) [do]
+(t10) [do]
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'e1c+'&
+(t4) 'e1c+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'e1c+'
+(t4) 'e1c+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'&
+(t4) 'f1c+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'
+(t4) 'f1c+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'e1c+'&
+(t4) 'e1c+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'e1c+'
+(t4) 'e1c+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'&
+(t4) 'f1c+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'
+(t4) 'f1c+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <d8> r8 <c+8> r16<d16& d8> g+8 <c+8> g+8
+(t2) 'g+1f+'&
+(t4) 'g+1f+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <d8> r8 <c+8> r16<d16& d8> g+8 <c+8> g+8
+(t2) 'g+1f+'
+(t4) 'g+1f+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'&
+(t4) 'f1c+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'
+(t4) 'f1c+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <d8> r8 <c+8> r16<d16& d8> g+8 <c+8> g+8
+(t2) 'g+1f+'&
+(t4) 'g+1f+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <d8> r8 <c+8> r16<d16& d8> g+8 <c+8> g+8
+(t2) 'g+1f+'
+(t4) 'g+1f+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'&
+(t4) 'f1c+'&
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) <c+8> r8 b8 r16<c+16& c+8> g+8 b8 g+8 
+(t2) 'f1c+'
+(t4) 'f1c+'
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) r1
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) r1
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) r1
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) r1
+(t2) r1
+(t4) r1
+(t8) c8c8c8c8		c8c8c8c8
+(t10) c8 r8 d8 r16c16	r8 c8 d8 r8
+
+(t1) [loop]
+(t2) [loop]
+(t4) [loop]
+(t8) [loop]
+(t10) [loop]
+(p)

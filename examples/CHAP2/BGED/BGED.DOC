@@ -1,0 +1,68 @@
+bged.x ver 0.10						1994 chika@kmc
+
+bged.x is a very low-function map editor created to create map data for the second chapter of the game (XEXE).
+It is not a graphic editor created by someone with the initial B.
+This tool was created solely for creating XEXE, so I don't think this program can be used to create other games, 
+but I included it in the hope that readers will find it useful as a reference when creating games.
+
+bged.x has the function to arrange BG parts, but does not have the function to edit the parts themselves.
+It is assumed that the parts themselves have been edited in advance using an appropriate sprite editor.
+Also, before starting bged, you must load the part pattern data to be used for the map into the PCG area inside the x68k.
+Load it using spload or similar.
+
+1. Starting from the command line
+
+  Start with bged (file name).
+  If the file specified by the file name exists, it will be loaded;
+  if it does not exist, a new map will be edited.
+
+2. How to use.
+
+  Once started, you should see a screen like this:
+
+	-----------------------------------
+	|        |  |                     |
+	|        |  |                     |
+	|        |  |                     |
+	|        |  |                     |
+	|   1    |2 |         3           |
+	|        |  |                     |
+	|        |  |                     |
+	|        |  |                     |
+	-----------------------------------
+
+BG parts are lined up in area 1. 
+You can select a part by moving the mouse cursor over this area and pressing the right button (parts mode).
+
+  Area 3 shows the map itself that you are editing.
+  Press the left button here to place the selected part.
+  Also, if you press the right button here, you can select the part at the mouse cursor position (copy mode).
+  You can also select and copy many parts at once by dragging with the right button.
+
+  Various buttons are lined up in area 2.
+  Left-clicking on each button will allow you to use various (just kidding) functions.
+
+  The explanation of each button is as follows:
+
+	<<	Scrolls the map 16 characters to the left.
+	>>	Scrolls the map 16 characters to the right.
+	HR	Flip the parts in area 1 horizontally.
+	VR	Flip the parts in area 1 vertically.
+	/\	Decrement the palette block of parts in the area 1
+	\/	Increment the palette block of parts in the area 1
+
+	ST	Saves map data to disk.
+	Q	Exit the program.
+        If you press this without saving, you'll cry.
+
+	PT	These two buttons don't have much meaning, they are just for parts mode.
+	CP	It only functions as an indicator of copy mode.
+		There isn't (it's a remnant of the past).
+
+3. No compensation
+
+   Neither I nor KMC will be held responsible for any damages incurred as a result of using this program.
+
+4. Copyright
+
+   I won't give up the copyright, but I don't care anymore, so it doesn't matter.

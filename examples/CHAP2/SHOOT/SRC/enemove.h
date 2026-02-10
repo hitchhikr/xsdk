@@ -1,0 +1,11 @@
+int ene1_move( ENEMY *ene ) ;
+int ene2_move( ENEMY *ene ) ;
+int ene3_move( ENEMY *ene ) ;
+int ene4_move( ENEMY *ene ) ;
+int ene5_move( ENEMY *ene ) ;
+int ene6_move( ENEMY *ene ) ;
+int ene7_move( ENEMY *ene ) ;
+int ene8_move( ENEMY *ene ) ;
+int ene9_move( ENEMY *ene ) ;
+int ene10_move( ENEMY *ene ) ;
+int dummy_move( ENEMY *ene ) ;

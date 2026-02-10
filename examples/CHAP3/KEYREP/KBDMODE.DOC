@@ -1,0 +1,31 @@
+„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª
+Program to change key repeat time interval "kbdmode.x"
+
+				programmed by chika@kmc
+„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª
+
+- Introduction
+
+	This program instantly changes the key repeat interval, 
+    which is not reset even if you change the setting with switch.x until you reset it.
+
+- About the program
+
+	It's a simple program, so I think you can analyze it quickly.
+	The reason for waiting for vertical synchronization is to wait
+    and for the purpose of lighting up the LED for some strange effect.
+
+- How to use
+
+	kbdmode.x [ n [ m ] ]
+	n: Delay time at the start of repeat ( 200 + n * 100 [msec] )
+	m: Subsequent repeat interval time ( 30 + m * 5 [msec] )
+
+	n and m are the same numbers you set in switch.x.
+
+- Conclusion
+
+	I'm sure there are already programs like this, but I haven't seen any around me, so I decided to make one.
+
+	This program is free.
+	You may redistribute it however you like as long as it is not modified.

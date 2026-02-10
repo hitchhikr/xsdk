@@ -1,0 +1,632 @@
+------------------------------------------------------------------
+
+           Resources for assembler programmers
+
+                        #$05
+
+                <IOCS Work Area List>
+
+                   by Makoto Kamata
+
+        Translated and curated by Franck Charlet
+
+------------------------------------------------------------------
+
+
+This time, we will post a list of the work areas used by IOCS ($0800.w to $0FFF.w, all undisclosed).
+
+This is a summary compiled by the author after analyzing the ROM on his own, so please do not contact Sharp or Hudson.
+
+There are four types of genuine ROM for X680x0, and there are some differences in the IOCS work between them.
+
+This document does not provide a full comparison of ROMs and is primarily based on ROM version 1.3.
+
+I haven't analyzed every part completely, so there may be some blank spaces and some mistakes.
+
+This material is provided without warranty.
+
+
+------------------------------------------------------------------
+Address Size Initial Value Contents
+------------------------------------------------------------------
+
+
+------------------------------------------------------------------
+Keyboard
+------------------------------------------------------------------
+0800.w  .b[16]          Key press status (each bit 0 = released, 1 = pressed)
+
+                        bit 7   bit 6   bit 5   bit 4   bit 3   bit 2   bit 1   bit 0
+
+    [$0800.w].b         6&      5%      4$      3#      2"      1!      ESC     None
+    [$0801.w].b         BS      \|      ^~      -=      0       9)      8(      7'
+    [$0802.w].b         U       Y       T       R       E       W       Q       TAB
+    [$0803.w].b         S       A       CR      [{      @`      P       O       I
+    [$0804.w].b         ;+      L       K       J       H       G       F       D
+    [$0805.w].b         N       B       V       C       X       Z       ]}      :*
+    [$0806.w].b         DEL     HOME    SP      _       /?      .>      ,<      M
+    [$0807.w].b         CLR     DOWN    RIGHT   UP      LEFT    UNDO    R.DOWN  R.UP
+    [$0808.w].b         4       +       9       8       7       -       *       /
+    [$0809.w].b         0       ENTER   3       2       1       =       6       5
+    [$080A.w].b         XF3     XF2     XF1     HELP    Reg     Symb    .       ,
+    [$080B.w].b         Hira    INS     CAPS    Code    Rome    Kana    XF5     XF4
+    [$080C.w].b         F5      F4      F3      F2      F1      COPY    BREAK   Full-width
+    [$080D.w].b         None    None    None    F10     F9      F8      F7      F6
+    [$080E.w].b         None    None    None    NUM     OPT.2   OPT.1   CTRL    SHIFT
+    [$080F.w].b         None    None    None    None    None    None    None    None
+    Pu.
+
+0810.w  .w              Shift key and LED status (each bit 0 = off/released, 1 = on/pressed)
+0810.w  .b              Keyboard LED status (each bit 0 = off, 1 = on)
+
+                        bit 7   bit 6       bit 5   bit 4   bit 3   bit 2   bit 1   bit 0
+
+    [$0810.w].b         None    Full-width  Hira    INS     CAPS    Code    Rome    Kana
+
+0811.w  .b              Shift key status (each bit 0 = off/released, 1 = on/pressed)
+
+                        bit7    bit6    bit5    bit4    bit3    bit2    bit1    bit0
+
+    [$0811.w].b         CAPS    Code    Rome    Kana    OPT.2   OPT.1   CTRL    SHIFT
+
+0812.w  .w              Number of data in the key input buffer
+0814.w  .l              Address of the data last written to the key input buffer
+0818.w  .l              Address of the last data read from the key input buffer
+081C.w  .w[64]          Beginning of the key input buffer
+089C.w                  End of the key input buffer + 1
+
+
+------------------------------------------------------------------
+RS-232C
+------------------------------------------------------------------
+089C.w  .w              Number of data in the RS-232C receive buffer
+089E.w  .l  $000008A6   Address of the data last written to the RS-232C receive buffer
+08A2.w  .l  $000008A6   Address of the last data read from the RS-232C receive buffer
+08A6.w  .w[64]          Top of RS-232C receive buffer
+0926.w                  End of RS-232C receive buffer + 1
+0926.w  .b              RS-232C communication mode
+
+                        bit 0       bit 7 Communication method
+
+                                    0   As it is
+                                    1   SISO (controlled by $0E/$0F)
+
+                        bit 1       Flow Control
+
+                                    0   None
+                                    1   XON (controlled by $11/$13)
+
+                        bit 2-3     Bit length
+
+                                    0   5
+                                    1   6
+                                    2   7
+
+                                    3   8
+                        bit 4-5     Parity
+
+                                    1   Odd number
+                                    2   None
+                                    3   Even number
+
+                        bit 6-7     Stop bits
+
+                                    1   1
+                                    2   1.5
+                                    3   2
+
+0927.w  .b              RS-232C communication speed
+
+                        bit 0-2     Baud rate
+
+                                    0   75bps
+                                    1   150bps
+                                    2   300bps
+                                    3   600bps
+                                    4   1200bps
+                                    5   2400bps
+                                    6   4800bps
+                                    7   9600bps
+
+0928.w  .b              RS-232C SISO status
+
+                        bit0    Receive SISO state
+
+                                0   SO ($0E received)
+                                1   SI (received $0F)
+
+                        bit1    SISO transmit state
+
+                                0   SO (sent $0E)
+                                1   SI (sent $0F)
+
+0929.w  .b              RS-232C XON status
+
+                        bit0    Receive XON status
+
+                                0   Reception possible
+                                1   Unable to receive
+
+                        bit1    Transmit XON status
+
+                                0   Can send
+                                1   Unable to send
+
+
+------------------------------------------------------------------
+Mouse
+------------------------------------------------------------------
+092A.w  .w              Mouse data reception counter (3 RIGHT 1)
+092C.w  .l  $00000930   Mouse data receiving buffer pointer
+0930.w  .b[3]           Mouse data receiving buffer
+0933.w  .b              Current MSCTRL terminal status
+0934.w  .l[13]$00FF49C8 Mouse receive data processing address (soft keyboard)
+0938.w  .l[13]$00FFAA08 Mouse receive data processing address (mouse cursor)
+
+
+------------------------------------------------------------------
+Screen mode
+------------------------------------------------------------------
+093C.w  .b  [$00ED001D].b   Screen mode graphics
+
+                        Mode    Frequency   Screen size Number of colors    Actual screen size  Number of pages
+
+                        $00     31          512~512     16                  1024~1024           1
+                        $01     15          512~512     16                  1024~1024           1
+                        $02     31          256~256     16                  1024~1024           1
+                        $03     15          256~256     16                  1024~1024           1
+                        $04     31          512~512     16                  512~512             4
+                        $05     15          512~512     16                  512~512             4
+                        $06     31          256~256     16                  512~512             4
+                        $07     15          256~256     16                  512~512             4
+                        $08     31          512~512     256                 512~512             2
+                        $09     15          512~512     256                 512~512             2
+                        $0A     31          256~256     256                 512~512             2
+                        $0B     15          256~256     256                 512~512             2
+                        $0C     31          512~512     65536               512~512             1
+                        $0D     15          512~512     65536               512~512             1
+                        $0E     31          256~256     65536               512~512             1
+                        $0F     15          256~256     65536               512~512             1
+                        $10     31          768~512     16                  1024~1024           1
+                        $11     24          1024~424    16                  1024~1024           1
+                        $12     24          1024~848    16                  1024~1024           1
+                        $13     24          640~480     16                  1024~1024           1
+
+093D.w  .b  $01         Number of pages of graphics
+093E.w  .l  $00000080   Number of bytes in one line of text VRAM
+0940.w  .w  $0080       Number of bytes in one line of text VRAM (lower word)
+0942.w  .w  $0001       Text display plain select
+0944.w  .l  $00E00000   Text display plane start address
+0948.w  .l  $00000000   Text display start address offset
+094C.w  .l  $00E60000   [In 13, this is only used for initialization and is not actually used]
+                        Text display plane start address (used in _TX-)
+0950.w  .w  $0000       [In 13, this is only used for initialization and is not actually used]
+                        Text display X coordinate offset (used with _TX-)
+0952.w  .w  $0000       [In 13, this is only used for initialization and is not actually used]
+                        Text display Y coordinate offset (used with _TX-)
+0954.w  .w  $0000       Text Clipping Area (X min)
+0956.w  .w  $0000       Text Clipping Area (Y min)
+0958.w  .w  $0400       Text clipping area (X max value + 1)
+095A.w  .w  $0400       Text clipping area (Y max value + 1)
+095C.w  .l  $00C00000   Graphics drawing page start address (set with _SET_PAGE)
+0960.w  .l  $00000800   Number of bytes per line of graphics VRAM
+0962.w  .w  $0800       Number of bytes per line of graphics VRAM (lower word)
+0964.w  .w  $000F       Number of colors in the graphic screen - 1 (0 = graphics not available)
+0966.w  .w  $000F       Graphic pen color (set with _PENCOLOR)
+0968.w  .w              Graphics Clipping Area (X min)
+096A.w  .w              Graphics Clipping Area (Y min)
+096C.w  .w              Graphics Clipping Area (X maximum)
+096E.w  .w              Graphics clipping area (Y maximum)
+
+
+------------------------------------------------------------------
+Text Screen
+------------------------------------------------------------------
+0970.w  .l              Number of columns of text - 1, number of lines - 1
+0970.w  .w  $005F       Length of text - 1
+0972.w  .w  $001F       Number of lines of text - 1
+0974.w  .l              Text cursor X and Y coordinates
+0974.w  .w              Text cursor X coordinate
+0976.w  .w              Text cursor Y coordinate
+0978.w  .l              Address of ADPCM data for BEEP sound ([13]-1 = Call replacement routine [$0D12.w].l)
+                        If you set it to #-1, instead of playing ADPCM, it will call the address set in [$0D12.w].l.
+097C.w  .w              Number of bytes of ADPCM data for the BEEP sound (0 = no sound)
+097E.w  .l[13]$00FF15BE Address of the extended ESC sequence processing routine
+                        Human uses it to switch the function key display, etc.
+0982.w  .l              Next write address in ESC sequence buffer
+0986.w  .b[10]          ESC start of sequence buffer
+098F.w                  ESC end of sequence buffer
+0990.w  .b              Pool of the first byte of the character code to be displayed
+0991.w  .b              Text cursor blinking status ($00=OFF, $FF=ON)
+0992.w  .b              Text cursor display switch ($00=_B_CUROFF, $FF=_B_CURON)
+0993.w  .b  $FF         Text cursor display switch ($00=_OS_CURON, $FF=_OS_CUROF)
+0994.w  .b  $03         Current text color code (0-15)
+0995.w  .b  $03         Text color code saved with ESC [s
+0996.w  .l              X and Y coordinates of the text cursor saved with ESC [s
+
+
+------------------------------------------------------------------
+External character font address
+------------------------------------------------------------------
+099A.w  .l[6]           External character font address table
+099A.w  .l              Font address of external character group 0 (16x16: $2C21-$2D7E)
+099E.w  .l              Font address of external character group 1 (16x16: $7621-$777E)
+09A2.w  .l              Font address of external character group 2 (8x16: $F400-$F5FF)
+09A6.w  .l              Font address of external character group 3 (24x24: $2C21-$2D7E)
+09AA.w  .l  $00F40000   Font address of external character group 4 (24x24: $7621-$777E)
+09AE.w  .l  $00F3D000   Font address of external character group 5 (12~24: $F400-$F5FF)
+
+
+------------------------------------------------------------------
+Timer-C
+------------------------------------------------------------------
+09B2.w  .w  $0001       Mouse data reception timer initial value
+09B4.w  .w  $0001       Mouse data reception timer counter (decrements every 1/100 seconds)
+09B6.w  .l[13]$00FF1ED8 Mouse data reception processing address
+09BA.w  .w  $0032       Cursor blink timer initial value
+09BC.w  .w  $0032       Cursor blink timer counter (decrements by 1/100 seconds)
+09BE.w  .l[13]$00FF1D8C Cursor blinking processing address
+09C2.w  .w  $00C8       FD motor stop timer initial value
+09C4.w  .w  $00C8       FD motor stop timer counter (decrements by 1/100 seconds)
+09C6.w  .l[13]$00FF1F5E FD motor stop processing address
+09CA.w  .w  $1770       1 minute timer initial value
+09CC.w  .w  $1770       1 minute timer counter (decrements by 1/100 seconds)
+09CE.w  .l[13]$00FF1F78 1-minute processing address
+09D2.w  .l  $FFFFFFFF   Time (minutes) until power is turned off after startup
+09D6.w  .l  $00000000   Counter that counts up in minutes after startup
+
+
+------------------------------------------------------------------
+FM sound source register work
+------------------------------------------------------------------
+09DA.w  .b              FM sound source register $1B(CT,W) work
+
+
+------------------------------------------------------------------
+Screen usage
+------------------------------------------------------------------
+09DC.w  .b              Graphic screen usage status (_TGUSEMD, 0 = unused, 1 = system, 2 = user, 3 = destroyed)
+09DD.w  .b              Text screen usage status (_TGUSEMD, 0 = unused, 1 = system, 2 = user, 3 = destroyed)
+
+
+------------------------------------------------------------------
+ROM debugger startup flag
+------------------------------------------------------------------
+09DE.w  .b              Did you start the ROM debugger? (0 = not started, 1 = started)
+
+
+------------------------------------------------------------------
+Startup information
+------------------------------------------------------------------
+09DF.w  .b              Startup information (0=switch, 1=external, 2=alarm)
+09E0.w  .b              Boot information (1=ROM,2=SRAM,$8x=SCSI,$9x=FD,$90=ROM Human)
+
+
+------------------------------------------------------------------
+FDD
+------------------------------------------------------------------
+09E1.w  .b
+09E2.w  .b[4]
+09E6.w  .w[4]
+09EE.w  .b[10]          FD data
+
+
+------------------------------------------------------------------
+SCSI
+------------------------------------------------------------------
+09FE.w  .w[8]
+
+
+------------------------------------------------------------------
+IOCS call number
+------------------------------------------------------------------
+0A0E.w  .w  $FFFF       The IOCS call number currently being processed (-1 if not currently being processed)
+
+
+------------------------------------------------------------------
+Printer
+------------------------------------------------------------------
+0A10.w  .b              1 = Abort (A) was pressed when the printer was not connected
+0A11.w  .b              1 = Kanji mode
+0A12.w  .b              Pool of the first byte of the character code to be output to the printer
+0A13.w  .b              Printer output line counter
+0A14.w  .w              Printer output digit counter
+0A16.w  .l  $00E00000   First address of hard copy
+                        (From here, $62 bytes are set by _SETPRN)
+0A1A.w  .w  $0029       (Y-direction dot count for hard copy range of SHIFT+COPY/24)-1
+0A1C.w  .l  $00FFFF00
+0A20.w  .w  $0014       (Number of dots in the Y direction of the hard copy range of COPY/24)-1
+0A22.w  .l  $00FF0000
+0A26.w  .w  $005F       Number of dots in the X direction of the hard copy range - 1
+0A28.w  .b[8]           $06,$1B,'K',$1C,'S',$06,$06,$00
+                        Switch to kanji mode and set the spaces to 6 on the left and right of the kanji.
+0A30.w  .b[4]           $02,$1B,'H',$00 Turn off Kanji mode
+0A34.w  .b[4]           $00,$00,$00,$00
+0A38.w  .b[4]           $02,$0D,$0A,$00 Line breaks
+0A3C.w  .b[6]           $04,$1B,'%','9',$0F,$00
+                        Set line break width to 1/8 inch
+0A42.w  .b[6]           $04,$1B,'%','9',$00,$00
+                        Restore line width
+0A48.w  .b[6]           $04,$1B,'%','9',$0A,$00
+                        Set line break width to 1/12 inch
+0A4E.w  .b[6]           $04,$1B,'%','9',$05,$00
+                        Set line break width to 1/24 inch
+0A54.w  .b[8]           $04,$1B,'J',$06,$00,$00,$00,$00
+                        24-dot bit image 1536*3 data
+0A5C.w  .b[8]           $04,$1B,'J',$03,$00,$00,$00,$00
+                        24-dot bit image 768*3 data
+0A64.w  .b[8]           $04,$1B,'J',$00,$12,$00,$00,$00
+                        24-dot bit image 18*3 data
+0A6C.w  .b[8]           $04,$1B,$4A,$00,$24,$00,$00,$00
+                        24-dot bit image 36*3 data
+0A74.w  .b  $00         Bit image output direction ($00=normal, $FF=reverse)
+0A75.w  .b  $03
+0A76.w  .b  $06
+0A77.w  .b  $01         Character code/bit image output flag
+
+                        bit0    $7600-(External characters)
+                        bit1    $2C00-$2DFF(External characters)
+                        bit2    $5000-$75FF(2nd level)
+                        bit3    $2E00-$4FFF(1st level)
+                        bit4    $20-$7F,$A0-$DF(Half-width)
+
+                                0   Code output
+                                1   Bit image output
+
+0A78.w  .b  $FF         Number of lines per page - 1 ($FF = not specified) (set by _INIT_PRN)
+0A79.w  .b  $FF         Number of columns per page - 1 ($FF = not specified) (set by _INIT_PRN)
+
+
+------------------------------------------------------------------
+Mouse cursor
+------------------------------------------------------------------
+0A7A.w  .l              Mouse cursor display page start address (plane 3)
+0A7E.w  .l              Mouse cursor display page start address (plane 2)
+0A82.w  .w              Check vertical synchronization when mouse cursor is displayed ($0000 = no, other = yes)
+0A84.w  .w              Number of dots that the mouse is considered to have moved in _MS_OFFTM/_MS_ONTM
+0A86.w  .w              Mouse Cursor Animation Speed
+0A8C.w  .w              [10] Mouse cursor visible column start position ($0000)
+0A8E.w  .w              [10] Mouse cursor display line start position ($0000)
+0A90.w  .w              [10] Mouse cursor displayable column end position ($0080)
+0A92.w  .w              [10] Mouse cursor displayable line end position ($03F0)
+0A98.w  .w              [10] Number of bytes in one line of text VRAM
+0A9A.w  .l              Mouse cursor movement range (minimum value)
+0A9A.w  .w              Mouse cursor movement range (minimum X value)
+                        (The default value is 2 dots inside the graphic clipping area.)
+0A9C.w  .w              Mouse cursor movement range (minimum Y value)
+                        (The default value is 2 dots inside the graphic clipping area.)
+0A9E.w  .l              Mouse cursor movement range (maximum value)
+0A9E.w  .w              Mouse cursor movement range (maximum X value)
+                        (The default value is 2 dots inside the graphic clipping area.)
+0AA0.w  .w              Mouse cursor movement range (maximum Y value)
+                        (The default value is the same as the graphic clipping area.)
+0AA2.w  .w              [10] Mouse cursor display switch (0 = hide, -1 = show)
+0AA2.w  .b              [11-13] Mouse cursor display switch (0 = hide, -1 = show)
+0AA4.w  .l[7]           First address of mouse cursor animation pattern (6+1)
+0AC0.w  .w              Mouse cursor animation pattern number
+0AC2.w  .w              Mouse cursor animation speed counter
+0AC4.w  .w              [10] Mouse cursor animation (0 = no, -1 = yes)
+0AC4.w  .b              [11-13] Mouse cursor animation (0 = no, -1 = yes)
+0AC6.w  .w              Left mouse button status (0=OFF, -1=ON)
+0AC8.w  .w              Right mouse button status (0=OFF, -1=ON)
+0ACA.w  .w              Mouse X-direction movement amount
+0ACC.w  .w              Mouse Y-direction movement amount
+0ACE.w  .w              Mouse cursor X coordinate
+0AD0.w  .w              Mouse cursor Y coordinate
+0AD2.w  .w              Mouse cursor X coordinate save work
+0AD4.w  .w              Mouse cursor Y coordinate save work
+0AD6.w  .w              Mouse cursor hotspot X coordinate
+0AD8.w  .w              Mouse cursor hotspot Y coordinate
+0ADA.w  .w              [10] Mouse cursor display start column (X-direction byte position)
+0ADC.w  .w              [10] Mouse cursor display start line
+0ADE.w  .w              [10] Is mouse processing by IOCS call in progress? (0=NO, -1=YES)
+0ADE.w  .b              [11-13] Is mouse processing by IOCS call in progress? (0=NO, -1=YES)
+
+0AE4.w  .l              IOCS call d1.l at the start of mouse processing
+0AE6.w  .w              IOCS call d1.w at the start of mouse processing
+0AE8.w  .l              IOCS call d2.l at the start of mouse processing
+0AEA.w  .w              IOCS call d2.w at the start of mouse processing
+0AEC.w  .l              IOCS call a1.l at the start of mouse processing
+
+For ROM1.0
+0AF0.w                  Text VRAM storage area (plane 2)
+0B10.w                  Text VRAM storage area (plane 3)
+0B30.w                  Mouse cursor pattern composition work (Plane 2)
+0B50.w                  Mouse cursor pattern composition work (Plane 3)
+
+For ROM1.1 or later
+0AF0.w                  Text VRAM storage area (plane 2)
+0B30.w                  Text VRAM storage area (plane 3)
+0B70.w  .l[16]          Pointer to mouse cursor pattern data (16 pieces)
+
+0BB0.w  .w  $0186       Soft keyboard display upper left X dot coordinate
+0BB2.w  .w  $0002       Soft keyboard display upper left Y dot coordinate
+0BB4.w  .w  $0186       Global X coordinate of the mouse when left-clicking on the soft keyboard
+0BB6.w  .w  $0002       Global Y coordinate of the mouse when left-clicking on the soft keyboard
+[13]$00,$61,$00,$00,$00,$00,$00,$00,$14,$FF,$00,$00,$00
+
+0BBF.w  .b              Mouse received data processing flag
+
+                        bit 7   1 = Processing mouse received data
+
+0BC1.w  .b              Soft keyboard display mode (0=hide, 1=show, -1=auto)
+0BC2.w  .b              Soft keyboard status (0=off, 1=mouse cursor only, 2=soft keyboard on, 3=mouse cursor only)
+
+0BC4.w  .b              Is the soft keyboard processing in progress? (0=NO, 1=YES)
+
+
+------------------------------------------------------------------
+Calculator
+------------------------------------------------------------------
+0BC6.w  .b              Calculator display status (0=hide, 1=show)
+0BC7.w  .b              Calculator mode (0=DEC, 1=HEX)
+0BC8.w  .b              Calculator symbol
+                        (bit 4 is 1 when there is a symbol, the lower 4 bits are 1='+', 2='-', 3='*', 4='/')
+0BC9.w  .b
+0BCA.w  .w              The number of data remaining in the input buffer of the calculator and soft keyboard
+0BCC.w  .l              Address of the next data to be read from the input buffer of the calculator or soft keyboard
+0BD0.w  .w[22]          Calculator and soft keyboard input buffer
+0BFC.w  .w              Calculator display upper left X dot coordinate
+0BFE.w  .w              Calculator display upper left Y dot coordinate
+0C00.w  .l[2]           Calculator memory value
+0C08.w  .l[2]
+0C10.w  .l[2]           Value being entered on the calculator
+0C18.w  .w              (number of digits)
+0C1A.w  .b              Calculator status (0=normal, 1=error)
+0C1B.w  .b[16]          Current string of the calculator (lower to higher)
+0C2B.w
+
+
+------------------------------------------------------------------
+ADPCM
+------------------------------------------------------------------
+0C32.w  .b              ADPCM execution mode
+
+                            $00 Doing nothing
+                            $02 Output in progress (_ADPCMOUT running)
+                            $04 Input in progress (_ADPCMINP running)
+                            $12 Outputting via array chain (_ADPCMAOT running)
+                            $14 Inputting data via array chain (_ADPCMAIN is running)
+                            $22 Outputting via link array chain (_ADPCMLOT running)
+                            $24 Input via link array chain (_ADPCMLIN running)
+
+0C33.w  .b              DMAC3 exit code
+0C34.w  .b              DMA transfer mode
+
+                            $8A DMA transfer in progress
+                            $8B DMA array chain transfer in progress
+                            $8C DMA link array chain transfer in progress
+
+0C35.w  .b              DMAC2 exit code
+
+
+------------------------------------------------------------------
+Font expansion buffer
+------------------------------------------------------------------
+0C36.w  .w              Soft keyboard font expansion buffer (number of dots in the X direction)
+0C38.w  .w              Soft keyboard font expansion buffer (number of dots in the Y direction)
+0C3A.w  .b[12]          Soft keyboard font expansion buffer (pattern)
+0C46.w  .b[72]          Font creation buffer
+0C8E.w  .b
+0C8F.w  .b
+
+
+------------------------------------------------------------------
+FDD0 work
+------------------------------------------------------------------
+0C90.w  .b              Drive 0 result status 0
+0C91.w  .b              Drive 0 cylinder number at command end
+0C92.w  .b
+0C93.w  .b
+0C94.w  .b
+0C95.w  .b
+0C96.w  .b              Drive 0 sector length
+0C97.w  .b
+
+
+------------------------------------------------------------------
+FDD1 work
+------------------------------------------------------------------
+0C98.w  .b              Drive 1 result status 0
+0C99.w  .b              Drive 1 cylinder number at command end
+0C9A.w  .b
+0C9B.w  .b
+0C9C.w  .b
+0C9D.w  .b
+0C9E.w  .b              Drive 1 sector length
+0C9F.w  .b
+
+
+------------------------------------------------------------------
+FDD2 work
+------------------------------------------------------------------
+0CA0.w  .b              Drive 2 result status 0
+0CA1.w  .b              Drive 2 cylinder number at command completion
+0CA2.w  .b
+0CA3.w  .b
+0CA4.w  .b
+0CA5.w  .b
+0CA6.w  .b              Drive 2 sector length
+0CA7.w  .b
+
+
+------------------------------------------------------------------
+FDD3 work
+------------------------------------------------------------------
+0CA8.w  .b              Drive 3 result status 0
+0CA9.w  .b              Drive 3 cylinder number at command end
+0CAA.w  .b
+0CAB.w  .b
+0CAC.w  .b
+0CAD.w  .b
+0CAE.w  .b              Drive 3 sector length
+0CAF.w  .b
+
+
+------------------------------------------------------------------
+Mouse received data
+------------------------------------------------------------------
+0CB1.w  .b[3]           Raw data received from the mouse
+
+
+------------------------------------------------------------------
+How many hard drives are connected?
+------------------------------------------------------------------
+0CB4.w  .b              How many hard drives are connected?
+
+
+------------------------------------------------------------------
+RS-232C bit length mask
+------------------------------------------------------------------
+0CB5.w  .b              RS-232C bit length mask ($1F=5bit, $3F=6bit, $7F=7bit, $FF=8bit)
+
+
+------------------------------------------------------------------
+System information
+------------------------------------------------------------------
+0CB6.w  .w          [13] System clock ($0000=10MHz, $0001=16MHz, $0203=25MHz)
+0CB8.w  .w          [13] Clock speed ($0342~=10MHz*250/3, $056E~=16MHz*250/3, $104D~=25MHz*500/3)
+0CBA.w  .w          [13] Clock speed ($03D3=10MHz, $066D=16MHz, $104D=25MHz)
+0CBC.w  .b          [13] MPU type (0=68000, 1=68010, 2=68020, 3=68030, 4=68040, 6=68060)
+                         Normal applications use this work area to determine the type of MPU.
+0CBD.w  .b          [13] FPU/FPCP availability (0 = no, -1 = yes)
+0CBE.w  .b          [13] MMU presence (0 = no, -1 = yes)
+0CBF.w  .b          [13] Startup method (0=POWER, -1=COLD, -2=HOT)
+0CC0.w  .w          [13] SCSI device sector size
+0CC2.w  .b          [13] Is it confirmed that there is no other SCSI device with the same SCSI-ID as the main unit?
+
+                         0  Unconfirmed
+                         -1 Confirmed
+
+0CC3.w  .b          [13] Flag of non-bootable SCSI-ID (non-bootable ID bit = 1)
+                         This work will be saved on soft reset.
+
+
+------------------------------------------------------------------
+Additional work area
+------------------------------------------------------------------
+0D00.w  .l          [13] Address of the routine called when the drive type is $4-$5, $A-$F in _B_FORMAT
+0D04.w  .l          [13] Address of additional routine related to FD motor OFF
+0D08.w  .w  0       [13] Raster copy scrolling (0 = raster copy, -1 = soft copy)
+0D0A.w  .w  0       [13] Smooth scroll mode (0=jump, 1=4 dots, 2=8 dots, 3=16 dots)
+0D0C.w  .w  0       [13] Whether the text cursor blinks (0 = blinks, -1 = does not blink)
+0D0E.w  .w          [13] Cursor drawing start line*4
+0D10.w  .b          [13] Cursor shape for text plane 1 ($00 is considered to be $FF)
+0D11.w  .b          [13] Cursor shape for text plane 0 ($00 is considered to be $FF)
+0D12.w  .l          [13] BEEP processing complete replacement routine address
+                         (valid when BEEP sound address [$0978.w].l is -1)
+
+ROM1.3 can completely replace the BEEP processing by setting [$0978.w].l to -1.
+This can be used to easily create visual shells, but HIOCS.X does not support it
+(HIOCS.X's visual shell is created independently).
+
+0D16.w  .l  0       [13] ESC [Address of the complete replacement routine (0 = no replacement)
+
+Unlike #[$097E.w].l, it also hijacks standard escape sequences.
+
+0D1A.w  .w          [13] Drawing mode (0 = normal, -1 = reverse)
+0D1C.w  .w          [13] Interpretation of the length parameter of TX- (0 = end point - start point, 1 = number of dots)
+
+
+------------------------------------------------------------------
+(EOF)

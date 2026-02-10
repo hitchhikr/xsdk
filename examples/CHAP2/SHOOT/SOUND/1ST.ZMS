@@ -1,0 +1,220 @@
+.comment - XEXE stage 1 - composed by M.Susukita
+
+(i)
+(z64)
+
+(m1,1000)(a1,1)		/*	base	*/
+(m2,1000)(a2,2)		/*	guitar	*/
+(m3,1000)(a3,3)
+(m4,1000)(a4,4)
+(m5,1000)(a5,5)		/*	melody	*/
+(m6,1000)(a6,6)		/*	melody	*/
+(m7,1000)(a7,7)		/*	hi-hat
+(m8,1000)(a8,8)		/* 	none */
+(m10,1000)(aadpcm,10)	/*	drum
+
+/(o200)
+
+(t1) @70 o3 v12 l8 t200
+(t2) @101 o4 v9 @k0 p3 @a _2
+(t3) @101 o4 v9 p3 @a _2
+(t4) @101 o4 v 8 @k8 r8 _2
+(t5) @102 o3 v10 l8 @s3 @m6 @h18 @k0 _2
+(t6) @102 o3 v 8 l8 r8 @k8 _2
+(t8) @59 o5 v13 l8 _3
+(t10) o2 l8 @r1
+
+/* Intro */
+/(t1) erre rr<e>e erre rr<e>e
+/(t2) r1 r1
+/(t3) r1 r1
+/(t4) r1 r1
+/(t5) r1 r1
+/(t6) r1 r1
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr crdc rrdr
+
+(t1) r4q1(e>e4<)q8
+(t2) r2
+(t3) r2
+(t4) r2
+(t5) r2
+(t6) r2
+(t8) r4@60_10c8r8~@59
+(t10) r4<g4>
+
+(t1) [do]
+(t2) [do]
+(t3) [do]
+(t4) [do]
+(t5) [do]
+(t6) [do]
+(t8) [do]
+(t10) [do]
+
+/* A part */
+(t1) erre rr<e>e erre rr<e>e
+(t2) g+1e2g+2
+(t3) e1>b2<e2
+(t4) g+1e2g+2
+(t5) >b1& b4<e4f+4b4
+(t6) >b1& b4<e4f+4b4
+(t8) cccc cccc cccc cccc
+(t10) crdc rrdr crdc rrdr
+
+(t1) drrd rr<d>d drrd rr<d>d
+(t2) f+1d2f+2
+(t3) d1>a2<d2
+(t4) f+1d2f+2
+(t5) b2.ag+ a1
+(t6) b2.ag+ a1
+(t8) cccc cccc cccc ccc@60c@59
+(t10) crdc rrdr crdc rcdr
+
+(t1) >arra rr<a>a arra rr<a>a<
+(t2) e1 c+2 e2
+(t3) c+1>a2<c+2
+(t4) e1 c+2 e2
+(t5) b2.ag+ a4.g+4.a4
+(t6) b2.ag+ a4.g+4.a4
+(t8) cccc cccc cccc cccc
+(t10) crdc rrdr crdc rrdr
+
+(t1) erre rr<e>e c4r4 d4r4
+(t2) g+1 e2 f+2
+(t3) e1 >g2a2<
+(t4) g+1 e2 f+2
+(t5) g+4.e8& e2& e2.r4
+(t6) g+4.e8& e2& e2.r4
+(t8) cccc cccc @60c4.c4@59ccc
+/(t10) crdc rrdr <c+2> <c+2>
+(t10) crdc rrdr @f3dr@f4d@f2dr@f4ddd
+
+(t1) erre rr<e>e erre rr<e>e
+(t2) g+1 e2g+2
+(t3)	r1r1
+(t4) g+1 e2g+2
+(t5) >b1& b4<e4f+4b4
+(t6) >b1& b4<e4f+4b4
+(t8) cccc cccc cccc cccc
+(t10) <c+r>dc rrdr crdc rrdr
+
+(t1) drrd rr<d>d drrd rr<d>d
+(t2) f+1 d2f+2
+(t3)	r1r1
+(t4) f+1 d2f+2
+(t5) b2.ag+ a1
+(t6) b2.ag+ a1
+(t8) cccc cccc cccc ccc@60c@59
+(t10) crdc rrdr crdc rcdr
+
+(t1) >arra rr<a>a arra rr<a>a<
+(t2) e1 c+2e2
+(t3)	r1r1
+(t4) e1 c+2e2
+(t5) b2.ag+ a4.g+4.a4
+(t6) b2.ag+ a4.g+4.a4
+(t8) cccc cccc cccc cccc
+(t10) crdc rrdr crdc rrdr
+
+(t1) erre rr<e>e erre rr<e>e 
+(t2) g+1 g+1
+(t3)	r1r1
+(t4) g+1 g+1
+(t5) g+1& g+2.r4
+(t6) g+1& g+2.r4
+(t8) cccc cccc c@60crcrcr@59c
+/(t10) crdc rrdr <c+2> <c+2>
+(t10) crdc rrdr c@f3d@f4d@f2d@f4cddd
+
+/* B part */
+(t1) frrf rr<f>f frrf rr<f>f 
+(t2) a1&a1
+(t3)	c1&c1
+(t4) a1&a1
+(t5) a1 a4.b4.<c4>
+(t6) a1 a4.b4.<c4>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+/(t10) crdc rrdr d2 d2
+
+(t1) grrg rr<g>g grrg rr<g>g 
+(t2) b1&b1
+(t3) d1&d1
+(t4) b1&b1
+(t5) b1 b4.<c4.d4>
+(t6) b1 b4.<c4.d4>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) frrf rr<f>f frrf rr<f>f 
+(t2) a1&a1
+(t3) c1&c1
+(t4) a1&a1
+(t5) <c1 c4.d4.e4>
+(t6) <c1 c4.d4.e4>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) grrg rr<g>g grrg rr<g>g 
+(t2) b1&b1
+(t3) d1&d1
+(t4) b1&b1
+(t5) <d1& d1>
+(t6) <d1& d1>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) grrg rr<g>g <crrc rr<c>c>
+(t2) b-1&b-1
+(t3) d1e1
+(t4) b-1&b-1
+(t5) <d1& e4.d4.e4>
+(t6) <d1& e4.d4.e4>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) frrf rr<f>f b-rrb- rr<b->b- 
+(t2) a1&a1
+(t3) c1d1
+(t4) a1& a1
+(t5) <c1& d4.c4.d4>
+(t6) <c1& d4.c4.d4>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) e-rre- rr<e->e- a-rra- rr<a->a- 
+(t2) g1& g1
+(t3) >b-1<c1
+(t4) g1& g1
+(t5) b-1<c1>
+(t6) b-1<c1>
+/(t8) cccc cccc cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) arra rr<a>a brrb rr<b>b 
+(t2) e1f+1
+(t3) >a1b1
+(t4) e1f+1
+(t5) <c+1d+1>
+(t6) <c+1d+1>
+/(t8) cccc cc@60cr @59cccc cccc
+/(t10) crdc rrdr <c+2> <c+2>
+
+(t1) [loop]
+(t2) [loop]
+(t3) [loop]
+(t4) [loop]
+(t5) [loop]
+(t6) [loop]
+(t8)	|:4 cccc cccc @60_3c~@59cc @60_c~@59cccc :|
+	|:  cccc cccc ccc @60_c~@59cccc :|
+	|:16 c :|
+(t8)	cccc cc@60cr @59cccc cccc
+(t8) [loop]
+(t10)	<c+r>|:4 dc rcdc |@f2cr@f4d@f2cr@f4ddc cr :| cddcrd@f3d@f2d@f4
+	<c+r>|:  dc rcdc rrdcrddc |cr:| 
+	|: crdcrddr :|cddcrcdr cddd@f3{dd}d@f2dd@f4
+(t10) [loop]
+
+(p)

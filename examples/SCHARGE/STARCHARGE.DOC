@@ -1,0 +1,99 @@
+------------------------------
+		StarCharge
+
+				presented by chika@kmc 1995
+------------------------------
+
+- Introduction
+
+  StarCharge (hereafter referred to as *Charge) is a competitive action game focused on human versus human battles,
+  developed for the Kyoto University November Festival in 1994.
+
+  *Charge is a top-down fighting game with the following features:
+
+  - Because it's a top-down view, you can move around to the side of the enemy while they're attacking and attack them.
+    Also, the hit detection is easy to understand.
+  - You cannot attack until the Charge meter is full, so there are no traps.
+  - Since there is no guard, strategies based on waiting cannot be used.
+  - In Expert matches, falling means instant death, making for a tense battle.
+  - Because the characters are small, the scale and speed can be increased, making it thrilling.
+  - The production period was short, about one month, so the program is poor quality.
+
+  As mentioned above, *Charge has a game design that solves many of the problems with current fighting games.
+  Highly recommended for people who are tired of stupid fighting games.
+  However, playing against the CPU is not fun, so be sure to play against other people.
+
+------------------------------ chika1995 ---
+
+- How to start the game
+
+  With all the files in this archive in the current directory, run charge.bat to start the game.
+  You should be able to quit the game by pressing esc while in game.
+
+------------------------------ chika1995 ---
+
+- Game Description
+
+  Control your ship (Player 1 is red/Player 2 is blue) and attack the enemy.
+  When an attack hits an enemy, the enemy's energy decreases, 
+  and if the enemy's energy reaches 0, you win the first round.
+  Round 2 The first player to win can move on to the next round.
+
+  Since you can join in on the fun with other players, it's a good idea to invite lots of friends to play.
+
+  There are two types of attacks for your aircraft:
+  - FrameSword (fired with trigger A) The range is short, but the power is great.
+				Available when the charge meter is yellow or green
+  - Power Laser (fired with Trigger B) Has a long range but low power.
+				Only available when the charge meter is green
+
+------------------------------ chika1995 ---
+
+- Description of each file
+
+  Let's explain each file you need to play the game.
+
+ƒÍbattle.x			        This is the main body of the game program.
+ƒÍbattle.cnf			        It's a configuration file.
+                            If you play around with this you'll see some interesting gameplay scenes.
+ƒÍCHARGE.ZPD CHARGEFM.ZMD	This is a background music file.
+ƒÍSOUND??.ZMD			    This is a sound effect file.
+ƒÍ*.dp				        This is graphic data.
+ƒÍbg.pic			            This is also graphic data.
+ƒÍbattle.sp battle.pal		This is sprite data.
+                            It must be loaded into the main unit before running Battle.x.
+start.bat			        This is a batch file to run the game.
+ƒÍtext.dat			        This is the data of the characters that will be drawn in the text.
+ƒÍstage.dat			        This is terrain data for EXPERT mode.
+
+------------------------------ chika1995 ---
+
+- Acknowledgments & Others
+
+  This game was created using HAS.X HLK.X SM.X GCC.X MFGED.X ZMUSIC.X.
+  Thanks to the developers of these tools.
+
+  This program comes with no warranty.
+  I don't care what kind of damage you suffer by playing this game.
+
+  This game is free.
+  Distribution is permitted without restriction as long as the contents of the archive are not modified.
+  However, we do not waive the copyright of this game.
+
+If you find any bugs, please contact us.
+Also, please feel free to tell us any requests you may have,
+but we have no idea whether we will be able to meet your requests.
+I think it's more important to create a variety of things in search of a new gaming scene,
+rather than constantly updating games I made a long time ago.
+
+------------------------------ chika1995 ---
+
+- Creator
+
+Finally, I'll list the names (and email addresses) of our staff.
+
+Game Design/Programming			             Chikara Yoshida (chika@kmc.kyoto-u.ac.jp)
+Composition						             Takaaki Oka (oka@kmc.kyoto-u.ac.jp)
+FM arrangement/sound effects/graphic design: Naoya Kawahara
+
+------------------------------ chika1995 ---

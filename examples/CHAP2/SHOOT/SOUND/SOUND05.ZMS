@@ -1,0 +1,6 @@
+(i)
+(m8,1000)(aFM8,8)
+
+/	Enemy explosion sound (hatch out)
+(t8)	@o21 @5 @s30 @m-13000@h0 @v122o3l96 e24 _4g+24~d-24@o31d-_3d-24^^^ rr @o
+(p)

@@ -1,0 +1,45 @@
+Side-shooter sounds
+This contains zmusic sources of background music and sound effects.
+
+- Tone
+
+	sound.zms	Tone files
+	shoot.zpd	ADPCM data file
+	shoot.cnf	ADPCM data configuration file
+
+	At first, the tones were all kept together in the sound effects/BGM file,
+    and after the sound was completed, they were separated and the tones were combined into a single file.
+	This causes some tone numbers to be missing, but this should not be a problem.
+
+	shoot.zpd is not included in this archive, it's in the actual game.
+	shoot.cnf is the configuration file for creating shoot.zpd.
+	If you have ZmuSiC, you can create shoot.zpd by using the sampling data 
+    included with ZmuSiC and converting it with zpcnv.
+
+
+- Sound effects
+
+	All sound effects were created using FM sound sources.
+
+	sound01.zms Own shot
+	sound02.zms Enemy damage
+	sound03.zms Ground enemy destruction sound
+	sound04.zms Airborne destruction sound
+	sound05.zms Hatch explosion sound
+
+	I created the sound effects in a haphazard manner, thinking, "I guess it should be something like this."
+    However, I think the sounds of objects being destroyed on the ground are realistic.
+
+- BGM
+
+	start.zms air Combat BGM
+	1st.zms   1st Stage BGM
+	2nd.zms   2nd Stage BGM
+	3nd.zms   3rd Stage BGM
+	boss.zms  boss BGM
+		      Composed by Masahiro Susukita/Data created by Naoya Kawahara
+
+	For the FM sound source, I used the one I usually use.
+	The original song didn't use many sounds, so the final data didn't either.
+    
+				Naoya Kawahara (Kyoto University Microcomputer Club)

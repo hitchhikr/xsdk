@@ -1,0 +1,37 @@
+/* Script for -Ur */
+OUTPUT_FORMAT("elf32-m68k")
+SEARCH_DIR("/human68k/human68k/lib");
+SECTIONS
+{
+  .text  : {
+    *(.text)
+    *(.text.*)
+  }
+  .data  :
+  {
+     __ctors_start = . ;
+     *(.ctors)
+     __ctors_end = . ;
+     __dtors_start = . ;
+     *(.dtors)
+     __dtors_end = . ;
+    KEEP(SORT(*)(.ctors))
+    KEEP(SORT(*)(.dtors))
+    *(.data)
+    *(.data*)
+    *(.rodata)  /* We need to include .rodata here if gcc is used */
+    *(.rodata*) /* with -fdata-sections.  */
+  }
+  .bss  :
+  {
+    *(.bss)
+    *(COMMON)
+  }
+   .init : { *(.init) }
+   .fini : { *(.fini) }
+   .ctors : { *(.ctors) }
+   .dtors : { *(.dtors) }
+  .comment 0  : { [ .comment ] [ .ident ] }
+  .stab 0  : { [ .stab ] }
+  .stabstr 0  : { [ .stabstr ] }
+}

@@ -1,0 +1,25 @@
+;===============================================
+;	user key bindings			
+;===============================================
+bind-to-key	exchange-point-and-mark  FN9	# F10
+bind-to-key	tag-jump                 FNJ	# S-F10
+;
+;===============================================
+;	default CMODE-tab setting: 8 columns	
+;===============================================
+;toggle-cmode-tab			# set CMODE-tab 4 column
+;
+;===============================================
+;	default line-number settting: enable	
+;===============================================
+toggle-linenum				# disable line-number
+;
+;===============================================
+;	default fsearch mode: none(ignore case)	
+;===============================================
+add-global-mode	EXACT			# to EXACT mode
+;===============================================
+;	default TAB display mode: disable
+;===============================================
+;toggle-tab-disp				# display TAB mark
+

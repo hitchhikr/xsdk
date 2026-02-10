@@ -1,0 +1,81 @@
+
+              MicroEMACS PRO-68K mini3 Release Notes     15-Sep-1989
+
+                Differences from the original MicroEMACS (Ver3.7J)
+
+(1) The default key assignment is similar to that of ED.X.
+(2) Line number display function has been added.
+(3) Scrolls the screen line by line.
+(4) Create a BAK file when saving.
+(5) You can use the cursor keys to select the file to load from the file list.
+(6) Supports all five X68000 screen modes (768x512, 512x512, 1024x400, 1024x800, 640x400).
+
+		Upgrading from the previous version (MicroEmacs PRO-68K)
+
+(1) It is compiled using the Milk version of gcc with the -O option (optimization), so it is compact and fast.
+(2) The display module has been rewritten to improve display speed.
+(3) Display flickering has been made less noticeable to some extent (there is still room for improvement).
+(4) File name management is now always performed using absolute path names.
+(5) CTRL + cursor up/down allows for fast scrolling.
+	(This has nothing to do with key bindings.
+     It reads the key matrix at the getchar level and soft-repeats it quickly.)
+(6) Shell invocation is now easier to use (SHIFT+F10).
+    (Please make sure command.x is somewhere in your execution path.)
+
+                Startup
+
+(1) It starts only with MI.X, but if you put MI.RC MI.HLP in the same directory as MI.X,
+    you can set your preferred key bindings and refer to help.
+(2) If you change MI.X to another name, you must also change .RC .HLP to the same name.
+(3) To improve quality, we recommend that you run FON.X in advance. Åi"A> FON  MYFONT.FON"Åj
+
+                Bugs and more
+
+(1) Emacs distinguishes between uppercase and lowercase letters when specifying file names 
+    and considers them to be separate files, but the DOS on the X68000 does not distinguish between 
+    uppercase and lowercase letters.
+    
+    This allows you to display the original of the file you are editing in a separate window.
+    
+    Also, if you use case sensitivity when opening the same file in a different path or drive, 
+    you won't be prompted for the buffer name.
+
+
+(2) If you use a wildcard to specify a file at startup,
+
+    (a) If there are multiple matching files, select a file.
+    (b) If there is one matching file, that file is read.
+        (It acts as a kind of filename completion function)
+    (c) If there is no corresponding file, a new file will be created, 
+        but you will not be able to save it (BUG!), so please rename it with <ESC>-T and save it.
+
+(3) If FON.X is running, you can use SHIFT+cursor keys.
+
+     shift+UP   == ROLL DOWN
+     shift+DOWN == ROLL  UP
+     shift+LEFT == To the beginning of the line
+     shift+RIGHT== To the end of the line
+   
+    However, TV control will also be performed at the same time, so please remove the DIN 8-pin connector.
+
+     You can also use SHIFT+CTRL+UP to navigate back through the standard console output.
+     (This can be done even if EMACS is not running.)
+   
+     UP        == Look back in the CONOUT buffer.
+     DOWN      == Look behind the CONOUT buffer.
+     CR or ESC == Exit CONOUT and return to the original screen.
+                  The CONOUT buffer size is 16KB.
+
+If you run FON.X, CONOUT will run faster, but the downside is that you will no longer be able 
+to use ^P to output to the printer.
+
+(4) It does not support two-byte half-width character codes that are not defined in JIS (X68000 specific).
+
+
+                Acknowledgments
+
+To the creators of MicroEMACS, who released the source code as a PDS so that users could customize it 
+as a living example of an excellent screen editor, and to Richard Stallman, the creator of EMACS.
+
+                                                pcvan x1club: iruka.
+

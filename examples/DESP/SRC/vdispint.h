@@ -1,0 +1,1 @@
+void	vdisp_intinit();

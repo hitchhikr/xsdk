@@ -1,0 +1,22 @@
+
+	3.5inch 128Mbytes MO driver for X680x0/Human68k
+
+There are no restrictions on copying or modifying the source code.
+Furthermore, we assume no responsibility for any damage or malfunction 
+that may occur as a result of using this device driver.
+
+How to use necmodrv.sys:
+
+necmodrv.sys [/id=N]
+	N : SCSI ID (0..7)
+
+in config.sys:
+
+device = necmodrv.sys
+
+This will search for the MO connected to X680x0.
+If an MO-drive is found, the device driver will be incorporated into Human.
+
+device = necmodrv.sys /id=5
+
+will cause the device driver for whatever device has SCSI ID 5 to be incorporated into Human.

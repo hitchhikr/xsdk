@@ -1,0 +1,20 @@
+Mouse Point Counter
+
+mspc.x
+		by Matsuura Hiroaki(hal@kmc.kyoto-u.ac.jp)
+
+When the mouse cursor is displayed,
+
+    -Press the SHIFT key to display the position in dots.
+    -Press the CTRL key to display the character position.
+
+  It will be displayed on the mouse cursor.
+
+-Use mspc -s to make it resident, and mspc -r to make it non-resident.
+
+-This is an all-assembler resident program.
+  This is a program that only the most advanced users will need, 
+  so most users should use it as a skeleton for a resident program.
+
+-Redistribution, modification, and execution of this program are at your own risk.
+

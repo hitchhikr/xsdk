@@ -1,0 +1,72 @@
+.comment - XEXE stage 3 - composed by M.Susukita
+
+(i)
+(z64)
+
+(m1,3000)(afm1,1)
+(m2,3000)(afm2,2)
+(m3,3000)(afm3,3)
+(m4,3000)(afm4,4)
+(m5,3000)(afm5,5)
+(m6,3000)(afm6,6)
+(m7,3000)(afm7,7)
+(m8,3000)(afm8,8)
+(m9,3000)(aAdpcm,9)
+
+(z192)
+
+(t1)	t192@72o3v12l8@k-5q6	[do]
+	|:7 crrgrrcr >b-rrfrrb-r< :|
+	crrc rrfr gr	crrcrr>b-rgr<
+	crrcrrfrgr	crrcrr>b-rbr< [loop]
+
+(t2)	@42o4v12l8 [do]@q2
+	|: c4.d4.e4 d4.>b-4.f4    <c4.>g4.^4 & g1<
+	   c4.d4.e4 d4.f4.>b-4< | c1 &c1 :|
+	@44<q8
+	|: crrcrrfrgr crrcrr>b-r|gr  :|br
+	@42
+	[loop]
+
+(t3)	@42o4v10l8 @k8r8 [do]@q2
+	|: c4.d4.e4 d4.>b-4.f4    <c4.>g4.^4 & g1<
+	   c4.d4.e4 d4.f4.>b-4< | c1 &c1 :| 
+	@44<q8
+	|: crrcrrfrgr crrcrr>b-r|gr  :|br 
+	@42
+	[loop]
+
+(t4)	@43o3v11l8 @k0 [do]@q3
+	|:e4.f4.g4f4.d4.d4 e4. c^2&c1
+	  e4.f4.g4f4.d4.d4| e1f1 :|
+	@44<
+	|:grrgrrfrcr grrgrrfr|dr :|gr
+	@43
+	[loop]
+
+(t7)	@43o3v9l8r8 @k8 [do] @q2
+	|:e4.f4.g4f4.d4.d4 e4. c^2&c1
+	  e4.f4.g4f4.d4.d4| e1f1 :|
+	@44<
+	|:grrgrrfrcr grrgrrfr|dr :|gr
+	@43
+	[loop]
+
+(t5)	@103o5v10l16@k5q4
+(t5)	[do]
+(t5)	|:p1 gggg grp2gg gggr p3gggr	p3 gggg grp1gg gggrp2 gggr :|
+(t5)	[loop]
+
+(t6)	@59o5l8v11
+(t6)	[do] cccc cccc [loop]
+
+(t9)	o2l8@r1
+	[do]
+	|:8 <f+rg>c <f>|c<g>r :|d<g>d
+/	<c+r>|:6 <g>c <f>|c<g>r<f+r> :|d@f3d@f2d@f4
+	<c+r>|:6 <g>c <f>|c<g>r<f+r> :|{dd}@f3{dd}@f2{dr}@f4
+	crdc rdcr dr crdc rddr dr
+	crdc rdcr dr crdc rd@f2dr @f3dr@f4
+	[loop]
+
+(p)

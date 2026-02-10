@@ -1,0 +1,6 @@
+.o2c = rvbbd3.pcm , v32
+.o2d = rvbsd2.pcm , v45
+.o3f = eucup.pcm , v26
+.o3f+ = .o3f, mo2c
+.o3g = .o3f, mo2d
+.o3c+ = crsh1.pcm , v45 , mo2c

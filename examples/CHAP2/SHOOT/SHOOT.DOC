@@ -1,0 +1,42 @@
+This is a side-scrolling shooter game made in two chapters.
+We will explain each file.
+
+------------------------------------------------------------------------
+START.BAT
+
+When you run this, the game will start, and when you press break it will end.
+
+If the game won't start, it may be due to a strange environment or you've held down break.
+In the latter case, you may be able to play the game by pressing break once and then starting.
+------------------------------------------------------------------------
+SHOOT.X
+
+This is an executable file.
+Usually executed in START.BAT
+------------------------------------------------------------------------
+BOSS.SP SHOOT.SP STAGE1.SP
+
+The sprite pattern data used in this game, stage1.sp and boss.sp, 
+are read in the program and written to the PCG data area when necessary.
+
+SHOOT.PAL
+
+Palette data for sprites.
+shoot.sp and shoot.pal must be loaded into the sprite area before running shoot.x.
+------------------------------------------------------------------------
+SOUND.ZMD START.ZMD 1ST.ZMD 2ND.ZMD 3RD.ZMD BOSS.ZMD
+SOUND01.ZMD SOUND02.ZMD SOUND03.ZMD SOUND04.ZMD SOUND05.ZMD SOUND06.ZMD
+
+Sound effects and background music data files. Playable with zmusic.
+
+SHOOT.ZPD
+
+ADPCM data file for the above BGM
+------------------------------------------------------------------------
+STAGE1.BG STAGE2.BG STAGE3.BG
+
+This is the background pattern data for each stage. You can edit it with BGED.X.
+------------------------------------------------------------------------
+TITLE.DAT
+
+This is the title graphic data. It is a 65536 color solid data.

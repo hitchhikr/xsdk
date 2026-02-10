@@ -1,0 +1,423 @@
+/*
+ * Buffer management.
+ * Some of the functions are internal,
+ * and some are actually attached to user
+ * keys. Like everyone else, they set hints
+ * for the display system.
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruct.h"
+#include "edef.h"
+
+/*
+ * Attach a buffer to a window. The
+ * values of dot and mark come from the buffer
+ * if the use count is 0. Otherwise, they come
+ * from some other window.
+ */
+usebuffer(f, n)
+{
+    register BUFFER *bp;
+    register int s;
+    char bufn[NBUFN];
+
+    if ((s = mlreply("Use buffer: ", bufn, NBUFN)) != TRUE)
+    {
+        return (s);
+    }
+    if ((bp = bfind(bufn, TRUE, 0)) == NULL)
+    {
+        return (FALSE);
+    }
+    return(swbuffer(bp));
+}
+
+nextbuffer(f, n)    /* switch to the next buffer in the buffer list */
+{
+    register BUFFER *bp;
+
+    bp = curbp->b_bufp;
+    /* cycle through the buffers to find an eligable one */
+    while (bp == NULL || bp->b_flag & BFINVS)
+    {
+        if (bp == NULL)
+        {
+            bp = bheadp;
+        }
+        else
+        {
+            bp = bp->b_bufp;
+        }
+    }
+    return(swbuffer(bp));
+}
+
+swbuffer(bp)    /* make buffer BP current */
+register BUFFER *bp;
+{
+    register WINDOW *wp;
+    register BUFFER *up;
+
+    if (--curbp->b_nwnd == 0)
+    {
+        /* Last use. */
+        up = curbp;
+        wp = curwp;
+    
+        up->b_dotp = wp->w_dotp;
+        up->b_doto = wp->w_doto;
+        up->b_markp = wp->w_markp;
+        up->b_marko = wp->w_marko;
+    }
+    /* Switch. */
+    curbp = bp; 
+    if (curbp->b_active != TRUE)
+    {   /* buffer not active yet */
+        /* read it in and activate it */
+        readin(curbp->b_fname, TRUE);
+        curbp->b_dotp = lforw(curbp->b_linep);
+        curbp->b_doto = 0;
+        curbp->b_active = TRUE;
+    }
+
+    wp=curwp;
+    wp->w_bufp = bp;
+    wp->w_linep = bp->b_linep;                  /* For macros, ignored. */
+    wp->w_flag |= WFMODE | WFFORCE | WFHARD;    /* Quite nasty.         */
+    if (bp->b_nwnd++ == 0)
+    {   /* First use.           */
+        wp->w_dotp = bp->b_dotp;
+        wp->w_doto = bp->b_doto;
+        wp->w_markp = bp->b_markp;
+        wp->w_marko = bp->b_marko;
+        return (TRUE);
+    }
+
+    wp = wheadp;                                /* Look for old.        */
+    while (wp != NULL)
+    {
+        if (wp!=curwp && wp->w_bufp==bp)
+        {
+            curwp->w_dotp = wp->w_dotp;
+            curwp->w_doto = wp->w_doto;
+            curwp->w_markp = wp->w_markp;
+            curwp->w_marko = wp->w_marko;
+            break;
+        }
+        wp = wp->w_wndp;
+    }
+    return (TRUE);
+}
+
+/*
+ * Dispose of a buffer, by name.
+ * Ask for the name. Look it up (don't get too
+ * upset if it isn't there at all!). Get quite upset
+ * if the buffer is being displayed. Clear the buffer (ask
+ * if the buffer has been changed). Then free the header
+ * line and the buffer header. Bound to "C-X K".
+ */
+killbuffer(f, n)
+{
+    BUFFER *bp;
+    bp = curbp;   
+    if( (wheadp->w_wndp) != NULL )
+    {
+        if(delwind(f, n) == FALSE)
+        {
+            return(FALSE);
+        }
+        return(zotbuf(bp));
+    }
+    else
+    {
+        if(nextbuffer(f,n) == FALSE)
+        {
+            return(FALSE);
+        }
+        return(zotbuf(bp));
+    }
+    return(FALSE);
+}
+
+killbuf2(f,n)   /* original killbuffer */
+{
+    register BUFFER *bp;
+    register int s;
+    char bufn[NBUFN];
+
+    if ((s = mlreply("Kill buffer: ", bufn, NBUFN)) != TRUE)
+    {
+        return(s);
+    }
+    if ((bp = bfind(bufn, FALSE, 0)) == NULL) /* Easy if unknown.     */
+    {
+        return (TRUE);
+    }
+    return(zotbuf(bp));
+}
+
+zotbuf(bp)  /* kill the buffer pointed to by bp */
+register BUFFER *bp;
+{
+    register BUFFER *bp1;
+    register BUFFER *bp2;
+    register int s;
+
+    if (bp->b_nwnd != 0)
+    {   /* Error if on screen.  */
+        mlwrite("Buffer is being displayed");
+        return (FALSE);
+    }
+    if ((s = bclear(bp)) != TRUE)           /* Blow text away.      */
+    {
+        return (s);
+    }
+    free((char *) bp->b_linep);             /* Release header line. */
+    bp1 = NULL;                             /* Find the header.     */
+    bp2 = bheadp;
+    while (bp2 != bp)
+    {
+        bp1 = bp2;
+        bp2 = bp2->b_bufp;
+    }
+    bp2 = bp2->b_bufp;                      /* Next one in chain.   */
+    if (bp1 == NULL)                        /* Unlink it.           */
+    {
+        bheadp = bp2;
+    }
+    else
+    {
+        bp1->b_bufp = bp2;
+    }
+    free((char *) bp);                      /* Release buffer block */
+    return (TRUE);
+}
+
+namebuffer(f,n)     /*  Rename the current buffer   */
+int f, n;           /* default Flag & Numeric arg */
+{
+    register BUFFER *bp;    /* pointer to scan through all buffers */
+    char bufn[NBUFN];       /* buffer to hold buffer name */
+
+    /* prompt for and get the new buffer name */
+ask:
+    if (mlreply("Change buffer name to: ", bufn, NBUFN) != TRUE)
+    {
+        return(FALSE);
+    }
+    /* and check for duplicates */
+    bp = bheadp;
+    while (bp != NULL)
+    {
+        if (bp != curbp)
+        {
+            /* if the names the same */
+            if (strcmp(bufn, bp->b_bname) == 0)
+            {
+                goto ask;  /* try again */
+            }
+        }
+        bp = bp->b_bufp;    /* onward */
+    }
+
+    strcpy(curbp->b_bname, bufn);   /* copy buffer name to structure */
+    curwp->w_flag |= WFMODE;        /* make mode line replot */
+    mlerase();
+    return(TRUE);
+}
+
+/*
+ * List all of the active
+ * buffers. First update the special
+ * buffer that holds the list. Next make
+ * sure at least 1 window is displaying the
+ * buffer list, splitting the screen if this
+ * is what it takes. Lastly, repaint all of
+ * the windows that are displaying the
+ * list. Bound to "C-X C-B".
+ */
+listbuffers(f, n)
+{
+    return (TRUE);
+}
+
+/*
+ * The argument "text" points to
+ * a string. Append this line to the
+ * buffer list buffer. Handcraft the EOL
+ * on the end. Return TRUE if it worked and
+ * FALSE if you ran out of room.
+ */
+addline(text)
+char *text;
+{
+    register LINE *lp;
+    register int i;
+    register int ntext;
+
+    ntext = strlen(text);
+    if ((lp = lalloc(ntext)) == NULL)
+    {
+        return (FALSE);
+    }
+    for (i = 0; i < ntext; ++i)
+    {
+        lputc(lp, i, text[i]);
+    }
+    blistp->b_linep->l_bp->l_fp = lp;       /* Hook onto the end    */
+    lp->l_bp = blistp->b_linep->l_bp;
+    blistp->b_linep->l_bp = lp;
+    lp->l_fp = blistp->b_linep;
+    if (blistp->b_dotp == blistp->b_linep)  /* If "." is at the end */
+    {
+        blistp->b_dotp = lp;                /* move it to new line  */
+    }
+    return (TRUE);
+}
+
+/*
+ * Look through the list of
+ * buffers. Return TRUE if there
+ * are any changed buffers. Buffers
+ * that hold magic internal stuff are
+ * not considered; who cares if the
+ * list of buffer names is hacked.
+ * Return FALSE if no buffers
+ * have been changed.
+ */
+anycb()
+{
+    register BUFFER *bp;
+
+    bp = bheadp;
+    while (bp != NULL)
+    {
+        if ((bp->b_flag & BFINVS) == 0 && (bp->b_flag & BFCHG) != 0)
+        {
+            return (TRUE);
+        }
+        bp = bp->b_bufp;
+    }
+    return (FALSE);
+}
+
+/*
+ * Find a buffer, by name. Return a pointer
+ * to the BUFFER structure associated with it.
+ * If the buffer is not found
+ * and the "cflag" is TRUE, create it. The "bflag" is
+ * the settings for the flags in in buffer.
+ */
+BUFFER *bfind(bname, cflag, bflag)
+register char *bname;
+{
+    register BUFFER *bp;
+    register BUFFER *sb;    /* buffer to insert after */
+    register LINE *lp;
+
+    bp = bheadp;
+    while (bp != NULL)
+    {
+        if (strcmp(bname, bp->b_bname) == 0)
+        {
+            return (bp);
+        }
+        bp = bp->b_bufp;
+    }
+    if (cflag != FALSE)
+    {
+        if ((bp = (BUFFER *) malloc(sizeof(BUFFER))) == NULL)
+        {
+            return (NULL);
+        }
+        if ((lp = lalloc(0)) == NULL)
+        {
+            free((char *) bp);
+            return (NULL);
+        }
+        /* find the place in the list to insert this buffer */
+        if (bheadp == NULL || strcmp(bheadp->b_bname, bname) > 0)
+        {
+            /* insert at the begining */
+            bp->b_bufp = bheadp;
+            bheadp = bp;
+        }
+        else
+        {
+            sb = bheadp;
+            while (sb->b_bufp != NULL)
+            {
+                if (strcmp(sb->b_bufp->b_bname, bname) > 0)
+                {
+                    break;
+                }
+                sb = sb->b_bufp;
+            }
+
+            /* and insert it */
+            bp->b_bufp = sb->b_bufp;
+            sb->b_bufp = bp;
+        }
+
+        /* and set up the other buffer fields */
+        bp->b_active = TRUE;
+        bp->b_dotp = lp;
+        bp->b_doto = 0;
+        bp->b_markp = NULL;
+        bp->b_marko = 0;
+        bp->b_flag = bflag;
+        bp->b_mode = gmode;
+        bp->b_nwnd = 0;
+        bp->b_linep = lp;
+        strcpy(bp->b_fname, "");
+        strcpy(bp->b_bname, bname);
+        lp->l_fp = lp;
+        lp->l_bp = lp;
+    }
+    return (bp);
+}
+
+/*
+ * This routine blows away all of the text
+ * in a buffer. If the buffer is marked as changed
+ * then we ask if it is ok to blow it away; this is
+ * to save the user the grief of losing text. The
+ * window chain is nearly always wrong if this gets
+ * called; the caller must arrange for the updates
+ * that are required. Return TRUE if everything
+ * looks good.
+ */
+bclear(bp)
+register BUFFER *bp;
+{
+    register LINE *lp;
+    register int s;
+
+    if ((bp->b_flag & BFINVS) == 0              /* Not scratch buffer.  */
+    && (bp->b_flag & BFCHG) != 0                /* Something changed    */
+    && (s = mlyesno("Discard changes")) != TRUE)
+    {
+        return (s);
+    }
+    bp->b_flag &= ~BFCHG;                       /* Not changed          */
+    while ((lp = lforw(bp->b_linep)) != bp->b_linep)
+    {
+        lfree(lp);
+    }
+    bp->b_dotp = bp->b_linep;                   /* Fix "."              */
+    bp->b_doto = 0;
+    bp->b_markp = NULL;                         /* Invalidate "mark"    */
+    bp->b_marko = 0;
+    return (TRUE);
+}
+
+unmark(f, n)    /* unmark the current buffers change flag */
+int f, n;       /* unused command arguments */
+{
+    curbp->b_flag &= ~BFCHG;
+    curwp->w_flag |= WFMODE;
+    return(TRUE);
+}

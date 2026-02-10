@@ -1,0 +1,13 @@
+- Resident program that flashes LEDs in time with music
+
+led.x
+		Skeleton by Matsuura Hiroaki (hal@kmc.kyoto-u.ac.jp)
+		Resident part by chika
+		Merge by hal
+
+I combined the skeleton of the resident program on this disk with the LED blinking sample program by chika,
+and in just five minutes I created a resident program that blinks an LED in time with music.
+As usual, TIMER-C is hooked.
+
+This program is free and without any compensation.
+Any execution, modification, or distribution of this program is at your own risk.

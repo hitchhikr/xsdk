@@ -1,0 +1,2 @@
+led -r
+zmusic -r

@@ -1,0 +1,22 @@
+„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª
+		DesperadO-X
+
+				presented by chika@kmc 1995
+„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª
+
+- Description of each file
+
+  Let's explain each file you need to play the game.
+
+- DSP.X				The main body of the game program.
+- START.BAT			Batch file used to start the game
+- ZMUSIC.X			ZmuSiC sound driver
+- *.RL				Compressed sprite data for characters.
+- *.MF				Motion file.
+                    (Used to simplify mobile programming).
+- *.DP *.PRL		Graphic Data
+- PCM??.DAT			Sampling data such as explosion sounds
+- DSP.SP DSP.PAL	Sprite Pattern/Palette Data In Desperado, the routine to load this is in dsp.x,
+                    so there is no need to use spload.
+- *.ZMD *.ZPD		BGM/sound effect data.
+                    This is data for ZMUSIC.

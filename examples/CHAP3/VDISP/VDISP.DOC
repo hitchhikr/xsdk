@@ -1,0 +1,3 @@
+Sample interrupt program.
+
+  A sample program for gcc that supports the interrupt modifier (interrupted with CTRL+C).

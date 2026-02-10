@@ -1,0 +1,4194 @@
+------------------------------------------------------------------
+
+           Resources for assembler programmers
+
+                        #$02
+
+              <IOCS Call Simple Reference>
+
+                   by Makoto Kamata
+
+        Translated and curated by Franck Charlet
+
+------------------------------------------------------------------
+
+
+This time, we will provide a simple reference for all IOCS calls (including unpublished ones) provided in the X68030 ROM.
+
+In particular, the unpublished parts have been analyzed and summarized by the author, 
+so please do not contact Sharp or Hudson.
+
+The call names of unpublished IOCS calls have been chosen to match existing names as much as possible, 
+but there are also a few that have been arbitrarily named by the author.
+
+This document is not guaranteed.
+Please do not use it as a reference, especially for disk operation ($40 to $4F, $F5) as the analysis is incomplete.
+
+
+Reference
+------------------------------------------------------------------
+Number Call Name Function Overview
+<Input data
+>Output data
+supplementary explanation
+------------------------------------------------------------------
+$00 _B_KEYINP       Key input (waits for input, removes input data from buffer)
+
+No parameters
+
+>D0.l:Scancode*$0100+Character code
+
+Entering one byte from the keyboard can cause D3.l to be corrupted when using a calculator.
+
+Waits for input and removes it from the key input buffer.
+
+Process calculator.
+------------------------------------------------------------------
+$01 _B_KEYSNS       Key sense (does not wait for input, does not remove input data from buffer)
+
+No parameters
+
+>D0.l:$00010000 + scan code * $0100 + character code (0 = no input)
+
+Entering one byte from the keyboard can cause D3.l to be corrupted when using a calculator.
+
+It does not wait for input, and does not remove input data from the key input buffer.
+
+Process calculator.
+------------------------------------------------------------------
+$02 _B_SFTSNS       Get the shift key and LED status
+
+No parameters
+
+>D0.l:Shift key and LED status
+
+        Each bit is 0 = released, 1 = pressed
+
+        bit 0   SHIFT
+        bit 1   CTRL
+        bit 2   OPT.1
+        bit 3   OPT.2
+
+        Each bit 0 = off, 1 = on
+
+        bit 4   Kana
+        bit 5   Roman letters
+        bit 6   Enter the code
+        bit 7   CAPS
+        bit 8   Kana
+        bit 9   Roman letters
+        bit 10  Enter the code
+        bit 11  CAPS
+        bit 12  INS
+        bit 13  Hiragana
+        bit 14  Full-width
+
+Check the status of the shift key and LED.
+
+Returns the contents of the location [$0810.w].w for the shift key and LED status.
+------------------------------------------------------------------
+$03 _KEY_INIT       Initializing the keyboard interface
+
+<D1.b:LED initial state
+
+This initializes the key input buffer, sets the initial LED settings, 
+and sets the key repeat delay time and interval.
+------------------------------------------------------------------
+$04 _BITSNS         Get key press status
+
+<D1.w:Scancode Group
+
+>D0.l:Key press status (each bit 0 = released, 1 = pressed)
+
+        Group   bit7    bit6    bit5    bit4    bit3    bit2    bit1    bit0
+
+        $0000   6&      5%      4$      3#      2"      1!      ESC     None
+        $0001   BS      \|      ^~      -=      0       9)      8(      7'
+        $0002   U       Y       T       R       E       W       Q       TAB
+        $0003   S       A       CR      [{      @`      P       O       I
+        $0004   ;+      L       K       J       H       G       F       D
+        $0005   N       B       V       C       X       Z       ]}      :*
+        $0006   DEL     HOME    SP      _       /?      .>      ,<      M
+        $0007   CLR     DOWN    RIGHT   UP      LEFT    UNDO    R.DOWN  R.UP
+        $0008   4       +       9       8       7       -       *       /
+        $0009   0       ENTER   3       2       1       =       6       5
+        $000A   XF3     XF2     XF1     HELP    Reg     Symb    .       ,
+        $000B   Hira    INS     CAPS    Code    Rome    Kana    XF5     XF4
+        $000C   F5      F4      F3      F2      F1      COPY    BREAK   Full-width
+        $000D   None    None    None    F10     F9      F8      F7      F6
+        $000E   None    None    None    NUM     OPT.2   OPT.1   CTRL    SHIFT
+        $000F   None    None    None    None    None    None    None    None
+
+For each scancode group, check the pressed state of each key.
+
+Returns the data of the specified scan code group from the key press status location [$0800.w].b[16].
+
+Note that scan code = scan code group x 8 + bit number.
+------------------------------------------------------------------
+$05 _SKEYSET        Keystroke Emulation
+
+<D1.b:Scan Code
+
+>D0.b:Scan Code
+
+Generates key input data from the scan code.
+
+The generated key input data is stored in the key input buffer and can be read using _B_KEYINP etc.
+
+Used by SX-Window's key manager.
+------------------------------------------------------------------
+$06 _LEDCTRL        Set the keyboard LED status all at once
+
+<D1.b:LED status (0 = off, 1 = on)
+
+        bit 0   Kana
+        bit 1   Roman letters
+        bit 2   Enter the code
+        bit 3   CAPS
+        bit 4   INS
+        bit 5   Hiragana
+        bit 6   Full-width
+
+Sets the state of the keyboard LEDs collectively.
+
+It only outputs to the keyboard, so it does not affect the key input mode.
+
+Also, it does not cause an error even if kana and romaji are lit at the same time.
+
+Used by SX-Window's keyboard manager.
+------------------------------------------------------------------
+$07 _LEDSET         Reconfigure the key LEDs
+
+No parameters
+
+The LED state returned by _B_SFTSNS is output to the keyboard and reset.
+
+Match the key input mode and LED status.
+------------------------------------------------------------------
+$08 _KEYDLY         Key repeat delay time setting
+
+<D1.b:Delay time (0 to 15)
+
+Sets the key repeat delay time output to the keyboard.
+
+For a specified value of n, the delay time is 200 + n x 0.1 (ms).
+------------------------------------------------------------------
+$09 _KEYREP         Key repeat interval setting
+
+<D1.b:Interval (0 to 15)
+
+Set the key repeat interval by outputting it to the keyboard.
+
+For a specified value of n, the interval is 30+n^2~5 (ms).
+------------------------------------------------------------------
+$0A _OPT2TVON       OPT.2 Allows TV control via keys
+
+No parameters
+
+Allows TV control via OPT.2 keys.
+------------------------------------------------------------------
+$0B _OPT2TVOFF      Disable TV control by OPT.2 key
+
+No parameters
+
+Disables TV control using the OPT.2 key.
+------------------------------------------------------------------
+$0C _TVCTRL         TV Control
+
+<D1.b:TV Control Code
+
+        $01         Volume up
+        $02         Volume Down
+        $03         Volume Normal
+        $04         Channel Call
+        $05         TV screen (initialization, reset)
+        $06         Mute Audio
+        $07         Power on
+        $08         TV/Computer
+        $09         TV/External Input, Computer Normal/Overscan
+        $0A         Contrast Normal
+        $0B         Channel Up
+        $0C         Channel Down
+        $0D         Power OFF
+        $0E         Power ON/OFF
+        $0F         Superimpose 1
+        $10         Channel 1
+        $11         Channel 2
+        $12         Channel 3
+        $13         Channel 4
+        $14         Channel 5
+        $15         Channel 6
+        $16         Channel 7
+        $17         Channel 8
+        $18         Channel 9
+        $19         Channel 10
+        $1A         Channel 11
+        $1B         Channel 12
+        $1C         TV screen ($05)
+        $1D         Computer screen ($05, $08)
+        $1E         Superimpose 1 ($05, $0F)
+        $1F         Superimpose ($05, $0F, $0A)
+        $20 to $3F  Turn on the power and then perform the above functions.
+
+This performs TV control.
+
+On overclocked X68000 or Xellent30, this IOCS call must be patched in order to function properly.
+------------------------------------------------------------------
+$0D _LEDMOD         Set the key LED
+
+<D1.w:LED number (0 to 6)
+
+        0   Kana
+        1   Roman letters
+        2   Enter the code
+        3   CAPS
+        4   INS
+        5   Hiragana
+        6   Full-width
+
+<D2.b:LED status (0=OFF, 1=ON)
+
+>D0.l:0 = Normal completion, -1 = Error
+
+Set the LEDs for the keys individually.
+
+Affects the mode of key input.
+
+Note that kana and romaji cannot be turned on at the same time.
+------------------------------------------------------------------
+$0E _TGUSEMD        Get or set screen usage status
+
+<D1.b:Graphics/Text
+
+        0   Graphics Screen
+        1   Text Screen
+
+<D2.b:Usage status
+
+        0   Unused
+        1   System
+        2   User
+        3   Destruction
+        -1  Retrieval only
+
+>D0.l:Usage status before setting
+
+        0   Unused
+        1   System
+        2   User
+        3   Destruction
+
+Gets or sets the usage status of the text or graphics screen.
+
+This is used by RAMDISK.SYS to lock down the graphics VRAM, 
+but it is almost meaningless because _G_CLR_ON does not check the usage status.
+------------------------------------------------------------------
+$0F _DEFCHR         Font pattern settings
+
+<D1.l:Font size * $00010000 + character code
+
+    Font size
+
+        0,8     8~16,   16~16
+        12,24   12~24,  24~24
+
+<A1.l:Font pattern start address
+
+>D0.l:0 = Normal completion, -1 = Error
+
+Copies the font pattern to the font address of the specified character code.
+
+As long as the font is in RAM, it does not have to be an external character.
+------------------------------------------------------------------
+$10 _CRTMOD         Get or set the screen mode
+
+<D1.w:Screen mode graphics
+
+        Mode    Frequency   Screen size Number of colors    Actual screen size  Number of pages
+
+        $0000   31          512x512     16                  1024x1024           1
+        $0001   15          512x512     16                  1024x1024           1
+        $0002   31          256x256     16                  1024x1024           1
+        $0003   15          256x256     16                  1024x1024           1
+        $0004   31          512x512     16                  512x512             4
+        $0005   15          512x512     16                  512x512             4
+        $0006   31          256x256     16                  512x512             4
+        $0007   15          256x256     16                  512x512             4
+        $0008   31          512x512     256                 512x512             2
+        $0009   15          512x512     256                 512x512             2
+        $000A   31          256x256     256                 512x512             2
+        $000B   15          256x256     256                 512x512             2
+        $000C   31          512x512     65536               512x512             1
+        $000D   15          512x512     65536               512x512             1
+        $000E   31          256x256     65536               512x512             1
+        $000F   15          256x256     65536               512x512             1
+        $0010   31          768x512     16                  1024x1024           1
+        $0011   24          1024x424    16                  1024x1024           1
+        $0012   24          1024x848    16                  1024x1024           1
+        $0013   24          640x480     16                  1024x1024           1
+        $0014   31          768x512     256                 512x512             2
+        $0015   24          1024x424    256                 512x512             2
+        $0016   24          1024x848    256                 512x512             2
+        $0017   24          640x480     256                 512x512             2
+        $0018   31          768x512     65536               512x512             1
+        $0019   24          1024x424    65536               512x512             1
+        $001A   24          1024x848    65536               512x512             1
+        $001B   24          640x480     65536               512x512             1
+        $0100 to $0113 Settings only, do not initialize
+
+        -1  Retrieval only
+
+Gets or sets the screen mode.
+The text screen is cleared and the text palette is set to the system defaults.
+
+The graphics screen and sprites are not cleared but are hidden.
+
+Mode $0013 is the VGA mode that is set when you start the computer while holding down the V key.
+
+Note that modes $0013 and above do not exist on the X68000.
+------------------------------------------------------------------
+$11 _CONTRAST       Obtain and set contrast
+
+<D1.b:Contrast
+
+        0 to 15 Settings (Dark 0 to Light 15)
+        -1      Retrieval only
+        -2      Set system defaults
+
+>D0.l:Contrast before setting
+
+Gets or sets the contrast.
+
+Operate system register [$00E8E001].b.
+------------------------------------------------------------------
+$12 _HSVTORGB       Calculate RGB from HSV
+
+<D1.l:HSV
+
+        00000000_IIIFFFFF_000SSSSS_000VVVVV
+
+        bit 0-4     VVVVV   Black level (0=black)
+        bit 8-12    SSSSS   White level (0=white)
+        bit 16-20   FFFFF   Color
+        bit 21-23   III     Color
+                            0   Red to yellow
+                            1   Yellow to green
+                            2   Green to cyan
+                            3   Cyan to blue
+                            4   Blue to magenta
+                            5   Magenta to red
+
+>D0.l:RGB
+
+        00000000_00000000_GGGGGRRR_RRBBBBB0
+
+        bit 1-5     BBBBB   Blue component
+        bit 6-10    RRRRR   Red component
+        bit 11-15   GGGGG   Green component
+        -1  Error
+
+Convert HSV to RGB.
+------------------------------------------------------------------
+$13 _TPALET         Get or set the Text Palette
+
+<D1.b:Palette code (0 to 15, 4 to 7 and 8 to 15 are common)
+<D2.l:Color code
+
+        Color code (0 to 65535)
+
+            >D0.l:Operation result
+
+                0   Normal termination
+                -1  Error (Palette code is incorrect)
+
+        -1  Retrieval only
+
+            >D0.l:Current color code
+
+                -1  Error (Palette code is incorrect)
+
+        Other Color codes
+
+        -2  Set system defaults
+
+Gets or sets the text palette.
+
+Manipulates the text palette registers [$00E82200].w[16].
+
+By sharing palettes 4 to 7 and 8 to 15, we have created a pseudo priority of planes 0 and 1 < plane 2 < plane 3.
+------------------------------------------------------------------
+$14 _TPALET2        Get or set the text palette (all colors independently)
+
+<D1.b:Palette code (0 to 15)
+<D2.l:Color code
+
+        Color code (0 to 65535)
+
+            >D0.l:
+
+                0   Normal termination
+                -1  Error (Palette code is incorrect)
+
+        -1  Retrieval only
+
+            >D0.l:Current color code
+
+                -1  Error (Palette code is incorrect)
+
+        Other Color codes
+
+        -2  Set system default
+
+Gets or sets the text palette.
+
+Manipulates the text palette registers [$00E82200].w[16].
+------------------------------------------------------------------
+$15 _TCOLOR         Set the text display plane
+
+<D1.b:Text display plane (0=hidden, 1=displayed)
+
+        bit 0   Plane 0
+        bit 1   Plane 1
+        bit 2   Plane 2
+        bit 3   Plane 3
+
+Sets the text display plane.
+
+This affects _TEXTGET, _TEXTPUT, _CLIPPUT and text display related IOCS calls ($20 to $2D).
+
+You must always set it back to 0 when you are done.
+------------------------------------------------------------------
+$16 _FNTADR         Get the font address
+
+<D1.w:Character code (JIS code accepted)
+<D2.b:Font size
+
+             6   6~12
+         0,  8   8~16, 16~16
+        12, 24  12~24, 24~24
+
+>D0.l:Font Address
+>D1.w:Number of horizontal dots * $00010000 + (number of horizontal bytes - 1)
+>D2.w:Number of vertical dots - 1
+
+Gets the address of the font.
+
+Used by IOCS calls related to character display.
+
+The selection of font patterns for '\', '~', and '|' follows the character conversion flag ($00ED0059) in SRAM.
+
+For quarter-width fonts, the font is generated in the font creation buffer ([$0C46.w].b[72])
+and its start address is returned. The font will be destroyed the next time _FNTADR is used
+(also used in IOCS calls for text display, etc.).
+------------------------------------------------------------------
+$17 _VRAMGET        Transfer bytes from VRAM to buffer
+
+<D1.w:Number of bytes in the X direction of the buffer - 1
+<D2.w:Number of dots in the Y direction of the buffer - 1
+<D3.w:VRAM bytes in the X direction - buffer bytes in the X direction
+<A1.l:The starting address of the buffer
+<A2.l:VRAM address
+
+Reads the contents of a rectangular area from VRAM.
+
+Used by _HENDSP and others.
+------------------------------------------------------------------
+$18 _VRAMPUT        Transfer bytes from the buffer to VRAM
+
+<D1.w:Number of bytes in the X direction of the buffer - 1
+<D2.w:Number of dots in the Y direction of the buffer - 1
+<D3.w:VRAM bytes in the X direction - buffer bytes in the X direction
+<A1.l:The starting address of the buffer
+<A2.l:VRAM address
+
+Writes the contents of a rectangular area to VRAM.
+
+Used by _HENDSP and others.
+------------------------------------------------------------------
+$19 _FNTGET         Get font pattern
+
+<D1.l:Font size * $00010000 + character code
+
+        Font size
+
+             6   6~12
+         0,  8   8~16, 16~16
+        12, 24  12~24, 24~24
+
+<A1.l:The starting address of the buffer
+
+>       0000    .w  Number of horizontal dots
+>       0002    .w  Vertical dot count
+>       0004        Pattern Buffer
+
+Gets the size and pattern of the specified font into the specified buffer.
+------------------------------------------------------------------
+$1A _TEXTGET        Transfer dot by dot from text VRAM to buffer
+
+<D1.w:X dot coordinate
+<D2.w:Y dot coordinate
+<A1.l:The starting address of the buffer
+<(A1).w:Number of dots in the X direction
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+
+>       0004        Pattern Buffer
+
+Reads the contents of a rectangular area from text VRAM.
+------------------------------------------------------------------
+$1B _TEXTPUT        Transfer dot by dot from buffer to text VRAM
+
+<D1.w:X dot coordinate
+<D2.w:Y dot coordinate
+<A1.l:The starting address of the buffer
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+
+>       0004        Pattern Buffer
+
+Writes the contents of a rectangular area to text VRAM.
+------------------------------------------------------------------
+$1C _CLIPPUT        Transfer dot by dot from buffer to text VRAM (with clipping)
+
+<D1.w:X dot coordinate
+<D2.w:Y dot coordinate
+<A1.l:The starting address of the buffer
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+
+>       0004        Pattern Buffer
+
+<A2.l:Clip Coordinate Buffer
+
+<       0000    .w  Starting point X coordinate
+<       0002    .w  Starting point Y coordinate
+<       0004    .w  End point X coordinate +1
+<       0006    .w  End point Y coordinate +1
+
+Writes the contents of a rectangular area to text VRAM.
+
+Perform clipping.
+------------------------------------------------------------------
+$1D _SCROLL         Get or set the scroll position of text/graphics
+
+<D1.w:Mode
+
+        0   Set the scroll position of graphic page 0
+        1   Set the scroll position of graphic page 1
+        2   Set the scroll position of graphic page 2
+        3   Set the scroll position of graphic page 3
+        4   Get the scroll position of graphic page 0
+        5   Get the scroll position of graphic page 1
+        6   Get the scroll position of graphic page 2
+        7   Get the scroll position of graphic page 3
+        8   Set the text scroll position
+        9   Get the scroll position of the text
+
+<D2.w:Scroll position in the X direction
+<D3.w:Scroll position in the Y direction
+
+>D0.l:Scroll position before setting (X direction * $00010000 + Y direction)
+
+Gets and sets the scroll position.
+
+No vertical sync check.
+------------------------------------------------------------------
+$1E _B_CURON        Text cursor ON
+
+No parameters
+
+Displays the text cursor.
+
+It is not displayed when _OS_CUROF is set.
+------------------------------------------------------------------
+$1F _B_CUROFF       Text cursor OFF
+
+No parameters
+
+Do not display the text cursor.
+
+The text cursor will be displayed if you use _CRTMOD or text display related IOCS calls.
+------------------------------------------------------------------
+$20 _B_PUTC         Display one character of text
+
+<D1.w:Character code (JIS code accepted)
+
+        When $01xx is specified, the control code is ignored and displayed for the lower byte.
+
+>D0.l:X and Y coordinates of the text cursor after display
+
+        Lo word: Y coordinate
+        Hi word: X coordinate
+
+Displays one character on the text screen.
+------------------------------------------------------------------
+$21 _B_PRINT        Text String Display
+
+<A1.l:String address
+
+>D0.l:X and Y coordinates of the text cursor after display
+
+        Lo word: Y coordinate
+        Hi word: X coordinate
+
+Displays a string on the text screen.
+------------------------------------------------------------------
+$22 _B_COLOR        Set text color code
+
+<D1.b:Text color code (0 to 15)
+
+        -1  Retrieval only
+        0   Black
+        1   Blue
+        2   Yellow
+        3   White
+        4   Black
+        5   Blue, Bold
+        6   Yellow, Bold
+        7   White,Bold
+        8   Black
+        9   Blue, Reverse
+        10  Yellow, Reverse
+        11  White, Reverse
+        12  Black
+        13  Blue, Bold, Reverse
+        14  Yellow, Bold, Reverse
+        15  White, Bold, Reverse
+
+>D0.l:Text color code before change
+
+        -1      Error (Text color code is incorrect)
+        Other   Text color code before change (0 to 15)
+
+Specifies the color of the next character to be displayed on the text screen.
+
+The text color is affected by _TPALET and _TCOLOR.
+------------------------------------------------------------------
+$23 _B_LOCATE       Set text cursor position
+
+<D1.w:Text cursor X coordinate
+
+        -1  Retrieval only
+
+<D2.w:Text cursor Y coordinate
+
+>D0.l:Text cursor X and Y coordinates before change
+
+        -1  Error (Text cursor X or Y coordinate is outside the text range)
+        Lo word: Y coordinate
+        Hi word: X coordinate
+
+Gets or sets the coordinates of the text cursor.
+------------------------------------------------------------------
+$24 _B_DOWN_S       Move the text cursor down one line (scroll if unable to move)
+
+No parameters
+
+Moves the text cursor down one line.
+
+When the cursor is at the bottom of the text display range, 
+the text screen scrolls up one line without moving the cursor, 
+and the bottom line is filled with the text background color.
+------------------------------------------------------------------
+$25 _B_UP_S         Move the text cursor up one line (scroll if unable to move)
+
+No parameters
+
+Moves the text cursor up one line.
+
+When the cursor is at the top of the text display range, 
+the text screen scrolls down one line without moving the cursor, 
+and the top line is filled with the text background color.
+------------------------------------------------------------------
+$26 _B_UP           Move the text cursor up n lines (error if unable to move)
+
+<D1.w:Number of lines to move (1 line if 0)
+
+Moves the text cursor up the specified number of lines.
+
+If movement is not possible, an error occurs.
+------------------------------------------------------------------
+$27 _B_DOWN         Move the text cursor down n lines (if unable to move, stops at the bottom line)
+
+<D1.w:Number of lines to move (1 line if 0)
+
+Moves the text cursor down the specified number of lines.
+
+If it cannot be moved, an error occurs.
+------------------------------------------------------------------
+$28 _B_RIGHT        Move the text cursor n columns to the right (if it cannot be moved, it will stop at the right edge)
+
+<D1.w:Number of digits to move (1 digit if 0)
+
+Moves the text cursor the specified number of lines to the right.
+
+If you cannot move, it will stop at the right edge.
+------------------------------------------------------------------
+$29 _B_LEFT         Move the text cursor n columns to the left (if it cannot be moved, it will stop at the left edge)
+
+<D1.w:Number of digits to move (1 digit if 0)
+
+Moves the text cursor the specified number of lines to the left.
+
+If it cannot move, it will stop at the left edge.
+------------------------------------------------------------------
+$2A _B_CLR_ST       Clear text screen (select range to clear)
+
+<D1.b:Clear range
+
+        0   From the cursor position to the bottom right edge
+        1   From the left end of the top line to the cursor position
+        2   From the left end of the top row to the right end of the bottom row
+
+>D0.l:Error code
+
+        0   Success
+        -1  The parameters are incorrect
+
+Fills the specified area of the text screen with the text background color.
+------------------------------------------------------------------
+$2B _B_ERA_ST       Clear text line (select range to clear)
+
+<D1.b:Clear range
+
+        0   From the cursor position to the right edge
+        1   From the left edge to the cursor position
+        2   From left to right
+
+>D0.l:Error Code
+
+        0   Success
+        -1  The parameters are incorrect
+
+Fills the specified range of the cursor line on the text screen with the text background color.
+------------------------------------------------------------------
+$2C _B_INS          Insert n blank lines below the text cursor line
+
+<D1.w:Number of rows to insert (1 row if 0)
+
+Inserts the specified number of blank lines below the cursor line in the text screen.
+
+The inserted blank line will be filled with the text background color.
+
+The lines originally below the cursor line will be moved down the specified number of lines.
+------------------------------------------------------------------
+$2D _B_DEL          Delete n lines from the text cursor line
+
+<D1.w:Number of lines to delete (1 line if 0)
+
+Deletes the specified number of lines below the cursor line on the text screen.
+
+Any lines below the deleted range will be moved up the specified number of lines.
+
+The specified number of blank lines will be created at the bottom of the text display area.
+
+Empty lines are filled with the text background color.
+------------------------------------------------------------------
+$2E _B_CONSOL       Set the text display range
+
+<D1.l:Text display start X dot coordinate, Y dot coordinate
+
+        -1  Retrieval only
+        Lo word: Y dot coordinate (0 to 1004)
+        Hi word: X dot coordinate (0 to 1008)
+
+<D2.l:Number of columns of text - 1, number of lines - 1
+
+        Lo word: Number of rows - 1 (0 to 63)
+        Hi word: Number of digits - 1 (0 to 127)
+
+>D0.l:0
+>D1.l:The actual text display start X and Y coordinates
+>D2.l:The number of columns of the actual text set is -1, the number of lines is -1
+
+Sets the text display range (scroll range).
+------------------------------------------------------------------
+$2F _B_PUTMES       Display a string at a specified position on the text screen
+
+<D1.b:Color code
+
+        0   Black
+        1   Blue
+        2   Yellow
+        3   Xhite
+        4   Black
+        5   Blue, Bold
+        6   Yellow, Bold
+        7   White,Bold
+        8   Black
+        9   Blue, reverse
+        10  Yellow, reverse
+        11  White, reverse
+        12  Black
+        13  Blue, Bold, Reverse
+        14  Yellow, Bold, Reverse
+        15  White, Bold, Reverse
+
+<D2.w:X coordinate
+<D3.w:Y coordinate
+<D4.w:Number of digits displayed - 1
+<A1.l:String address
+
+Ignores the text display range and displays the string at the specified coordinates on the text screen.
+
+If the string begins with $FE, it is converted to $20.
+
+Used to display function keys.
+
+Not affected by text display range, text color code, or text cursor
+------------------------------------------------------------------
+$30 _SET232C        Get or set RS-232C communication mode and communication speed
+
+<D1.w:RS-232C communication mode and communication speed
+
+        Lo byte:    Communication speed
+
+        bit 0-2     Baud rate
+
+                    0   75bps
+                    1   150bps
+                    2   300bps
+                    3   600bps
+                    4   1200bps
+                    5   2400bps
+                    6   4800bps
+                    7   9600bps
+
+        Hi byte     Communication mode
+
+        bit 8       SISO
+
+                    0   Do not process
+                    1   Process
+
+        bit 9       XON
+
+                    0   Do not process
+                    1   Process
+
+        bit 10-11   Bit Length
+
+                    0   5
+                    1   6
+                    2   7
+                    3   8
+
+        bit 12-13   Parity
+
+                    0   None
+                    1   Odd number
+                    2   None
+                    3   Even number
+
+        bit 14-15   Stop bits
+
+                    0   2
+                    1   1
+                    2   1.5
+                    3   2
+
+        -1          Retrieval only
+
+Gets or sets the RS-232C communication mode and communication speed.
+------------------------------------------------------------------
+$31 _LOF232C        Get the number of data items in the RS-232C receive buffer
+
+>D0.w:Number of data in the RS-232C receive buffer
+
+Checks the amount of data in the RS-232C receive buffer.
+------------------------------------------------------------------
+$32 _INP232C        RS-232C reception (wait until reception, remove from reception buffer)
+
+>D0.l:Received data
+
+Receives one byte via RS-232C.
+
+Waits until data is received and removes it from the receive buffer.
+------------------------------------------------------------------
+$33 _ISNS232C       RS-232C reception sense (does not wait even if no reception is made, does not remove from reception buffer)
+
+>D0.l:$00010000 + received data (0 = no received data)
+
+Receives one byte via RS-232C.
+
+It does not wait if no data is received, and does not remove received data from the receive buffer.
+------------------------------------------------------------------
+$34 _OSNS232C       RS-232C transmission status check
+
+>D0.l:Sending status (0 = unable to send, others = able to send)
+
+Check whether transmission via RS-232C is possible.
+------------------------------------------------------------------
+$35 _OUT232C        RS-232C transmission (wait until transmission is possible)
+
+<D1.b:Transmission data
+
+Sends one byte to RS-232C.
+
+If you are unable to send, wait until you are able to send.
+------------------------------------------------------------------
+$36 _MS_VCS         Set up mouse reception data processing
+
+<D1.l:Mouse receive data processing address (mouse cursor)
+
+        0   Returning to the system default processing routine
+
+<D2.w:Mouse data reception timer initial value Invalid when using system-defined processing routine
+
+Specifies the address of the routine for processing received mouse data.
+
+The system-defined routine for processing received mouse data is set by _MS_INIT, 
+but this is used if you want to change the routine later.
+
+The start address of the mouse receive data buffer ([$0CB1.w].b[3]) 
+is passed to the receive data processing routine in A1.l.
+
+Used by the SX-Window mouse manager.
+------------------------------------------------------------------
+$37 _EXESC          Extended ESC sequence processing routine settings
+
+<D1.l:Address of extended ESC sequence processing routine (0 = Cancel)
+
+Used to add an ESC sequence.
+
+The extended ESC sequence processing routine is passed the starting address (position of '[') 
+of the ESC sequence buffer ([$0986.w].b[10]) in a0.l.
+
+Human68k uses this to add cursor position notification (ESC'[6n'), 
+function key display OFF (ESC'[>1h'), and function key display ON (ESC'[>1l').
+------------------------------------------------------------------
+$38 _CHR_ADR        Set external character font address
+
+<D1.l:External character font address
+<D2.l:External character group
+
+        0   16~16  $2C21-$2D7E
+        1   16~16  $7621-$777E
+        2    8~16  $F400-$F5FF
+        3   24~24  $2C21-$2D7E
+        4   24~24  $7621-$777E
+        5   12~24  $F400-$F5FF
+
+>D0.l:External character font address before setting
+
+        -1  Error
+
+Set the start address of the external character font area.
+
+The address is set in the external character font address table ([$099A.w].l[6]).
+
+Human68k uses this to set external character addresses according to the USKCG= setting in CONFIG.SYS.
+
+By incorporating IOCS.X, you will be able to change the starting address 
+of not only external characters but also standard fonts.
+
+This is not present in HIOCS.X.
+------------------------------------------------------------------
+$39 _SETBEEP        Set BEEP processing
+
+<D1.l:Address of ADPCM data for BEEP sound (-1 = call replacement routine [$0D12.w].l)
+<D2.w:Number of bytes of ADPCM data for the BEEP sound (0 = no sound)
+
+>D0.l:0
+
+Sets the BEEP process.
+
+The address is set to [$0978.w].l and the number of bytes is set to [$097C.w].w.
+
+On the X68030, if you specify -1 as the address, the address specified in [$0D12.w].l will be called when processing BEEP,
+making it possible to incorporate things like visual bells.
+
+Human68k uses this to set the address and number of bytes of the BEEP sound according to the BELL= setting in CONFIG.SYS.
+------------------------------------------------------------------
+$3A _SETPRN         Set up the printer environment
+
+<A1.l:Environment address (0 = set standard environment)
+
+                        Standard values
+
+        0000    .l      $00E00000       First address of hard copy
+        0004    .w      $0029           (Y-direction dot count for hard copy range of SHIFT+COPY/24)-1
+        0006    .l      $00FFFF00
+        000A    .w      $0014           (Number of dots in the Y direction of the hard copy range of COPY/24)-1
+        000C    .l      $00FF0000
+        0010    .w      $005F           Number of dots in the X direction of the hard copy range - 1
+        0012    .b[8]   $06,$1B,'K',$1C,'S',$06,$06,$00
+                        Switch to kanji mode and set the spaces to 6 on the left and right of the kanji.
+        001A    .b[4]   $02,$1B,'H',$00 Turn off Kanji mode
+        001E    .b[4]   $00,$00,$00,$00
+        0022    .b[4]   $02,$0D,$0A,$00
+                        Line breaks
+        0026    .b[6]   $04,$1B,'%','9',$0F,$00
+                        Set line break width to 1/8 inch
+        002C    .b[6]   $04,$1B,'%','9',$00,$00
+                        Restore line width
+        0032    .b[6]   $04,$1B,'%','9',$0A,$00
+                        Set line width to 1/12 inch
+        0038    .b[6]   $04,$1B,'%','9',$05,$00
+                        Set line break width to 1/24 inch
+        003E    .b[8]   $04,$1B,'J',$06,$00,$00,$00,$00
+                        24-dot bit image 1536*3 data
+        0046    .b[8]   $04,$1B,'J',$03,$00,$00,$00,$00
+                        24-dot bit image 768*3 data
+        004E    .b[8]   $04,$1B,'J',$00,$12,$00,$00,$00
+                        24-dot bit image 18*3 data
+        0056    .b[8]   $04,$1B,$4A,$00,$24,$00,$00,$00
+                        24-dot bit image 36*3 data
+        005E    .b      $00             Bit image output direction ($00=normal, $FF=reverse)
+        005F    .b      $03
+        0060    .b      $06
+        0061    .b      $01             Character code/bit image output flag
+                        bit 0           $7600-(External characters)
+                        bit 1           $2C00-$2DFF(External characters)
+                        bit 2           $5000-$75FF(2nd level)
+                        bit 3           $2E00-$4FFF(1st level)
+                        bit 4           $20-$7F,$A0-$DF(Half-width)
+                            0           Code Output
+                            1           Bit Image Output
+        (98 bytes)
+
+Set the printer environment for _PRNOUT.
+------------------------------------------------------------------
+$3B _JOYGET         Get the joystick state
+
+<D1.w:Joystick number (0 to 1)
+
+>D0.l:Joystick status (each bit 0 = ON, 1 = OFF)
+
+        bit 0   Up
+        bit 1   Down
+        bit 2   Left
+        bit 3   Right
+        bit 4   1
+        bit 5   Button A (Trigger 2)
+        bit 6   Button B (Trigger 1)
+        bit 7   1
+
+        If the joystick number is set to 2 or higher, it returns 0.
+
+Get the joystick state.
+
+Simply read one byte from [$00E9A001].b for joystick 0 and [$00E9A003].b for joystick 1.
+------------------------------------------------------------------
+$3C _INIT_PRN       Printer Initialization
+
+<D1.w:(Number of lines per page - 1) * $0100 + (Number of columns per line - 1)
+
+>D0.l:$00000000=Output not possible, $00000020=Output possible
+
+Initialize the printer interface.
+------------------------------------------------------------------
+$3D _SNSPRN         Printer Output Sense
+
+>D0.l:$00000000=Output not possible, $00000020=Output possible
+
+Check whether the printer is available for printing.
+------------------------------------------------------------------
+$3E _OUTLPT         Printer output (LPT)
+
+<D1.b:Output Data
+
+Outputs one byte to the printer.
+
+The specified data is output as is.
+------------------------------------------------------------------
+$3F _OUTPRN         Printer output (PRN)
+
+<D1.b:Output Data
+
+Outputs one byte to the printer.
+
+Control codes and kanji codes are converted to match the _SETPRN settings before output.
+------------------------------------------------------------------
+$40 _B_SEEK         Seek
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D2.l:Record number
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0 = FM,1 = MFM)
+
+<D2.l:Sector length, track, side, sector
+
+            bit 0-7     Sector
+            bit 8-15    Side
+            bit 16-23   Track
+            bit 24-31   Sector Length
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 16-23   PCN
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$41 _B_VERIFY       Verify
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D2.l:Record number
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+            bit 0-7     Sector
+            bit 8-15    Side
+            bit 16-23   Track
+            bit 24-31   Sector Length
+
+<D3.l:Number of bytes
+<A1.l:Start address of the data to be compared
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$42 _B_READDI       Diagnostic Readout
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D2.l:Record number
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+            bit 0-7     Sector
+            bit 8-15    Side
+            bit 16-23   Track
+            bit 24-31   Sector Length
+
+<D3.l:Number of bytes
+<A1.l:The starting address of the buffer
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$43 _B_DSKINI       Initializing the FD interface
+
+<D1.w:Drive
+
+        $80xx-$8Fxx SASI or SCSI drives
+        $90xx-$93xx FDD0-FDD3
+
+<D2.w:FD motor stop time (0 = set the standard value)
+<A1.l:Address of initialization parameters (0 = set standard parameters)
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 24-31   Result Status 3
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$44 _B_DRVSNS       Get the status of the disk
+
+<D1.w:Drive
+
+        $80xx-$8Fxx SASI or SCSI drives
+        $90xx-$93xx FDD0-FDD3
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 24-31   Result Status 3
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$45 _B_WRITE        Write to Disk
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D1.l:Record number
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+            bit 0-7     Sector
+            bit 8-15    Side
+            bit 16-23   Track
+            bit 24-31   Sector Length
+
+<D3.l:Number of bytes
+<A1.l:Data start address
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$46 _B_READ         Read from disk
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D1.l:Record number
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+            bit 0-7     Sector
+            bit 8-15    Side
+            bit 16-23   Track
+            bit 24-31   Sector Length
+
+<D3.l:Number of bytes
+<A1.l:The starting address of the buffer
+
+>D0.l:Exit Code
+
+        When using FDD
+
+            bit 0-7     Cylinder Number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$47 _B_RECALI       Seek to track 0
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+        $90xx-$93xx FDD0-FDD3
+
+            Lo byte
+
+                $00 Normal
+                $FF Investigation in Forced Ready State
+
+>D0.l:Exit Code
+
+        When using FDD
+
+            bit 16-23   PCN
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$48 _B_ASSIGN       Set track alternative
+
+<D1.w:Drive
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D2.l:Record number
+<D3.l:Interleaved Code
+<A1.l:Starting address of data for alternative tracks
+
+>D0.l:Exit code
+------------------------------------------------------------------
+$49 _B_WRITED       Write corrupted data
+
+<D1.w:Drives and Modes
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+        bit 0-7     Sector
+        bit 8-15    Side
+        bit 16-23   Track
+        bit 24-31   Sector Length
+
+<D3.l:Number of bytes
+<A1.l:Data start address
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$4A _B_READID       Read ID information
+
+<D1.w:Drives and Modes
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Track, Side
+
+        bit 0-7     0
+        bit 8-15    Side
+        bit 16-23   Track
+        bit 24-31   0
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+
+>D2.l:Sector length, track, side, sector
+
+        bit 0-7     Sector
+        bit 8-15    Side
+        bit 16-23   Track
+        bit 24-31   Sector Length
+------------------------------------------------------------------
+$4B _B_BADFMT       Disable Bad Tracks
+
+<D1.w:Drive
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+<D2.l:Record number
+<D3.l:Interleaved Code
+
+>D0.l:Exit code
+------------------------------------------------------------------
+$4C _B_READDL       Loading corrupted data
+
+<D1.w:Drives and Modes
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+        bit 0-7     Sector
+        bit 8-15    Side
+        bit 16-23   Track
+        bit 24-31   Sector Length
+
+<D3.l:Number of bytes
+<A1.l:The starting address of the buffer
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$4D _B_FORMAT       Physical Format
+
+<D1.w:Drives and Modes
+
+        $80xx-$8Fxx SASI or SCSI drives
+
+            <D2.l:Record number
+
+        $90xx-$93xx FDD0-FDD3
+
+            bit 4   Seek (0=NO, 1=YES)
+            bit 5   Retry (0=NO, 1=YES)
+            bit 6   FM/MFM (0=FM, 1=MFM)
+
+<D2.l:Sector length, track, side, sector
+
+            bit 0-7     Sector
+            bit 8-15    Side
+            bit 16-23   Track
+            bit 24-31   Sector Length
+
+<D3.l:Number of bytes or interleaving code
+<A1.l:ID data start address (FDD only)
+
+>D0.l:Exit code
+
+        When using FDD
+
+            bit 0-7     Cylinder number
+            bit 8-15    Result Status 2
+            bit 16-23   Result Status 1
+            bit 24-31   Result status 0
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$4E _B_DRVCHK       Get or set drive status
+
+<D1.w:Drive
+
+        $90xx-$93xx FDD0-FDD3
+
+<D2.w:Mode
+
+        0   Status check
+        1   Eject (not possible when eject is prohibited)
+        2   Eject Prohibited 1
+        3   Eject Permission 1
+        4   LED flashes when no disc is inserted
+        5   The LED turns off when no disc is inserted.
+        6   Eject Prohibited 2
+        7   Eject Permission 2
+        8   Whether it was ejected since the last check
+
+>D0.b:Result
+
+        1   Not ejecting
+        -1  Ejecting
+
+>D0.b:Drive Status (Mode 0)
+
+        bit 0   Incorrect insertion
+        bit 1   Media inserted
+        bit 2   Ready
+        bit 3   Protect
+        bit 4   User ban
+        bit 5   With buffer
+        bit 6   Eject prohibition
+        bit 7   LED flashing
+------------------------------------------------------------------
+$4F _B_EJECT        Eject (seek to an unused cylinder)
+
+<D1.w:Drive
+
+        $80xx-$8Fxx SASI or SCSI drives
+        $90xx-$93xx FDD0-FDD3
+
+>D0.l:Exit code
+
+        When using FDD
+
+            $FFFFFFxx   Error
+------------------------------------------------------------------
+$50 _DATEBCD        Convert the date into a format that can be set on a clock
+
+<D1.l:Date
+
+        0000yyyy_yyyyyyyy_mmmmmmmm_dddddddd
+
+            y   Year (1980-2079)
+            m   Month (1-12)
+            d   Day (1-31)
+
+>D0.l:Date
+
+        WWWWwwww_YYYYYYYY_MMMMMMMM_DDDDDDDD
+
+            W   Leap year counter (0-3)
+            w   Day of the week (0-6)
+            Y   Year (BCD, 00-99)
+            M   Month (BCD, 01-12)
+            D   Day (BCD, 01-31)
+
+        -1  Error
+------------------------------------------------------------------
+$51 _DATESET        Set the date on the clock
+
+<D1.l:Date
+
+        WWWWwwww_YYYYYYYY_MMMMMMMM_DDDDDDDD
+
+            W   Leap year counter (0-3)
+            w   Day of the week (0-6)
+            Y   Year (BCD, 00-99)
+            M   Month (BCD, 01-12)
+            D   Day (BCD, 01-31)
+------------------------------------------------------------------
+$52 _TIMEBCD        Convert the time into a format that can be set on a clock
+
+<D1.l:Time
+
+        00000000_hhhhhhhh_mmmmmmmm_ssssssss
+
+            h   Hour (0-23)
+            m   Minutes (0-59)
+            s   Seconds (0-59)
+
+>D0.l:Time
+
+        00000001_HHHHHHHH_MMMMMMMM_SSSSSSSS
+
+            1   Means 24-hour clock
+            H   Hour (BCD, 00-23)
+            M   Minutes (BCD, 00-59)
+            S   Seconds (BCD, 00-59)
+------------------------------------------------------------------
+$53 _TIMESET        Set the time on the clock
+
+<D1.l:Time
+
+        0000000T_HHHHHHHH_MMMMMMMM_SSSSSSSS
+
+            T   0 = 12-hour clock, 1 = 24-hour clock
+            H   Hour (BCD, 00-23)
+            M   Minutes (BCD, 00-59)
+            S   Seconds (BCD, 00-59)
+------------------------------------------------------------------
+$54 _DATEGET        Read the date from the clock
+
+>D0.l:Date
+
+        0000wwww_YYYYYYYY_MMMMMMMM_DDDDDDDD
+
+            w   Day of the week (0-6)
+            Y   Year (BCD, 00-99)
+            M   Month (BCD, 01-12)
+            D   Day (BCD, 01-31)
+------------------------------------------------------------------
+$55 _DATEBIN        Converting dates from BCD to binary
+
+<D1.l:Date
+
+        0000wwww_YYYYYYYY_MMMMMMMM_DDDDDDDD
+
+            w   Day of the week (0-6)
+            Y   Year (BCD, 00-99)
+            M   Month (BCD, 01-12)
+            D   Day (BCD, 01-31)
+
+>D0.l:Date
+
+        wwwwyyyy_yyyyyyyy_mmmmmmmm_dddddddd
+
+            w   Day of the week (0-6)
+            y   Year (1980-2079)
+            m   Month (1-12)
+            d   Day (1-31)
+------------------------------------------------------------------
+$56 _TIMEGET        Read the time from the clock
+
+>D0.l:Time
+
+        0000000T_HHHHHHHH_MMMMMMMM_SSSSSSSS
+
+            T   0 = 12-hour clock, 1 = 24-hour clock
+            H   Hour (BCD, 00-23)
+            M   Minutes (BCD, 00-59)
+            S   Seconds (BCD, 00-59)
+------------------------------------------------------------------
+$57 _TIMEBIN        Convert time from BCD to binary
+
+<D1.l:Time
+
+        0000000T_HHHHHHHH_MMMMMMMM_SSSSSSSS
+
+            T   0 = 12-hour clock, 1 = 24-hour clock
+            H   Hour (BCD, 00-23)
+            M   Minutes (BCD, 00-59)
+            S   Seconds (BCD, 00-59)
+
+>D0.l:Time
+
+        00000000_hhhhhhhh_mmmmmmmm_ssssssss
+
+            h   Hour (0-23)
+            m   Minutes (0-59)
+            s   Seconds (0-59)
+------------------------------------------------------------------
+$58 _DATECNV        Convert a string representing a date to binary
+
+<A1.l:The start address of the string representing the date
+
+>D0.l:Date
+
+        0000yyyy_yyyyyyyy_mmmmmmmm_dddddddd
+
+            y   Year (1980-2079)
+            m   Month (1-12)
+            d   Day (1-31)
+
+        -1  Error
+------------------------------------------------------------------
+$59 _TIMECNV        Convert a string representing a time to a binary
+
+<A1.l:The start address of the string representing the time
+
+>D0.l:Time
+
+        00000000_hhhhhhhh_mmmmmmmm_ssssssss
+
+            h   Hour (0-23)
+            m   Minutes (0-59)
+            s   Seconds (0-59)
+------------------------------------------------------------------
+$5A _DATEASC        Convert a date from binary to string
+
+<D1.l:Date
+
+        0000yyyy_yyyyyyyy_mmmmmmmm_dddddddd
+
+            y   Year (1980-2079)
+            m   Month (1-12)
+            d   Day (1-31)
+
+<A1.l:The starting address of the buffer
+------------------------------------------------------------------
+$5B _TIMEASC        Convert a time from binary to string
+
+<D1.l:Time
+
+        00000000_hhhhhhhh_mmmmmmmm_ssssssss
+
+            h   Hour (0-23)
+            m   Minutes (0-59)
+            s   Seconds (0-59)
+
+<A1.l:The starting address of the buffer
+------------------------------------------------------------------
+$5C _DAYASC         Convert days of the week from binary to string
+
+<D1.b:Day of the week (0-6)
+
+        0   'sunday',$00
+        1   'monday',$00
+        2   'tuesday',$00
+        3   'wednesday',$00
+        4   'thursday',$00
+        5   'friday',$00
+        6   'saturday',$00
+        7   'H',$00
+
+<A1.l:The starting address of the buffer
+
+>D0.l:0
+------------------------------------------------------------------
+$5D _ALARMMOD       Disable/enable alarm
+
+<D1.b:Prohibited/Allowed
+
+        0       Prohibited
+        1       Permitted
+        Other   Retrieval only
+
+>D0.l:Prohibited/Allowed
+
+        0       Prohibited
+        1       Permitted
+------------------------------------------------------------------
+$5E _ALARMSET       Set the alarm start time and processing content
+
+<D1.l:Alarm start time
+
+        0000WWWW_DDDDDDDD_HHHHHHHH_MMMMMMMM
+
+            W   Day of the week (0-6)
+            D   Day (BCD, 01-31)
+            H   Hour (BCD, 00-23)
+            M   Minutes (BCD, 00-59)
+
+<D2.l:Time (minutes) until the alarm turns off after activation
+
+        0   Do not turn off
+
+<A1.l:What to do when triggered by an alarm
+
+        0       Power ON, TV ON + Computer mode
+        -1      Power ON only
+        $01-$3F TV Control
+        Other   Processing address (starts with $60)
+------------------------------------------------------------------
+$5F _ALARMGET       Get alarm activation time and processing details
+
+No parameters
+
+>D0.l:What to do when triggered by an alarm
+>D1.l:Alarm start time
+>D2.l:Time (minutes) until the alarm turns off after activation
+------------------------------------------------------------------
+$60 _ADPCMOUT       ADPCM playback
+
+<D1.w:Sampling frequency and output mode
+
+        bit 0-1     Output mode
+
+                    0   Cut
+                    1   Left
+                    2   Right
+                    3   Left and right
+
+        bit 8-14    Sampling frequency
+
+                    0   3.9KHz
+                    1   5.2KHz
+                    2   7.8KHz
+                    3   10.4KHz
+                    4   15.6KHz
+
+        bit 15      Wait flags
+
+                    0   Add wait according to sampling frequency
+                    1   No waits added
+
+<D2.l:Number of bytes of data to play
+<A1.l:Buffer address
+------------------------------------------------------------------
+$61 _ADPCMINP       ADPCM recording
+
+<D1.w:Sampling frequency
+
+        bit 8-14    Sampling frequency
+
+                    0   3.9KHz
+                    1   5.2KHz
+                    2   7.8KHz
+                    3   10.4KHz
+                    4   15.6KHz
+
+        bit 15      Wait flags
+
+                    0   Add wait according to sampling frequency
+                    1   No waits added
+
+<D2.l:Number of bytes of data to be recorded
+<A1.l:Buffer address
+------------------------------------------------------------------
+$62 _ADPCMAOT       ADPCM playback using an array chain
+
+<D1.w:Sampling frequency and output mode
+
+        bit 0-1     Output mode
+
+                    0   Cut
+                    1   Left
+                    2   Right
+                    3   Left and right
+
+        bit 8-14    Sampling frequency
+
+                    0   3.9KHz
+                    1   5.2KHz
+                    2   7.8KHz
+                    3   10.4KHz
+                    4   15.6KHz
+
+        bit 15      Wait flags
+
+                    0   Add wait according to sampling frequency
+                    1   No waits added
+
+<D2.l:Number of array chain tables
+<A1.l:First address of the array chain table
+
+        0000    .l  Starting address
+        0004    .w  Length
+        0006        Next table
+         :      :
+------------------------------------------------------------------
+$63 _ADPCMAIN       ADPCM recording with array chain
+
+<D1.w:Sampling frequency
+
+        bit 8-14    Sampling frequency
+
+                    0   3.9KHz
+                    1   5.2KHz
+                    2   7.8KHz
+                    3   10.4KHz
+                    4   15.6KHz
+
+        bit 15      Wait flags
+
+                    0   Add wait according to sampling frequency
+                    1   No waits added
+
+<D2.l:Number of array chain tables
+<A1.l:First address of the array chain table
+
+        0000    .l  Starting address
+        0004    .w  Length
+        0006        Next table
+         :      :
+------------------------------------------------------------------
+$64 _ADPCMLOT       ADPCM playback using a link array chain
+
+<D1.w:Sampling frequency and output mode
+
+        bit 0-1     Output mode
+
+                    0   Cut
+                    1   Left
+                    2   Right
+                    3   Left and right
+
+        bit 8-14    Sampling frequency
+
+                    0   3.9KHz
+                    1   5.2KHz
+                    2   7.8KHz
+                    3   10.4KHz
+                    4   15.6KHz
+
+        bit 15      Wait flags
+
+                    0   Add wait according to sampling frequency
+                    1   No waits added
+
+<A1.l:First address of the link array chain table
+
+        0000    .l  Starting address
+        0004    .w  Length
+        0006    .l  Next table address (0=end)
+------------------------------------------------------------------
+$65 _ADPCMLIN       ADPCM recording using a link array chain
+
+<D1.w:Sampling frequency
+
+        bit 8-14    Sampling frequency
+
+                    0   3.9KHz
+                    1   5.2KHz
+                    2   7.8KHz
+                    3   10.4KHz
+                    4   15.6KHz
+
+        bit 15      Wait flags
+
+                    0   Add wait according to sampling frequency
+                    1   No waits added
+
+<A1.l:First address of the link array chain table
+
+        0000    .l  Starting address
+        0004    .w  Length
+        0006    .l  Next table address (0=end)
+------------------------------------------------------------------
+$66 _ADPCMSNS       ADPCM execution mode sense
+
+>D0.l:ADPCM execution mode
+
+        $00 Nothing in progress
+        $02 Output in progress (_ADPCMOUT is running)
+        $04 Input in progress (_ADPCMINP is running)
+        $12 Outputting via array chain (_ADPCMAOT is running)
+        $14 Inputting data via array chain (_ADPCMAIN is running)
+        $22 Outputting via link array chain (_ADPCMLOT is running)
+        $24 Inputting via link array chain (_ADPCMLIN is running)
+------------------------------------------------------------------
+$67 _ADPCMMOD       ADPCM execution control
+
+<D1.b:Mode
+
+        0   End
+        1   Cancel
+        2   Resume
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  The parameters are incorrect
+------------------------------------------------------------------
+$68 _OPMSET         Set FM sound source registers
+
+<D1.b:Register Number
+<D2.b:Data
+------------------------------------------------------------------
+$69 _OPMSNS         Get FM sound source status
+
+>D0.l:FM sound source status
+
+        bit 0   Timer B overflow
+        bit 1   Timer A overflow
+        bit 7   Busy
+------------------------------------------------------------------
+$6A _OPMINTST       Set FM sound source interrupt processing routine
+
+<A1.l:FM sound source interrupt processing routine address (0 = Cancel)
+
+>D0.l:Result
+
+        0       Normal termination
+        Other   Cannot be set because it is in use (address of current processing routine)
+------------------------------------------------------------------
+$6B _TIMERDST       Set the timer-D interrupt processing routine
+
+<D1.w:Counter initial value and prescale
+
+        bit 0-7     Counter initial value
+        bit 8-10    Prescale
+
+                    0   No counting
+                    1   1us
+                    2   2.5us
+                    3   4us
+                    4   12.5us
+                    5   16us
+                    6   25us
+                    7   50us
+
+<A1.l:Timer-D interrupt processing routine address (0 = Cancel)
+
+>D0.l:Result
+
+        0       Normal termination
+        Other   Cannot be set because it is in use (address of current processing routine)
+------------------------------------------------------------------
+$6C _VDISPST        Set the timer-A (vertical sync count) interrupt processing routine
+
+<D1.w:Counter initial value and active edge
+
+        bit 0-7 Counter initial value
+        bit 8   Active edge
+
+            0   Vertical display RIGHT Count vertical blanking lines
+            1   Vertical blanking line RIGHT vertical display count
+
+<A1.l:Timer-A (vertical sync count) interrupt processing routine address (0 = Cancel)
+
+>D0.l:Result
+
+        0       Normal termination
+        Other   Cannot be set because it is in use (address of current processing routine)
+------------------------------------------------------------------
+$6D _CRTCRAS        Set the CRTC raster interrupt processing routine
+
+<D1.w:Raster Interrupt Position
+<A1.l:Address of CRTC raster interrupt processing routine (0 = Cancel)
+
+>D0.l:Result
+
+        0       Normal termination
+        Other   Cannot be set because it is in use (address of current processing routine)
+------------------------------------------------------------------
+$6E _HSYNCST        Set the horizontal sync interrupt processing routine
+
+<A1.l:Address of horizontal sync interrupt processing routine (0 = Cancel)
+
+>D0.l:Result
+
+        0       Normal termination
+        Other   Cannot be set because it is in use (address of current processing routine)
+------------------------------------------------------------------
+$6F _PRNINTST       Set the printer ready interrupt processing routine
+
+<A1.l:Address of the printer ready interrupt processing routine (0 = Cancel)
+
+>D0.l:Result
+
+        0       Normal termination
+        Other   Cannot be set because it is in use (address of current processing routine)
+------------------------------------------------------------------
+$70 _MS_INIT        Initialize mouse handling
+
+No parameters
+------------------------------------------------------------------
+$71 _MS_CURON       Show the mouse cursor
+
+No parameters
+------------------------------------------------------------------
+$72 _MS_CUROF       Hide the mouse cursor
+
+No parameters
+------------------------------------------------------------------
+$73 _MS_STAT        Get the mouse cursor display state
+
+>D0.w:Mouse cursor display state
+
+        0   Hidden
+        -1  Displayed
+------------------------------------------------------------------
+$74 _MS_GETDT       Get the mouse state
+
+>D0.l:Mouse Status
+
+        bit 0-7     Right mouse button status (0=OFF, -1=ON)
+        bit 8-15    Left mouse button status (0=OFF, -1=ON)
+        bit 16-23   Mouse Y-direction movement amount
+        bit 24-31   Mouse X-direction movement amount
+------------------------------------------------------------------
+$75 _MS_CURGT       Get the coordinates of the mouse cursor
+
+>D0.l:Mouse cursor coordinates
+
+        Lo word: Y coordinate
+        Hi word: X coordinate
+------------------------------------------------------------------
+$76 _MS_CURST       Set the mouse cursor coordinates
+
+<D1.l:Mouse cursor coordinates
+
+        Lo word: Y coordinate
+        Hi word: X coordinate
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  The parameters are incorrect
+------------------------------------------------------------------
+$77 _MS_LIMIT       Set the mouse cursor movement range
+
+<D1.l:Mouse cursor movement range (minimum value)
+
+        Lo word: Mouse cursor movement range (Y-direction minimum value, 0-1007)
+        Hi word: Mouse cursor movement range (X-direction minimum value, 0-1023)
+
+<D2.l:Mouse cursor movement range (maximum value)
+
+        Lo word: Mouse cursor movement range (Y-direction maximum value, 0-1007)
+        Hi word: Mouse cursor movement range (X-direction maximum value, 0-1023)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  The parameters are incorrect
+------------------------------------------------------------------
+$78 _MS_OFFTM       Time the mouse button release
+
+<D1.w:Specifying the button
+
+        0   Left
+        1   Right
+
+<D2.w:Waiting time
+
+>D0.w:Time (0 = drag, -1 = wait time passed)
+------------------------------------------------------------------
+$79 _MS_ONTM        Time the mouse button down
+
+<D1.w:Specifying the button
+
+        0   Left
+        1   Right
+
+<D2.w:Waiting time
+
+>D0.w:Time (0 = drag, -1 = wait time passed)
+------------------------------------------------------------------
+$7A _MS_PATST       Define the mouse cursor pattern
+
+<D1.w:Mouse cursor number (0-15)
+<A1.l:Pattern data address
+
+        0000    .w      Hotspot X coordinate
+        0002    .w      Hotspot Y coordinate
+        0004    .w[16]  Pattern
+------------------------------------------------------------------
+$7B _MS_SEL         Select the mouse cursor
+
+<D1.w:Mouse cursor number (0-15)
+------------------------------------------------------------------
+$7C _MS_SEL2        Set the Mouse cursor animation
+
+<A1.l:Address of the mouse cursor number table
+
+        Number 1.w,...,Number n.w,-1.w
+
+Up to 6 animation patterns.
+------------------------------------------------------------------
+$7D _SKEY_MOD       Get or set the soft keyboard display mode
+
+<D1.b:Soft keyboard display mode
+
+        0   Hide the soft keyboard
+        1   Display the soft keyboard
+        2   Get the soft keyboard display mode
+        -1  Automatic control of soft keyboard display state
+
+<D2.l:Soft keyboard display coordinates
+
+        Lo word: Y coordinate
+        Hi word: X coordinate
+
+>D0.l:Soft keyboard display status
+
+        0   Not displayed
+        1   Displaying
+------------------------------------------------------------------
+$7E _DENSNS         Calculator sense
+
+No parameters
+
+Performs calculator processing according to the contents of the key input buffer
+(Using the calculator can corrupt D3.l).
+------------------------------------------------------------------
+$7F _ONTIME         Calculates the elapsed time (in 1/100 seconds) since startup
+
+No parameters
+
+>D0.l:Time elapsed since startup (in 1/100 seconds)
+
+The number of days is not included, so the maximum is 100 x 60 seconds x 60 minutes x 24 hours = 8640000 = $0083D600
+------------------------------------------------------------------
+$80 _B_INTVCS       Set the exception handling or IOCS call vector
+
+<D1.w:Vector number or $0100+IOCS call number
+<A1.l:Vector
+
+>D0.l:Vector before setting
+------------------------------------------------------------------
+$81 _B_SUPER        Switching supervisor mode
+
+When switching to supervisor mode:
+
+    <A1.l:0
+
+    >D0.l:Original SSP
+
+            -1  Already in supervisor mode
+
+When switching to user mode:
+
+    <A1.l:Original SSP
+
+    >D0.l:0
+------------------------------------------------------------------
+$82 _B_BPEEK        Memory read (1 byte)
+
+<A1.l:Address to write to
+
+>D0.b:Read data
+>A1.l:Next Address
+------------------------------------------------------------------
+$83 _B_WPEEK        Memory read (1 word)
+
+<A1.l:Address to write to
+
+>D0.w:Read data
+>A1.l:Next Address
+------------------------------------------------------------------
+$84 _B_LPEEK        Memory read (1 long word)
+
+<A1.l:Address to write to
+
+>D0.l:Read data
+>A1.l:Next Address
+------------------------------------------------------------------
+$85 _B_MEMSTR       Memory-to-memory transfer (a1 to a2)
+
+<D1.l:Number of transferred bytes - 1
+<A1.l:Forwarding address
+<A2.l:Forwarding address
+------------------------------------------------------------------
+$86 _B_BPOKE        Memory write (1 byte)
+
+<D1.b:Data to write
+<A1.l:Address to write to
+
+>A1.l:Next Address
+------------------------------------------------------------------
+$87 _B_WPOKE        Memory write (1 word)
+
+<D1.w:Data to write
+<A1.l:Address to write to
+
+>A1.l:Next Address
+------------------------------------------------------------------
+$88 _B_LPOKE        Memory write (1 long word)
+
+<D1.l:Data to write
+<A1.l:Address to write to
+
+>A1.l:Next Address
+------------------------------------------------------------------
+$89 _B_MEMSET       Memory-to-memory transfer (a2 to a1)
+
+<D1.l:Number of transferred bytes - 1
+<A1.l:Forwarding address
+<A2.l:Forwarding address
+------------------------------------------------------------------
+$8A _DMAMOVE        DMA transfer
+
+<D1.b:Mode
+
+        bit 0-1 a2 mode
+
+                0   Don't count
+                1   Increment
+                2   Decrement
+                3   Prohibited
+
+        bit 2-3 a1 mode
+
+                0   Don't count
+                1   Increment
+                2   Decrement
+                3   Prohibited
+
+        bit 7   Transfer direction
+
+                0   From a1 to a2
+                1   a2 to a1
+
+<D2.l:Number of bytes of transferred data
+<A1.l:Forwarding address
+<A2.l:Forwarding address
+------------------------------------------------------------------
+$8B _DMAMOV_A       DMA transfer by array chain
+
+<D1.b:Mode
+
+        bit 0-1 a2 mode
+
+                0   Don't count
+                1   Increment
+                2   Decrement
+                3   Prohibited
+
+        bit 2-3 a1 mode
+
+                0   Don't count
+                1   Increment
+                2   Decrement
+                3   Prohibited
+
+        bit 7   Transfer direction
+
+                0   From a1 to a2
+                1   a2 to a1
+
+<D2.l:Number of array chain tables
+<A1.l:First address of the source array chain table
+
+        0000    .l  Starting address
+        0004    .w  Length
+        0006        Next table
+         :      :
+
+<A2.l:Forwarding address
+------------------------------------------------------------------
+$8C _DMAMOV_L       DMA transfer using link array chain
+
+<D1.b:Mode
+
+        bit 0-1 a2 mode
+
+                0   Don't count
+                1   Increment
+                2   Decrement
+                3   Prohibited
+
+        bit 2-3 a1 mode
+
+                0   Don't count
+                1   Increment
+                2   Decrement
+                3   Prohibited
+
+        bit 7       Transfer direction
+
+                0   From a1 to a2
+                1   a2 to a1
+
+<A1.l:First address of the source link array chain table
+
+        0000    .l  Starting address
+        0004    .w  Length
+        0006    .l  Next table address (0=end)
+
+<A2.l:Forwarding address
+------------------------------------------------------------------
+$8D _DMAMODE        Get DMA transfer mode
+
+No parameters
+
+>D0.l:DMA transfer mode
+
+        0           Not in transit
+        _DMAMOVE    Transferring with _DMAMOVE
+        _DMAMOV_A   Transferring with _DMAMOV_A
+        _DMAMOV_L   Transferring with _DMAMOV_L
+------------------------------------------------------------------
+$8E _BOOTINF        Get startup information
+
+No parameters
+
+>D0.l:Startup Information
+
+        $000000xx   Switches
+
+               xx   Startup Information
+
+                    1   ROM
+                    2   SRAM
+                    $8x SCSI
+                    $9x FD
+                    $90 ROM Human
+
+        $01xxxxxx   External (xxxxxx is the ROM boot handle)
+        $02xxxxxx   Alarm (xxxxxx is the SRAM start address)
+------------------------------------------------------------------
+$8F _ROMVER         Get ROM version
+
+No parameters
+
+>D0.l:ROM version
+
+        bit 0-7     Day
+        bit 8-15    Month
+        bit 16-23   Year
+        bit 24-31   Version*$10
+------------------------------------------------------------------
+$90 _G_CLR_ON       Clear the graphic screen, initialize the palette, and turn the display ON
+
+No parameters
+------------------------------------------------------------------
+$91 _G_SETMOD       Set the Graphics Screen Mode
+
+<D1.b:Graphics Screen Mode
+
+        -1  Retrieval only
+
+        bit 0-1 Graphic Color Depth
+
+                0   16 colors
+                1   256 colors
+                2   65,536 colors
+                3   Prohibited
+
+        bit 2   Graphics actual screen size
+
+                0   512 x 512 dots
+                1   1024 x 1024 dots
+
+>D0.l:Graphic screen mode before change
+
+Specifies the graphics screen mode.
+Operates the CRTC and video controller.
+Used by RAMDISK.SYS to change the access mode of the graphics VRAM.
+------------------------------------------------------------------
+$92 _G_PRISET       Set priorities between screens and graphic pages
+
+<D1.w:Specifying Priority
+
+        -1  Retrieval only
+
+        Lo byte: Priority between graphics pages
+
+            bit 0-1     SC0: Highest priority graphic page number (0-3)
+            bit 2-3     SC1: Second highest priority graphic page number (0-3)
+            bit 4-5     SC2: Third highest priority graphic page number (0-3)
+            bit 6-7     SC3: 4th highest priority graphic page number (0-3)
+
+        Hi byte: Priority between graphics, text, and sprites (0 is the top)
+
+            bit 8-9     GR: Graphic screen priority (0-2)
+            bit 10-11   TX: Text screen priority (0-2)
+            bit 12-13   SP: Sprite screen priority (0-2)
+
+>D0.w:Priority before change
+
+Sets the priority between screens.
+Operates the video controller.
+------------------------------------------------------------------
+$93 _G_SETSCR       Set screen display ON/OFF and special mode
+
+<D1.w:Screen display ON/OFF and special mode settings
+
+        -1 Retrieval only
+
+        Lo byte: Screen display ON/OFF (0=OFF, 1=ON)
+
+            bit 0-3     Graphic screen (512 x 512)
+
+                bit 0   GS0: Highest priority graphics page
+                bit 1   GS1: Second highest priority graphic page
+                bit 2   GS2: Third highest priority graphics page
+                bit 3   GS3: 4th highest priority graphics page
+
+            bit 4       GS4: Graphic screen (1024 x 1024)
+            bit 5       TON: Text screen
+            bit 6       SON: Sprite Screen
+
+        Hi byte: Special mode (0 = disabled, 1 = enabled)
+
+            bit 8       G/T: Translucent between graphics and text
+            bit 9       G/G: Semi-transparent between the two front graphic pages
+            bit 10      B/P:GRAM bit 0 specifies special mode area
+            bit 11      H/P: 0 = Special priority, 1 = Translucent
+            bit 12      EX: Special Priority or Translucent
+            bit 13      VHT: Graphics to Video
+            bit 14      AH: Translucent between graphics and text
+            bit 15      Ys: Forces the CMPCUT (Ys) signal to H
+
+>D0.w:ON/OFF of the screen display before the change and special mode settings
+
+Turns the screen display ON/OFF and sets special modes.
+Operates the video controller.
+------------------------------------------------------------------
+$94 _G_PALET        Get or set the graphics palette
+
+<D1.w:Palette Code
+<D2.l:Color code
+
+        -1      Retrieval only
+
+>D0.l:Result
+
+        0       Normal completion (when setting)
+        -1      Graphics disabled
+        Other   Color code (when acquired)
+------------------------------------------------------------------
+$95 _G_PENCOL       Set the pen color
+
+<D1.w:Pen color
+------------------------------------------------------------------
+$96 _G_SETPAGE      Set the graphics drawing page
+
+<D1.w:Graphic drawing pages (0-3)
+------------------------------------------------------------------
+$97 _G_DOTLOAD      Read pattern from the graphic screen
+
+<D1.w:X coordinate
+<D2.w:Y coordinate
+<A1.l:Buffer address
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+
+>       0004    .w  Color mode ($000F=16 colors, $00FF=256 colors, $FFFF=65536 colors)
+>       0006        Pattern (2 dots per byte for 16 colors)
+------------------------------------------------------------------
+$98 _G_DOTWRTMSK    Write patterns on the graphic screen (through color specification)
+
+<D1.w:X coordinate
+<D2.w:Y coordinate
+<D3.w:Through color
+<A1.l:Buffer address
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+<       0004    .w  Color mode ($000F=16 colors, $00FF=256 colors, $FFFF=65536 colors)
+                    If it does not match the current graphic screen mode, it will not be written.
+<       0006        Pattern (for 16 colors, 2 dots are stored in 1 byte)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Color mode is different
+
+No through-color markings.
+------------------------------------------------------------------
+$99 _G_DOTWRT       Write patterns on the graphic screen
+
+<D1.w:X coordinate
+<D2.w:Y coordinate
+<A1.l:Buffer address
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+<       0004    .w  Color mode ($000F=16 colors, $00FF=256 colors, $FFFF=65536 colors)
+                    If it does not match the current graphic screen mode, it will not be written.
+<       0006        Pattern (for 16 colors, 2 dots are stored in 1 byte)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Color mode is different
+------------------------------------------------------------------
+$9A _G_BITWRT       Write bit patterns to the graphic screen
+
+<D1.w:X coordinate
+<D2.w:Y coordinate
+<A1.l:Buffer address
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+<       0004        Bit pattern (0 = no change, 1 = draw with pen color)
+                    Excess bits in the X direction are truncated in bytes
+------------------------------------------------------------------
+$9B _BK_GPTRN       Write bit patterns to the graphic screen (background color specified)
+
+<D1.w:X coordinate
+<D2.w:Y coordinate
+<D3.w:Back color
+<A1.l:Buffer address
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+<       0004        Bit pattern (0 = background color, 1 = pen color)
+                    Remaining bits in the X direction are truncated in bytes.
+------------------------------------------------------------------
+$9C _G_BITWRTENL    Write bit pattern to graphic screen (enlarged)
+
+<D1.w:X coordinate
+<D2.w:Y coordinate
+<D3.w:X-direction magnification (1-1023)
+<D4.w:Y-direction magnification (1-1023)
+<A1.l:Buffer address
+
+<       0000    .w  Number of dots in the X direction
+<       0002    .w  Number of dots in the Y direction
+<       0004        Bit pattern (0 = no change, 1 = draw with pen color)
+                    Excess bits in the X direction are truncated in bytes
+------------------------------------------------------------------
+$9D Undefined
+------------------------------------------------------------------
+$9E Undefined
+------------------------------------------------------------------
+$9F Undefined
+------------------------------------------------------------------
+$A0 _SFTJIS         SJIS RIGHT JIS conversion
+
+<D1.w:SJIS code
+
+>D0.l:Result
+
+        Lo word: JIS code
+
+            $2228   Unconvertible
+
+        Hi word: status
+
+            0   Success
+            -1  Unconvertible
+------------------------------------------------------------------
+$A1 _JISSFT         JIS to SJIS conversion
+
+<D1.w:JIS code
+
+>D0.l:Result
+
+        Lo word: SJIS code
+
+            $81A6   Unconvertible
+
+        Hi word: status
+
+            0   Success
+            -1  Unconvertible
+------------------------------------------------------------------
+$A2 _AKCONV         Half-width (ANK) to full-width (SJIS) conversion
+
+<D1.b:Half-width (ANK) character code
+
+>D0.l:Result
+
+        Lo word: full-width (SJIS) character code
+
+            $81A6   Unconvertible
+
+        Hi word: status
+
+            0   Success
+            -1  Unconvertible
+------------------------------------------------------------------
+$A3 _RMACNV         Romaji to Kana Conversion
+
+<D1.b:Roman letters (consonants are capitalized)
+<A1.l:Workbook for converting romaji to kana (enter 0 for the first character)
+<A2.l:Result work
+
+>D0.l:Status
+
+        0       Conversion in progress
+        -1      Unconvertible
+        Other   Number of characters to be converted
+------------------------------------------------------------------
+$A4 _DAKJOB         Voiced mark processing
+
+<A1.l:Address immediately after the character code (2 bytes)
+
+>D0.l:Increase in string length
+
+        0   No increase (KasaTaha row RIGHT GazaDaba row, U RIGHT Vu)
+        2   There is an increase (" added)
+
+>A1.l:The address immediately after the character
+------------------------------------------------------------------
+$A5 _HANJOB         Semi-voiced mark processing
+
+<A1.l:Address immediately after the character code (2 bytes)
+
+>D0.l:Increase in string length
+
+        0   No increase (Ha row RIGHT Pa row)
+        2   There is an increase (character added)
+
+>A1.l:The address immediately after the character
+------------------------------------------------------------------
+$A6 Undefined
+------------------------------------------------------------------
+$A7 Undefined
+------------------------------------------------------------------
+$A8 Undefined
+------------------------------------------------------------------
+$A9 Undefined
+------------------------------------------------------------------
+$AA Undefined
+------------------------------------------------------------------
+$AB Undefined
+------------------------------------------------------------------
+$AC _SYS_STAT       Get or set the system environment
+
+<D1.w:Mode
+
+        $0000   Get MPU status
+
+            >D0.l:MPU status
+
+                bit 0-7     MPU type (3=68030, 4=68040, 6=68060)
+                bit 14      MMU presence (0=no, 1=yes)
+                bit 15      FPU/FPCP availability (0=no, 1=yes)
+                bit 16-31   Clock speed*10
+
+        $0001   Get the cache status
+
+            >D0.l:Current cache status
+
+                bit 0       Instruction cache status (0=disabled, 1=enabled)
+                bit 1       Data cache status (0=disabled, 1=enabled)
+
+        $0002   Set the cache status to the SRAM setting value
+
+            >D0.l:Cache status after configuration
+
+                bit 0       Instruction cache status (0=disabled, 1=enabled)
+                bit 1       Data cache status (0=disabled, 1=enabled)
+
+        $0003   Cache flush
+
+        $0004   Cache settings
+
+<D2.w:Cache settings
+
+        bit 0   Instruction cache status (0=disabled, 1=enabled)
+        bit 1   Data cache status (0=disabled, 1=enabled)
+
+>D0.l:Cache status before configuration
+
+        bit 0   Instruction cache status (0=disabled, 1=enabled)
+        bit 1   Data cache status (0=disabled, 1=enabled)
+------------------------------------------------------------------
+$AD _B_CONMOD       Set the text screen cursor and scrolling
+
+<D1.w:Mode
+
+        0   Blinking text cursor
+        1   Do not blink the text cursor
+        2   Cursor shape settings
+
+            <D2.l:Cursor drawing start line and cursor shape
+
+                bit 0-7     Cursor shape for text plane 0
+                bit 8-15    Cursor shape for text plane 1
+                bit 16-31   Cursor drawing line
+
+        16      Raster copy scroll mode setting
+
+            <D2.w:Raster copy scroll mode
+
+                0   Jump scroll
+                1   4-dot smooth scrolling
+                2   8-dot smooth scrolling
+                3   16-dot smooth scrolling
+
+        17      Raster copy scroll
+        18      Make it a soft copy scroll
+------------------------------------------------------------------
+$AE _OS_CURON       Cursor displayed
+
+No parameters
+------------------------------------------------------------------
+$AF _OS_CUROF       Cursor not displayed (display by _B_CURON is also prohibited)
+
+No parameters
+------------------------------------------------------------------
+$B0 _DRAWMODE       Get or set the graphics screen drawing mode
+
+<D1.w:Blending Mode
+
+        0   Normal
+        1   Reverse
+        -1  Get only (cannot be specified due to a bug)
+
+>D0.w:Blending mode before change
+------------------------------------------------------------------
+$B1 _APAGE          Get or set the drawing page of the graphic screen
+
+<D1.b:Drawing page (0-3, -1 = get only)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Graphics disabled
+        -2  The parameters are incorrect
+        -3  Parameter is out of range for the current display mode
+------------------------------------------------------------------
+$B2 _VPAGE          Set the graphic screen display page
+
+<D1.b:Display page
+
+        bit 0   Page 0 (0 = Do not display, 1 = Display)
+        bit 1   Page 1 (0 = Do not display, 1 = Display)
+        bit 2   Page 2 (0 = Do not display, 1 = Display)
+        bit 3   Page 3 (0 = Do not display, 1 = Display)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Graphics disabled
+        -2  The parameters are incorrect
+        -3  Parameter is out of range for the current display mode
+------------------------------------------------------------------
+$B3 _HOME           Set the scroll position of the graphic screen
+
+<D1.b:Page specification
+
+        bit 0   Page 0 (0 = set, 1 = not set)
+        bit 1   Page 1 (0 = set, 1 = not set)
+        bit 2   Page 2 (0 = set, 1 = not set)
+        bit 3   Page 3 (0 = set, 1 = not set)
+        0       Set all currently active pages
+
+<D2.w:Scroll position in the X direction (X coordinate of the top left corner of the screen)
+<D3.w:Scroll position in the Y direction (Y coordinate of the top left corner of the screen)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Graphics disabled
+        -2  The parameters are incorrect
+        -3  Parameter is out of range for the current display mode
+------------------------------------------------------------------
+$B4 _WINDOW         Set the clipping area of the graphic screen
+
+<D1.w:Graphics Clipping Area (X Min)
+<D2.w:Graphics Clipping Area (Y Min)
+<D3.w:Graphics Clipping Area (X Maximum)
+<D4.w:Graphics clipping area (Y Maximum)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Graphics disabled
+        -2  The parameters are incorrect
+        -3  Parameter is out of range for the current display mode
+------------------------------------------------------------------
+$B5 _WIPE           Fills the graphic screen with palette code 0
+
+No parameters
+------------------------------------------------------------------
+$B6 _PSET           Draws a point on the graphics screen
+
+<A1.l:Parameter address
+
+        0000    .w  X coordinate
+        0002    .w  Y coordinate
+        0004    .w  Palette code
+------------------------------------------------------------------
+$B7 _POINT          Get the palette code for a point on the graphic screen
+
+<A1.l:Parameter address
+
+        0000    .w  X coordinate
+        0002    .w  Y coordinate
+        0004    .w  Palette code buffer
+
+>D0.w:Palette code
+------------------------------------------------------------------
+$B8 _LINE           Draw a line on the graphics screen
+
+<A1.l:Parameter address
+
+        0000    .w  Starting point X coordinate
+        0002    .w  Starting point Y coordinate
+        0004    .w  Ending point X coordinate
+        0006    .w  Ending point Y coordinate
+        0008    .w  Palette code
+        000A    .w  Line style
+------------------------------------------------------------------
+$B9 _BOX            Draw a rectangle on the graphics screen
+
+<A1.l:Parameter address
+
+        0000    .w  Starting point X coordinate
+        0002    .w  Starting point Y coordinate
+        0004    .w  Ending point X coordinate
+        0006    .w  Ending point Y coordinate
+        0008    .w  Palette code
+        000A    .w  Line style
+------------------------------------------------------------------
+$BA _FILL           Fill a rectangle on the graphics screen
+
+<A1.l:Parameter address
+
+        0000    .w  Starting point X coordinate
+        0002    .w  Starting point Y coordinate
+        0004    .w  Ending point X coordinate
+        0006    .w  Ending point Y coordinate
+        0008    .w  Palette code
+------------------------------------------------------------------
+$BB _CIRCLE         Draw a circle or ellipse on the graphics screen
+
+<A1.l:Parameter address
+
+        0000    .w  Center X coordinate
+        0002    .w  Center Y coordinate
+        0004    .w  Radius (0-32767)
+        0006    .w  Palette code
+        0008    .w  Starting angle
+        000A    .w  Ending Angle
+        000C    .w  Ratio
+
+            0-255       Horizontally elongated oval
+                        Horizontal Radius   Radius
+                        Vertical Radius     Radius*(Ratio/256)
+
+            256         Circle
+
+            257-65535   Vertically elongated oval
+                        Horizontal radius   Radius*(256/ratio)
+                        Vertical Radius     Radius
+------------------------------------------------------------------
+$BC _PAINT          Fill closed areas on the graphic screen
+
+<A1.l:Parameter address
+
+        0000    .w  X coordinate
+        0002    .w  Y coordinate
+        0004    .w  Palette code
+        0006    .l  Buffer start address
+        000A    .l  Buffer end address
+------------------------------------------------------------------
+$BD _SYMBOL         Display text on the graphic screen
+
+<A1.l:Parameter address
+
+        0000    .w  X coordinate
+        0002    .w  Y coordinate
+        0004    .l  The starting address of the string
+        0008    .b  X-direction magnification
+        0009    .b  Y-direction magnification
+        000A    .w  Palette code
+        000C    .b  Font type
+
+            0   12 x 12 dots
+            1   16 x 16 dots
+            2   24 x 24 dots
+
+        000D    .b  Angle
+
+            0   0 degrees
+            1   90 degrees
+            2   180 degrees
+            3   270 degrees
+------------------------------------------------------------------
+$BE _GETGRM         Read from the graphic screen
+
+<A1.l:Parameter address
+
+        0000    .w  Starting point X coordinate
+        0002    .w  Starting point Y coordinate
+        0004    .w  Ending point X coordinate
+        0006    .w  Ending point Y coordinate
+        0008    .l  Buffer start address
+        000C    .l  Buffer end address
+------------------------------------------------------------------
+$BF _PUTGRM         Write to the graphic screen
+
+<A1.l:Parameter address
+
+        0000    .w  Starting point X coordinate
+        0002    .w  Starting point Y coordinate
+        0004    .w  Ending point X coordinate
+        0006    .w  Ending point Y coordinate
+        0008    .l  Buffer start address
+        000C    .l  Buffer end address
+------------------------------------------------------------------
+$C0 _SP_INIT        Sprite and BG initialization
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C1 _SP_ON          Sprite display ON
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C2 _SP_OFF         Sprite display OFF
+
+No parameters
+------------------------------------------------------------------
+$C3 _SP_CGCLR       Clear sprite pattern (16x16)
+
+<D1.l[7:0]:Pattern number (0-255)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C4 _SP_DEFCG       Set sprite pattern
+
+<D1.l[7:0]:Pattern number (0-255)
+<D2.l:Size (0=8~8, 1=16~16)
+<A1.l:Buffer address (even number)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C5 _SP_GTPCG       Get sprite pattern
+
+<D1.l[7:0]:Pattern number (0-255)
+<D2.l:Size (0=8~8, 1=16~16)
+<A1.l:Buffer address (even number)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C6 _SP_REGST       Set sprite register
+
+<D1.b[6:0]:Sprite number (0-127)
+<D1.b[31]:Do not wait for vertical blanking interval (0=wait, 1=don't wait)
+<D2.l:X coordinate (0-1023, -1 = do not change)
+<D3.l:Y coordinate (0-1023, -1 = do not change)
+<D4.l:Pattern code (-1 = no change)
+
+        [7:0]   Pattern number
+        [11:8]  Palette block
+        [14]    Vertical flip (0=OFF, 1=ON)
+        [15]    Horizontal flip (0=OFF, 1=ON)
+
+<D5.l:Priority (0-3, -1=no change)
+
+        0   Do not display
+        1   BG0>BG1>SP
+        2   BG0>SP>BG1
+        3   SP>BG0>BG1
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C7 _SP_REGGT       Get sprite register
+
+<D1.b[6:0]:Sprite number (0-127)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+
+>D2.l[9:0]:X coordinate
+>D3.l[9:0]:Y coordinate
+>D4.l:Pattern code
+
+        [7:0]   Pattern number
+        [11:8]  Palette block
+        [14]    Vertical flip (0=OFF, 1=ON)
+        [15]    Horizontal flip (0=OFF, 1=ON)
+
+>D5.l[2:0]:Priority (0-3)
+
+        0   Do not display
+        1   BG0>BG1>SP
+        2   BG0>SP>BG1
+        3   SP>BG0>BG1
+------------------------------------------------------------------
+$C8 _BGSCRLST       Set the BG scroll register
+
+<D1.b[0]:BG page (0-1)
+<D2.l:BG scroll X coordinate (-1 = no change)
+<D3.l:BG scroll Y coordinate (-1 = no change)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$C9 _BGSCRLGT       Get BG scroll register
+
+<D1.b[0]:BG page (0-1)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+
+>D2.l:BG scroll X coordinate
+>D3.l:BG scroll Y coordinate
+------------------------------------------------------------------
+$CA _BGCTRLST       Set BG control register
+
+<D1.b[0]:BG page (0-1)
+<D2.l:Text area (0-1, -1 = no change)
+<D3.l:Display (0=OFF, 1=ON, -1=no change)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$CB _BGCTRLGT       Get BG control register
+
+<D1.b[0]:BG page (0-1)
+
+>D0.b[0]:Display (0=OFF,1=ON)
+>D0.b[2:1]:Text area (0-1)
+>D0.l:Error code
+
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$CC _BGTEXTCL       Clear BG text
+
+<D1.b[0]:BG text area (0-1)
+<D2.w:Pattern code
+
+        [7:0]   Pattern number
+        [11:8]  Palette block
+        [14]    Vertical flip (0=OFF, 1=ON)
+        [15]    Horizontal flip (0=OFF, 1=ON)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$CD _BGTEXTST       Set BG text
+
+<D1.b[0]:BG text area (0-1)
+<D2.b[5:0]:BG text X coordinate (0-63)
+<D3.b[5:0]:BG text Y coordinate (0-63)
+<D4.w:Pattern code
+
+        [7:0]   Pattern number
+        [11:8]  Palette block
+        [14]    Vertical flip (0=OFF, 1=ON)
+        [15]    Horizontal flip (0=OFF, 1=ON)
+
+>D0.l:Error code
+
+        0   Normal termination
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$CE _BGTEXTGT       Get BG text
+
+<D1.b[0]:BG text area (0-1)
+<D2.b[5:0]:BG text X coordinate (0-63)
+<D3.b[5:0]:BG text Y coordinate (0-63)
+
+>D0.w:Pattern code
+
+        [7:0]   Pattern number
+        [11:8]  Palette block
+        [14]    Vertical flip (0=OFF, 1=ON)
+        [15]    Horizontal flip (0=OFF, 1=ON)
+
+>D0.l:Error code
+
+        -1  Invalid screen mode
+------------------------------------------------------------------
+$CF _SPALET         Get or set the sprite palette
+
+<D1.b[3:0]:Palette code (0-15)
+<D1.b[7:4]:Palette block (1-15)
+<D1.l[31]:Do not wait for vertical blanking interval (0=wait, 1=don't wait)
+<D2.b[3:0]:Palette block
+
+        0       D1.b[7:4]=Palette block,D1.b[3:0]=Palette code
+        1-15    D2.b[3:0]=Palette block,D1.b[3:0]=Palette code
+
+<D3.w:Color code
+<D3.l[31]:Get only (0 = set, 1 = get only)
+
+>D0.w:Color code before setting
+>D0.l:Error code
+
+        -2  Palette block 0 was specified
+
+Do not check the screen mode.
+------------------------------------------------------------------
+$D0 Undefined
+------------------------------------------------------------------
+$D1 Undefined
+------------------------------------------------------------------
+$D2 Undefined
+------------------------------------------------------------------
+$D3 _TXXLINE        Draw a horizontal line on the text screen
+
+<A1.l:Parameter address
+
+        0000    .w  Plane specification (0-3 or $8000+0-15)
+                    Ignored when simultaneous access to text planes is ON.
+
+            bit 15  How to specify a plane
+
+                0   Single plane specification
+
+                    bit 0-1 Plane number (0-3)
+
+                1   Multiple plane specification
+
+                    bit 0   Plane 0 (0=OFF, 1=ON)
+                    bit 1   Plane 1 (0=OFF, 1=ON)
+                    bit 2   Plane 2 (0=OFF, 1=ON)
+                    bit 3   Plane 3 (0=OFF, 1=ON)
+
+        0002    .w  X coordinate (minimum value)
+        0004    .w  Y coordinate
+        0006    .w  Number of dots
+        0008    .w  Line style ($00-$FF)
+------------------------------------------------------------------
+$D4 _TXYLINE        Draw a vertical line on the text screen
+
+<A1.l:Parameter address
+
+        0000    .w  Plane specification (0-3 or $8000+0-15)
+                    Ignored when simultaneous access to text planes is ON.
+
+            bit 15  How to specify a plane
+
+                0   Single plane specification
+
+                    bit 0-1 Plane number (0-3)
+
+                1   Multiple plane specification
+
+                    bit 0   Plane 0 (0=OFF, 1=ON)
+                    bit 1   Plane 1 (0=OFF, 1=ON)
+                    bit 2   Plane 2 (0=OFF, 1=ON)
+                    bit 3   Plane 3 (0=OFF, 1=ON)
+
+        0002    .w  X coordinate
+        0004    .w  Y coordinate (minimum value)
+        0006    .w  Number of dots
+        0008    .w  Line style ($00-$FF)
+------------------------------------------------------------------
+$D5 _TXLINE         Draw a line on the text screen
+
+<A1.l:Parameter address
+
+        0000    .w  Plane specification (0-3 or $8000+0-15)
+                    Ignored when simultaneous access to text planes is ON.
+
+            bit 15  How to specify a plane
+
+                0   Single plane specification
+
+                    bit 0-1 Plane number (0-3)
+
+                1   Multiple plane specification
+
+                    bit 0   Plane 0 (0=OFF, 1=ON)
+                    bit 1   Plane 1 (0=OFF, 1=ON)
+                    bit 2   Plane 2 (0=OFF, 1=ON)
+                    bit 3   Plane 3 (0=OFF, 1=ON)
+
+        0002    .w  Starting point X coordinate
+        0004    .w  Starting point Y coordinate
+        0006    .w  Number of dots in the X direction (negative number allowed, absolute value 1 is the same as 0)
+        0008    .w  Number of dots in the Y direction (negative number allowed, absolute value 1 is the same as 0)
+        000A    .w  Line style ($00-$FF)
+------------------------------------------------------------------
+$D6 _TXBOX          Draw a rectangular frame on the text screen
+
+<A1.l:Parameter address
+
+        0000    .w  Plane specification (0-3 or $8000+0-15)
+                    Ignored when simultaneous access to text planes is ON.
+
+            bit 15  How to specify a plane
+
+                0   Single plane specification
+
+                    bit 0-1 Plane number (0-3)
+
+                1   Multiple plane specification
+
+                    bit 0   Plane 0 (0=OFF, 1=ON)
+                    bit 1   Plane 1 (0=OFF, 1=ON)
+                    bit 2   Plane 2 (0=OFF, 1=ON)
+                    bit 3   Plane 3 (0=OFF, 1=ON)
+
+        0002    .w  X coordinate (minimum value)
+        0004    .w  Y coordinate (minimum value)
+        0006    .w  Number of dots in the X direction
+        0008    .w  Number of dots in the Y direction
+        000A    .w  Line style ($00-$FF)
+------------------------------------------------------------------
+$D7 _TXFILL         Draw a rectangle on the text screen
+
+<A1.l:Parameter address
+
+        0000    .w  Plane specification (0-3 or $8000+0-15)
+                    Ignored when simultaneous access to text planes is ON.
+
+            bit 15  How to specify a plane
+
+                0   Single plane specification
+
+                    bit 0-1 Plane number (0-3)
+
+                1   Multiple plane specification
+
+                    bit 0   Plane 0 (0=OFF, 1=ON)
+                    bit 1   Plane 1 (0=OFF, 1=ON)
+                    bit 2   Plane 2 (0=OFF, 1=ON)
+                    bit 3   Plane 3 (0=OFF, 1=ON)
+
+        0002    .w  X coordinate (minimum value)
+        0004    .w  Y coordinate (minimum value)
+        0006    .w  Number of dots in the X direction
+        0008    .w  Number of dots in the Y direction
+        000A    .b  Even raster line style ($00-$FF)
+        000B    .b  Odd raster line style ($00-$FF)
+------------------------------------------------------------------
+$D8 _TXREV          Flip the rectangle on the text screen
+
+<A1.l:Parameter address
+
+        0000    .w  Plane designation (0-3)
+        0002    .w  X coordinate (minimum value)
+        0004    .w  Y coordinate (minimum value)
+        0006    .w  Number of dots in the X direction
+        0008    .w  Number of dots in the Y direction
+------------------------------------------------------------------
+$D9 Undefined
+------------------------------------------------------------------
+$DA Undefined
+------------------------------------------------------------------
+$DB Undefined
+------------------------------------------------------------------
+$DC Undefined
+------------------------------------------------------------------
+$DD Undefined
+------------------------------------------------------------------
+$DE Undefined
+------------------------------------------------------------------
+$DF _TXRASCPY       Text Raster Block Copy
+
+<D1.w:Raster block number initial value
+
+    Lo byte: Destination raster block number initial value
+    Hi byte: Source raster block number initial value
+
+<D2.w:Number of copies
+<D3.w:Access plane and copy direction
+
+        bit 0-4 Access plane (each bit 0 = no access, 1 = access)
+
+            bit 0   Plane 0
+            bit 1   Plane 1
+            bit 2   Plane 2
+            bit 3   Plane 3
+
+        bit 15  Copy direction
+
+            0   Top to bottom
+            1   Bottom to top
+------------------------------------------------------------------
+$E0 Undefined
+------------------------------------------------------------------
+$E1 Undefined
+------------------------------------------------------------------
+$E2 Undefined
+------------------------------------------------------------------
+$E3 Undefined
+------------------------------------------------------------------
+$E4 Undefined
+------------------------------------------------------------------
+$E5 Undefined
+------------------------------------------------------------------
+$E6 Undefined
+------------------------------------------------------------------
+$E7 Undefined
+------------------------------------------------------------------
+$E8 Undefined
+------------------------------------------------------------------
+$E9 Undefined
+------------------------------------------------------------------
+$EA Undefined
+------------------------------------------------------------------
+$EB Undefined
+------------------------------------------------------------------
+$EC Undefined
+------------------------------------------------------------------
+$ED Undefined
+------------------------------------------------------------------
+$EE Undefined
+------------------------------------------------------------------
+$EF Undefined
+------------------------------------------------------------------
+$F0 _OPMDRV
+------------------------------------------------------------------
+$F1 _RSDRV          Extended RS-232C control
+------------------------------------------------------------------
+$F2 _A_JOYGET       Analog joystick control
+
+<D1.l:Function number ($00-$02)
+
+        Function $00:
+
+<A1.l:Buffer address
+
+>A1.l:Buffer filled
+
+        0000    .w  Stick up and down (0: top to 255: bottom)
+        0002    .w  Stick Left and right (0: left to 255: right)
+        0004    .w  Throttle
+        0006    .w  Option
+        0008    .w  Trigger (bit becomes 0 when pressed down)
+
+            bit 0   Select
+            bit 1   Start
+            bit 2   E2
+            bit 3   E1
+            bit 4   D
+            bit 5   C
+            bit 6   B or B'(0 if either is pressed)
+            bit 7   A or A'(0 if either is pressed)
+            bit 8   B'
+            bit 9   A'
+            bit 10  B
+            bit 11  A
+
+        Function $01:
+
+<D2.w:Mode
+
+        0   Digital
+        1   Analog
+        -1  Get current settings
+
+        Function $02:
+
+<D2.w:Communication speed
+
+        0   Maximum speed
+        1   1/2 maximum speed
+        2   1/3 maximum speed
+        3   1/4 maximum speed
+        -1  Get current settings
+
+Reset the joystick before changing the communication speed.
+------------------------------------------------------------------
+$F3 _MIDI
+------------------------------------------------------------------
+$F4 Undefined
+------------------------------------------------------------------
+$F5 _SCSIDRV        SCSI Control
+
+<D1.l:Function number ($00-$4F)
+
+        $00 _S_RESET        SPC reset and SCSI bus reset
+
+        $01 _S_SELECT       Execution of the arbitration and selection phases
+
+<D4.l:Target ID
+
+>D0.l:Error code
+
+        $02 
+
+        $03 _S_CMDOUT       Execution of the command-out phase
+
+<D3.l:Number of bytes in the command
+<A1.l:CDB start address
+
+>D0.l:Error code
+
+        $04 _S_DATAIN       Execute the Data In Phase
+
+<D3.l:Number of bytes read
+<A1.l:Read start address
+
+>D0.l:Error code
+
+        $05 _S_DATAOUT      Execute the data-out phase
+
+<D3.l:Number of bytes written
+<A1.l:Write start address
+
+>D0.l:Error code
+
+        $06 _S_STSIN        Status In Phase Execution
+
+<A1.l:Read start address
+
+>D0.l:Error code
+
+        $07 _S_MSGIN        Message-in phase execution
+
+<A1.l:Read start address
+
+>D0.l:Error code
+
+        $08 _S_MSGOUT       Execution of the message-out phase
+
+<A1.l:Write start address
+
+>D0.l:Error code
+
+        $09 _S_PHASE        Phase Sense
+
+>D0.l:Current phase
+
+        $0A 
+
+        $0B _S_DATAIN_P
+
+        $0C _S_DATAOUT_P
+
+        $0D 
+
+        $20 _S_INQUIRY      INQUIRY data request
+
+<D3.l:Number of bytes read
+<D4.l:Target ID
+<A1.l:Read start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $21 _S_READ         Read data from a SCSI device
+
+<D2.l:Target read position (logical block number)
+<D3.l:Number of read blocks (number of logical blocks)
+<D4.l:Target ID
+<D5.l:Capacity of 1 block (0=256, 1=512, 2=1024)
+<A1.l:Read start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1,-2    Abnormal termination
+
+        $22 _S_WRITE        Write data to a SCSI device
+
+<D2.l:Target write location (logical block number)
+<D3.l:Number of written blocks (number of logical blocks)
+<D4.l:Target ID
+<D5.l:Capacity of 1 block (0=256, 1=512, 2=1024)
+<A1.l:Write start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1,-2    Abnormal termination
+
+        $23 _S_FORMAT       Format SCSI Devices
+
+<D3.l:Interleave
+<D4.l:Target ID
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $24 _S_TESTUNIT     Check if a SCSI device is operational
+
+<D4.l:Target ID
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $25 _S_READCAP      Find SCSI capacity information
+
+<D4.l:Target ID
+<A1.l:Read start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+    
+        $26 _S_READEXT      Extended READ Command
+
+<D2.l:Target read position (logical block number)
+<D3.l:Number of read blocks (number of logical blocks)
+<D4.l:Target ID
+<D5.l:Capacity of 1 block (0=256, 1=512, 2=1024)
+<A1.l:Read start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1,-2    Abnormal termination
+    
+        $27 _S_WRITEEXT     Extended WRITE Command
+
+<D2.l:Target write location (logical block number)
+<D3.l:Number of written blocks (number of logical blocks)
+<D4.l:Target ID
+<D5.l:Capacity of 1 block (0=256, 1=512, 2=1024)
+<A1.l:Write start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1,-2    Abnormal termination
+
+        $28 _S_VERIFY
+
+        $29 _S_MODESENSE
+
+        $2A _S_MODESELECT
+
+        $2B _S_REZEROUNIT   Set a SCSI device to a specified state
+
+<D4.l:Target ID
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $2C _S_REQUEST      Checking the sense data of a SCSI device
+
+<D3.l:Number of bytes read
+<D4.l:Target ID
+<A1.l:Read start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $2D _S_SEEK         Seek to the specified logical block address
+
+<D2.l:Target seek position (logical block number)
+<D4.l:Target ID
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $2E 
+
+        $2F _S_STARTSTOP    Enable/disable further operation of SCSI devices
+
+<D3.l:0=cannot be operated, 1=can be operated
+<D4.l:Target ID
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $30 
+    
+        $31 _S_REASSIGN     Reassign blocks
+
+<D3.l:Number of bytes written
+<D4.l:Target ID
+<A1.l:Write start address
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $32 _S_PAMEDIUM     Disable/enable media ejection
+
+<D3.l:0=eject allowed, 1=eject prohibited
+<D4.l:Target ID
+
+>D0.l:Status
+
+        Hi word: Information obtained through Message In Phase
+        Lo word: Information obtained during the Status In Phase
+        -1       Abnormal termination
+
+        $36 
+    
+        $37 
+    
+        $38 
+    
+        $39 
+------------------------------------------------------------------
+$F6 Undefined
+------------------------------------------------------------------
+$F7 Undefined
+------------------------------------------------------------------
+$F8 _HIMEM
+------------------------------------------------------------------
+$F9 Undefined
+------------------------------------------------------------------
+$FA Undefined
+------------------------------------------------------------------
+$FB Undefined
+
+Used by the X68030 ROM debugger.
+------------------------------------------------------------------
+$FC Undefined
+
+Used by the X68030 ROM debugger.
+------------------------------------------------------------------
+$FD _ABORTRST       Abort preparation
+
+Used by the abort routine (trap#14).
+
+_ABORTRST must set bit 4 of the MFP's IMRA ($00E88013) to enable key input interrupts.
+------------------------------------------------------------------
+$FE _IPLERR         Boot from IPL failed
+
+This is used when the IPL program of each device fails to start the OS.
+
+Return to ROM and a message will be displayed, then restart by entering a key etc.
+------------------------------------------------------------------
+$FF _ABORTJOB       Abort Processing
+
+Used at the end of an abort routine.
+
+If it is booting up, an error message will appear saying "An error has occurred. Please reset."
+
+This message will be displayed and you will need to restart the computer by entering a key.
+
+In Human68k, this is used when you select Abort <A> in the white window, 
+and the running process will be terminated and you will return to the parent process.
+------------------------------------------------------------------
+
+
+IOCS call list (in code order)
+------------------------------------------------------------------
+Number  Call Name       Function Overview
+------------------------------------------------------------------
+$00     _B_KEYINP       Key input (waits for input, removes input data from buffer)
+$01     _B_KEYSNS       Key sense (does not wait for input, does not remove input data from buffer)
+$02     _B_SFTSNS       Get the shift key and LED status
+$03     _KEY_INIT       Initializing the keyboard interface
+$04     _BITSNS         Get key press status
+$05     _SKEYSET        Keystroke Emulation
+$06     _LEDCTRL        Set the keyboard LED status all at once
+$07     _LEDSET         Reconfigure the key LEDs
+$08     _KEYDLY         Key repeat delay time setting
+$09     _KEYREP         Key repeat interval setting
+$0A     _OPT2TVON       OPT.2 allows TV control via keys
+$0B     _OPT2TVOFF      Disable TV control by OPT.2 key
+$0C     _TVCTRL         TV Control
+$0D     _LEDMOD         Set the key LED
+$0E     _TGUSEMD        Get or set screen usage status
+$0F     _DEFCHR         Font pattern settings
+------------------------------------------------------------------
+$10     _CRTMOD         Get or set the screen mode
+$11     _CONTRAST       Obtain and set contrast
+$12     _HSVTORGB       Calculate RGB from HSV
+$13     _TPALET         Get or set the Text Palette
+$14     _TPALET2        Get or set the text palette (all colors independently)
+$15     _TCOLOR         Set the text display plane
+$16     _FNTADR         Get the font address
+$17     _VRAMGET        Transfer bytes from VRAM to buffer
+$18     _VRAMPUT        Transfer bytes from the buffer to VRAM
+$19     _FNTGET         Get font pattern
+$1A     _TEXTGET        Transfer dot by dot from text VRAM to buffer
+$1B     _TEXTPUT        Transfer dot by dot from buffer to text VRAM
+$1C     _CLIPPUT        Transfer dot by dot from buffer to text VRAM (with clipping)
+$1D     _SCROLL         Get or set the scroll position of text/graphics
+$1E     _B_CURON        Text cursor ON
+$1F     _B_CUROFF       Text cursor OFF
+------------------------------------------------------------------
+$20     _B_PUTC         Display one character of text
+$21     _B_PRINT        Text String Display
+$22     _B_COLOR        Set text color code
+$23     _B_LOCATE       Set text cursor position
+$24     _B_DOWN_S       Move the text cursor down one line (scroll if unable to move)
+$25     _B_UP_S         Move the text cursor up one line (scroll if unable to move)
+$26     _B_UP           Move the text cursor up n lines (error if unable to move)
+$27     _B_DOWN         Move the text cursor down n lines (if unable to move, stops at the bottom line)
+$28     _B_RIGHT        Move the text cursor n columns to the right (if it cannot be moved, it will stop at the right edge)
+$29     _B_LEFT         Move the text cursor n columns to the left (if it cannot be moved, it will stop at the left edge)
+$2A     _B_CLR_ST       Clear text screen (select range to clear)
+$2B     _B_ERA_ST       Clear text line (select range to clear)
+$2C     _B_INS          Insert n blank lines below the text cursor line
+$2D     _B_DEL          Delete n lines from the text cursor line
+$2E     _B_CONSOL       Set the text display range
+$2F     _B_PUTMES       Display a string at a specified position on the text screen
+------------------------------------------------------------------
+$30     _SET232C        Get or set RS-232C communication mode and communication speed
+$31     _LOF232C        Get the number of data items in the RS-232C receive buffer
+$32     _INP232C        RS-232C reception (wait until reception, remove from reception buffer)
+$33     _ISNS232C       RS-232C reception sense (does not wait even if no reception is made, does not remove from reception buffer)
+$34     _OSNS232C       RS-232C transmission status check
+$35     _OUT232C        RS-232C transmission (wait until transmission is possible)
+$36     _MS_VCS         Set up mouse reception data processing
+$37     _EXESC          Extended ESC sequence processing routine settings
+$38     _CHR_ADR        Set external character font address
+$39     _SETBEEP        Set BEEP processing
+$3A     _SETPRN         Set up the printer environment
+$3B     _JOYGET         Get the joystick state
+$3C     _INIT_PRN       Printer Initialization
+$3D     _SNSPRN         Printer Output Sense
+$3E     _OUTLPT         Printer output (LPT)
+$3F     _OUTPRN         Printer output (PRN)
+------------------------------------------------------------------
+$40     _B_SEEK         Seek
+$41     _B_VERIFY       Verify
+$42     _B_READDI       Diagnostic Readout
+$43     _B_DSKINI       Initializing the FD interface
+$44     _B_DRVSNS       Get the status of the disk
+$45     _B_WRITE        Write to Disk
+$46     _B_READ         Read from disk
+$47     _B_RECALI       Seek to track 0
+$48     _B_ASSIGN       Set track alternatives
+$49     _B_WRITED       Write corrupted data
+$4A     _B_READID       Read ID information
+$4B     _B_BADFMT       Disable Bad Tracks
+$4C     _B_READDL       Loading corrupted data
+$4D     _B_FORMAT       Physical Format
+$4E     _B_DRVCHK       Get or set drive status
+$4F     _B_EJECT        Eject (seek to an unused cylinder)
+------------------------------------------------------------------
+$50     _DATEBCD        Convert the date into a format that can be set on a clock
+$51     _DATESET        Set the date on the clock
+$52     _TIMEBCD        Convert the time into a format that can be set on a clock
+$53     _TIMESET        Set the time on the clock
+$54     _DATEGET        Read the date from the clock
+$55     _DATEBIN        Converting dates from BCD to binary
+$56     _TIMEGET        Read the time from the clock
+$57     _TIMEBIN        Convert time from BCD to binary
+$58     _DATECNV        Convert a string representing a date to binary
+$59     _TIMECNV        Convert a string representing a time to a binary
+$5A     _DATEASC        Convert a date from binary to string
+$5B     _TIMEASC        Convert a time from binary to string
+$5C     _DAYASC         Convert days of the week from binary to string
+$5D     _ALARMMOD       Disable/enable alarm
+$5E     _ALARMSET       Set the alarm start time and processing content
+$5F     _ALARMGET       Get alarm activation time and processing details
+------------------------------------------------------------------
+$60     _ADPCMOUT       ADPCM playback
+$61     _ADPCMINP       ADPCM recording
+$62     _ADPCMAOT       ADPCM playback using an array chain
+$63     _ADPCMAIN       ADPCM recording with array chain
+$64     _ADPCMLOT       ADPCM playback using a link array chain
+$65     _ADPCMLIN       ADPCM recording using a link array chain
+$66     _ADPCMSNS       ADPCM execution mode sense
+$67     _ADPCMMOD       ADPCM execution control
+$68     _OPMSET         Set FM sound source registers
+$69     _OPMSNS         Get FM sound source status
+$6A     _OPMINTST       Set FM sound source interrupt processing routine
+$6B     _TIMERDST       Set the Timer-D interrupt processing routine
+$6C     _VDISPST        Set the Timer-A (vertical sync count) interrupt processing routine
+$6D     _CRTCRAS        Set the CRTC raster interrupt processing routine
+$6E     _HSYNCST        Set the horizontal sync interrupt processing routine
+$6F     _PRNINTST       Set the printer ready interrupt processing routine
+------------------------------------------------------------------
+$70     _MS_INIT        Initialize mouse handling
+$71     _MS_CURON       Show the mouse cursor
+$72     _MS_CUROF       Hide the mouse cursor
+$73     _MS_STAT        Get the mouse cursor display state
+$74     _MS_GETDT       Get the mouse state
+$75     _MS_CURGT       Get the coordinates of the mouse cursor
+$76     _MS_CURST       Set the mouse cursor coordinates
+$77     _MS_LIMIT       Set the mouse cursor movement range
+$78     _MS_OFFTM       Time the mouse button release
+$79     _MS_ONTM        Time the mouse button down
+$7A     _MS_PATST       Define the mouse cursor pattern
+$7B     _MS_SEL         Select the mouse cursor
+$7C     _MS_SEL2        Set the Mouse cursor animation
+$7D     _SKEY_MOD       Get or set the soft keyboard display mode
+$7E     _DENSNS         Calculator sense
+$7F     _ONTIME         Calculates the elapsed time (in 1/100 seconds) since startup
+------------------------------------------------------------------
+$80     _B_INTVCS       Set the exception handling or IOCS call vector
+$81     _B_SUPER        Switching supervisor mode
+$82     _B_BPEEK        Memory read (1 byte)
+$83     _B_WPEEK        Memory read (1 word)
+$84     _B_LPEEK        Memory read (1 long word)
+$85     _B_MEMSTR       Memory-to-memory transfer (a1 to a2)
+$86     _B_BPOKE        Memory write (1 byte)
+$87     _B_WPOKE        Memory write (1 word)
+$88     _B_LPOKE        Memory write (1 long word)
+$89     _B_MEMSET       Memory-to-memory transfer (a2 to a1)
+$8A     _DMAMOVE        DMA transfer
+$8B     _DMAMOV_A       DMA transfer by array chain
+$8C     _DMAMOV_L       DMA transfer using link array chain
+$8D     _DMAMODE        Get DMA transfer mode
+$8E     _BOOTINF        Get startup information
+$8F     _ROMVER         Get ROM version
+------------------------------------------------------------------
+$90     _G_CLR_ON       Clear the graphic screen, initialize the palette, and turn the display ON
+$91     _G_SETMOD       Set the Graphics Screen Mode
+$92     _G_PRISET       Set priorities between screens and graphic pages
+$93     _G_SETSCR       Set screen display ON/OFF and special mode
+$94     _G_PALET        Get or set the graphics palette
+$95     _G_PENCOL       Set the pen color
+$96     _G_SETPAGE      Set the graphics drawing page
+$97     _G_DOTLOAD      Read pattern from the graphic screen
+$98     _G_DOTWRTMSK    Write patterns on the graphic screen (through color specification)
+$99     _G_DOTWRT       Write patterns on the graphic screen
+$9A     _G_BITWRT       Write bit patterns to the graphic screen
+$9B     _G_BITWRTBCK    Write bit patterns to the graphic screen (background color specified)
+$9C     _G_BITWRTENL    Write bit pattern to graphic screen (enlarged)
+------------------------------------------------------------------
+$A0     _SFTJIS         SJIS RIGHT JIS conversion
+$A1     _JISSFT         JIS to SJIS conversion
+$A2     _AKCONV         Half-width (ANK) to full-width (SJIS) conversion
+$A3     _RMACNV         Romaji to Kana Conversion
+$A4     _DAKJOB         Voiced mark processing
+$A5     _HANJOB         Semi-voiced mark processing
+$AC     _SYS_STAT       Get or set the system environment
+$AD     _B_CONMOD       Set the text screen cursor and scrolling
+$AE     _OS_CURON       Cursor displayed
+$AF     _OS_CUROF       Cursor not displayed (display by _B_CURON is also prohibited)
+------------------------------------------------------------------
+$B0     _DRAWMODE       Get or set the graphics screen drawing mode
+$B1     _APAGE          Get or set the drawing page of the graphic screen
+$B2     _VPAGE          Set the graphic screen display page
+$B3     _HOME           Set the scroll position of the graphic screen
+$B4     _WINDOW         Set the clipping area of the graphic screen
+$B5     _WIPE           Fills the graphic screen with palette code 0
+$B6     _PSET           Draws a point on the graphics screen
+$B7     _POINT          Get the palette code for a point on the graphic screen
+$B8     _LINE           Draw a line on the graphics screen
+$B9     _BOX            Draw a rectangle on the graphics screen
+$BA     _FILL           Fill a rectangle on the graphics screen
+$BB     _CIRCLE         Draw a circle or ellipse on the graphics screen
+$BC     _PAINT          Fill closed areas on the graphic screen
+$BD     _SYMBOL         Display text on the graphic screen
+$BE     _GETGRM         Read from the graphic screen
+$BF     _PUTGRM         Write to the graphic screen
+------------------------------------------------------------------
+$C0     _SP_INIT        Sprite and BG initialization
+$C1     _SP_ON          Sprite display ON
+$C2     _SP_OFF         Sprite display OFF
+$C3     _SP_CGCLR       Clear sprite pattern (16x16)
+$C4     _SP_DEFCG       Set sprite pattern
+$C5     _SP_GTPCG       Get sprite pattern
+$C6     _SP_REGST       Set sprite register
+$C7     _SP_REGGT       Get sprite register
+$C8     _BGSCRLST       Set the BG scroll register
+$C9     _BGSCRLGT       Get BG scroll register
+$CA     _BGCTRLST       Set BG control register
+$CB     _BGCTRLGT       Get BG control register
+$CC     _BGTEXTCL       Clear BG text
+$CD     _BGTEXTST       Set BG text
+$CE     _BGTEXTGT       Get BG text
+$CF     _SPALET         Get or set the sprite palette
+------------------------------------------------------------------
+$D3     _TXXLINE        Draw a horizontal line on the text screen
+$D4     _TXYLINE        Draw a vertical line on the text screen
+$D5     _TXLINE         Draw a line on the text screen
+$D6     _TXBOX          Draw a rectangular frame on the text screen
+$D7     _TXFILL         Draw a rectangle on the text screen
+$D8     _TXREV          Flip the rectangle on the text screen
+$DF     _TXRASCPY       Text Raster Block Copy
+------------------------------------------------------------------
+$F5     _SCSIDRV        SCSI Control
+$FD     _ABORTRST       Abort preparation
+$FE     _IPLERR         Boot from IPL failed
+$FF     _ABORTJOB       Abort Processing
+------------------------------------------------------------------
+
+
+IOCS call list (in order of call name)
+------------------------------------------------------------------
+Number  Call Name       Function Overview
+------------------------------------------------------------------
+$FF     _ABORTJOB       Abort Processing
+$FD     _ABORTRST       Abort preparation
+$63     _ADPCMAIN       ADPCM recording with array chain
+$62     _ADPCMAOT       ADPCM playback using an array chain
+$61     _ADPCMINP       ADPCM recording
+$65     _ADPCMLIN       ADPCM recording using a link array chain
+$64     _ADPCMLOT       ADPCM playback using a link array chain
+$67     _ADPCMMOD       ADPCM execution control
+$60     _ADPCMOUT       ADPCM playback
+$66     _ADPCMSNS       ADPCM execution mode sense
+$A2     _AKCONV         Half-width (ANK) to full-width (SJIS) conversion
+$5F     _ALARMGET       Get alarm activation time and processing details
+$5D     _ALARMMOD       Disable/enable alarm
+$5E     _ALARMSET       Set the alarm start time and processing content
+$B1     _APAGE          Get or set the drawing page of the graphic screen
+------------------------------------------------------------------
+$CB     _BGCTRLGT       Get BG control register
+$CA     _BGCTRLST       Set BG control register
+$C9     _BGSCRLGT       Get BG scroll register
+$C8     _BGSCRLST       Set the BG scroll register
+$CC     _BGTEXTCL       Clear BG text
+$CE     _BGTEXTGT       Get BG text
+$CD     _BGTEXTST       Set BG text
+$04     _BITSNS         Get key press status
+$9B     _BK_GPTRN       Write bit patterns to the graphic screen (background color specified)
+$8E     _BOOTINF        Get startup information
+$B9     _BOX            Draw a rectangle on the graphics screen
+$48     _B_ASSIGN       Set track alternatives
+$4B     _B_BADFMT       Disable Bad Tracks
+$82     _B_BPEEK        Memory read (1 byte)
+$86     _B_BPOKE        Memory write (1 byte)
+$2A     _B_CLR_ST       Clear text screen (select range to clear)
+$22     _B_COLOR        Set text color code
+$AD     _B_CONMOD       Set the text screen cursor and scrolling
+$2E     _B_CONSOL       Set the text display range
+$1F     _B_CUROFF       Text cursor OFF
+$1E     _B_CURON        Text cursor ON
+$2D     _B_DEL          Delete n lines from the text cursor line
+$27     _B_DOWN         Move the text cursor down n lines (if unable to move, stops at the bottom line)
+$24     _B_DOWN_S       Move the text cursor down one line (scroll if unable to move)
+$4E     _B_DRVCHK       Get or set drive status
+$44     _B_DRVSNS       Get the status of the disk
+$43     _B_DSKINI       Initializing the FD interface
+$4F     _B_EJECT        Eject (seek to an unused cylinder)
+$2B     _B_ERA_ST       Clear text line (select range to clear)
+$4D     _B_FORMAT       Physical Format
+$2C     _B_INS          Insert n blank lines below the text cursor line
+$80     _B_INTVCS       Set the exception handling or IOCS call vector
+$00     _B_KEYINP       Key input (waits for input, removes input data from buffer)
+$01     _B_KEYSNS       Key sense (does not wait for input, does not remove input data from buffer)
+$29     _B_LEFT         Move the text cursor n columns to the left (if it cannot be moved, it will stop at the left edge)
+$23     _B_LOCATE       Set text cursor position
+$84     _B_LPEEK        Memory read (1 long word)
+$88     _B_LPOKE        Memory write (1 long word)
+$89     _B_MEMSET       Memory-to-memory transfer (a2 to a1)
+$85     _B_MEMSTR       Memory-to-memory transfer (a1 to a2)
+$21     _B_PRINT        Text String Display
+$20     _B_PUTC         Display one character of text
+$2F     _B_PUTMES       Display a string at a specified position on the text screen
+$46     _B_READ         Read from disk
+$42     _B_READDI       Diagnostic Readout
+$4C     _B_READDL       Loading corrupted data
+$4A     _B_READID       Read ID information
+$47     _B_RECALI       Seek to track 0
+$28     _B_RIGHT        Move the text cursor n columns to the right (if it cannot be moved, it will stop at the right edge)
+$40     _B_SEEK         Seek
+$02     _B_SFTSNS       Get the shift key and LED status
+$81     _B_SUPER        Switching supervisor mode
+$26     _B_UP           Move the text cursor up n lines (error if unable to move)
+$25     _B_UP_S         Move the text cursor up one line (scroll if unable to move)
+$41     _B_VERIFY       Verify
+$83     _B_WPEEK        Memory read (1 word)
+$87     _B_WPOKE        Memory write (1 word)
+$45     _B_WRITE        Write to Disk
+$49     _B_WRITED       Write corrupted data
+------------------------------------------------------------------
+$38     _CHR_ADR        Set external character font address
+$BB     _CIRCLE         Draw a circle or ellipse on the graphics screen
+$1C     _CLIPPUT        Transfer dot by dot from buffer to text VRAM (with clipping)
+$11     _CONTRAST       Obtain and set contrast
+$6D     _CRTCRAS        Set the CRTC raster interrupt processing routine
+$10     _CRTMOD         Get or set the screen mode
+$93     _G_SETSCR       Set screen display ON/OFF and special mode
+------------------------------------------------------------------
+$A4     _DAKJOB         Voiced mark processing
+$5A     _DATEASC        Convert a date from binary to string
+$50     _DATEBCD        Convert the date into a format that can be set on a clock
+$55     _DATEBIN        Converting dates from BCD to binary
+$58     _DATECNV        Convert a string representing a date to binary
+$54     _DATEGET        Read the date from the clock
+$51     _DATESET        Set the date on the clock
+$5C     _DAYASC         Convert days of the week from binary to string
+$0F     _DEFCHR         Font pattern settings
+$7E     _DENSNS         Calculator sense
+$8D     _DMAMODE        Get DMA transfer mode
+$8A     _DMAMOVE        DMA transfer
+$8B     _DMAMOV_A       DMA transfer by array chain
+$8C     _DMAMOV_L       DMA transfer using link array chain
+$B0     _DRAWMODE       Get or set the graphics screen drawing mode
+------------------------------------------------------------------
+$BA     _FILL           Fill a rectangle on the graphics screen
+$16     _FNTADR         Get the font address
+$19     _FNTGET         Get font pattern
+------------------------------------------------------------------
+$BE     _GETGRM         Read from the graphic screen
+$97     _G_DOTLOAD      Read pattern from the graphic screen
+$94     _G_PALET        Get or set the graphics palette
+$9A     _G_BITWRT       Write bit patterns to the graphic screen
+$99     _G_DOTWRT       Write patterns on the graphic screen
+$90     _G_CLR_ON       Clear the graphic screen, initialize the palette, and turn the display ON
+$91     _G_SETMOD       Set the Graphics Screen Mode
+------------------------------------------------------------------
+$A5     _HANJOB         Semi-voiced mark processing
+$B3     _HOME           Set the scroll position of the graphic screen
+$12     _HSVTORGB       Calculate RGB from HSV
+$6E     _HSYNCST        Set the horizontal sync interrupt processing routine
+------------------------------------------------------------------
+$3C     _INIT_PRN       Printer Initialization
+$32     _INP232C        RS-232C reception (wait until reception, remove from reception buffer)
+$FE     _IPLERR         Boot from IPL failed
+$33     _ISNS232C       RS-232C reception sense (does not wait even if no reception is made, does not remove from reception buffer)
+------------------------------------------------------------------
+$A1     _JISSFT         JIS to SJIS conversion
+$3B     _JOYGET         Get the joystick state
+------------------------------------------------------------------
+$08     _KEYDLY         Key repeat delay time setting
+$09     _KEYREP         Key repeat interval setting
+$03     _KEY_INIT       Initializing the keyboard interface
+------------------------------------------------------------------
+$06     _LEDCTRL        Set the keyboard LED status all at once
+$0D     _LEDMOD         Set the key LED
+$07     _LEDSET         Reconfigure the key LEDs
+$B8     _LINE           Draw a line on the graphics screen
+$31     _LOF232C        Get the number of data items in the RS-232C receive buffer
+------------------------------------------------------------------
+$98     _G_DOTWRTMSK    Write patterns on the graphic screen (through color specification)
+$75     _MS_CURGT       Get the coordinates of the mouse cursor
+$72     _MS_CUROF       Hide the mouse cursor
+$71     _MS_CURON       Show the mouse cursor
+$76     _MS_CURST       Set the mouse cursor coordinates
+$74     _MS_GETDT       Get the mouse state
+$70     _MS_INIT        Initialize mouse handling
+$77     _MS_LIMIT       Set the mouse cursor movement range
+$78     _MS_OFFTM       Time the mouse button release
+$79     _MS_ONTM        Time the mouse button down
+$7A     _MS_PATST       Define the mouse cursor pattern
+$7B     _MS_SEL         Select the mouse cursor
+$7C     _MS_SEL2        Set the Mouse cursor animation
+$73     _MS_STAT        Get the mouse cursor display state
+$36     _MS_VCS         Set up mouse reception data processing
+------------------------------------------------------------------
+$7F     _ONTIME         Calculates the elapsed time (in 1/100 seconds) since startup
+$6A     _OPMINTST       Set FM sound source interrupt processing routine
+$68     _OPMSET         Set FM sound source registers
+$69     _OPMSNS         Get FM sound source status
+$0B     _OPT2TVOFF      Disable TV control by OPT.2 key
+$0A     _OPT2TVON       OPT.2 Allows TV control via keys
+$34     _OSNS232C       RS-232C transmission status check
+$AF     _OS_CUROF       Cursor not displayed (display by _B_CURON is also prohibited)
+$AE     _OS_CURON       Cursor displayed
+$35     _OUT232C        RS-232C transmission (wait until transmission is possible)
+$3E     _OUTLPT         Printer output (LPT)
+$3F     _OUTPRN         Printer output (PRN)
+------------------------------------------------------------------
+$BC     _PAINT          Fill closed areas on the graphic screen
+$95     _G_PENCOL       Set the pen color
+$B7     _POINT          Get the palette code for a point on the graphic screen
+$92     _G_PRISET       Set priorities between screens and graphic pages
+$6F     _PRNINTST       Set the printer ready interrupt processing routine
+$B6     _PSET           Draws a point on the graphics screen
+$BF     _PUTGRM         Write to the graphic screen
+------------------------------------------------------------------
+$A3     _RMACNV         Romaji to Kana Conversion
+$8F     _ROMVER         Get ROM version
+------------------------------------------------------------------
+$1D     _SCROLL         Get or set the scroll position of text/graphics
+$F5     _SCSIDRV        SCSI Control
+$30     _SET232C        Get or set RS-232C communication mode and communication speed
+$39     _SETBEEP        Set BEEP processing
+$3A     _SETPRN         Set up the printer environment
+$96     _G_SETPAGE      Set the graphics drawing page
+$A0     _SFTJIS         SJIS RIGHT JIS conversion
+$05     _SKEYSET        Keystroke Emulation
+$7D     _SKEY_MOD       Get or set the soft keyboard display mode
+$3D     _SNSPRN         Printer Output Sense
+$CF     _SPALET         Get or set the sprite palette
+$C3     _SP_CGCLR       Clear sprite pattern (16x16)
+$C4     _SP_DEFCG       Set sprite pattern
+$C5     _SP_GTPCG       Get sprite pattern
+$C0     _SP_INIT        Sprite and BG initialization
+$C2     _SP_OFF         Sprite display OFF
+$C1     _SP_ON          Sprite display ON
+$C7     _SP_REGGT       Get sprite register
+$C6     _SP_REGST       Set sprite register
+$BD     _SYMBOL         Display text on the graphic screen
+$AC     _SYS_STAT       Get or set the system environment
+------------------------------------------------------------------
+$15     _TCOLOR         Set the text display plane
+$1A     _TEXTGET        Transfer dot by dot from text VRAM to buffer
+$1B     _TEXTPUT        Transfer dot by dot from buffer to text VRAM
+$0E     _TGUSEMD        Get or set screen usage status
+$5B     _TIMEASC        Convert a time from binary to string
+$52     _TIMEBCD        Convert the time into a format that can be set on a clock
+$57     _TIMEBIN        Convert time from BCD to binary
+$59     _TIMECNV        Convert a string representing a time to a binary
+$56     _TIMEGET        Read the time from the clock
+$6B     _TIMERDST       Set the Timer-D interrupt processing routine
+$53     _TIMESET        Set the time on the clock
+$13     _TPALET         Get or set the Text Palette
+$14     _TPALET2        Get or set the text palette (all colors independently)
+$0C     _TVCTRL         TV Control
+$D6     _TXBOX          Draw a rectangular frame on the text screen
+$D7     _TXFILL         Draw a rectangle on the text screen
+$D5     _TXLINE         Draw a line on the text screen
+$DF     _TXRASCPY       Text Raster Block Copy
+$D8     _TXREV          Flip the rectangle on the text screen
+$D3     _TXXLINE        Draw a horizontal line on the text screen
+$D4     _TXYLINE        Draw a vertical line on the text screen
+------------------------------------------------------------------
+$37     _EXESC          Extended ESC sequence processing routine settings
+------------------------------------------------------------------
+$6C     _VDISPST        Set the Timer-A (vertical sync count) interrupt processing routine
+$B2     _VPAGE          Set the graphic screen display page
+$17     _VRAMGET        Transfer bytes from VRAM to buffer
+$18     _VRAMPUT        Transfer bytes from the buffer to VRAM
+------------------------------------------------------------------
+$B4     _WINDOW         Set the clipping area of the graphic screen
+$B5     _WIPE           Fills the graphic screen with palette code 0
+------------------------------------------------------------------
+$9C     _G_BITWRTENL    Write bit pattern to graphic screen (enlarged)
+------------------------------------------------------------------
+
+
+------------------------------------------------------------------
+References
+
+Programmer's Manual,
+Sharp X68000 Data Book,Edited by POPCOM Editorial Department,
+Shogakukan Oh!X March 1988 issue Unpublished IOCS analysis.
+
+
+------------------------------------------------------------------
+(EOF)
