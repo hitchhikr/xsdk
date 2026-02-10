@@ -1,0 +1,1176 @@
+/*	motion.st6 : stage 6 motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0	For debugging	*/
+	begin
+
+	pos	1	1	512
+	mrot	64	0	0
+	count	1
+
+	pos	0	0	-8
+	mrot	0	2	0
+	count	30000
+	end
+
+
+/*	No.1	It's approaching diagonally from the other side in a wavy motion.	*/
+	begin
+
+	pos	368	0	-1120
+	speed	128
+	vrot	64	0
+	mrot	32	0	0
+	count	1
+
+loopstart
+	pos	-3	0	4
+	mrot	-2	0	0
+	speed	-8
+	count	32
+
+	pos	-3	0	4
+	mrot	2	0	0
+	speed	8
+	count	24
+
+	pos	-3	0	4
+	mrot	-2	0	0
+	speed	-8
+	count	24
+
+	pos	-3	0	4
+	mrot	2	0	0
+	speed	8
+	count	32
+loopend
+	end
+
+/*	No.2	It jumps up and then staggers down	*/
+	begin
+
+	pos	-656	-384	-1120
+	vrot	64	-64
+	count	1
+
+loopstart
+	vrot	-64	0
+	speed	256
+	count	1
+
+	vrot	-8	0
+	mrot	0	8	0
+	count	8
+	vrot	8	0
+	mrot	0	8	0
+	count	8
+
+	vrot	-8	0
+	mrot	0	8	0
+	count	8
+	vrot	8	0
+	mrot	0	8	0
+	count	8
+
+	vrot	-8	0
+	mrot	0	8	0
+	count	8
+	vrot	8	0
+	mrot	0	8	0
+	count	8
+
+	vrot	-8	0
+	mrot	0	8	0
+	count	8
+
+	speed	768
+	vrot	128	128
+	count	1
+
+	speed	-64
+	mrot	0	16	0
+	pos	0	0	-12
+	count	16
+loopend
+	end
+
+/*	No.3	Pretending to be swimming over there, I'll run into you	*/
+	begin
+
+	pos	160	96	-1120
+	mrot	0	128	0
+	speed	128
+	count	1
+
+	count	24
+loopstart
+	count	32
+
+	speed	-512
+	count	1
+
+	speed	32
+	mrot	0	2	0
+	pos	-4	0	0
+	count	4
+
+	speed	32
+	mrot	0	-4	0
+	pos	-4	0	0
+	count	4
+
+	speed	32
+	mrot	0	4	0
+	pos	-4	0	0
+	count	4
+
+	speed	32
+	mrot	0	-2	0
+	pos	-4	0	0
+	count	4
+
+
+	count	32
+
+	speed	-512
+	count	1
+
+	speed	32
+	mrot	0	2	0
+	pos	4	0	0
+	count	4
+
+	speed	32
+	mrot	0	-4	0
+	pos	4	0	0
+	count	4
+
+	speed	32
+	mrot	0	4	0
+	pos	4	0	0
+	count	4
+
+	speed	32
+	mrot	0	-2	0
+	pos	4	0	0
+	count	4
+loopend
+	count	30000
+	end
+
+/*	No.4	Spinning around and slamming into each other	*/
+	begin
+
+	pos	81	344	-1120
+	mrot	0	32	0
+	vrot	64	0
+	count	1
+
+	count	72
+
+	mrot	0	-1	0
+	count	32
+
+	mrot	0	-2	0
+	count	24
+
+	mrot	0	-3	0
+	count	16
+
+	speed	1
+	mrot	0	-4	0
+	count	30000
+	end
+
+/*	No.5	Dives deep and scatters rocks	*/
+	begin
+
+	pos	-241	-700	-1000
+	vrot	-64	0
+	mrot	-64	0	0
+	speed	128
+	count	1
+
+	mrot	0	0	-8
+	count	130
+
+	speed	-80
+	mrot	0	0	-16
+	count	1
+
+	born	4	8	6	1	0
+	mrot	0	0	-16
+	count	4
+	born	4	8	7	-1	0
+	mrot	0	0	-16
+	count	4
+	born	4	8	7	1	0
+	mrot	0	0	-16
+	count	4
+	born	4	8	6	-1	0
+	mrot	0	0	-16
+	count	4
+
+	mrot	0	0	-16
+	count	30000
+	end
+
+/*	No.6	Rocks on the seafloor peeling off 1	*/
+	begin
+
+	pos	-241	384	6
+	vrot	64	0
+	speed	512
+	count	1
+
+	speed	-16
+	pos	3	0	9
+	mrot	2	4	8
+	count	30000
+	end
+
+/*	No.7	Rocks on the seafloor peeling off 2	*/
+	begin
+
+	pos	-241	384	6
+	vrot	64	0
+	speed	768
+	count	1
+
+	speed	-24
+	pos	6	0	11
+	mrot	2	4	8
+	count	30000
+	end
+
+/*	No.8	Fluffy and swaying up and down	*/
+	begin
+
+	pos	141	0	-1100
+	vrot	64	0
+	speed	512
+	count	1
+loopstart
+	speed	-32
+	pos	12	0	0
+	mrot	2	4	6
+	count	8
+	speed	-32
+	pos	-12	0	0
+	mrot	2	4	6
+	count	8
+
+	speed	-32
+	pos	-12	0	0
+	mrot	2	4	6
+	count	8
+	speed	-32
+	pos	12	0	0
+	mrot	2	4	6
+	count	8
+
+	speed	32
+	pos	12	0	0
+	mrot	2	4	6
+	count	8
+	speed	32
+	pos	-12	0	0
+	mrot	2	4	6
+	count	8
+
+	speed	32
+	pos	-12	0	0
+	mrot	2	4	6
+	count	8
+	speed	32
+	pos	12	0	0
+	mrot	2	4	6
+	count	8
+loopend
+	end
+
+/*	No.9	Swaying softly from side to side	*/
+	begin
+
+	pos	224	120	-1100
+	vrot	0	-64
+	speed	512
+	count	1
+loopstart
+	speed	-32
+	pos	0	12	0
+	mrot	6	4	2
+	count	8
+	speed	-32
+	pos	0	-12	0
+	mrot	6	4	2
+	count	8
+
+	speed	-32
+	pos	0	-12	0
+	mrot	6	4	2
+	count	8
+	speed	-32
+	pos	0	12	0
+	mrot	6	4	2
+	count	8
+
+	speed	32
+	pos	0	12	0
+	mrot	6	4	2
+	count	8
+	speed	32
+	pos	0	-12	0
+	mrot	6	4	2
+	count	8
+
+	speed	32
+	pos	0	-12	0
+	mrot	6	4	2
+	count	8
+	speed	32
+	pos	0	12	0
+	mrot	6	4	2
+	count	8
+loopend
+	end
+
+
+/*	No.10	figure eight	*/
+	begin
+
+	pos	0	64	-920
+	vrot	-32	64
+	speed	512
+	count	1
+loopstart
+
+	vrot	4	0
+	pos	0	9	0
+	mrot	4	2	6
+	count	48
+
+	vrot	-4	0
+	pos	0	9	0
+	mrot	2	6	4
+	count	48
+
+loopend
+	end
+
+/*	No.11	Swimming in style	*/
+	begin
+
+	pos	48	0	-1120
+	mrot	0	128	0
+	speed	128
+	count	1
+
+	count	24
+loopstart
+	count	32
+
+	speed	-512
+	count	1
+
+	speed	32
+	mrot	0	3	0
+	pos	-6	0	0
+	count	4
+
+	speed	32
+	mrot	0	-6	0
+	pos	-6	0	0
+	count	4
+
+	speed	32
+	mrot	0	6	0
+	pos	-6	0	0
+	count	4
+
+	speed	32
+	mrot	0	-3	0
+	pos	-6	0	0
+	count	4
+
+
+	count	32
+
+	speed	-512
+	count	1
+
+	speed	32
+	mrot	0	3	0
+	pos	6	0	0
+	count	4
+
+	speed	32
+	mrot	0	-6	0
+	pos	6	0	0
+	count	4
+
+	speed	32
+	mrot	0	6	0
+	pos	6	0	0
+	count	4
+
+	speed	32
+	mrot	0	-3	0
+	pos	6	0	0
+	count	4
+
+loopend
+	count	30000
+	end
+
+/*	No.12	Swim smoothly, horizontally and vertically	*/
+	begin
+
+	pos	1120	192	-512
+	vrot	0	64
+	mrot	0	64	0
+	count	1
+loopstart
+	speed	256
+	count	1
+
+	speed	-16
+	mrot	0	2	0
+	count	4
+	speed	-16
+	mrot	0	-4	0
+	count	4
+	speed	-16
+	mrot	0	4	0
+	count	4
+	speed	-16
+	mrot	0	-2	0
+	count	4
+loopend
+	end
+
+/*	No.13	Swim smoothly, horizontally and vertically	*/
+	begin
+
+	pos	1120	60	-512
+	vrot	0	64
+	mrot	0	64	0
+	count	1
+loopstart
+	speed	256
+	count	1
+
+	speed	-16
+	mrot	0	2	0
+	count	4
+	speed	-16
+	mrot	0	-4	0
+	count	4
+	speed	-16
+	mrot	0	4	0
+	count	4
+	speed	-16
+	mrot	0	-2	0
+	count	4
+loopend
+	end
+
+/*	No.14	Swim smoothly, horizontally and vertically	*/
+	begin
+
+	pos	1130	192	-512
+	vrot	0	64
+	mrot	0	64	0
+	count	1
+loopstart
+	speed	240
+	count	1
+
+	speed	-15
+	mrot	0	2	0
+	count	4
+	speed	-15
+	mrot	0	-4	0
+	count	4
+	speed	-15
+	mrot	0	4	0
+	count	4
+	speed	-15
+	mrot	0	-2	0
+	count	4
+loopend
+	end
+
+/*	No.15	Swim smoothly, horizontal and vertical	*/
+	begin
+
+	pos	1130	60	-512
+	vrot	0	64
+	mrot	0	64	0
+	count	1
+loopstart
+	speed	240
+	count	1
+
+	speed	-15
+	mrot	0	2	0
+	count	4
+	speed	-15
+	mrot	0	-4	0
+	count	4
+	speed	-15
+	mrot	0	4	0
+	count	4
+	speed	-15
+	mrot	0	-2	0
+	count	4
+loopend
+	end
+
+/*	No.16	vomit zoospores	*/
+	begin
+
+	pos	288	208	-1120
+	vrot	64	0
+	mrot	64	0	0
+	count	1
+
+	mrot	0	0	4
+	count	32
+
+	mrot	0	0	4
+	born	1	16	17	1	0
+	count	24
+
+	mrot	0	0	4
+	born	1	16	18	-1	0
+	count	24
+
+	mrot	0	0	4
+	born	1	16	17	-1	0
+	count	24
+
+	mrot	0	0	4
+	born	1	16	18	1	0
+	count	24
+
+	mrot	0	0	4
+	count	30000
+	end
+
+/*	No.17	Zoospores swimming downwards	*/
+	begin
+
+	pos	272	376	-500
+	vrot	64	0
+	mrot	64	0	0
+	speed	384
+	count	1
+
+	pos	-3	0	0
+	mrot	0	0	12
+	count	10
+
+	pos	-3	0	0
+	mrot	-8	0	12
+	vrot	-8	0
+	count	8
+
+	pos	-3	0	0
+	mrot	0	0	12
+	count	16
+
+	pos	-3	0	0
+	mrot	0	0	12
+	vrot	-2	0
+	count	16
+
+	pos	-3	0	0
+	mrot	0	0	12
+	count	30000
+	end
+
+/*	No.18	Zoospores swimming upward	*/
+	begin
+
+	pos	272	376	-500
+	vrot	64	0
+	mrot	64	0	0
+	speed	384
+	count	1
+
+	pos	-3	0	0
+	mrot	0	0	12
+	count	10
+
+	pos	-3	0	0
+	mrot	-8	0	12
+	vrot	-8	0
+	count	8
+
+	pos	-3	0	0
+	mrot	0	0	12
+	count	16
+
+	pos	-3	0	0
+	mrot	0	0	12
+	vrot	2	0
+	count	2
+
+	pos	-3	0	0
+	mrot	0	0	12
+	count	30000
+	end
+
+/*	No.19	Shrimp dancing	*/
+	begin
+
+	pos	390	680	-512
+	vrot	64	64
+	mrot	64	64	64
+	speed	768
+	count	1
+
+	mrot	1	0	0
+	count	7
+	mrot	-1	0	0
+	count	14
+	mrot	1	0	0
+	count	7
+
+	vrot	-16	0
+	mrot	-16	0	0
+	count	8
+
+	mrot	-1	0	0
+	count	7
+	mrot	1	0	0
+	count	14
+	mrot	-1	0	0
+	count	7
+
+	vrot	16	0
+	mrot	16	0	0
+	count	8
+
+	mrot	1	0	0
+	count	7
+	mrot	-1	0	0
+	count	14
+	mrot	1	0	0
+	count	7
+
+	vrot	16	0
+	mrot	16	0	0
+	count	8
+
+	vrot	0	8
+	mrot	0	8	8
+	count	8
+
+	vrot	-8	0
+	mrot	-8	0	0
+	count	8
+
+	count	30000
+	end
+
+/*	No.20	Frame 1 	*/
+	begin
+
+	pos	-768	376	-1024
+	mrot	64	0	0
+	count	1
+
+	count	160
+
+	speed	-128
+	count	1
+
+loopstart
+	shot	1	1
+	count	512
+loopend
+	end
+
+/*	No.21	Frame 2 */
+	begin
+
+	pos	-256	376	-1024
+	mrot	64	0	0
+	count	1
+
+	count	160
+
+	speed	-128
+	count	1
+loopstart
+	shot	128	1
+	count	512
+loopend
+	end
+
+/*	No.22	Frame 3 	*/
+	begin
+
+	pos	256	376	-1024
+	mrot	64	0	0
+	count	1
+
+	count	160
+
+	speed	-128
+	count	1
+
+loopstart
+	shot	256	1
+	count	512
+loopend
+	end
+
+/*	No.23	Frame 4 	*/
+	begin
+
+	pos	768	376	-1024
+	mrot	64	0	0
+	count	1
+
+	count	160
+
+	speed	-128
+	count	1
+loopstart
+	shot	384	1
+	count	512
+
+loopend
+	end
+
+/*	No.24	Boss: "Meh"	*/
+	begin
+
+	pos	0	500	256
+	speed	-128
+	count	1
+
+	count	64
+
+loopstart
+	/*	2	*/
+	count	24
+	pos	-256	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+	shot	1	0
+	count	1
+	pos	0	50	0
+	count	10
+	pos	256	0	0
+	count	1
+	count	24
+
+	/*	3	*/
+	count	24
+	pos	256	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+	shot	1	0
+	count	1
+	pos	0	50	0
+	count	10
+	pos	-256	0	0
+	count	1
+	count	24
+
+	/*	1	*/
+	count	24
+	pos	-768	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+
+	shot	1	0
+	mrot	0	-2	0
+	count	8
+	mrot	0	2	0
+	count	8
+
+	pos	0	25	0
+	count	20
+	pos	768	0	0
+	count	1
+	count	24
+
+	/*	4	*/
+	count	24
+	pos	768	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+
+	shot	1	0
+	mrot	0	2	0
+	count	8
+	mrot	0	-2	0
+	count	8
+
+	pos	0	25	0
+	count	20
+	pos	-768	0	0
+	count	1
+	count	24
+
+
+	/*	2	*/
+	count	24
+	pos	-256	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+	shot	1	0
+	count	1
+	pos	0	50	0
+	count	10
+	pos	256	0	0
+	count	1
+	count	24
+
+
+	/*	1	*/
+	count	24
+	pos	-768	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+
+	shot	1	0
+	mrot	0	-2	0
+	count	8
+	mrot	0	2	0
+	count	8
+
+	pos	0	25	0
+	count	20
+	pos	768	0	0
+	count	1
+	count	24
+
+	/*	3	*/
+	count	24
+	pos	256	0	0
+	count	1
+	pos	0	-25	0
+	mrot	0	12	0
+	count	20
+	shot	1	0
+	mrot	0	16	0
+	count	1
+	pos	0	50	0
+	mrot	0	25	0
+	count	10
+	pos	-256	0	0
+	mrot	0	6	0
+	count	1
+	count	24
+
+	/*	4	*/
+	count	24
+	pos	768	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+
+	shot	1	0
+	mrot	0	2	0
+	count	8
+	mrot	0	-2	0
+	count	8
+
+	pos	0	25	0
+	count	20
+	pos	-768	0	0
+	count	1
+	count	24
+
+	/*	2	*/
+	count	24
+	pos	-256	0	0
+	count	1
+
+	pos	0	-25	0
+	count	15
+	pos	0	25	0
+	count	5
+	pos	0	-50	0
+	count	5
+	pos	0	50	0
+	count	10
+
+	pos	256	0	0
+	count	1
+	count	24
+
+loopend
+	end
+
+
+/*	No.25	Boss: "Meh"	*/
+	begin
+
+	pos	0	500	256
+	speed	-128
+	count	1
+
+	count	64
+
+loopstart
+	/*	2	*/
+	count	24
+	count	1
+	count	20
+	count	1
+	count	10
+	count	1
+	count	24
+
+	/*	3	*/
+	count	24
+	count	1
+	count	20
+	count	1
+	count	10
+	count	1
+	count	24
+
+	/*	1	*/
+	count	24
+	count	1
+	count	20
+	count	16
+	count	20
+	count	1
+	count	24
+
+	/*	4	*/
+	count	24
+	count	1
+	count	20
+	count	16
+	count	20
+	count	1
+	count	24
+
+
+	/*	3	*/
+	count	24
+	pos	256	0	0
+	count	1
+	pos	0	-25	0
+	count	20
+	shot	1	0
+	count	1
+	pos	0	50	0
+	count	10
+	pos	-256	0	0
+	count	1
+	count	24
+
+
+	/*	1	*/
+	count	24
+	count	1
+	count	20
+	count	16
+	count	20
+	count	1
+	count	24
+
+	/*	3	*/
+	count	24
+	count	1
+	count	20
+	count	1
+	count	10
+	count	1
+	count	24
+
+	/*	4	*/
+	count	24
+	count	1
+	count	20
+	count	16
+	count	20
+	count	1
+	count	24
+
+	/*	2	*/
+	count	24
+	count	1
+	count	20
+	count	5
+	count	10
+	count	1
+	count	24
+
+loopend
+	end
+
+/*	No.26	Coming out from the bottom of the sea, hopping	*/
+	begin
+
+	pos	512	400	272
+	mrot	64	114	0
+	vrot	64	114
+	speed	768
+	count	1
+
+
+	mrot	-2	0	4
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-4
+	vrot	-2	0
+	count	8
+
+
+	count	2
+
+	speed	-512
+	mrot	128	-100	0
+	vrot	128	-100
+	count	1
+
+
+	mrot	-2	0	4
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-4
+	vrot	-2	0
+	count	8
+
+
+	speed	256
+	mrot	128	-32	0
+	vrot	128	-32
+	count	1
+
+
+	mrot	-2	0	4
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	count	8
+
+	mrot	-2	0	-4
+	vrot	-2	0
+	count	8
+
+	count	30000
+	end
+
+/*	No.27	scissors	*/
+	begin
+
+	pos	-768	300	-1000
+	mrot	64	-64	0
+	count	1
+
+	count	140
+
+	pos	0	14	0
+	count	20
+
+	speed	-128
+	pos	0	14	0
+	count	1
+
+	pos	0	14	0
+	count	30000
+	end

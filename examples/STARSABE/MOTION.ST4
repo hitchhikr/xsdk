@@ -1,0 +1,1277 @@
+/*	motion.st4 : stage 4 motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0	For debugging	*/
+	begin
+
+	pos	1	-256	0
+	count	1
+
+	mrot	0	0	3
+	pos	0	0	-22
+	count	30000
+	end
+
+/*	No.1	Lava flying from below Part 1 	*/
+	begin
+
+	pos	-301	600	0
+	vrot	64	0
+	speed	1072
+	count	1
+
+	speed	-32
+	pos	8	0	0
+	mrot	0	16	32
+	count	64
+
+	count	30000
+	end
+
+/*	No.2	Lava flying from below, part 2 */
+	begin
+
+	pos	-501	600	0
+	vrot	64	0
+	speed	896
+	count	1
+
+	speed	-28
+	pos	12	0	0
+	mrot	0	16	32
+	count	64
+
+	count	30000
+	end
+
+/*	No.3	Icicle (fixed)	*/
+	begin
+
+	pos	-101	-512	-1160
+	mrot	-64	0	0
+	count	1
+
+loopstart
+	mrot	0	0	24
+	pos	0	-16	0
+	count	16
+
+	mrot	0	0	24
+	pos	0	16	0
+	count	16
+loopend
+	end
+
+/*	No.4	Icicles (falling)	*/
+	begin
+
+	pos	-161	-576	-1120
+	mrot	-64	0	0
+	vrot	-64	0
+	count	1
+
+	mrot	0	0	16
+	count	60
+
+	mrot	0	0	32
+	speed	14
+	count	30000
+
+	end
+
+/*	No.5	Falling Flames	*/
+	begin
+
+	mrot	64	0	0
+	vrot	64	0
+	count	1
+
+	mrot	0	0	16
+	speed	-256
+	count	4
+
+	mrot	0	0	16
+	count	30000
+
+	end
+
+/*	No.6	Bats will ambush and attack	*/
+	begin
+
+	pos	-281	-576	-1120
+	mrot	0	0	128
+	count	1
+
+	shot	16	1
+	count	16
+	shot	8	1
+	count	16
+	shot	1	1
+	count	16
+
+	vrot	-4	0
+	mrot	-4	0	0
+	speed	32
+	shot	30	0
+	pos	0	-3	0
+	count	32
+
+	count	16
+
+	vrot	0	4
+	mrot	0	4	0
+	speed	-44
+	count	32
+
+	speed	1384
+	vrot	0	64
+	pos	0	0	-24
+	shot	1	0
+	count	1
+
+
+	speed	-50
+	vrot	-2	0
+	mrot	0	0	1
+	pos	0	-6	-24
+	shot	6	0
+	count	10
+	speed	-50
+	vrot	-2	0
+	mrot	0	0	1
+	pos	0	-6	-24
+	shot	10	0
+	count	10
+
+	speed	-50
+	vrot	2	0
+	mrot	0	0	-1
+	pos	0	-5	-24
+	shot	1	0
+	count	10
+	speed	-50
+	vrot	2	0
+	mrot	0	0	-1
+	pos	0	-5	-24
+	shot	4	0
+	count	10
+
+
+	shot	1	0
+	count	1
+
+
+	speed	50
+	vrot	2	0
+	mrot	0	0	-1
+	pos	0	-5	-24
+	shot	6	0
+	count	10
+	speed	50
+	vrot	2	0
+	mrot	0	0	-1
+	pos	0	-5	-24
+	shot	10	0
+	count	10
+
+	speed	50
+	vrot	-2	0
+	mrot	0	0	1
+	pos	0	-4	-24
+	shot	1	0
+	count	10
+	speed	50
+	vrot	-2	0
+	mrot	0	0	1
+	pos	0	-4	-24
+	shot	4	0
+	count	10
+
+
+	vrot	0	-8
+	mrot	0	-1	2
+	speed	-60
+	shot	5	0
+	count	9
+
+	pos	0	0	-24
+	count	30000
+
+	end
+
+/*	No.7	It's slowly creeping up the ceiling	*/
+	begin
+
+	pos	-200	-576	-1120
+	mrot	0	-48	0
+	count	1
+
+loopstart
+	mrot	0	4	4
+	pos	12	8	4
+	count	4
+
+	mrot	0	16	1
+	pos	3	2	16
+	count	2
+	mrot	0	16	-1
+	pos	-3	-2	16
+	count	2
+
+	mrot	0	4	-4
+	pos	-12	-8	4
+	count	4
+
+
+	mrot	0	-4	-4
+	pos	-12	8	4
+	count	4
+
+	mrot	0	-16	-1
+	pos	-3	2	16
+	count	2
+	mrot	0	-16	1
+	pos	3	-2	16
+	count	2
+
+	mrot	0	-4	4
+	pos	12	-8	4
+	count	4
+loopend
+
+	count	30000
+
+	end
+
+/*	No.8	Fall 1	*/
+	begin
+
+	pos	-500	-672	-256
+	vrot	-64	0
+	count	1
+
+	speed	12
+	mrot	0	16	32
+	count	30000
+
+	end
+
+/*	No.9	Fall 2	*/
+	begin
+
+	pos	-300	-672	-256
+	vrot	-64	0
+	count	1
+
+	speed	12
+	mrot	0	16	32
+	count	30000
+
+	end
+
+/*	No.10	Fall 3	*/
+	begin
+
+	pos	-100	-672	-256
+	vrot	-64	0
+	count	1
+
+	speed	12
+	mrot	0	16	32
+	count	30000
+
+	end
+
+/*	No.11	The spider spins a web and rampages in the cave.	*/
+	begin
+
+	pos	432	-640	-1120
+	count	1
+
+loopstart
+
+	pos	0	32	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	16
+	count	4
+
+	pos	-32	0	0
+	born	3	10	12	1	1
+	count	6
+	pos	-32	0	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	-16
+	count	4
+
+	pos	0	32	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	-16
+	count	4
+
+	pos	32	0	0
+	born	3	10	12	1	1
+	count	6
+	pos	32	0	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	16
+	count	4
+
+loopend
+
+	end
+
+/*	No.12	thread	*/
+	begin
+
+	count	30000
+
+	end
+
+/*	No.13	Bran Kotenagaan */
+	begin
+
+	pos	-350	-512	-1120
+	vrot	-64	0
+	mrot	-52	-32	0
+	count	1
+
+	mrot	12	0	0
+	count	4
+	mrot	8	0	0
+	count	4
+	mrot	4	0	0
+	count	4
+	mrot	2	0	0
+	count	4
+	count	2
+
+	mrot	-12	0	0
+	count	4
+	mrot	-8	0	0
+	count	4
+	mrot	-4	0	0
+	count	4
+	mrot	-2	0	0
+	count	4
+	count	2
+
+	mrot	12	0	0
+	count	4
+	mrot	8	0	0
+	count	4
+	mrot	4	0	0
+	count	4
+	mrot	2	0	0
+	count	4
+
+	pos	16	0	22
+	mrot	-1	0	0
+	speed	32
+	count	32
+
+	count	30000
+
+	end
+
+/*	No.14	Spinning spider	*/
+	begin
+
+	pos	432	-640	-1120
+	count	1
+
+	pos	0	32	0
+	born	3	10	12	1	1
+	count	6
+	pos	0	32	0
+	born	3	10	12	1	1
+	count	6
+	pos	0	32	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	16
+	count	4
+
+	pos	-32	0	0
+	born	3	10	12	1	1
+	count	6
+	pos	-32	0	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	16
+	count	4
+
+	pos	0	-32	0
+	born	3	10	12	1	1
+	count	6
+	pos	0	-32	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	16
+	count	4
+
+	pos	32	0	0
+	born	3	10	12	1	1
+	count	6
+
+	mrot	0	0	16
+	count	4
+
+	pos	0	32	0
+	born	3	10	12	1	1
+	count	6
+
+	count	30000
+
+	end
+
+
+/*	No.15	It pops out and spits out rocks	*/
+	begin
+
+	pos	256	512	-1120
+	mrot	64	0	0
+	count	1
+
+loopstart
+	mrot	0	0	4
+	pos	0	-8	0
+	born	4	8	16	1	0
+	count	8
+
+	mrot	0	0	4
+	pos	0	-8	0
+	born	4	8	17	-1	0
+	count	8
+
+	mrot	0	0	4
+	pos	0	-8	0
+	born	4	8	17	1	0
+	count	8
+
+	mrot	0	0	4
+	pos	0	-8	0
+	born	4	8	16	-1	0
+	count	8
+loopend
+
+	count	30000
+
+	end
+
+/*	No.16	Rocks spit out by quiver 1	*/
+	begin
+
+	pos	0	0	0
+	vrot	64	0
+	speed	1600
+	count	1
+
+	pos	8	0	8
+	mrot	1	2	3
+	speed	-128
+	count	30000
+
+	end
+
+/*	No.17	Rocks spit out by quiver 2	*/
+	begin
+
+	pos	0	0	0
+	vrot	64	0
+	speed	1600
+	count	1
+
+	pos	24	0	24
+	speed	-128
+	mrot	2	4	6
+	count	30000
+
+	end
+
+/*	No.18	Phoenix	*/
+	begin
+
+	pos	320	704	-1120
+	vrot	64	0
+	mrot	64	0	0
+	speed	768
+	count	1
+
+	count	8
+
+	mrot	-2	0	8
+	vrot	-2	0
+	speed	-16
+	count	32
+
+	mrot	0	8	-2
+	pos	0	0	0
+	vrot	0	8
+	speed	8
+	count	8
+
+	mrot	0	0	1
+	pos	0	-4	0
+	speed	8
+	count	16
+
+	mrot	0	8	-2
+	vrot	0	8
+	speed	8
+	count	8
+
+	speed	32
+	count	32
+
+	mrot	-4	8	1
+	vrot	-4	8
+	speed	-64
+	count	16
+
+	mrot	8	0	0
+	vrot	8	0
+	speed	32
+	count	8
+	mrot	8	0	8
+	vrot	8	0
+	speed	-32
+	count	8
+
+	mrot	0	0	8
+	count	30000
+
+	end
+
+/*	No.19	Right eye seen from the front	*/
+	begin
+
+	pos	100	270	800
+	vrot	128	0
+	speed	384
+	count	1
+
+	pos	0	-30	0
+	count	19
+	count	16
+	pos	0	46	0	/*	760	*/
+	count	20
+	pos	0	0	-50
+	count	16
+loopstart
+	pos	0	-40	0	/*	280	*/
+	count	16
+	pos	0	32	0
+	count	4
+	pos	0	-32	0
+	shot	4	1
+	count	4
+	count	4
+	pos	0	32	0
+	count	4
+	pos	0	-32	0
+	shot	4	1
+	count	4
+	count	4
+	pos	0	32	0
+	count	4
+	pos	0	-32	0
+	shot	4	1
+	count	4
+	count	4
+	pos	0	40	0
+	count	16
+
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	16
+
+	pos	-16	-64	0
+	count	2
+
+	pos	0	-144	0
+	count	2
+
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+
+	pos	0	36	0
+	count	8
+
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+
+	count	2
+
+	pos	16	64	0
+	count	2
+
+	count	120
+	count	12
+
+/*	Attack 3	*/
+
+	pos	-16	8	0
+	count	16
+	pos	-16	-8	0
+	count	16
+
+	count	16
+
+	pos	16	8	0
+	count	16
+	pos	16	-8	0
+	count	16
+	pos	16	8	0
+	count	16
+	pos	16	-8	0
+	count	16
+
+	count	16
+
+	pos	-16	8	0
+	count	16
+	pos	-16	-8	0
+	count	16
+	pos	-16	8	0
+	count	16
+	pos	-16	-8	0
+	count	16
+
+	count	16
+
+	pos	16	8	0
+	count	16
+	pos	16	-8	0
+	count	16
+
+
+	pos	0	32	0
+	count	16
+loopend
+	count	30000
+	end
+
+/*	No.20	Left eye seen from the front	*/
+	begin
+
+	pos	-100	270	800
+	vrot	128	0
+	speed	384
+	count	1
+
+	pos	0	-30	0
+	count	19
+	count	16
+	pos	0	46	0	/*	760	*/
+	count	20
+	pos	0	0	-50
+	count	16
+loopstart
+	pos	0	-40	0	/*	280	*/
+	count	16
+	count	4
+	pos	0	32	0
+	count	4
+	pos	0	-32	0
+	shot	4	1
+	count	4
+	count	4
+	pos	0	32	0
+	count	4
+	pos	0	-32	0
+	shot	4	1
+	count	4
+	count	4
+	pos	0	32	0
+	count	4
+	pos	0	-32	0
+	shot	4	1
+	count	4
+	pos	0	40	0
+	count	16
+
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+	pos	-4	0	0
+	count	16
+	pos	4	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	16
+
+	pos	16	-64	0
+	count	2
+
+	count	2
+
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+
+	pos	0	-36	0
+	count	8
+
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+	mrot	0	32	0
+	shot	1	0
+	count	8
+
+	pos	0	144	0
+	count	2
+
+	pos	-16	64	0
+	count	2
+
+	count	120
+	count	12
+
+/*	Attack 3	*/
+
+	pos	-16	8	0
+	count	16
+	pos	-16	-8	0
+	count	16
+
+	count	16
+
+	pos	16	8	0
+	count	16
+	pos	16	-8	0
+	count	16
+	pos	16	8	0
+	count	16
+	pos	16	-8	0
+	count	16
+
+	count	16
+
+	pos	-16	8	0
+	count	16
+	pos	-16	-8	0
+	count	16
+	pos	-16	8	0
+	count	16
+	pos	-16	-8	0
+	count	16
+
+	count	16
+
+	pos	16	8	0
+	count	16
+	pos	16	-8	0
+	count	16
+
+
+	pos	0	32	0
+	count	16
+loopend
+	count	30000
+	end
+
+/*	No.21	Right scissors seen from the front	*/
+	begin
+
+	pos	300	670	800
+	vrot	128	0
+	mrot	64	0	64
+	speed	384
+	count	1
+
+	pos	0	-30	0
+	count	19
+	count	16
+	pos	0	46	0
+	count	20
+	pos	0	0	-50
+	count	16
+loopstart
+	count	64
+/*	Attack 1	*/
+	pos	0	-32	0
+	count	16
+	pos	0	-12	28
+	mrot	-1	0	0
+	count	24
+	pos	0	12	-28
+	mrot	1	0	0
+	count	24
+	count	56
+	pos	0	32	0
+	count	16
+
+	pos	0	-32	0
+	count	16
+
+/*	Bubble Attack	*/
+	born	32	26	23	-1	0
+	count	32
+	born	32	26	24	-1	0
+	count	32
+	count	24
+
+/*	Attack 2	*/
+	pos	-7	-3	28
+	mrot	-1	0	0
+	count	24
+
+	count	8
+
+	pos	7	3	-28
+	mrot	1	0	0
+	count	24
+
+	pos	-7	-12	28
+	mrot	-1	0	0
+	count	24
+
+	count	8
+
+	pos	7	12	-28
+	mrot	1	0	0
+	count	24
+
+	count	12
+
+/*	Attack 3	*/
+
+/*	pos	-12	-10	38	*/
+/*	pos	12	10	-38	*/
+
+	pos	-28	-10	38
+	mrot	-2	0	0
+	count	16
+	pos	-4	10	-38
+	mrot	2	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+
+	count	4
+
+	pos	16	0	0
+	count	16
+	pos	16	0	0
+	count	16
+	pos	4	-10	38
+	mrot	-2	0	0
+	count	16
+	pos	28	10	-38
+	mrot	2	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+
+	count	4
+
+	pos	-16	0	0
+	count	16
+	pos	-16	0	0
+	count	16
+	pos	-28	-10	38
+	mrot	-2	0	0
+	count	16
+	pos	-4	10	-38
+	mrot	2	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+
+	count	4
+
+	pos	16	0	0
+	count	16
+	pos	16	0	0
+	count	16
+
+	pos	0	32	0
+	count	16
+loopend
+	count	30000
+	end
+
+/*	No.22	Left scissors seen from the front	*/
+	begin
+
+	pos	-300	670	800
+	vrot	128	0
+	mrot	64	0	-64
+	speed	384
+	count	1
+
+	pos	0	-30	0
+	count	19
+	count	16
+	pos	0	46	0
+	count	20
+	pos	0	0	-50
+	count	16
+loopstart
+	count	64
+/*	Attack 1	*/
+	pos	0	-32	0
+	count	16
+	count	56
+	pos	0	-12	28
+	mrot	-1	0	0
+	count	24
+	pos	0	12	-28
+	mrot	1	0	0
+	count	24
+	pos	0	32	0
+	count	16
+
+	pos	0	-32	0
+	count	16
+/*	Bubble Attack	*/
+
+	born	16	26	23	1	0
+	count	32
+	born	16	26	24	1	0
+	count	32
+	count	24
+
+/*	Attack 2	*/
+	pos	7	-3	28
+	mrot	-1	0	0
+	count	24
+
+	count	8
+
+	pos	-7	3	-28
+	mrot	1	0	0
+	count	24
+
+	pos	7	-12	28
+	mrot	-1	0	0
+	count	24
+
+	count	8
+
+	pos	-7	12	-28
+	mrot	1	0	0
+	count	24
+
+	count	12
+
+/*	Attack 3	*/
+
+/*	pos	12	-10	38	*/
+/*	pos	-12	10	-38	*/
+
+	pos	-16	0	0
+	count	16
+	pos	-16	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+
+	count	4
+
+	pos	28	-10	38
+	mrot	-2	0	0
+	count	16
+	pos	4	10	-38
+	mrot	2	0	0
+	count	16
+	pos	16	0	0
+	count	16
+	pos	16	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+
+	count	4
+
+	pos	-4	-10	38
+	mrot	-2	0	0
+	count	16
+	pos	-28	10	-38
+	mrot	2	0	0
+	count	16
+	pos	-16	0	0
+	count	16
+	pos	-16	0	0
+	count	16
+
+	count	4
+
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+	pos	0	-32	0
+	count	1
+	pos	0	32	0
+	count	1
+
+	count	4
+
+	pos	28	-10	38
+	mrot	-2	0	0
+	count	16
+	pos	4	10	-38
+	mrot	2	0	0
+	count	16
+
+	pos	0	32	0
+	count	16
+loopend
+	count	30000
+	end
+
+/*	No.23	Bubbles are floating up	*/
+	begin
+
+	pos	0	-256	-256
+	vrot	64	64
+	count	1
+
+	pos	-64	-680	0
+	count	1
+
+loopstart
+	vrot	-4	0
+	speed	4
+	count	16
+	vrot	4	0
+	speed	4
+	count	16
+loopend
+	count	30000
+	end
+
+
+/*	No.24	Bubbles are floating down	*/
+	begin
+
+	pos	0	-256	-256
+	vrot	-64	64
+	count	1
+
+	pos	-64	-680	0
+	count	1
+
+loopstart
+	vrot	4	0
+	speed	4
+	count	16
+	vrot	-4	0
+	speed	4
+	count	16
+loopend
+	count	30000
+	end
+
+/*	No.25	Blowing Up Flames	*/
+	begin
+
+	pos	-51	600	-1120
+	mrot	64	0	0
+	vrot	64	0
+	speed	536
+	count	1
+
+loopstart
+	mrot	0	0	16
+	speed	-8
+	born	1	5	5	1	0
+	count	4
+loopend
+	end
+
+/*	No.26	Meganejime	*/
+	begin
+
+	vrot	64	0
+	speed	512
+	count	1
+
+	pos	0	0	-24
+	speed	-32
+	count	30000
+	end

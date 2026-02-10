@@ -1,0 +1,62 @@
+.comment StarCop stage 6(Abyssian Plane)        Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+
+/ for ZmuSic.X
+
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/		FM Bass( Chopper )
+
+(t1)	t100 @31o3v12 @q2l16	 @k5 @h24 @m3 @s2 [do]
+(t1)	|:3c8_18|c8~:|c~>g8ga8
+(t1)	|:3b-_18b-_5|b-r~23:|b-~23 f_18f~fg8< [loop]
+
+
+/		Main
+
+(t2)	o2@71v9 @q1 @k10 @s3@m15@h0 r8. k-7
+(t2)	|:2c1e-1f1e1:| [do] @s3@m15@h0
+(t2)	o2@71v9 @q1 @k10 
+(t2)	|:2c1e-1f1|e1:|e2.^16  k-0
+(t2)	o4@70v11l16  @s3 @m15 @h27
+(t2)	|: c2.>g8b-8&b-1
+(t2)	   a2.f8a-8&a-1< :| r8.
+(t2)	[loop]
+
+
+(t5)	o2@71v10 @q1 k-7
+(t5)	[do]c1e-1f1e1[loop]
+
+(t6)	o2@71v10 @q1 r8 k-7
+(t6)	[do]e1>b-1a1a-1[loop]
+
+(t4)	o2v8@71 @q1 k-7
+(t4)	r1r1r1r1|:4c1:|
+(t4)	[do]v7c1[loop]
+
+(t3) @72 o0 v10l20 @s10 @m1200 @h0 @q1t100
+	r1r1r1r1 r1r1r1r1
+	[do]
+	v10 {ce_10gd~~5_10e_g~8>ba~<c~e<c>___f~10a~c __e~f_a~f__e~~~f_ad~b_}1 [loop]
+
+
+(t9)	@r1o2l16
+	|:12r1:|
+	[do]
+	c+rf+f+ >d+<rf+>d+< f+f+rf+>d+<f+a+o4e
+	[loop]
+(p)

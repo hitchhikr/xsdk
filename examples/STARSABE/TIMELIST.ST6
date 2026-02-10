@@ -1,0 +1,155 @@
+\	timelist.st6 : stage 6 time chart	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+\	You can force the end of the file with ~ \
+
+	\	time	model	motion	sign x	sign y	\
+	(	30	5	3	-1	1	)	\Small fish\
+	(	10	17	19	1	1	)	\Helmet shrimp\
+
+	(	140	5	3	1	-1	)	\Small fish\
+	(	10	17	19	-1	-1	)	\Helmet shrimp\
+
+	(	70	9	8	1	1	)	\Tateunii\
+	(	30	9	9	-1	-1	)	\Yokouni\
+	(	60	6	4	1	1	)	\Sculpture\
+
+	(	100	9	8	-1	1	)	\Tateunii\
+	(	30	9	9	1	-1	)	\Yokouni\
+	(	100	7	5	1	1	)	\Drill\
+
+	(	120	3	1	1	1	)	\Sea Snake 0\
+	(	0	4	2	1	1	)	\Jellyfish\
+	(	12	27	1	1	1	)	\Sea Snake 1\
+	(	12	27	1	1	1	)	\Sea Snake 2\
+	(	12	27	1	1	1	)	\Sea Snake 3\
+	(	12	27	1	1	1	)	\Sea Snake 4\
+	(	12	27	1	1	1	)	\Sea Snake 5\
+	(	12	27	1	1	1	)	\Sea Snake 6\
+	(	0	4	2	-1	1	)	\Jellyfish\
+
+	(	230	3	1	-1	-1	)	\Sea Snake 0\
+	(	12	27	1	-1	-1	)	\Sea Snake 1\
+	(	12	27	1	-1	-1	)	\Sea Snake 2\
+	(	12	27	1	-1	-1	)	\Sea Snake 3\
+	(	12	27	1	-1	-1	)	\Sea Snake 4\
+	(	12	27	1	-1	-1	)	\Sea Snake 5\
+	(	12	27	1	-1	-1	)	\Sea Snake 6\
+
+	(	120	18	26	1	1	)	\Beard\
+	(	16	18	26	1	1	)	\Beard\
+	(	16	18	26	1	1	)	\Beard\
+
+	(	70	3	1	1	-1	)	\Sea Snake 0\
+	(	12	27	1	1	-1	)	\Sea Snake 1\
+	(	12	27	1	1	-1	)	\Sea Snake 2\
+	(	12	27	1	1	-1	)	\Sea Snake 3\
+	(	12	27	1	1	-1	)	\Sea Snake 4\
+	(	12	27	1	1	-1	)	\Sea Snake 5\
+	(	12	27	1	1	-1	)	\Sea Snake 6\
+
+	(	10	6	4	-1	1	)	\Sculpture\
+	(	20	7	5	-1	1	)	\Drill\
+	(	100	4	2	1	1	)	\Jellyfish\
+	(	30	6	4	1	1	)	\Sculpture\
+	(	20	7	5	1	1	)	\Drill\
+
+	(	200	3	1	-1	1	)	\Sea Snake 0\
+	(	12	27	1	-1	1	)	\Sea Snake 1\
+	(	12	27	1	-1	1	)	\Sea Snake 2\
+	(	12	27	1	-1	1	)	\Sea Snake 3\
+	(	12	27	1	-1	1	)	\Sea Snake 4\
+	(	12	27	1	-1	1	)	\Sea Snake 5\
+	(	12	27	1	-1	1	)	\Sea Snake 6\
+
+	(	10	9	8	-1	-1	)	\Tateunii\
+	(	40	9	8	1	-1	)	\Tateunii\
+	(	90	9	9	-1	1	)	\Yokouni\
+	(	40	9	9	1	-1	)	\Yokouni\
+	(	120	10	10	1	1	)	\Red Uni\
+	(	80	9	9	1	1	)	\Yokouni\
+	(	0	9	9	-1	-1	)	\Yokouni\
+
+	(	170	4	2	1	1	)	\Jellyfish\
+	(	0	4	2	-1	1	)	\Jellyfish\
+	(	60	17	19	1	-1	)	\Helmet shrimp\
+	(	280	17	19	-1	1	)	\Helmet shrimp\
+
+	(	60	5	3	1	1	)	\Small fish\
+	(	30	5	3	-1	-1	)	\Small fish\
+	(	30	5	3	1	-1	)	\Small fish\
+	(	30	5	3	-1	1	)	\Small fish\
+	(	50	11	11	1	1	)	\Green flowers\
+	(	30	5	3	1	1	)	\Small fish\
+	(	30	5	3	-1	-1	)	\Small fish\
+	(	30	5	3	1	-1	)	\Small fish\
+	(	30	5	3	-1	1	)	\Small fish\
+
+	(	150	17	19	-1	-1	)	\Helmet shrimp\
+
+	(	80	15	16	1	1	)	\Egg\
+	(	120	15	16	-1	1	)	\Egg\
+	(	160	15	16	1	1	)	\Egg\
+	(	8	15	16	-1	1	)	\Egg\
+
+	(	180	17	19	1	1	)	\Helmet shrimp\
+
+	(	100	12	15	1	1	)	\Rice Fish\
+	(	15	12	13	-1	-1	)	\Outside and inside medusa\
+	(	15	13	14	-1	1	)	\Inside and outside medusa\
+	(	15	12	12	1	-1	)	\Outside, outside, medusa\
+
+	(	15	14	15	-1	1	)	\Rice Fish\
+	(	15	13	13	1	-1	)	\Outside and inside medusa\
+	(	15	12	14	1	1	)	\Inside and outside medusa\
+	(	15	12	12	-1	-1	)	\Outside, outside, medusa\
+
+	(	15	12	15	1	-1	)	\Rice Fish\
+	(	15	12	13	-1	1	)	\Outside and inside medusa\
+	(	15	12	14	-1	-1	)	\Inside and outside medusa\
+	(	15	13	12	1	1	)	\Outside, outside, medusa\
+
+	(	15	13	15	-1	-1	)	\Rice Fish\
+	(	15	14	13	1	1	)	\Outside and inside medusa\
+	(	15	12	14	1	-1	)	\Inside and outside medusa\
+	(	15	12	12	-1	1	)	\Outside, outside, medusa\
+
+
+	(	100	26	27	1	1	)	\scissors\
+	(	0	26	27	-1	1	)	\scissors\
+	(	0	25	20	1	1	)	\Frame 1\
+	(	0	25	21	1	1	)	\Frame 2\
+	(	0	25	22	1	1	)	\Frame 3\
+	(	0	25	23	1	1	)	\Frame 4\
+	(	160	24	24	1	1	)	\Baa\
+	(	0	24	25	1	1	)	\Baa\
+~
+\enemies\
+	(	0	3	1	1	1	)	\Sea Snake 0\
+	(	12	27	1	1	1	)	\Sea Snake 1\
+	(	12	27	1	1	1	)	\Sea Snake 2\
+	(	12	27	1	1	1	)	\Sea Snake 3\
+	(	12	27	1	1	1	)	\Sea Snake 4\
+	(	12	27	1	1	1	)	\Sea Snake 5\
+	(	12	27	1	1	1	)	\Sea Snake 6\
+
+	(	0	4	2	1	1	)	\Jellyfish\
+	(	0	5	3	1	1	)	\Small fish\
+	(	0	6	4	1	1	)	\Sculpture\
+	(	0	7	5	1	1	)	\Drill\
+	(	0	9	8	1	1	)	\Tateunii\
+	(	0	9	9	1	1	)	\Yokouni\
+	(	0	10	10	1	1	)	\Red Uni\
+	(	0	11	11	1	1	)	\Green flowers\
+
+	(	0	12~14	12	1	1	)	\Outside, outside, medusa\
+	(	0	12~14	13	1	1	)	\Outside and inside medusa\
+	(	0	12~14	14	1	1	)	\Inside and outside medusa\
+	(	0	12~14	15	1	1	)	\Rice Fish\
+
+	(	0	15	16	1	1	)	\Egg\
+	(	0	17	19	1	1	)	\Helmet shrimp\
+
+	(	0	18	26	1	1	)	\Beard\
+	(	16	18	26	1	1	)	\Beard\
+	(	16	18	26	1	1	)	\Beard\

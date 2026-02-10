@@ -1,0 +1,92 @@
+.comment StarCop stage 2(On the Planet)         Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+(t1)	k-1
+(t2)	k-1
+(t3)	k-1
+(t4)	k-1
+(t5)	k-1
+(t6)	k-1
+(t7)	k-1
+(t8)	k-1
+
+
+/		FM Bass(wood)
+
+(t1)	t100 @32o1v13 q5l16	 @k5 @h24 @m3 @s2 [do]
+/Intro
+(t1)|: <c>b-g<c>r b-g<c>r b-g<c>r b-(f+g)&g
+(t1)	<c>b-g<c>r b-g<c>r b-ge-8 ff+g :|
+(t1)[do]
+(t1)|:8
+(t1)	<c>b-g<c>r b-g<c>r b-g<c>r b-(f+g)&g
+(t1)	<c>b-g<c>r b-g<c>r b-ge-8 ff+g
+(t1):|
+(t1)r1[loop]
+
+/(t2)	'e-gb-1'&'e-gb-1'	'df+a1'&'df+a1'
+/(t2)	'e-gb-1'&'e-gb-1'	'f+a<c1'&'f+a<c1'
+/(t2)	'e-gb-1'&'e-gb-1'	'f+a<c1'&'f+a<c1'
+/(t2)	'gb-<d1'&'gb-<d1'	'a<ce-1'&'a<ce-1'
+/(t2)	r1 [loop]
+
+(t3)	o2@45v11 @m10 @s3 @q2
+(t3)	r1r1 r1r1
+(t3)	[do]
+	g1&g1 f+1&f+1 g1&g1 a1&a1	g1&g1 a1&a1 b-1&b-1<c1&c1r1[loop]
+
+(t4)	o2@45v11 @m10 @s3 @q2
+(t4)	r1r1 r1r1
+(t4)	[do]
+	b-1&b-1 a1&a1 b-1&b-1<c1&c1>	b-1&b-1<c1&c1 d1&d1e-1&e-1r1[loop]
+
+/	Keyboard 2
+/A
+(t5)	o4@34v14 @k8 @a28 @s,24
+(t5)	r1r1 r1r1
+(t5)	[do]
+(t5)	l8|:4 gp1rp3g4p2rp3g4.&g1 p2r8p3gp1rp3g4p2rp3g4&g1 :|
+(t5)	r1[loop]
+
+(t6)	o4@34v14 @k8 @a28 @s,24
+(t6)	r1r1 r1r1
+(t6)	[do]
+(t6)	o4@34v13 @k8 @a28 @s,24
+(t6)	l8 |:4 b-p2rp3b-4p1rp3b-4.&b-1 p1r8p3 b-p2rp3b-4p1rp3b-4&b-1 :|
+(t6)	r16.	o5@46v5l16	q6 @k-5
+(t6)	|: cp1~c_<p3cp2~c_p3>gp1~g_p3| b-p2~b-_p3 :|  b-32
+(t6)	[loop]
+
+/	Keyboard 3
+/A
+(t2)	o5@46v8l16	q6 @k5
+(t2)	r1r1 r1r1
+(t2)	[do]
+(t2)	|:4 |:8 cp1~c_<p3cp2~c_p3>gp1~g_p3b-p2~b-_p3 :| :|
+(t2)	|: cp1~c_<p3cp2~c_p3>gp1~g_p3b-p2~b-_p3 :| 
+(t2)	[loop]
+
+(t9)	o2@r1l16r1r1
+(t9)	|: c+f+f+c+>d+<f+f+f+ f+>d+<f+a+>d+<f+f+f+ :|
+	[do]
+(t9)	|:16 c+f+f+c+>d+<f+f+f+ f+>d+<f+a+>d+<f+f+f+ :|
+	r2r4r8 a+8 
+	[loop]
+(p)

@@ -1,0 +1,7 @@
+/		Enemy destruction sound
+
+(i)(m8,3000)(aFm8,8)
+
+(t8)	@o @112 @m @h0 @a @v127 o5k-2l*1 brbr|:64b64&:|b64r4r1r1@o
+
+(p)

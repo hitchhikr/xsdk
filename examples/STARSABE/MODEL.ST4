@@ -1,0 +1,478 @@
+\	model.st4 : stage 4 modeling data	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+
+	\1...metal   2...blue   3...yellow   4...red	6... blue	7...orange 8...akamura	9...mura	11...green\
+       \x	y	z	col\
+
+\Enemy No. 0 Stick Laser    3 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	1	\hit point\
+	0	\score / 100\
+
+	0	0	-32	8
+	0	0	0	8
+	0	0	32	8
+}
+
+\Enemy No. 1 Ring Laser     4 boxes\
+{
+	120	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	1	\hit point\
+	0	\score / 100\
+	
+	0	-20	0	8
+	20	0	0	8
+	0	20	0	8
+	-20	0	0	8
+}
+
+\Enemy No. 2 Lava       6 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	2	\score / 100\
+	
+	0	0	32	7
+	
+	-32	-32	0	4
+	32	-32	0	4
+	32	32	0	4
+	-32	32	0	4
+	
+	0	0	-32	7
+}
+
+\Enemy No. 3 Icicle (Long)  11 boxes\
+{
+	160	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	3	\hit point\
+	3	\score / 100\
+	
+	0	0	320	7
+
+	-5	0	256	7
+	5	0	256	7
+
+	-11	0	192	7
+	11	0	192	7
+
+	-17	0	128	7
+	17	0	128	7
+
+	-24	0	64	7
+	24	0	64	7
+
+	-32	0	0	7
+	32	0	0	7
+}
+
+\Enemy No. 4 Icicle (Short)     5 boxes\
+{
+	150	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+	
+	0	0	128	7
+
+	-8	0	64	7
+	8	0	64	7
+
+	-16	0	0	7
+	16	0	0	7
+}
+
+\Enemy No. 5 Fire   4 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	-32	0	0	4
+	0	-32	-80	4
+	32	0	0	4
+	0	32	-80	4
+}
+
+\Enemy No. 6 Bat    19 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	3	\hit point\
+	4	\score / 100\
+\torso\
+	0	0	-96	2
+	0	2	-64	2
+	0	5	-32	2
+	0	9	0	2
+\head\
+	0	-36	8	1
+	0	-16	24	1
+	0	0	48	1
+\Right wing\
+	-28	-20	-16	9
+	-64	-44	-16	9
+	-92	-68	-16	9
+
+	-32	-16	-40	9
+	-64	-36	-40	9
+
+	-36	-12	-64	9
+\left wing\
+	28	-20	-16	9
+	64	-44	-16	9
+	92	-68	-16	9
+
+	32	-16	-40	9
+	64	-36	-40	9
+
+	36	-12	-64	9
+}
+
+\Enemy No. 7 Tenagaan   15 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+\hand\
+	-80	0	0	3
+	80	0	0	3
+
+	-76	64	0	11
+	76	64	0	11
+
+	-72	128	0	11
+	72	128	0	11
+
+	-44	184	0	11
+	44	184	0	11
+\eye\
+	-20	160	0	4
+	20	160	0	4
+	
+	-40	224	0	2
+	40	224	0	2
+	
+	-48	256	0	2
+	48	256	0	2
+
+	-20	288	0	2
+	20	288	0	2
+}
+
+\Enemy No. 8 Rock       6 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	-32	0	0	7
+	32	0	0	7
+	0	32	0	7
+	0	-32	0	7
+	0	0	32	7
+	0	0	-32	7
+}
+
+\Enemy No. 9 Spider     18 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	4	\score / 100\
+
+\body\
+	0	48	0	3
+
+	-18	16	8	11
+	18	16	8	11
+
+	-18	-16	8	11
+	18	-16	8	11
+
+	0	-56	0	11
+\feet\
+	-48	18	0	9
+	-72	36	-4	9
+	-88	24	-12	9
+
+	48	18	0	9
+	72	36	-4	9
+	88	24	-12	9
+
+
+	-48	-16	0	9
+	-64	-36	-4	9
+	-72	-60	-8	9
+
+	48	-16	0	9
+	64	-36	-4	9
+	72	-60	-8	9
+}
+
+\Enemy No. 10 Spider's Thread   3 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	0	-128	0	1
+	0	-64	0	1
+	0	0	0	1
+}
+\Enemy No. 11 Rock-spitting Utsuboon    32 boxes\
+{
+	80	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	5	\score / 100\
+
+	0	-64	80	4
+	-64	0	80	4
+	0	64	80	4
+	64	0	80	4
+
+	-64	-64	0	11
+	-64	64	0	11
+	64	-64	0	11
+	64	64	0	11
+
+	0	-64	-80	11
+	-64	0	-80	11
+	0	64	-80	11
+	64	0	-80	11
+
+	-64	-64	-160	11
+	-64	64	-160	11
+	64	-64	-160	11
+	64	64	-160	11
+
+	0	-64	-240	11
+	-64	0	-240	11
+	0	64	-240	11
+	64	0	-240	11
+
+	-64	-64	-320	11
+	-64	64	-320	11
+	64	-64	-320	11
+	64	64	-320	11
+
+	0	-64	-400	11
+	-64	0	-400	11
+	0	64	-400	11
+	64	0	-400	11
+
+	-64	-64	-480	11
+	-64	64	-480	11
+	64	-64	-480	11
+	64	64	-480	11
+}
+\Enemy No. 12 Fire Bird     23 boxes\
+{
+	110	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+\torso\
+	0	0	-116	4
+	0	0	-84	7
+	0	0	-56	7
+	0	0	-32	7
+\head\
+	0	0	0	3
+	0	-24	0	3
+	0	0	32	3
+\feather\
+	-32	0	-32	4
+	-56	-8	-24	4
+	-84	-20	-8	4
+
+	-30	0	-64	4
+	-54	-4	-62	4
+	-82	-10	-58	4
+
+	-28	0	-104	4
+	-48	0	-128	4
+\feather\
+	32	0	-32	4
+	56	-8	-24	4
+	84	-20	-8	4
+
+	30	0	-64	4
+	54	-4	-62	4
+	82	-10	-58	4
+
+	28	0	-104	4
+	48	0	-128	4
+}
+
+\Enemy No. 13 Beyond the Flame  8 boxes\
+{
+	150	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+
+	24	24	48	3
+	24	-24	48	3
+	-24	24	48	3
+	-24	-24	48	3
+
+	-32	0	0	7
+	0	-32	0	7
+	32	0	0	7
+	0	32	0	7
+}
+\Enemy No. 14 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 15 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 16 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 17 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 18 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 19 dummy 0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 20 dummy 0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 21 dummy 0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 22 dummy 0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 23 dummy 0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+
+\Enemy No. 24 Boss "Dorakun" Eye    15 boxes\
+{
+	72	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	80	\score / 100\
+\round eye\
+	0	-90	0	6
+	-78	-45	0	6
+	-78	45	0	6
+	0	90	0	6
+	78	45	0	6
+	78	-45	0	6
+\eye\
+	0	0	0	3
+\stick\
+	0	200	0	2
+	0	320	0	2
+	0	440	0	2
+	0	560	0	2
+	0	680	0	2
+	0	800	0	2
+	0	920	0	2
+	0	1040	0	2
+}
+
+\Enemy No. 25 Boss "Dorakun" Scissors   23 boxes\
+{
+	88	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	0	\score / 100\
+\big\
+	30	0	600	4
+	-50	0	600	4
+	-90	-60	670	4
+	-10	-160	850	4
+	60	-60	670	4
+	-10	-130	610	4
+	-10	-180	900	4
+	-10	-180	800	4
+	50	-120	770	4
+	-80	-120	770	4
+	-10	-190	660	4
+\small\
+	-20	60	630	7
+	-20	100	750	7
+	-20	110	680	7
+	-50	60	690	7
+	20	60	690	7
+\stick\
+	-20	10	500	4
+	-20	20	400	4
+	-20	30	300	4
+	-20	40	200	4
+	-20	50	100	4
+	-20	60	0	4
+	-20	70	-100	4
+}
+
+\Enemy No. 26 Bubbles   16 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	0	\score / 100\
+
+	144	0	0	1
+	101	101	0	1
+	0	144	0	1
+	-101	101	0	1
+	-144	0	0	1
+	-101	-101	0	1
+	0	-144	0	1
+	101	-101	0	1
+}
+
+\Enemy No. 27 Boss "Dorakun" Eyes   15 boxes\
+{
+	72	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	0	\score / 100\
+\round eye\
+	0	-90	0	6
+	-78	-45	0	6
+	-78	45	0	6
+	0	90	0	6
+	78	45	0	6
+	78	-45	0	6
+\eye\
+	0	0	0	3
+\stick\
+	0	200	0	2
+	0	320	0	2
+	0	440	0	2
+	0	560	0	2
+	0	680	0	2
+	0	800	0	2
+	0	920	0	2
+	0	1040	0	2
+}

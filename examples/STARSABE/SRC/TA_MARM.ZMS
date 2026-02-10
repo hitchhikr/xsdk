@@ -1,0 +1,67 @@
+.comment StarCop FINAL Boss(taÅEmarm)           Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)
+(o100)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/----------------------------------------------------------
+
+/		FM Bass(Elec.Bass)
+(t1)	t110 @95 o3 v11 q8 L16 @k5 @m @a r2.r1r1	[do]
+	ddcd[loop]
+
+/		Melody
+(t2)	@96v12l16 @r1 @s3@m10 @h24  @a
+(t2)	t110	a<cge->b<g+gc+fb-c<c+ t100@r0 d1&d2..&(d8>>d)
+(t2)	@97v12 [do] |: @s3@m14 @h24
+(t2)	|:3 o4  (ga)&a8d8.&d8 &d4. cd	|	ec8>a8.r8<r2 :|
+(t2)		ec8>a8.r8r4r <def
+(t2)	e8.g8.<c8> b8.e8.b-8 a8.d8.g+8 g8.d8.f8
+	@s4 @m35 @h48 e1&@m75e2&@m100e2 :| r1r1
+(t2)	[loop]
+
+(t3)	@96v 9l16 r16. @k10 @r1 @m @a
+(t3)	t110	a<cge->b<g+gc+fb-c<c+ t100 @r0 d1&d2..&(d8>>d)
+(t3)	@97 [do]|:@m v10
+(t3)	|:3 o4  (ga)&a8d8.&d8 &d4. cd	|	ec8>a8.r8<r2 :|
+(t3)		ec8>a8.r4r16.v12gab-
+(t3)	a8.<c8.f8 e8.>b8.<e-8 d8.>a8.<c+8 c8.>g8.b-8
+	@s4 @m35 @h48 a1&@m75a2&@m100a2r16. :|r1r1
+(t3)	[loop]
+
+/		Keyboard
+(t4)	@96v12l16@q1 @r1  @s3@m10 @h24 @a
+(t4)	k-5	a<cge->b<g+gc+fb-c<c+@r0 d1&d2..&(d8>>d) k0@k5@m
+(t4)	o4@33v11	[do]a8ra8ra8 g8rg8rg8	[loop]
+(t4)	'a<cf8'r'a<cf8'r'a<cf8'		'gb<e8'r'gb<e8'r'gb<e8'
+
+(t5)	@96v 9l16r16. @k10 @q1 @r1 @m@a
+(t5)	k-5	a<cge->b<g+gc+fb-c<c+d1&d2..r32 @r0 k0@k5
+(t5)	o4@33v11	[do]<c8p2rp3c8p1rp3c8>b8p2rp3b8p1rp3b8	[loop]
+
+(t6)	@96v8@k-5l16arrrbrrr<frrr>r1r1 l16 @m @a
+(t6)	o4@33v11	[do]<f8p1rp3f8p2rp3f8 e8p1rp3e8p2rp3e8	[loop]
+
+/		Drums
+(t9)	@r1 o2 l16
+	r2.r1l8ccccl16c+f+c+f+c+f+@f2d+8@f4
+	[do]
+	|: c+f+d+f+ c+f+d+f+ c+f+d+f+ c+f+|d+f+ :|d+>d<
+	|: c+f+d+f+ c+f+d+f+ c+f+d+f+ c+|f+d+f+ :|>d+<d+>d<
+	[loop]
+
+(p)

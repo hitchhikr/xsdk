@@ -1,0 +1,133 @@
+.comment StarCop stage 1(Cop Startup)           Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)
+(o100)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/----------------------------------------------------------
+/		FM Bass( Chooper )
+
+(t1)	t100 @31o2v13 @q2l16	 @k5 @h24 @m3 @s2 [do]
+/Intro
+(t1)	|:o2 arra8.a8<	drrd8c8.>	grrg8.g8	<crrc8>b8.
+(t1)	  arra8.a8<		drrd8c8.>	grrg8.g8	| <erre8d>be:|
+(t1)	o3ere8.d>be<
+/A
+(t1)	o3crrc8.rr	crrc8.rr	crrc8.rr	crrc8.rr
+(t1)	crrc8.rr	>grrg8.rr<	crrc8.rr	>brr<e8 q8d>be< @q2
+(t1)	crrc8.rr	crrc8.rr	crrc8.rr	crrc8.rr
+(t1)	crrc8.rr	>grrg8.rr<	crrc8.rr	err>b8.e8
+/B
+(t1)	|:o2 ara8.a8.<	drd8.d8.>	grg8.g8.	<crc8.c8.
+(t1)	crc8.c8.	drd8.d8.>	grg8.g8.	<ere8.e8. :|
+(t1)	[loop]
+
+/		Organ & Piano
+/Intro
+/(t2)	@40 o5l16@q1v9[do]
+/(t2)	 '>g<ce2''>f+<ce2''>f<ce2''>e<ce2'
+/(t2)	   '>g<ce2''>f+<ce2''>f<ce2' '>eb<d2'  @33 v10
+/(t2)	|: '>g<ce8''>g<ce8'r'>g<ce8'r '>f+<ce8''>f+<ce8'r'>f+<ce8'r
+/(t2)	   '>f<ce8''>f<ce8'r'>f<ce8'r | '>e<ce8''>e<ce8'r'>e <ce8'r :|
+/(t2)	'>eb<d8''>eb<d8.'r8.
+/A
+/(t2)	|:'ce>g8''ce>g8'r'ce>g8'r	'ce>g8''ce>g8'r'ce>g8'r
+/(t2)	  '>a<df+8''>a<df+8'r'>a<df+8'r	'>a<df+8''>a<df+8'r'>a<df+8'r
+/(t2)	  '>a<df8''>a<df8'r'>a<df8'r	'>a<df8''>a<df8'r'>a<df8'r
+/(t2)	  '>g<ce8''>g<ce8'r'>g<ce8'r	'>g+b<e8'r'>g+b<d8'r '>g+b8<':|
+/B
+/(t2)	@29o5 v9
+/(t2)	|:'>g<ce2''>f+<ce2''>f<ce2''>e<ce2''>g<ce2''>f+<ce2''>f<ce2''>eb<d2':|
+/(t2)	[loop]
+
+(t2)	@40o5l16 @q1v9 @m10 @s3[do]
+	e2e2e2e2 e2e2e2d2 @33 v10
+	|:7 e8e8p1rp3e8p2rp3 :|d8d8.r8.
+/A
+	|:|: e8e8p1rp3e8p2rp3 :||: f+8f+8p1rp3f+8p2rp3:|
+	  |: f8f8p1rp3f8p2rp3 :| e8e8p1rp3e8p2rp3  e8p1rp3d8p1rr8p3 :|
+	@40o5v9	|:|:7e2:|d2:|[loop]
+
+(t3)	@40o5l16 @q1v9 @m10 @s3[do]
+	c2c2c2c2 c2c2c2>b2< @33 v10
+	|:7 c8c8p2rp3c8p1rp3 :|>b8b8.r8.<
+/A
+	|:|:c8c8p2rp3c8p1rp3:| |:d8d8p2rp3d8p1rp3:|
+	  |:d8d8p2rp3d8p1rp3:| c8c8p2rp3c8p1rp3 >b8p2rp3b8p1rp3b8<:|
+	@40o5v9	|:|:7c2:|>b2<:|[loop]
+
+(t4)	@40o4l16 @q1v9 @m10 @s3[do]
+	g2f+2f2e2 g2f+2f2e2 @33 v10
+	|:  g8g8p3rp3g8p3rp3 k-1g8g8p3rp3g8p3rp3 
+	k-2 g8g8p3rp3g8p3rp3|k-3g8g8p3rp3g8p3rp3 :|k0 e8e8.r8.
+	|:|:g8g8p3rp3g8p3rp3:| |:a8a8p3rp3a8p3rp3:|
+	  |:a8a8p3rp3a8p3rp3:| g8g8p3rp3g8p3rp3 g+8p3rp3g+8p3rp3g+8<:|
+	@40o4v9 |:4g2f+2f2e2:|[loop]
+
+/		Organ & Main
+(t5)	@40 o5l16@q1@k10
+/Intro
+	p1v6 r16.c2c2c2c2[do]	|: c2c2c2| >b4.<r32 p3v9c2c2 c2c2 :|r4r
+(t5)	@41 o4v14 @s3,80 @m15 @h13,0 @a @c3 
+	g<ce&
+	e4&e>g<cfrerdecre	d8e>a&a2	a<def&
+	f4&f>a<cgrfrefdrf	fede&e2	r>g<ce&
+	e4&e>g<cfrerdecre	d8e>a&a2	a<def&
+	f4&f>a<cgrfrefdrf	fede&e2.
+/B
+	e1d2c2	e1redcdcdce8ge8d8c
+	e1d2c2	e1redcdcdce8ge8d8c& c1&c1 r16. 
+	@40 o6l16@q1@k10v6 @a p1
+	[loop]
+
+/		Organ & Main
+(t6)	@40 o5l16@q1@k10
+/Intro
+	p2v6 r16.e2e2e2e2 [do] |:e2e2e2 |d4.r32p3v9e2e2 e2e2:|r4rr16.
+	@41 o4v11 @k0 @s3,80 @m15 @h13,0 @a @c3 
+	g<ce&
+	e4&e>g<cfrerdecre	d8e>a&a2	a<def&
+	f4&f>a<cgrfrefdrf	fede&e2	r>g<ce&
+	e4&e>g<cfrerdecre	d8e>a&a2	a<def&
+	f4&f>a<cgrfrefdrf	fede&e2.
+/B
+	e1d2c2	e1redcdcdce8ge8d8c
+	e1d2c2	e1redcdcdce8ge8d8c& c1&c1 
+	@40 o6l16@q1@k10v6 @a p2
+	[loop]
+
+
+(t9)	o2l16 @r1
+//	|:4 c+f+f+c+f+c+e f+ c+f+f+c+f+c+d+f+:|
+//	|:6 c+f+f+c+f+c+d+f+ :|
+//	c+f+d+f+c+f+d+c+ d+f+d+f+ <dc>bg
+//	|:15c+f+f+c+f+c+d+f+ :|c+f+d+c+f+c+d+d+
+//	|:16 c+f+a+8d+f+a+>d< :|
+ [do]
+/intro
+/	|:7 c+f+d+f+c+f+d+c+ f+c+d+f+c+c+d+a+:|
+	|:7 c+f+d+f+c+c+d+f+ c+f+d+c+f+c+d+a+:|
+	c+f+d+f+c+f+d+c+ d+c+@f3d+8@f4 <p1dp3c>bp2gp3
+/a
+	|:4 c+f+d+f+c+c+d+f+ c+f+d+c+f+c+|d+a+:|d+d+
+	|:4 c+f+d+f+c+c+d+f+ c+f+d+c+|f+c+d+a+:|d+>ed+d<
+/b
+	|:16 c+f+a+8d+>e<a+>d< :|
+	[loop]
+
+(p)

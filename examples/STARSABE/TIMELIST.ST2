@@ -1,0 +1,106 @@
+\	timelist.st2 : stage 2 time chart	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+\	You can force the end of the file with ~	\
+
+	\	time	model	motion	sign x	sign y	\
+	(	20	11	2	1	1	)	\Straight pillar\
+	(	30	11	6	1	1	)	\Curved pillar\
+	(	30	11	2	-1	1	)	\Straight pillar\
+
+	(	90	3	9	-1	1	)	\Tekuto-kun\
+
+	(	70	11	2	-1	1	)	\Straight pillar\
+	(	30	11	6	-1	1	)	\Curved pillar\
+	(	30	11	2	1	1	)	\Straight pillar\
+
+	(	110	3	3	-1	1	)	\Gutsy Frog\
+
+	(	100	7	8	1	1	)	\Spawning Bullets\
+	(	0	7	8	-1	1	)	\Spawning Bullets\
+
+	(	100	4	4	1	1	)	\Horizontal Tank I\
+	(	0	5	5	1	1	)	\Horizontal Tank II\
+
+	(	210	3	3	-1	1	)	\Gutsy Frog\
+	(	10	11	2	1	1	)	\Straight pillar\
+
+	(	140	7	8	-1	1	)	\Spawning Bullets\
+	(	0	3	3	1	1	)	\Gutsy Frog\
+	(	10	11	2	-1	1	)	\Straight pillar\
+
+	(	60	4	10	-1	1	)	\Rear Tank I\
+	(	0	5	11	-1	1	)	\Rear Tank II\
+
+	(	270	11	6	1	1	)	\Curved pillar\
+	(	20	3	9	1	1	)	\Tekuto-kun\
+	(	90	7	8	-1	1	)	\Spawning Bullets\
+	(	20	11	6	-1	1	)	\Curved pillar\
+	(	20	3	9	-1	1	)	\Tekuto-kun\
+
+	(	80	11	6	1	1	)	\Curved pillar\
+	(	30	7	8	1	1	)	\Spawning Bullets\
+	(	40	11	2	1	1	)	\Straight pillar\
+	(	0	11	2	-1	1	)	\Straight pillar\
+	(	40	7	8	-1	1	)	\Spawning Bullets\
+	(	30	11	6	-1	1	)	\Curved pillar\
+
+
+	(	120	6	7	-1	1	)	\Artillery battery\
+	(	80	4	4	-1	1	)	\Horizontal Tank I\
+	(	0	5	5	-1	1	)	\Horizontal Tank II\
+	(	0	8	17	1	1	)	\Bomber wing\
+	(	0	9	18	1	1	)	\Bomber propera\
+
+	(	160	6	7	1	1	)	\Artillery battery\
+	(	10	4	10	1	1	)	\Rear Tank I\
+	(	0	5	11	1	1	)	\Rear Tank II\
+	(	20	8	17	-1	1	)	\Bomber wing\
+	(	0	9	18	-1	1	)	\Bomber propera\
+
+	(	240	6	7	1	1	)	\Artillery battery\
+	(	70	3	3	1	1	)	\Gutsy Frog\
+	(	10	3	3	-1	1	)	\Gutsy Frog\
+	(	140	3	9	-1	1	)	\Tekuto-kun\
+	(	10	3	9	1	1	)	\Tekuto-kun\
+	(	80	6	7	-1	1	)	\Artillery battery\
+	(	70	3	3	1	1	)	\Gutsy Frog\
+	(	50	3	9	1	1	)	\Tekuto-kun\
+	(	120	3	3	-1	1	)	\Gutsy Frog\
+	(	50	3	9	-1	1	)	\Tekuto-kun\
+
+	(	80	6	7	-1	1	)	\Artillery battery\
+	(	30	4	10	1	1	)	\Rear Tank I\
+	(	0	5	11	1	1	)	\Rear Tank II\
+	(	80	4	10	-1	1	)	\Rear Tank I\
+	(	0	5	11	-1	1	)	\Rear Tank II\
+
+	(	140	8	17	1	1	)	\Bomber wing\
+	(	0	9	18	1	1	)	\Bomber propera\
+	(	5	8	17	-1	1	)	\Bomber wing\
+	(	0	9	18	-1	1	)	\Bomber propera\
+
+	(	220	4	4	1	1	)	\Horizontal Tank I\
+	(	0	5	5	1	1	)	\Horizontal Tank II\
+	(	0	4	4	-1	1	)	\Horizontal Tank I\
+	(	0	5	5	-1	1	)	\Horizontal Tank II\
+	(	210	6	7	1	1	)	\Artillery battery\
+	(	0	6	7	-1	1	)	\Artillery battery\
+\Boss\
+	(	210	24	12	1	1	)
+	(	0	25	13	1	1	)
+	(	0	25	14	1	1	)
+~
+\enemies\
+	(	0	11	2	1	1	)	\Straight pillar\
+	(	0	11	6	1	1	)	\Curved pillar\
+	(	0	7	8	1	1	)	\Spawning Bullets\
+	(	0	3	3	1	1	)	\Gutsy Frog\
+	(	0	3	9	1	1	)	\Tekuto-kun\
+	(	0	4	4	1	1	)	\Horizontal Tank I\
+	(	0	5	5	1	1	)	\Horizontal Tank II\
+	(	0	4	10	1	1	)	\Rear Tank I\
+	(	0	5	11	1	1	)	\Rear Tank II\
+	(	0	6	7	1	1	)	\Artillery battery\
+	(	0	8	17	1	1	)	\Bomber wing\
+	(	0	9	18	1	1	)	\Bomber propera\

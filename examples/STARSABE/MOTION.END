@@ -1,0 +1,197 @@
+/*	motion.end : ending motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0	*/
+	begin
+
+	pos	1320	0	256
+	mrot	0	64	0
+	vrot	-12	0
+	count	1
+
+/*	straight	*/
+	pos	-4	0	0
+	count	256
+
+/*	no.1	*/
+
+	pos	-1	0	0
+	vrot	2	0
+	count	12
+
+	speed	2
+	pos	-2	0	0
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	-2
+	pos	-1	0	0
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	2
+	pos	-1	0	0
+	count	20
+
+
+	pos	-1	0	0
+	vrot	-2	0
+	count	12
+
+	speed	2
+	pos	-1	0	0
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	-2
+	pos	-1	0	0
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	2
+	pos	-1	0	0
+	count	20
+
+/*	no.2	*/
+
+	pos	-1	0	0
+	vrot	2	0
+	count	12
+
+	speed	2
+	pos	-2	0	0
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	-2
+	pos	-1	0	0
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	2
+	pos	-1	0	0
+	count	20
+
+
+	pos	-1	0	0
+	vrot	-2	0
+	count	12
+
+	speed	2
+	pos	-1	0	0
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	-2
+	pos	-1	0	0
+	count	20
+
+	speed	-11
+	pos	-1	0	0
+	mrot	0	0	-1
+	count	20
+
+	speed	10
+	pos	-1	0	0
+	mrot	0	0	1
+	count	20
+
+	speed	2
+	pos	-1	0	0
+	count	20
+
+	vrot	12	64
+	count	1
+
+	speed	16
+	count	30000
+	end
+
+
+/*	No.1	*/
+	begin
+
+	pos	-1200	-128	128
+	mrot	14	-80	0
+	vrot	14	-80
+	speed	512
+	count	1
+
+	count	30000
+	end

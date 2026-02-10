@@ -1,0 +1,143 @@
+\	timelist.st7 : stage 7 time chart	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+\	You can force the end of the file with ~	\
+
+	\	time	model	motion	sign x	sign y	\
+	(	30	2	1	1	1	)	\hasila_101\
+	(	20	2	2	-1	-1	)	\hasila_102\
+	(	20	2	1	1	-1	)	\hasila_101\
+	(	20	2	2	-1	1	)	\hasila_102\
+	(	20	2	2	1	1	)	\hasila_102\
+	(	20	2	1	-1	-1	)	\hasila_101\
+	(	0	4	5	1	1	)	\Ninja_201\
+	(	20	2	2	1	-1	)	\hasila_102\
+	(	20	2	1	-1	1	)	\hasila_101\
+
+	(	50	2	1	1	-1	)	\hasila_101\
+	(	0	2	1	-1	-1	)	\hasila_101\
+	(	30	2	2	1	1	)	\hasila_102\
+	(	0	2	2	-1	1	)	\hasila_102\
+	(	30	2	1	1	1	)	\hasila_101\
+	(	0	2	1	-1	1	)	\hasila_101\
+	(	0	4	5	-1	1	)	\Ninja_201\
+	(	30	2	2	1	-1	)	\hasila_102\
+	(	0	2	2	-1	-1	)	\hasila_102\
+
+	(	50	2	1	1	1	)	\hasila_101\
+	(	0	2	1	-1	1	)	\hasila_101\
+	(	0	2	2	1	-1	)	\hasila_102\
+	(	0	2	2	-1	-1	)	\hasila_102\
+	(	50	2	1	1	-1	)	\hasila_101\
+	(	0	2	1	-1	-1	)	\hasila_101\
+	(	0	2	2	1	1	)	\hasila_102\
+	(	0	2	2	-1	1	)	\hasila_102\
+	(	0	4	6	1	1	)	\Ninja_223\
+
+	(	50	2	2	1	1	)	\hasila_102\
+	(	0	2	2	-1	1	)	\hasila_102\
+	(	0	2	2	1	-1	)	\hasila_102\
+	(	0	2	2	-1	-1	)	\hasila_102\
+	(	20	2	1	1	1	)	\hasila_101\
+	(	0	2	1	-1	1	)	\hasila_101\
+	(	0	2	1	1	-1	)	\hasila_101\
+	(	0	2	1	-1	-1	)	\hasila_101\
+
+	(	50	2	2	1	1	)	\hasila_102\
+	(	0	2	2	-1	1	)	\hasila_102\
+	(	0	2	2	1	-1	)	\hasila_102\
+	(	0	2	2	-1	-1	)	\hasila_102\
+	(	0	2	1	-1	1	)	\hasila_101\
+	(	0	2	1	1	-1	)	\hasila_101\
+	(	0	2	1	-1	-1	)	\hasila_101\
+
+	(	50	2	2	1	1	)	\hasila_102\
+	(	0	2	2	-1	1	)	\hasila_102\
+	(	0	2	2	1	-1	)	\hasila_102\
+	(	0	2	2	-1	-1	)	\hasila_102\
+	(	0	2	1	1	1	)	\hasila_101\
+	(	0	2	1	-1	1	)	\hasila_101\
+	(	0	2	1	1	-1	)	\hasila_101\
+
+	(	90	6	8	1	1	)	\Kunoichi_400\
+	(	70	6	9	-1	1	)	\Kunoichi_411\
+
+	(	80	6	9	1	1	)	\Kunoichi_411\
+	(	60	6	8	-1	1	)	\Kunoichi_400\
+
+	(	120	6	8	1	1	)	\Kunoichi_400\
+	(	0	6	8	-1	1	)	\Kunoichi_400\
+	(	0	6	9	1	1	)	\Kunoichi_411\
+	(	0	6	9	-1	1	)	\Kunoichi_411\
+
+	(	150	5	7	1	1	)	\GUNner_301\
+	(	40	5	7	1	-1	)	\GUNner_301\
+	(	40	5	7	-1	-1	)	\GUNner_301\
+	(	40	5	7	-1	1	)	\GUNner_301\
+
+	(	50	5	7	-1	-1	)	\GUNner_301\
+	(	0	5	7	1	1	)	\GUNner_301\
+
+	(	50	5	7	-1	1	)	\GUNner_301\
+	(	0	5	7	1	-1	)	\GUNner_301\
+
+	(	60	5	7	1	1	)	\GUNner_301\
+	(	0	5	7	1	-1	)	\GUNner_301\
+	(	0	5	7	-1	-1	)	\GUNner_301\
+	(	0	5	7	-1	1	)	\GUNner_301\
+
+	(	90	4	5	1	1	)	\Ninja_201\
+	(	25	4	6	1	1	)	\Ninja_223\
+	(	25	4	5	-1	1	)	\Ninja_201\
+	(	25	4	6	-1	1	)	\Ninja_223\
+
+	(	80	5	7	1	1	)	\GUNner_301\
+	(	0	5	7	-1	1	)	\GUNner_301\
+	(	0	4	5	1	1	)	\Ninja_201\
+
+	(	60	5	7	1	-1	)	\GUNner_301\
+	(	0	5	7	-1	-1	)	\GUNner_301\
+	(	0	4	6	1	1	)	\Ninja_223\
+
+	(	100	3	3	1	1	)	\hasila_131\
+	(	20	3	4	-1	-1	)	\hasila_132\
+	(	20	3	3	1	-1	)	\hasila_131\
+	(	20	3	4	-1	1	)	\hasila_132\
+	(	20	3	4	1	1	)	\hasila_132\
+	(	20	3	3	-1	-1	)	\hasila_131\
+	(	20	3	4	1	-1	)	\hasila_132\
+	(	20	3	3	-1	1	)	\hasila_131\
+
+	(	50	3	3	1	-1	)	\hasila_131\
+	(	0	3	3	-1	-1	)	\hasila_131\
+	(	30	3	4	1	1	)	\hasila_132\
+	(	0	3	4	-1	1	)	\hasila_132\
+	(	30	3	3	1	1	)	\hasila_131\
+	(	0	3	3	-1	1	)	\hasila_131\
+	(	30	3	4	1	-1	)	\hasila_132\
+	(	0	3	4	-1	-1	)	\hasila_132\
+
+	(	50	2	2	1	1	)	\hasila_102\
+	(	0	2	2	-1	1	)	\hasila_102\
+	(	0	2	2	1	-1	)	\hasila_102\
+	(	0	2	2	-1	-1	)	\hasila_102\
+	(	0	2	1	1	1	)	\hasila_101\
+	(	0	2	1	-1	1	)	\hasila_101\
+	(	0	2	1	1	-1	)	\hasila_101\
+	(	0	2	1	-1	-1	)	\hasila_101\
+
+	(	130	24	10	1	1	)	\Boss "Taaaan" II\
+~
+\enemies\
+	(	0	2	1	1	1	)	\hasila_101\
+	(	0	2	2	1	1	)	\hasila_102\
+	(	0	3	3	1	1	)	\hasila_131\
+	(	0	3	4	1	1	)	\hasila_132\
+
+	(	0	4	5	1	1	)	\Ninja_201\
+	(	0	4	6	1	1	)	\Ninja_223\
+
+	(	0	6	8	1	1	)	\Kunoichi_400\
+	(	0	6	9	1	1	)	\Kunoichi_411\
+
+	(	0	5	7	1	1	)	\GUNner_301\

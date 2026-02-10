@@ -1,0 +1,78 @@
+.comment StarCop Boss 1(Thu-Bo)                 Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+/ for ZmuSic.X
+
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/		FM Bass( Chopper )
+
+(t1)	t100 @30o2v12q8l16	 @k5 @h24 @m3 @s2~1	[do]
+(t1)o2	arrarra4.reg8	arrarra4.r<dc8>	arrarra4.r<c>g8
+(t1)	arrarra8.@q2<agedc>agq8
+(t1)o2	arrarra4.ra<c8>	arrarra4.ra<d+8>	arrarra4.r<ed+8>
+(t1)	arrarra8.@q2dega<d>(b 8 <c)q8
+
+(t1)o2	arrarra4.reg8	arrarra4.r<dc8>	arrarra4.r<c>g8
+(t1)	arrarra8.@q2<agedc>agq8
+(t1)o2	arrarra4.ra<c8>	arrarra4.ra<d+8>
+(t1)	arrg+rrgrrf+rrfrer
+(t1)	arrg+rrgrrf+rrfrer [loop]
+
+
+/	Melody
+/A
+(t2)	o4@90l16v11	@h27 @m20 @s3 @q8[do]
+(t2)	|:
+(t2)	  (d+ 2e)&e4. dc	de8>a4^	&a4rega
+(t2)	  <dcrrrrrrrd+dcdc>ag	dega<dcrrr>a<c>agaeg<	|
+(t2)	  (d+ 2e)&e4. dc	de8.rrrr rrrr r	>ega
+(t2)	  <dcrrrrrrrd+dcdc>ag	dega<dcrrr>a<c>agaeg<	:|
+(t2)	(d+ 2e)&e4. dc	ef8.rrrr rrrr r	fgg+
+/(t2)	acegcef+cefced+>ab<d+	acegcef+cefced+>ab<d+
+(t2)	|: ace g>b-<d f+>a<c+ f>a-<c	e>gf+<e- :| [loop]
+
+(t3)	o4@90l16v9	@h27 @m20 @s3@q8@k8r16.[do]
+(t3)|:	  (d+ 2e)&e4. dc	de8>a4^	&a4rega
+(t3)	  <dcrrrrrrrd+dcdc>ag	dega<dcrrr>a<c>agae32<	|
+(t3)	v11(f+ 2g)&g4.f+e	f+g8. rrrr rrrr r	
+	v9r16. >ega <dcrrrrrrrd+dcdc>ag	dega<dcrrr>a<c>agaeg<	:|
+/	<edc>
+/(t3)	agrrrrrrrgf+ef+ec>b	egb<cgf+rrr v9r16. >a<c>agaeg<	:| 
+(t3)	v11(f+ 2g)&g4. f+e	aa+8.rrrr rrrr r r16.v9 fgg+
+(t3)	|: ace g>b-<d f+>a<c+ f>a-<c	e>gf+<e- :| [loop]
+
+/	Keyboard
+/A
+(t4)	o2@91v9 @k0	@h17,0 @m20 @s6,3@a-5 @q2
+	[do] l1 |:cd>b<c cd| >b<c :| l8 c+.c.>b.b-.ar <e.e-.d.d-.c>b [loop]
+(t5)	o2@91v9 @k0	@h17,0 @m20 @s6,3@a5 @q2
+	[do] l1 |:efdg ga-| dg :| l8 e.e-.d.d-.cr a.a-.g.g-.fe [loop]
+(t6)	o2@91v9 @k0	@h17,0 @m20 @s6,3@a-5 @q2
+	[do] l1 |:ab-g+a ab-| g+a:| l8 a.a-.g.g-.fr <c.>b.b-.a.a-g[loop]
+
+/t4)	|: 'ace1'  'b-df1'   '>b<dg+1' 'gace1'
+/	   'gace1' 'a-b-df1'|'>b<dg+1' 'gace1' :|
+/	'c+ea8.''ce-a-8.''>b<dg8.''>b-<d-g-8.''>a<cf8'r8
+/	'ea<c8.''e-a-b8.''dgb-8.''d-g-a8.''cfa-8''>b<eg8'
+
+(t9)	@r1l16o2[do] 
+	|: |:4 f+f+c+ f+f+d+ f+f+c+ |f+f+d+ f+f+d+r :| p1<ddd>p3bbp2ggp3 |
+	   |:4 f+f+c+ f+f+d+ f+f+c+ |f+f+d+ f+f+d+r :| dd{d>d+<}p1<dd>p3bp2gp3 :|
+	|: f+f+c+ f+f+d+ f+f+c+ f+f+d+ f+|f+d+r :|d+d+@f3d+@f4
+	d+rc>dr<c>dr<c>dr<c>d+r<dr
+	d+rc>dr<c>dr<c>dr<c>d+d<dd[loop]
+
+(p)

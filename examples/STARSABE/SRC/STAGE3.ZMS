@@ -1,0 +1,104 @@
+.comment StarCop stage 3(Orbital)               Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z96)
+(o200)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/		FM Bass( Chopper )
+
+(t1)	t192 @31o2v12@q2l8	 @k5 @h24 @m13 @s2~1	 k12 [do]
+	f+rrf+rc+e4	f+rrf+rc+f+4
+	errer>b<c+4	errerc+c4
+	>brrbrf+aa+	brrbrf+ab	<c+rrc+r>g+b<c	c+rrc+rc+e4
+	f+rrf+rc+e4	f+rrf+rc+f+4
+	errer>b<c+4	errerc+c4
+	>brrbrf+aa+	brrbrf+ab	<c+rrc+r>g+b<c	c+rrc+red+4
+/B
+	drrdrc+dr	errer>b<c+e	drrdrc+dr	errerc+ed+
+	drderf+gg+	aerdr>b<c+d	c+rrc+rc+rc+	c+rrc+rc+ef
+	[loop]
+
+/		Main
+
+(t2)	o4@51v12l8  @s3 @m15 @h27 @q1[do]
+	|: c+2.>f+g+  ab<c+dedc+>a		b4re4.b4re4.rb4.
+	a2. f+g+  ab<c+dedc+>a		@q8b4<c+>b4e b4<c+>b4 @q1| er  <drc+& :|
+	>e4<drc+&
+/B
+	@q4c+2&c+@q2 c+d>b	&b2reb< @q4e2.@q2 ef+ d2^ >eab<c+&
+	c+4d>b<reed	c+>arf+r<drc+&	c+2	c+d>b<c+&	c+2r2
+	[loop]
+
+(t3)	o4@51v10 r8. @q1 @k10 l8 [do]
+	|: c+2.>f+g+  ab<c+dedc+>a	b4re4.b4re4.rb4.
+	   a2. f+g+  ab<c+dedc+>a	@q8b4<c+>b4e b4<c+>b4 @q1| er  <drc+& :|
+	>e4<drc+&
+/B
+	@q4c+2&c+@q2 c+d>b	&b2re16v12 @q4<c+2.@q2c+d>b^2 r8. v10	eab<c+&
+	c+4d>b<reed	c+>arf+r<drc+&	c+2	c+d>b<c+&	c+2r2
+	[loop]
+
+/		Keyboard
+/A
+
+(t4)	o4 l8 @50 v10 @q3 @s7,3 @m9 @h10,5  @c5 @a-7 	[do]
+	|: a1&a1 b1&b2r8b4. a1&a1 | b1&b1 :| 
+	b4rb4rb4r >b4.<b-4.<b->
+	|: d4.<d^2> e4.<e^2> :| a4.b r2 <c+4.c+r2 f+1 f2r2 [loop]
+
+(t5)	o4 l8 @50 v10 @q3 @s7,3 @m9 @h10,5  @c5 @a-7 	[do]
+	|: f+1&f+1 g+1&g+2r8g+4. f+1&f+1 | g+1&g+1:|
+	|:3 g+4r :| re4.<e-4.>
+	|: rf+2.. rg+2.. :| f+4.g+r2 a4.ar2 <c+1c+2r2 [loop]
+
+(t6)	o4 l8 @50 v10 @q3 @s7,3 @m9 @h10,5  @c5 @a-7 	[do]
+	|: c+1&c+1 e1&e2r8e4. d1&d1 | e1&e1 :|
+	|:3 e4r :| rr g+4.<g4>
+	|: r4a2. r4b2. :| d4.er2 e4.dr2 g+1g+2r2v10 [loop]
+
+
+/t4)	o4 l8@29 v10 @q3 @s3,3 @m7 @h10,5  @c5 @a-7	[do]
+/:	'c+f+a1'&'c+f+a1'	'eg+b1'&'eg+b2' r8 'eg+b4.'
+/	'df+a1'&'df+a1'	|	'eg+b1'&'eg+b1' :|
+/	'eg+b4'r8'eg+b4'r8'eg+b4'r8 @d1 >b<eg+@d0@d1b-<e-g@d0'e-gb-'> 
+
+/B
+/	'df+a1''eg+b1''df+a1''eg+b1'
+/	'df+a4.''eg+b8' r2	'ea<c+4.''da<c+8' r2
+/	'g+<c+f+1'			'g+<c+f2'r2
+/	[loop]
+/	|: @d1 df+a@d0'f+a<d^2' @d1 eg+b@d0'g+b<e^2' :|
+/	'df+a4.''eg+b8' r2	'ea<c+4.''da<c+8' r2
+/	'g+<c+f+1''g+<c+f2'r2
+/	[loop]
+
+/		Drums
+
+(t9)	@r1o2l8 [do]
+/	|:4 c+f+d+f+c+c+d+|f+:|a+ |:c+f+d+f+c+c+d+f+:|
+/	c+f+d+c+ f+c+d+f+ c+c+d+er <p1d>p3bp2gp3
+/	|:4 c+f+d+f+c+c+d+|f+:|a+ |:c+f+d+f+c+c+d+f+:|
+
+	|:3c+f+>d<f+ c+c+d+f+ c+f+>d<c+f+c+d+|1f+:||2a+:||3f+:| 
+	c+f+>d<c+ f+c+d+f+ c+c+d+er <p1d>p3bp2gp3
+	|:3c+f+>d<f+ c+c+d+f+ c+f+>d<c+f+c+d+|1f+:||2a+:||3f+:| 
+	>d+<f+c+ d+f+c+ >d<f+c+  <p1d>p3b@f2d@f4c@f3d4@f4<c+>
+	rr|:3 d+c+f+c+d+f+ |c+f+:|c+f+d+c+f+ {d+>ed+d<}4
+	<p1dp3c>bp2gp3 d4.cc<p1d p3>bp2gp3d4.c>d+d+< rdrcc>ee< @f3>{d+e}d+d<d r@f4>ddd< [loop]
+
+
+(p)

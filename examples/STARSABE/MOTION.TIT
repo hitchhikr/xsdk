@@ -1,0 +1,389 @@
+/*	motion.tit : title motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0	s	*/
+	begin
+
+/*	pos	-320	-304	500	*/
+	pos	-320	656	960
+	mrot	64	0	-64
+	count	1
+
+	count	16
+
+	pos	0	-15	-15
+	mrot	4	0	8
+	count	64
+
+	count	128
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	256
+loopend
+
+	count	30000
+	end
+
+/*	No.1	t	*/
+	begin
+
+/*	pos	-128	-320	500	*/
+	pos	-136	640	960
+	mrot	64	0	-64
+	count	1
+
+	count	32
+
+	pos	0	-15	-15
+	mrot	-4	0	8
+	count	64
+
+	count	112
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	16
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	240
+loopend
+
+	count	30000
+	end
+
+/*	No.2	a	*/
+	begin
+
+/*	pos	64	-320	500	*/
+	pos	48	640	960
+	mrot	64	0	-64
+	count	1
+
+	count	48
+
+	pos	0	-15	-15
+	mrot	4	0	-8
+	count	64
+
+	count	96
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	32
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	224
+loopend
+
+	count	30000
+	end
+
+/*	No.3	r	*/
+	begin
+
+/*	pos	320	-320	500	*/
+	pos	320	640	960
+	mrot	64	0	-64
+	count	1
+
+	count	64
+
+	pos	0	-15	-15
+	mrot	-4	0	-8
+	count	64
+
+	count	80
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	48
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	208
+loopend
+
+	count	30000
+	end
+
+
+/*	No.4	s	*/
+	begin
+
+/*	pos	-424	-48	500	*/
+	pos	-424	-688	960
+	mrot	64	0	-64
+	count	1
+
+	count	80
+
+	pos	0	10	-15
+	mrot	8	0	4
+	count	64
+
+	count	64
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	64
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	192
+loopend
+
+	count	30000
+	end
+
+/*	No.5	a	*/
+	begin
+
+/*	pos	-224	-32	500	*/
+	pos	-240	-672	960
+	mrot	64	0	-64
+	count	1
+
+	count	96
+
+	pos	0	10	-15
+	mrot	-8	0	4
+	count	64
+
+	count	48
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	80
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	176
+loopend
+
+	count	30000
+	end
+
+/*	No.6	b	*/
+	begin
+
+/*	pos	16	-32	500	*/
+	pos	0	-672	960
+	mrot	64	0	-64
+	count	1
+
+	count	112
+
+	pos	0	10	-15
+	mrot	8	0	-4
+	count	64
+
+	count	32
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	96
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	160
+loopend
+
+	count	30000
+	end
+
+/*	No.7	e	*/
+	begin
+
+/*	pos	256	-32	500	*/
+	pos	264	-672	960
+	mrot	64	0	-64
+	count	1
+
+	count	128
+
+	pos	0	10	-15
+	mrot	-8	0	-4
+	count	64
+
+	count	16
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	112
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	144
+loopend
+
+	count	30000
+	end
+
+/*	No.8	r	*/
+	begin
+
+/*	pos	456	-32	500	*/
+	pos	456	-672	960
+	mrot	64	0	-64
+	count	1
+
+	count	144
+
+	pos	0	10	-15
+	mrot	8	0	4
+	count	64
+
+	pos	0	0	5
+	count	100
+
+loopstart
+	count	128
+
+	mrot	0	-1	0
+	pos	0	0	2
+	count	16
+	mrot	0	1	0
+	pos	0	0	2
+	count	16
+
+	mrot	0	1	0
+	pos	0	0	-2
+	count	16
+	mrot	0	-1	0
+	pos	0	0	-2
+	count	16
+
+	count	128
+loopend
+
+	count	30000
+	end

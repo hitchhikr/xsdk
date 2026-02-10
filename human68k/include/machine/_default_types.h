@@ -5,7 +5,7 @@
 #ifndef _MACHINE__DEFAULT_TYPES_H
 #define _MACHINE__DEFAULT_TYPES_H
 
-#include <sys/features.h>
+#include <features.h>
 
 /*
  * Guess on types by examining *_MIN / *_MAX defines.

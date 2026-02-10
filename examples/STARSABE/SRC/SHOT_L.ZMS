@@ -1,0 +1,7 @@
+/		Shot of your ship (left)
+
+(i)(m7,3000)(aFm7,7)
+
+(t7)	@111 l8 v10 @k90l12 p1o7 @l1 @r0 @o@m-3000 @s80 c8r8 @or1r1
+
+(p)

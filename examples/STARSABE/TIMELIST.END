@@ -1,0 +1,8 @@
+\	timelist.end : ending time chart	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+\	You can force the end of the file with ~	\
+
+	\	time	model	motion	sign x	sign y	\
+	(	0	0	0	1	1	)
+	(	950	0	1	1	1	)

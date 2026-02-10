@@ -39,11 +39,11 @@ EnemyInit(short ene, ENEMY *enedat, short bomb, BOMB *bombdat) {
 	short i;
 
 	for(i = 0; i < 128; i++) {
-		sintbl[i] = sin(2 * M_PI / 128 * i) * 1024;
+		sintbl[i] = sin(2 * PI / 128 * i) * 1024;
 	}
 	for(i = 0; i < 64; i++) {
-		VXtbl[i] = cos(2 * M_PI / 64 * i - M_PI/2) * 64;
-		VYtbl[i] = sin(2 * M_PI / 64 * i - M_PI/2) * 64;
+		VXtbl[i] = cos(2 * PI / 64 * i - PI/2) * 64;
+		VYtbl[i] = sin(2 * PI / 64 * i - PI/2) * 64;
 	}
 
 	if (ene > ENE_NUM) {

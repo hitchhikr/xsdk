@@ -1,0 +1,499 @@
+\	model.st2 : stage 2 modeling data	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+
+	\1...metal   2...blue   3...yellow   4...red	6... blue	7...orange
+		8...akamura	9...mura	11...green\
+       \x	y	z	col\
+
+\Enemy No. 0 Stick Laser     3 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	1	\hit point\
+	0	\score / 100\
+
+	0	0	-32	8
+	0	0	0	8
+	0	0	32	8
+}
+
+\Enemy No. 1 Ring Laser     4 boxes\
+{
+	120	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	1	\hit point\
+	0	\score / 100\
+	
+	0	-20	0	8
+	20	0	0	8
+	0	20	0	8
+	-20	0	0	8
+}
+
+\Enemy No. 2 Pillar     4 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	0	0	32	11
+	0	-32	-16	11
+	28	16	-16	11
+	-28	16	-16	11
+}
+
+\Enemy No. 3 Bigfoot    20 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+	\	body	\
+	0	8	0	1
+	0	0	32	1
+	0	-32	0	1
+	0	-64	-32	1
+	\	left leg	\
+	-32	-8	0	2
+	-64	-16	0	2
+	-68	8	0	9
+	-72	32	0	9
+	\	left foot	\
+	-72	56	0	4
+	-72	72	32	1
+	-48	72	-16	1
+	-96	72	-16	1
+	\	right leg	\
+	32	-8	0	2
+	64	-16	0	2
+	68	8	0	9
+	72	32	0	9
+	\	right foot	\
+	72	56	0	4
+	72	72	32	1
+	48	72	-16	1
+	96	72	-16	1
+}
+
+\Enemy No. 4 Armored Tank (Gun Port)    6 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	0	-32	0	9
+	24	16	0	9
+	-24	16	0	9
+	0	0	48	9
+	0	0	88	9
+	0	0	128	4
+}
+
+\Enemy No. 5 Armored Tank (body)    22 boxes\
+{
+	80	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	6	\hit point\
+	3	\score / 100\
+
+	-96	-160	-16	1
+	-32	-160	-16	1
+	32	-160	-16	1
+	96	-160	-16	1
+
+	96	-80	-16	1
+	96	0	-16	1
+	96	80	-16	1
+
+	96	-120	-64	2
+	96	-40	-64	2
+	96	40	-64	2
+	96	120	-64	2
+
+	96	160	-16	1
+	32	160	-16	1
+	-32	160	-16	1
+	-96	160	-16	1
+
+	-96	80	-16	1
+	-96	0	-16	1
+	-96	-80	-16	1
+
+	-96	120	-64	2
+	-96	40	-64	2
+	-96	-40	-64	2
+	-96	-120	-64	2
+}
+
+\Enemy No. 6 turrets    25 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	3	\hit point\
+	3	\score / 100\
+
+	0	0	-16	4
+
+	-32	-32	-16	1
+	32	-32	-16	1
+	-32	32	-16	1
+	32	32	-16	1
+
+	-40	-40	-80	2
+	40	-40	-80	2
+	-40	40	-80
+	2
+	40	40	-80	2
+
+	-48	-48	-144	1
+	48	-48	-144	1
+	-48	48	-144	1
+	48	48	-144	1
+
+	-56	-56	-208	9
+	56	-56	-208	9
+	-56	56	-208	9
+	56	56	-208	9
+
+
+	-64	-64	-272	1
+	0	-64	-272	1
+
+	64	-64	-272	1
+	64	0	-272	1
+
+	64	64	-272	1
+	0	64	-272	1
+
+	-64	64	-272	1
+	-64	0	-272	1
+}
+
+\Enemy No. 7 Hole   9 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	0	-64	0	7
+	64	0	0	7
+	0	64	0	7
+	-64	0	0	7
+
+	0	0	0	4
+
+	-45	-45	0	7
+	-45	45	0	7
+	45	-45	0	7
+	45	45	0	7
+}
+
+\Enemy No. 8 Bomber Wings   8 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	-96	-56	12	3
+	-32	-48	12	3
+	32	-48	12	3
+	96	-56	12	3
+
+	-72	32	12	3
+	-24	40	12	3
+	24	40	12	3
+	72	32	12	3
+}
+\Enemy No. 9 Bomber Propeller   8 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	2	\score / 100\
+
+	0	-96	80	1
+	0	-48	80	1
+	0	48	80	1
+	0	96	80	1
+
+	0	0	80	4
+	0	0	20	7
+	0	0	-40	7
+	0	0	-100	7
+}
+
+\Enemy No. 10 Bomb      0 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	0	48	64	1
+	0	-48	64	1
+	48	0	64	1
+	-48	0	64	1
+
+	0	48	0	1
+	0	-48	0	1
+	48	0	0	1
+	-48	0	0	1
+
+	0	48	-64	1
+	0	-48	-64	1
+	48	0	-64	1
+	-48	0	-64	1
+}
+
+\Enemy No. 11 Pillar    4 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+
+	0	0	32	3
+	0	-32	-16	3
+	28	16	-16	3
+	-28	16	-16	3
+}
+\Enemy No. 12 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 13 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 14 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 15 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 16 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 17 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 18 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 19 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 20 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 21 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 22 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 23 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+
+\Enemy No. 24 Boss Buddy    37 boxes\
+{
+	80	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	255	\dummy hit point\
+	120	\score / 100\
+
+\body\
+	     80     -90     310		1
+	    -80     -90     310		1
+	   -110    -160     -20		1
+	    110    -160     -20		1
+
+	     80    -150    -250		1
+	    -80    -150    -250		1
+
+	   -100    -123     156		1
+	    100    -123     156		1
+
+	    100    -155    -120		1
+	   -100    -155    -120		1
+
+	    110       0    -350		1
+	   -110       0    -350		1
+
+	   -170       0     -10		1
+	    170       0     -10		1
+
+	    150       0    -170		1
+	   -150       0    -170		1
+
+	   -120       0     170		1
+	    120       0     170		1
+
+	     80       0     310		1
+	    -80       0     310		1
+
+\head\
+	    -30    -120     430		4
+	     30    -120     430		4
+
+	     40     -50     420		4
+	    -40     -50     420		4
+
+	    -50     -50     330		4
+	     50     -50     330		4
+
+	     50     -90     290		4
+	    -50     -90     290		4
+
+	    -50    -140     360		4
+	     50    -140     360		4
+
+	      0     -90     430		4
+\body2\
+	     50      30     190		3
+	    -50      30     190		3
+
+	    -60      60      60		3
+	     60      60      60		3
+
+	     50      30    -100		3
+	    -50      30    -100		3
+}
+
+\Enemy No. 25 Boss's Legs   19 boxes\
+{
+	80	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	255	\dummy hit point\
+	0	\score / 100\
+
+	    210     320     -70		9
+	    210     320      59		9
+	    280    -320      79		2
+	    280    -320     -20		2
+	    280    -320    -130		2
+
+	    260    -200    -150		2
+	    240     -60     139		2
+	    240     -60    -180		2
+	    210      69    -200		2
+	    210      69     170		2
+
+	    260    -200     103		2
+	    200     160     -10		9
+	    213      69     -10		2
+	    183     250     -10		9
+	    210     320     180		9
+
+	    210     360     220		9
+	    210     360    -210		9
+	    210     320    -170		9
+	    248    -110     -10		2
+}
+
+\Enemy No. 26 Boss Bullet 1     26 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	255	\dummy hit point\
+	0	\score / 100\
+/*	Left	*/
+	-240	160	0	8
+	-240	80	0	8
+
+	-240	0	0	8
+
+	-240	-80	0	8
+	-240	-160	0	8
+	-240	-240	0	8
+	-240	-320	0	8
+
+/*	Right	*/
+	240	160	0	8
+	240	80	0	8
+
+	240	0	0	8
+
+	240	-80	0	8
+	240	-160	0	8
+	240	-240	0	8
+	240	-320	0	8
+}
+
+\Enemy No. 27 Boss Bullet 2     13 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	255	\dummy hit point\
+	0	\score / 100\
+
+	0	360	0	8
+	0	300	0	8
+	0	240	0	8
+	0	180	0	8
+	0	120	0	8
+	0	60	0	8
+
+	0	0	0	8
+
+	0	-60	0	8
+	0	-120	0	8
+	0	-180	0	8
+	0	-240	0	8
+	0	-300	0	8
+	0	-360	0	8
+}
+
+\Enemy No. 28 Boss Bullet 3     25 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	255	\dummy hit point\
+	0	\score / 100\
+
+	0	0	0	8
+
+	0	360	0	8
+	0	300	0	8
+	0	240	0	8
+	0	180	0	8
+	0	120	0	8
+	0	60	0	8
+
+	0	-60	0	8
+	0	-120	0	8
+	0	-180	0	8
+	0	-240	0	8
+	0	-300	0	8
+	0	-360	0	8
+
+	360	0	0	8
+	300	0	0	8
+	240	0	0	8
+	180	0	0	8
+	120	0	0	8
+	60	0	0	8
+
+	-60	0	0	8
+	-120	0	0	8
+	-180	0	0	8
+	-240	0	0	8
+	-300	0	0	8
+	-360	0	0	8
+}

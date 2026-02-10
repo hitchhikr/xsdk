@@ -1,0 +1,52 @@
+.comment StarCop stage 7(Enemy Base)            Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)(o100)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/		FM Bass( Wood )
+
+(t1)	t100 @32o1v13 q6l16	 @k5 @h24 @m3 @s2 [do]
+(t1)	_3 d8d8f+8f+g8g8gg+8a8 ~3
+(t1)	|:|:4
+(t1)	    d8d8f+8f+g8g8gg+8a8		g8>b8<c8c+d8d8ff+8g8
+(t1)	    e-8e-8g8ga-8a-8ab-8b8<	c8c8>b-8b-g8c8cc+8c+8
+(t1)	  :| | r1 :|[loop]
+
+/		Melody
+
+(t2)	o4@76v8l16q5	[do]	r1
+	@s12@m-25 @k10
+	l16 |:66 a<dad+g+gf+f> :|[loop]
+(t6)	o4@76v6l16q5r16.	[do]	r1
+	@s12@m-25 @k20
+	l16 |:66 a<dad+g+gf+f> :|[loop]
+
+/		Chord
+
+(t3)	o2 l8 @75 v11@q0 @s7,3 @m9 @h10,5  @c5 @a-7 r*1		[do]
+(t4)	o2 l8 @75 v11@q0 @s7,3 @m9 @h10,5  @c5 @a-7 r*1		[do]
+(t5)	o2 l8 @75 v11@q0 @s7,3 @m9 @h10,5  @c5 @a-7 r*1		[do]
+(t3)	@k3[do]r1|:|:4 d 1g 1e-1c 1 :| | r1 :| [loop]
+(t4)	@k5[do]r1|:|:4 f+1d 1b-1b-1 :| | r1 :| [loop]
+(t5)	@k7[do]r1|:|:4<c1>b1<d-1d-1 :| | r1 :| [loop]
+/(t6)	@k9[do]r1|:|:4<f 1f 1f 1f 1 :| | r1 :| [loop]
+
+(t9)	@r1o2l16	[do]
+	r2..c8 |: |:16 c+f+f+f+ >d<f+f+>d< c+>d<f+f+ >d<f+f+>d< :| | r2.f+f+a+8 :| [loop]
+
+(p)

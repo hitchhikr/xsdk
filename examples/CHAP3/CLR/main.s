@@ -21,8 +21,9 @@
 	include	iocscalls.inc
 	
     section .text,code
+    xdef    _start
 
-start:
+_start:
 	IOCS	_B_CUROFF
 	move.w	#-1,-(a7)
 	move.w	#14,-(a7)

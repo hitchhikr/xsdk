@@ -1,0 +1,136 @@
+.comment StarCop stage 5(Distorted Area)        Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z144)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/		FM Bass( Chopper )
+
+/(t1)	[@]	[@]
+(t1)	t144 @31o2v12@q7l8	 @k5 @h24 @m23 @s2	 k12 [do]
+/Pre
+(t1)|:	ee>bb<ee16>b@q0b16<d16e16@q7		dd>bb<d16d8>b@q0b16<c16d16@q7
+(t1)	c+c+>aa<c+c+16>a@q0a16b16<c+16@q7 |
+(t1)	dd>gg<d16d+8>b@q0b16<d16d+16@q7 :| o2 r8c+.d.d+ rrr
+/A
+(t1)o2l8 |:	ee>bb<ee16>b@q0b16<d16e16@q7		dd>bb<d16d8>b@q0b16<c16d16@q7
+(t1)	cc>aa<dd16>a@q0<e16d16>a16@q7 |
+(t1)	bb @q0~2l16gab<d>l8r8 @q7b8.b8. _ :| 
+	o1 bbgg< ~el16e @q0f8dd>b<l8 @q7_
+/B
+(t1)
+(t1)	|: cc>aa<d @q0d16>a<d16e16f+16	q1 g @q7d>b<def16ed16>b
+(t1)		<cc>aa |<d+>b16f+@q0 b16<c+16d+16 @q7 ee>bb<rd8.>b8. :|
+(t1)o1	<c+c+16>a+ @q0b16<c+16e16 @q7 d+d+>bb<d+>@q0b16f+b16<c+16d+16@q7
+(t1)[loop]
+
+/		Backing!
+
+(t2)	[do]	o3v11l8@64q5 p2 ~2
+/Pre
+	|:bgae {ga}r16eb16{ag}	bgae {ga}r16eg8.
+	  bgae {ga}r16eb16{ag}	|bgae r16ga8.r8 :|p3 ra8.a+8.b8 v11
+	@66{<<brgrerc>rarfrdr>brgrerc>rar<}4.@64 p2 
+	|:bgae {ga}r16eb16{ag}	bgae {ga}r16eg8.
+	  bgae {f+a}r16df+8.	|bgae rgr16q8a8.q5 :| bgae r16 g+8q8g+8.r8q5
+	@65q7@s3 @h10 @m20 l2 <
+	gf+ l16rrf+f+f+f+rf+f2 l2	ef+ l16rrggggrgg+2 l2
+	gf+ l16rrf+f+f+f+rf+f2 l2	eef+1	[loop]
+
+(t3)	[do]	o3v11l8@64q5 p1 ~2
+	|:gef+>b<{ef+}r16>b<g16{f+e}	gef+>b<{ef+}r16>b<e8.
+	  gef+>b<{ef+}r16>b<g16{f+e}|	gef+>b<r16e q8 d+8.r8 q5 :|p3 r c+8.d8.d+8 v11
+	@66{<<rarfrdr>brgrerc>rarfrdr>brg<}4.@64 p1
+	|:gef+>b< {ef+}r16>b<g16{f+e}	gef+>b< {ef+}r16>b<e8.
+	  gef+c   {df+}r16>a<d8. |	gdf+>b< rer16q8d+8.q5 :| gdf+>b<r16 f8q8f8.r8q5
+	@65q7@s3 @h10 @m20 l2 <
+	ed l16rrddddrdd2 l2	cd+ l16rreeeeree2 l2
+	ed l16rrddddrdd2 l2	cc+d+1	[loop]
+
+/		Guitar
+
+/Pre
+(t4)	[do] o4@60v8l16 @k10
+	|:|:3 |: q7e8q1ee :| q1eq7eq1eeq7e8q1ee :| |
+	      |: q7d8q1dd :| q1dq7d+q1d+d+q7d+8q1d+d+ :|
+	r8 q7 e8. e8. d+8r4.
+
+	|: |: |: q7e8q1ee :| q1eq7eq1eeq7e8q1ee :|
+	      |: q7e8q1ee :| q1eq7f+q1f+f+q7f+8q1f+f+ |
+	      |: q7g8q1gg :| q1ggq7g8rg8r :|
+	      |: q7g8q1gg :| q1gq7g+q0g+g+q7g+8q0g+g+q7
+
+	@65 @k10 @m l2 q7
+	|: v8gv10g l16rrv8f+f+f+f+rf+f2 l2| ev10>b<v8 l16rrggggrgg+2l2 :|
+	eef+1@m20v10 [loop]
+
+(t5)	o3@60v6l16 @k10
+	|: |: q7b8q1bb :| q1bq7bq1bbq7b8q1bb :|
+	  <|: q7c+8q1c+c+ :| q1c+q7c+q1c+c+q7c+8q1c+c+>
+	   |: q7b8q1bb :| q1bq7bq1bbq7b8q1bb 
+	[do]
+	|: |: q7b8q1bb :| q1bq7bq1bbq7b8q1bb :|
+	    <|: q7c+8q1c+c+ :| q1c+q7c+q1c+c+q7c+8q1c+c+>
+	r8 c+8.d8.>b8
+(t5)	o4v12l8@62@k0 @s3,80 @m15 @h13,0 @a-12 @c3 @q3	l8>b.&<e.&
+/A
+(t5)	|: (b-b)&b2 a.&b.& f+2&f+ e.&g.&
+	<(de)&e2 d.&e.&> b2&b |>b.&<e.&	:| @a-8
+/B
+(t5)	@q1 d8.>b8.	l8
+(t5)	<cdeg f+.a.|d2. dc>b	ab<ce d+.f+.>b2. <dc>b
+	<cdeg f+.a.d&d2 e4f+4	g2e8.a8.b2.@q1l16<c>bagf+a
+/Int
+(t5)	l16g1&g2.&g f+ga 	|:15g8&_1:|r8
+(t5)	@60l16v6o3 @k10 @m @a0 [loop]
+
+/		Melo echo
+
+/Pre
+(t6)	@64v7o3 @k10 q8 l8 r16.
+	|:bgae {ga}r16eb16{ag}	bgae {ga}r16eg8.
+	  bgae {ga}r16eb16{ag}	|bgae r16ga8.r8 :|p3 ra8.a+8.b8 [do]
+(t6)	o4v10~2l8@61@k10@q1 l16 >b8.&<e8.&
+/A
+(t6)	|: (b-8b)&b2 a8.&b8.& f+2&f+8 e8.&g8.&
+	<(d8e)&e2 d8.&e8.&> b2&b8 |>b8.&<e8.&	:|
+/B
+(t6)	d8.>b8.
+(t6)	l8<cdeg f+.a.d2. dc>b	ab<ce d+.f+.>b2. <dc>b	
+	<cdeg f+.a.d&d2 e4f+4	g2e8.a8.b2.l16<c>bagf+a
+/Int
+(t6)	l16g1&g2.&g f+ga 	g1&g1
+	@64v7o3 @k10 q8 l8
+	bgae {ga}r16eb16{ag}	bgae {ga}r16eg8.
+	  bgae {ga}r16eb16{ag}	p3 ra8.a+8.b8
+	[loop]
+
+/		Drums
+
+(t9)	@r1o2l16 [do]
+	c+f+f+f+|:4d+8f+f+c+c+f+f+  |d+8f+f+  c+f+f+f+  :|{d>e}d+dd<
+	c+f+f+f+|:3d+8f+f+c+c+f+f+  |d+8f+f+  c+f+f+f+  :|d+>d+dd<
+	rr@f3d>d+e<@f2d>d+e<@f4p3<c+2>
+/a
+	|:4 c+f+f+f+ | d+rc+f+c+c+f+f+ d+rf+f+ :| d+>d+dd< r8d+8>e<d+8>e<
+	c+f+f+f+|:3 d+rc+f+  c+c+f+f+ d+rf+f+ c+f+f+f+ :|d+>d+dd+< c+f+d+>d+<c+d+>d+d<
+/b
+	|: <c+4> d+8a+c f+c+e r d+8a+r   c+f+a+c d+8 a+c c+f+a+r d+f+a+r 
+	   c+f+a+r d+8a+c f+c+e r d+8a+r |  c+f+a+c d+8 a+c c+f+er d+err :|
+	c+f+a+r d+8 a+c  d+>d<c+f+d+>d+dd< [loop]
+
+
+(p)

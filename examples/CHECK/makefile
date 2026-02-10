@@ -7,7 +7,7 @@ RM = $(XSDK)/bin/rm
 OBJCOPY	= $(XSDK)/bin/human68k-objcopy
 STRIP = $(XSDK)/bin/stripx
 CFLAGS = -Ofast -Wno-multichar -fomit-frame-pointer -fstrength-reduce -fforce-addr -fcall-used-d2 -fcall-used-a2
-LIBS = -ldos -liocs -lbas -lfloatfnc
+LIBS = 
 
 .c.o:
 	$(CC) $(CFLAGS) -o $@ -c $<

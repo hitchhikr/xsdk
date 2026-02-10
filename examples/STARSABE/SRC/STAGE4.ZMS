@@ -1,0 +1,87 @@
+.comment StarCop stage 4(Prominence)            Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z240)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+/		FM Bass( Chopper )
+
+(t1)	t80 @31o3v12 l16	 @k5 @h24 @m13 @s2
+[do]
+	|:4 f+_13 f+~  e     |:3f+_13f+_5f+_f+~23:|_33f+~
+	    f+_13 f+_5 f+~18 |:3f+_13f+_5f+_f+~23:|_33f+~:|
+/B
+	   g_13g_5g~18 |:3g_13g_5g_g~23:|_33g~
+	k2 g_13g_5g~18 |:3g_13g_5g_g~23:|_33g~ k0
+	   g_13g~ f    |:3g_13g_5g_g~23:|_33g~
+	   g_13g_5g~18 |:3g_13g_5g_g~23:|_33g~
+	[loop]
+
+
+/		Main
+
+(t2)	@56@k-5o2v7r8.f+1g+1f+1g+2.^16
+(t2)	o3@55v12l16  @s6,3 @m35 @h7,0 @a-7 @k0	[do]
+	r4rf+a<g+8f+8c+8d8d+	&d+1>
+	r4rf+a<g+8f+8c+8d8.	e8.d+8&d+8.&d+2
+/B
+	> r4ra<da8g8e8f8f+&
+	f+8r8.>a<cg8f+8c8d8d+&
+	d+8r8.k1>f+a<g+8f+8c+8d8d+	&d+1> k-1
+	r1r1r1r1	[loop]
+
+/	Keyboard
+/A
+(t3)	o1@56v9 @k5 l1|:a b :|[do]a b a b  b-<c>b- b-4..<c16^2> a b <a b  [loop]
+(t4)	o2@56v9 @k5 l1|:c+d+:|[do]c+d+c+d+ d  e d  d 4.. e16^2  c+d+ c+d+ [loop]
+(t5)	o2@56v9 @k5 l1|:e f+:|/[do]e f+e f+ f  g f  f 4.. g16^2  e f+ e f+ [loop]
+(t6)	o2@56v9 @k5 l1|:f+g+:|[do]f+g+f+g+ g  a g  g 4.. a16^2  f+g+ f+g+ [loop]
+
+(t5)	o3@55v10l16  @s5 @m15 @h7 @k10r16.	[do]
+	r4rf+a<g+8f+8c+8d8d+	&d+1>
+	r4rf+a<g+8f+8c+8d8.	e8.d+8&d+8.&d+2
+/B
+	> r4ra<da8g8e8f8f+&
+	f+8r8.>a<cg8f+8c8d8d+&
+	d+8r8.k1>f+a<g+8f+8c+8d8d+	&d+2..^32>k0
+	@56v9o2 e1f+1e1f+1@55v10o3r16.[loop]
+
+/t3)	o1@33v9 @k5
+/t3)	|:'a<c+ef+1''b<d+f+g+1':|
+/t3)	[do]
+/t3)	'a<c+ef+1''b<d+f+g+1'
+/t3)	'a<c+ef+1''b<d+f+g+1'
+/B
+/t3)	'b-<dfg1''<cega1'
+/t3)	'b-<dfg1''b-<dfg8.'&'b-<dfg4''<cega2'&'<cega16'
+/t3)	'a<c+ef+1''b<d+f+g+1'
+/t3)	'<ac+ef+1''<bd+f+g+1'
+/t3)	[loop]
+
+
+/		Drums
+
+(t9)	@r1o2l16 
+	|:c+f+f+d+ rf+f+c+ f+f+f+d+ rf+f+f+
+	  c+f+f+d+ rf+f+c+ c+f+f+d+ |rf+f+f+ :|
+	r@f3d @f2d@f1d@f4
+
+	[do]
+	c+f+f+d+ rf+f+c+ f+f+f+d+ rf+f+f+
+	c+f+f+d+ rf+f+c+ c+f+f+d+ rf+f+f+
+	[loop]
+
+(p)

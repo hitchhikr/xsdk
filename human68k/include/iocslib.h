@@ -1,8 +1,8 @@
 #ifndef _IOCS_H
 #define _IOCS_H
 
-#include <sys/cdefs.h>
-#include <sys/types.h>
+//#include <sys/cdefs.h>
+//#include <sys/types.h>
 
 typedef unsigned short iocs_color_t;
 
@@ -232,7 +232,7 @@ struct iocs_inquiry {
 };
 #define INQUIRY iocs_inquiry
 
-__BEGIN_DECLS
+//__BEGIN_DECLS
 
 extern int	_iocs_trap15 (struct iocs_regs *, struct iocs_regs *);
 #define TRAP15 _iocs_trap15
@@ -669,6 +669,6 @@ extern int	_iocs_window (int, int, int, int);
 extern int	_iocs_wipe (void);
 #define WIPE _iocs_wipe
 
-__END_DECLS
+//__END_DECLS
 
 #endif /* _IOCS_H */

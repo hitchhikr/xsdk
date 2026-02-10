@@ -1,0 +1,183 @@
+.comment StarCop Ending                         Composed by T.Oka  Programmed by NKF 1994
+/	Module		Internal		
+
+/ for ZmuSic.X
+
+/----------------------------------------------------------
+/ Track Setup
+(i)
+(z192)
+(o100)
+
+(m1,2000)(aFm1,1)
+(m2,2000)(aFm2,2)
+(m3,2000)(aFm3,3)
+(m4,3000)(aFm4,4)
+(m5,3000)(aFm5,5)
+(m6,3000)(aFm6,6)
+(m7,3000)(aFm7,7)
+(m8,3000)(aFm8,8)
+(m9,2000)(aAdpcm,9)
+
+(t1)	k3
+(t2)	k3
+(t3)	k3
+(t4)	k3
+(t5)	k3
+(t6)	k3
+(t7)	k3
+(t8)	k3
+
+/		FM Bass( Chopper )
+(t1)	t96 @190o2v12@q2l16	 @k5 @a@m ~1	 r1r1 [do]
+(t1)	|:o3 c8rc8.&c8  f8rf8.&f8   e8re8edc  >a8ra8a<c8
+(t1)	     f8rf8.&f8  f8rf8fc>a<  d8rd8dc8> |g8rg8ga8 :|	g8rg8.&g8
+/B
+(t1)	r8 f8.<f8.c8.>a8.f8	e8.e8.g8 a8.<e8dc>a
+(t1)	r8 f8.<f8.c8.>a8.f8 e8.g8b<d8 c+8>a<a8ec+>a
+/C
+(t1)	|: f8rf8.f8	a-8rg8.f8	e8rg8.b8	a8r<c+8.e8
+(t1)	  f8rc8>a8.	| g8rb8<d8.	g8re8d>bg	a8r<c+8de8>	:|
+(t1)	g8rg8g8.	g4.r<c8	rr(f+ 16 g)&ged>g<
+/D
+(t1)	|: c8rc8>ga8<	c8rc8>ga8<	c8rc8>ga8< 	 c8>g<g8ed>g :|
+(t1)	[loop]
+
+/		Main
+
+(t2)	o4@191v14l16 @k0 @s3 @m15 @h27@a [do]
+/Intro
+	r1r2rrrr
+	refg&[do]
+/A
+	|: g8.ceg<c>brargrfrg& g4.ac& c4 rcde
+	   e8.rceagrfrercrd& | d8.ddefd&d4 refg :|
+	d8.ddefg&g4 rfga
+/B
+	rrrrrfa<erdrc>b<cd>g& g4.eg& g4 rdef
+	rrrrdf<c>br<crdr>brg& g4 rega& a4 
+	rg8.
+/C
+	|: a8.b8.<c8  >b8.<c8.d8  e8.>g8r<f8  e8.d8.c+8
+	   >a4.<e8       d8.c8.>b8  | g4. <f8 e8.d8.c+8 :|
+	   d4&d8.c r2
+/D
+	l16 r1r1r1r2rrrrr o4efg&	[loop]
+
+/		Mero Echo
+
+(t3)	o4@191v9l16 r15. @k8 @m@a [do]
+/Intro
+	r1r2rrrr
+	refg&[do]
+/A
+	|: g8.ceg<c>brargrfrg& g4.ac& c4 rcde
+	   e8.rceagrfrercrd& | d8.ddefd&d4 refg :|
+	d8.ddefg&g4 rfga
+/B
+	rrrrrfa<erdrc>b<cd>g& g4.eg& g4 rdef
+	rrrrdf<c>br<crdr>brg& g4 rega& a4 
+	rg8.
+/C
+	|: a8.b8.<c8  >b8.<c8.d8  e8.>g8r<f8  e8.d8.c+8
+	   >a4.<e8       d8.c8.>b8  | g4. <f8 e8.d8.c+8 :|
+	   d4&d8.c r2
+/D
+	l16 r1r1r1r2rrrrr o4efg&	[loop]
+
+
+/		Keyboard 1
+
+(t4)	o5@197v11 l16 @q8	@m@a
+(t5)	o5@197v11 l16 @q8 p1	@m@a
+(t6)	o5@197v11 l16 @q8 p2	@m@a
+/Intro
+(t4)	r1r1 [do]
+(t5)	r1r1 [do]
+(t6)	r1r1 [do]
+/A
+(t4)	|:c8c8.c8 c8.c8.c8. >b8b8.b8<c8.c8.c8.
+	  c8c8.c8 c8.c8.c8.  c8c8.c8|c8.c8.c8. :|>b8.b8.b8.<
+(t5)	|:>g8g8.g8 a8.a8.a8.  g8g8.g8 a8.a8.a8. <
+	  >a8a8.a8 a8.a8.a8.  f8f8.f8 f8.f8.f8. <:|
+(t6)	|:>e8e8.e8 f8.f8.f8.  e8e8.e8 e8.e8.e8. <
+	  >f8f8.f8 f8.f8.f8.  d8d8.d8 d8.d8.d8. <:|
+
+/	|: '>eg<c8''>eg<c8.''>eg<c8'  '>fa<c8.''>fa<c8.''>fa<c8.'
+/	   '>eg b8''>eg b8.''>eg b8'  '>ea<c8.''>ea<c8.''>ea<c8.'
+/	   '>fa<c8''>fa<c8.''>fa<c8'  '>fa<c8.''>fa<c8.''>fa<c8.'
+/	   '>df<c8''>df<c8.''>df<c8' |'>df<c8.''>df<c8.''>df<c8.' :|
+/	   '>dfb8.''>dfb8.''>dfb8.' @197v11 p1
+/B
+(t4)	@196v12p1
+	r8 e8.a8.e8.c8.>a8  b8b8.b8 b8.b8.b8.<
+	r8 c8.f8.c8.>a8.f8  b8b8.b8 b-8.b-8.b-8.
+(t6)	@196v9p3 r16
+	r8 e8.a8.e8.c8.>a8  b8b8.b8 b8.b8.b8.<
+	r8 c8.f8.c8.>a8.f8  b8b8.b8 b-8.b-8.b-8
+(t5)	@196v12p2
+	r8 >a8.<c8.>a8.f8.c8 g8g8.g8 g8.g8.g8.<
+	r8 >f8.a8.f8.c8.>a8< g8g8.g8 g8.g8.g8.<
+
+/(t4)	r8    '>a<e8.'' a c8.' '>a<e8.''>f<c8.''>ac8'
+/	'>gb8''>g b8.''>g b8' '>gb8.''>gb8.''>gb8.'
+/	r8    '>f<c8.''>a<f8.' '>f<c8.''>ac8.''>>a<f8'
+/	'>gb8''>g b8.''>g b8' '>gb-8.''>gb-8.''>gb-8.' @196v12
+/C
+(t4)	o5@197v11
+	|: c8c8.c8 c8.c8.c8. >b8b8.b8<c+8.c+8.c+8.
+	   c8c8.c8 c8.c8.c8.|>b8b8.b8<c+8.c+8.c+8. :| c8c8.c8c16r2
+	q8|:7 c8rc4r :|c2[loop]
+(t5)	o4@197v11 p1
+	|: a8a8.a8 a-8.a-8.a-8.  g8g8.g8 a8.a8.a8.
+	   a8a8.a8 a8.a8.a8.  |  g8g8.g8 a8.a8.a8. :| a8a8.a8g16r2
+	q8|:g8rg4r a8ra4r a-8ra-4r| g8rg4r :|g2[loop]
+(t6)	o4@197v11 p2
+	|: f8f8.f8 f8.f8.f8. e8e8.e8 e8.e8.e8.
+	   f8f8.f8 f8.f8.f8.|e8e8.e8 e8.e8.e8. :|  f8f8.f8 e16r2
+	q8|:e8re4r f8rf4r f8rf4r| e8re4r:|e2[loop]
+
+/		Kbd 2
+
+(t7)	l16 @k0	@v0@m@a	r1r1 [do]
+/A
+(t7)	r1r1r1r1
+	@193o4v9 @s3,3 @m7 @h10,5  @c5 @a7
+		c1>b2<c2c1c2d2		~l16er
+	@194o5v9 @s3,3 @m7 @h10,5  @c5 @a7
+		e2..d1 r8c2..>b2b-2
+	@195o5v9 @d1 p1@m@a
+	|:>fa<ce8c>af	fa-<cd8c>a-f	egb<d8>bge	ea<c+e8c+>ae
+	dfa<c8>afd		| dfa-<c8>a-fd		egb<d8>bge	ea<c+e8c+>ae :|
+	dfgb8gfd@d0
+	r1 r1r1r1r1 [loop]
+
+
+(t8)	l16 @k10@o@m@a	@v0r1r1 [do]
+/A
+(t8)	r1r1r1r1
+	@193o4v6@m
+	r16.c1>b2<c2c1c2d4.r32	~l16er
+	@194o5v9 @s3,3 @m7 @h10,5  @c5 @a7
+	c2..>b1 r8a2..g2g4...
+	@195o5v9@m@a p2 r32 |:7r1:|
+	r1r1r1r1r1 [loop]
+
+
+
+(t9)	@r1o2l16
+	c+f+d+f+ c+f+d+c+ f+c+d+f+ c+c+d+f+  [do] 
+	c+f+d+f+ c+f+d+c+ d+c+d+a+ <p1dp3c>bp2gp3
+/a
+	|:8 c+f+d+f+ c+f+d+c+ f+c+d+f+ c+|c+d+f+ :|d+d+a+
+/b
+	cr<d+>rrc+|: d+c+ f+c+d+f+ c+c+d+|f+ c+f+d+f+c+f+:|a+
+	cr<d+>rrc+|: d+c+ |f+c+d+f+ c+c+d+f+ c+f+d+f+c+f+:|c+f+d+f+c+>d+d<d+
+/c
+/	|:7 c+f+d+f+ c+f+d+c+ f+c+d+f+ c+c+d+f+ :|
+	<|:7 f+rgr >c<f+>d<f+ r>c<gf >c<f+>d+r :|
+	d+c+d+a+ <p1d>p3bp2gp3 d r2
+/d
+	|:3 c+f+d+f+ c+f+d+c+ f+c+d+f+ c+c+d+f+ :| [loop]
+
+(p)

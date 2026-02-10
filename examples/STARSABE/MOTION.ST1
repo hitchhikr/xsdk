@@ -1,0 +1,652 @@
+/*	motion.st1 : stage 1 motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ], flag(0 - pos, 1 - pos & rot )
+	loopstart
+	loopend
+*/
+
+/*	No.0 For debugging	*/
+	begin
+
+	pos	1	1	512
+	speed	0
+	count	1
+
+	mrot	0	4	0
+	count	30000
+	end
+
+/*	No.1 Appears from the front of the player's ship and moves forward while rotating	*/
+	begin
+
+	pos	1	1	-1120
+	speed	512
+	count	1
+
+	mrot	2	4	8
+	count	30000
+
+	end
+
+/*	No.2 Coming towards your ship from the corner	*/
+	begin
+
+	pos	-801	801	-1120
+	speed	384
+	vrot	32	-38
+	mrot	32	-38	0
+	count	1
+
+	mrot	0	0	-8
+	count	33
+	
+	vrot	-1	1
+	mrot	-1	1	-8
+	count	33
+
+	mrot	0	0	-8
+	count	30000
+	end
+
+/*	No.3 It comes out from the side, turns around and leaves on the other side	*/
+	begin
+
+	pos	-700	400	1120
+	speed	256
+	vrot	16	128
+	mrot	16	128	0
+	count	1
+
+	vrot	0	1
+	mrot	0	1	-1
+	count	61
+
+	vrot	0	-1
+	mrot	0	-1	2
+	speed	1
+	count	61
+
+	vrot	-1	-1
+	mrot	-1	-1	-1
+	count	25
+
+/*	shot !	*/
+	vrot	0	-2
+	mrot	0	-2	0
+	count	41
+
+	vrot	0	-2
+	mrot	0	-2	1
+	shot	1	0
+	count	11
+
+	vrot	1	-2
+	mrot	1	-2	1
+	shot	1	0
+	count	6
+
+	vrot	-1	-2
+	mrot	-1	-2	-1
+	shot	2	0
+	count	6
+
+	vrot	0	0
+	mrot	0	0	-2
+	count	30000
+	end
+
+/*	No.4 Comes from above at an angle, somersaults and leaves below	*/
+	begin
+
+	pos	-800	-1000	-1120
+	speed	512
+	vrot	-32	-24
+	mrot	-32	-24	1
+	count	1
+
+	speed 	-3
+	count	65
+
+	vrot	2	1
+	mrot	2	1	0
+	shot	1	0
+	count	11
+
+	vrot	2	1
+	mrot	2	1	-1
+	shot	40	0
+	count	51
+
+	vrot	2	-1
+	mrot	2	-1	0
+	count	51
+
+	vrot	2	0
+	mrot	2	0	1
+	shot	2	0
+	count	39
+
+	count	30000
+	end
+
+/*	No.5 That nasty guy that appears, spins, shoots bullets, and then disappears	*/
+	begin
+
+	pos	-300	-1200	0
+	speed	512
+	vrot	-64	-3
+	mrot	-64	-3	0
+	count	1
+
+	mrot	0	0	4
+	count	32
+
+	speed	-32
+	mrot	4	1	0
+	count	16
+
+/*	shot !	*/
+	mrot	0	-1	0
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	count	64
+
+	speed	32
+	mrot	-4	-2	0
+	count	16
+
+	mrot	0	0	4
+	count	30000
+	end
+
+/*	No.6 Jump up and down and shoot at your ship	*/
+	begin
+
+	pos	300	900	1000
+	speed	1024
+	vrot	32	100
+	mrot	32	100	0
+	count	1
+
+	count	17
+
+	speed	-64
+	count	17
+
+	mrot	-1	6	0
+	vrot	-1	6
+	count	17
+
+	speed	64
+	count	16
+
+	speed	-64
+	count	16
+
+	mrot	-1	-6	0
+	vrot	-1	-6
+	count	15
+
+	speed	64
+	count	17
+
+	speed	-64
+	count	17
+
+	mrot	-6	0	0
+	vrot	-6	0
+	count	13
+/*	One-shot polo	*/
+	speed	64
+	shot	1	1
+	count	17
+
+	speed	-64
+	count	17
+
+	mrot	-5	2	0
+	vrot	-5	2
+	count	13
+
+	speed	64
+	count	17
+
+	count	30000
+	end
+
+/*	No.7 Appears from the side, flies away, spits out enemies, and disappears	*/
+	begin
+
+	pos	-750	-200	1120
+	speed	192
+	vrot	-10	128
+	mrot	-10	128	0
+	count	1
+
+	vrot	0	1
+	mrot	0	1	0
+	count	28
+
+	count	28
+
+	mrot	0	0	-1
+	born	1	3	1	1	0
+	count	48
+
+	born	1	2	13	1	0
+	count	16
+
+	born	1	3	1	1	0
+	count	16
+
+	born	1	2	13	1	0
+	count	16
+
+	count	30000
+	end
+
+/*	No.8 Approaching from the front and shooting bullets while moving upwards	*/
+	begin
+
+	pos	-300	-400	-1120
+	speed	224
+	count	1
+
+	count	21
+
+	shot	1	0
+	count	21
+
+	shot	1	0
+	count	21
+
+	shot	1	0
+	count	21
+
+	vrot	-1	-1
+	mrot	-1	-1	1
+	count	9
+	count	5
+
+	vrot	-1	-1
+	mrot	-1	-1	1
+	shot	8	1
+	count	9
+	count	5
+
+	vrot	-1	-1
+	mrot	-1	-1	1
+	count	9
+	count	5
+
+	vrot	-1	-1
+	mrot	-1	-1	1
+	count	9
+
+	count	30000
+	end
+
+/*	No.9 First stage boss "Tsu-bo"	*/
+	begin
+
+	pos	0	1000	720
+	mrot	64	0	0
+	vrot	64	0
+	speed	256
+	count	1
+
+/*	Appearance	*/
+	mrot	0	0	4
+	count	32
+
+	mrot	0	0	4
+	count	48
+
+	speed	-8
+	mrot	0	0	4
+	count	64
+
+	speed	16
+	mrot	0	0	4
+	count	16
+
+	mrot	0	0	3
+	vrot	64	0
+	count	1
+
+	mrot	0	0	2
+	speed	16
+	count	32
+
+	mrot	0	0	1
+	speed	-16
+	count	32
+
+/*	The beginning of the loop	*/
+loopstart
+
+/*	Vomit enemies	*/
+	born	1	7	10	1	0
+	mrot	0	0	1
+	count	16
+	born	1	7	10	-1	0
+	mrot	0	0	1
+	count	16
+
+	born	1	4	11	-1	0
+	mrot	0	0	2
+	count	128
+	born	1	4	11	1	0
+	mrot	0	0	2
+	count	16
+
+	born	1	5	12	-1	0
+	mrot	0	0	1
+	count	160
+	born	1	5	12	1	0
+	mrot	0	0	1
+	count	16
+
+	mrot	0	0	1
+	count	146
+
+	mrot	0	-1	1
+	count	64
+
+/*	tilt	*/
+	mrot	-2	2	-1
+	count	32
+
+	mrot	0	0	-2
+	count	16
+/*	Bee	*/
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+	shot	1	1
+	mrot	0	0	-2
+	count	3
+
+	mrot	0	0	-2
+	count	8
+
+/*	Return */
+	mrot	2	0	-1
+	count	32
+
+/*	End of loop	*/
+	loopend
+	end
+
+/*	No.10 First Stage Boss's Minion, Part 1	*/
+	begin
+
+	pos	0	-100	-304
+	mrot	64	64	0
+	vrot	64	64
+	speed	256
+	count	1
+
+	mrot	-2	-1	1
+	vrot	-2	-1
+	count	32
+
+	mrot	-2	-2	2
+	vrot	-2	-2
+	count	12
+
+	mrot	1	-2	-2
+	vrot	1	-2
+	shot	1	0
+	count	4
+	mrot	1	-2	-2
+	vrot	1	-2
+	shot	1	0
+	count	4
+	mrot	1	-2	-2
+	vrot	1	-2
+	shot	1	0
+	count	4
+	mrot	0	-2	-2
+	vrot	0	-2
+	shot	1	0
+	count	4
+	mrot	0	-2	-2
+	vrot	0	-2
+	count	16
+
+	mrot	0	2	-1
+	vrot	0	2
+	count	32
+
+	mrot	1	2	-1
+	vrot	1	2
+	count	14
+
+	count	30000
+	end
+
+/*	No.11 The second minion of the boss on stage 1	*/
+	begin
+
+	pos	0	0	0
+	mrot	64	0	0
+	vrot	64	0
+	speed	0
+	count	1
+
+	speed	32
+	count	16
+
+	mrot	-4	0	8
+	vrot	-4	0
+	speed	-32
+	count	16
+
+	mrot	0	8	0
+	vrot	0	8
+	count	8
+
+	speed	32
+	count	16
+
+	speed	-32
+	count	16
+
+	mrot	-8	-8	0
+	vrot	-8	-8
+	count	8
+
+	speed	32
+	count	16
+
+	count	4
+
+	mrot	4	1	0
+	vrot	4	1
+	speed	-32
+	count	16
+
+/*	shot	*/
+	mrot	0	-1	0
+	vrot	0	-1
+	count	12
+
+	mrot	0	-1	0
+	vrot	0	-1
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	vrot	0	-1
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	vrot	0	-1
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	vrot	0	-1
+	shot	1	0
+	count	6
+
+	mrot	0	-1	0
+	vrot	0	-1
+	shot	1	0
+	count	6
+
+	speed	32
+	count	16
+
+	count	30000
+	end
+
+/*	No.12 The boss's minion on stage 1, part 3	*/
+	begin
+
+	pos	0	0	0
+	mrot	64	0	0
+	vrot	64	0
+	speed	1024
+	count	1
+
+	speed	-64
+	count	16
+
+	mrot	-7	2	0
+	vrot	-7	2
+	count	16
+
+	shot	1	1
+	speed	64
+	count	16
+
+	speed	-64
+	count	16
+
+	mrot	4	-3	0
+	vrot	4	-3
+	count	16
+
+	speed	64
+	count	16
+
+	speed	-64
+	count	16
+
+	mrot	0	-6	0
+	vrot	0	-6
+	count	16
+
+	speed	64
+	count	16
+
+	speed	-64
+	count	16
+
+	mrot	-2	-3	0
+	vrot	-2	-3
+	count	16
+
+	speed	64
+	shot	1	1
+	count	16
+
+	speed	-64
+	count	16
+
+	mrot	1	-6	0
+	vrot	1	-6
+	count	16
+
+	speed	64
+	count	16
+
+	count	30000
+	end
+
+/*	No.13 Appears from the front of the ship and moves forward while rotating part II	*/
+	begin
+
+	pos	0	0	0
+	mrot	0	-24	0
+	vrot	0	-24
+	speed	384
+	count	1
+
+	mrot	0	1	8
+	vrot	0	1
+	count	30000
+
+	end
+
+/*	No.14 It goes round and disappears	*/
+	begin
+
+	pos	-900	1200	-256
+	count	1
+
+	pos	0	-20	0
+	mrot	0	8	0
+	count	105
+
+	pos	20	0	0
+	mrot	0	16	0
+	count	90
+
+	pos	0	20	0
+	mrot	0	8	0
+	count	30000
+
+	end

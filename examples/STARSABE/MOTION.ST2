@@ -1,0 +1,1316 @@
+/*	motion.st2 : stage 2 motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0 For debugging	*/
+	begin
+
+	pos	1	-201	512
+	mrot	0	64	0
+	speed	-256
+	count	1
+
+	mrot	0	0	24
+	count	30000
+	end
+
+/*	No.1 Appears from the front of the player's ship and moves forward while rotating	*/
+	begin
+
+	pos	1	1	-1120
+	speed	0
+	count	1
+
+	count	30000
+	end
+
+/*	No.2 Pillar extending from the ground */
+	begin
+
+	pos	129	660	-1120
+	mrot	64	0	0
+	vrot	64	0
+	speed	80
+	count	1
+
+loopstart
+	mrot	0	0	8
+	born	1	2	20	1	1
+	count	22
+loopend
+	end
+
+/*	No.3 gutsy frog 	*/
+	begin
+
+	pos	300	540	-1120
+	mrot	24	0	0
+	vrot	64	0
+	count	1
+
+loopstart
+	mrot	-48	0	0
+	speed	960
+	count	1
+
+	speed	-60
+	mrot	0	1	0
+	pos	0	0	-4
+	count	4
+
+	speed	-60
+	/*	shot	2	0	*/
+	mrot	2	0	0
+	pos	0	0	-4
+	count	8
+
+	speed	-60
+	/*	shot	1	0	*/
+	mrot	2	-1	0
+	pos	0	0	-4
+	count	4
+
+	speed	-60
+	mrot	2	0	0
+	pos	0	0	-4
+	count	12
+
+	speed	-60
+	pos	0	0	-4
+	count	4
+
+	speed	960
+	count	1
+loopend
+	end
+
+/*	No.4 Coming out from the side (gun port)	*/
+	begin
+
+	pos	-1120	540	-1120
+	mrot	24	-64	0
+	vrot	0	-64
+	speed	176
+	count	1
+
+	shot	1	0
+	count	12
+	shot	1	0
+	count	12
+	shot	1	0
+	mrot	1	1	0
+	count	12
+	shot	1	0
+	mrot	1	1	0
+	count	12
+
+	mrot	1	-1	0
+	vrot	0	-1
+	count	56
+
+	mrot	1	-2	0
+	vrot	0	-1
+	count	8
+
+loopstart
+	mrot	2	-2	0
+	shot	4	0
+	count	8
+	shot	1	0
+	count	1
+	mrot	-2	-2	0
+	shot	4	0
+	count	8
+	mrot	-2	2	0
+	shot	4	0
+	count	8
+	shot	1	0
+	count	1
+	mrot	2	2	0
+	shot	4	0
+	count	8
+loopend
+	end
+
+/*	No.5 A car comes out from the side (body)	*/
+	begin
+
+	pos	-1120	540	-1120
+	mrot	64	-64	0
+	vrot	0	-64
+	speed	176
+	count	1
+
+	count	48
+
+	mrot	0	-1	0
+	vrot	0	-1
+	count	64
+
+	count	30000
+	end
+
+/*	No.6 A pillar extending from the ground in an arc	*/
+	begin
+
+	pos	-301	660	-1120
+	mrot	64	64	0
+	vrot	64	64
+	speed	160
+	count	1
+
+loopstart
+	mrot	1	0	8
+	vrot	1	0
+	born	1	2	20	1	1
+	count	12
+loopend
+	end
+
+/*	No.7 The underground battery is called and jumps out!	*/
+	begin
+
+	pos	280	640	-1120	/*	y : to 300	*/
+	mrot	64	0	0
+	vrot	64	0
+	speed	180
+	count	1
+
+	mrot	0	0	-1
+	count	32
+
+	speed	-180
+	count	1
+
+	count	6
+
+	mrot	0	0	-1
+	shot	1	1
+	count	6
+
+	mrot	0	0	-1
+	count	30000
+	end
+
+/*	No.8 Bullet hole	*/
+	begin
+
+	pos	51	620	-1120
+	mrot	64	0	0
+	count	1
+loopstart
+	mrot	0	0	8
+	shot	1	0
+	count	8
+loopend
+	end
+
+/*	No.9 Stepping	*/
+	begin
+
+	pos	-1050	520	-1120
+	mrot	0	-64	0
+	vrot	0	-64
+	speed	224
+	count	1
+loopstart
+	mrot	0	8	-4
+	vrot	0	6
+	count	1
+
+	mrot	0	2	-4
+	count	2
+
+	mrot	1	6	0
+	count	4
+
+	mrot	1	2	4
+	shot	1	0
+	count	3
+
+	mrot	-1	-2	4
+	count	3
+
+	mrot	-1	-6	0
+	count	4
+
+	mrot	0	-2	-4
+	count	3
+loopend
+	end
+
+/*	No.10 Comes out from behind (gun port)	*/
+	begin
+
+	pos	-1100	540	1120
+	mrot	17	-120	0
+	vrot	0	-116
+	speed	352
+	count	1
+
+	count	144
+
+	mrot	0	4	0
+	count	30
+loopstart
+	shot	4	0
+	mrot	-2	0	0
+	count	8
+	shot	4	0
+	mrot	2	0	0
+	count	8
+	shot	4	0
+	mrot	2	0	0
+	count	8
+	shot	4	0
+	mrot	-2	0	0
+	count	8
+loopend
+	end
+
+/*	No.11 A car comes out from behind (car body)	*/
+	begin
+
+	pos	-1100	540	1120
+	mrot	64	-112	0
+	vrot	0	-116
+	speed	352
+	count	1
+
+	count	30000
+	end
+
+/*	No.12 Boss (Buddy)	*/
+	begin
+
+	pos	0	-1020	-1120	/* y = 340	*/
+	vrot	-64	0
+	speed	0
+	count	1
+
+	speed	160
+	count	16
+
+	speed	-2560
+	count	1
+
+/*	thump no.12	*/
+	speed	400
+	count	1
+
+	speed	-50
+	count	16
+
+	speed	400
+	vrot	64	0
+	count	1
+
+/*	Turning Around No.12	*/
+	mrot	0	4	0
+	count	32
+
+/*	Going over there No.12	*/
+	vrot	0	128
+	count	1
+
+	speed	136
+	count	6
+
+	count	24
+
+	speed	-136
+	count	6
+
+/*	Turning forward no.12	*/
+	mrot	0	4	0
+	count	32
+
+loopstart
+
+/*	Retreat no.12	*/
+	speed	256
+	count	1
+
+	count	8
+	born	1	26	15	1	0
+	count	8
+
+	pos	16	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	16	0	0
+	count	8
+
+	pos	-16	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	-16	0	0
+	count	8
+
+	count	8
+	born	1	26	15	1	0
+	count	8
+
+	pos	-16	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	-16	0	0
+	count	8
+
+	pos	16	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	16	0	0
+	count	8
+
+
+	born	1	26	15	1	0
+	count	8
+	born	1	26	15	1	0
+	count	8
+
+	born	1	26	15	1	0
+	pos	19	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	19	0	0
+	count	8
+
+	born	1	26	15	1	0
+	pos	-19	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	-19	0	0
+	count	8
+
+	born	1	26	15	1	0
+	count	8
+	born	1	26	15	1	0
+	count	8
+
+	born	1	26	15	1	0
+	pos	-19	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	-19	0	0
+	count	8
+
+	born	1	26	15	1	0
+	pos	19	0	0
+	count	8
+	born	1	26	15	1	0
+	pos	19	0	0
+	count	8
+
+	count	32
+
+	mrot	-1	0	0
+	count	32
+
+	count	32
+
+/*	Charge no.12	*/
+	vrot	0	128
+	count	1
+
+	mrot	1	0	0
+	count	32
+	count	16
+
+/*	Backflip no.12	*/
+
+	vrot	64	0
+	speed	1792	/*	Butt wipe-256	*/
+	count	1
+
+	pos	0	0	-75
+	speed	-128
+	count	32
+
+	vrot	-64	128
+	speed	2048
+	count	1
+
+/*	thump 2 no.12	*/
+	vrot	-64	0
+	speed	400
+	count	1
+
+	speed	-50
+	count	16
+
+	vrot	64	0
+	speed	400
+	count	1
+
+/*	Rotating rod no.12	*/
+	speed	256
+	count	1
+
+	born	6	27	16	1	0
+	count	12
+	count	6
+	count	6
+	born	1	27	22	-1	0
+	count	12
+	count	6
+	count	6
+	count	12
+	count	6
+	count	6
+
+	born	1	28	21	1	0
+	count	8
+
+	mrot	-1	0	0
+	count	32
+
+	count	32
+
+/*	Jump No.12	*/
+
+	vrot	64	0
+	speed	1792	/*	Butt wipe-256	*/
+	count	1
+
+	pos	0	0	24
+	mrot	1	0	0
+	speed	-128
+	count	32
+
+	speed	2048
+	count	1
+
+	speed	2048
+	count	1
+
+	pos	0	0	-67
+	speed	-128
+	count	32
+
+	vrot	-64	0
+	speed	2048
+	count	1
+
+/*	thump 3 no.12	*/
+	vrot	-64	0
+	speed	400
+	count	1
+
+	speed	-50
+	count	16
+
+	vrot	64	0
+	speed	400
+	count	1
+
+loopend
+
+	count	30000
+	end
+
+
+/*	No.13 Boss (Left leg)	*/
+	begin
+
+	pos	0	-1020	-1120	/* y = 340	*/
+	vrot	-64	0
+	speed	0
+	count	1
+
+	speed	160
+	count	16
+
+	speed	-2560
+	count	1
+
+/*	Thud no.13	*/
+	vrot	64	0
+	count	1
+	count	17
+
+/*	Turning Around No.13	*/
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+	mrot	0	4	0
+	count	8
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+	mrot	0	4	0
+	count	8
+
+/*	Going over there No.13	*/
+	vrot	0	128
+	count	1
+
+	speed	136
+	pos	0	-16	-16
+	count	3
+	speed	136
+	pos	0	16	-16
+	count	3
+
+	pos	0	0	32
+	count	6
+
+	pos	0	-16	-32
+	count	3
+	pos	0	16	-32
+	count	3
+
+	pos	0	0	32
+	count	6
+
+	pos	0	-16	-32
+	count	3
+	pos	0	16	-32
+	count	3
+
+	speed	-136
+	pos	0	0	16
+	count	6
+
+/*	Turning around No.13	*/
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+	mrot	0	4	0
+	count	8
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+	mrot	0	4	0
+	count	8
+
+loopstart
+
+/*	Retreat no.13	*/
+	speed	256
+	count	1
+
+	pos	0	-16	-16
+	count	8
+	pos	0	16	-16
+	count	8
+
+	pos	16	0	32
+	count	16
+
+	pos	-16	-16	-32
+	count	8
+	pos	-16	16	-32
+	count	8
+
+	pos	0	0	32
+	count	16
+
+	pos	-16	-16	-32
+	count	8
+	pos	-16	16	-32
+	count	8
+
+	pos	16	0	32
+	count	16
+
+
+
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+
+	pos	19	0	32
+	count	16
+
+	pos	-19	-16	-32
+	count	8
+	pos	-19	16	-32
+	count	8
+
+	pos	0	0	32
+	count	16
+
+	pos	-19	-16	-32
+	count	8
+	pos	-19	16	-32
+	count	8
+
+	pos	19	0	32
+	count	16
+
+
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+	pos	0	0	32
+	count	16
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+	pos	0	0	32
+	count	16
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+	pos	0	0	16
+	count	16
+
+/*	Charge no.13	*/
+	vrot	0	128
+	count	1
+
+	pos	0	-16	16
+	count	2
+	pos	0	16	16
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-16
+	count	4
+
+
+/*	Backflip no.13	*/
+
+	vrot	64	0
+	speed	1792	/*	Butt wipe-256	*/
+	count	1
+
+	pos	0	0	-75
+	speed	-128
+	count	32
+
+	vrot	-64	128
+	speed	2048
+	count	1
+
+/*	thump 2 no.13	*/
+	count	18
+
+/*	Rotating rod	*/
+	speed	256
+	count	1
+
+	pos	0	-16	-16
+	count	6
+	pos	0	16	-16
+	count	6
+	pos	0	0	32
+	count	12
+
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+	pos	0	0	32
+	count	12
+
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+	pos	0	0	32
+	count	12
+
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+	pos	0	0	32
+	count	12
+
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+	pos	0	0	32
+	count	12
+
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+	pos	0	0	16
+	count	12
+
+/*	Jump No.13	*/
+
+	vrot	64	0
+	speed	1792	/*	Butt wipe-256	*/
+	count	1
+
+	pos	0	0	24
+	speed	-128
+	count	32
+
+	speed	2048
+	count	1
+
+	speed	2048
+	count	1
+
+	pos	0	0	-67
+	speed	-128
+	count	32
+
+	vrot	-64	0
+	speed	2048
+	count	1
+
+/*	thump 3 no.13	*/
+	count	18
+
+loopend
+
+	count	30000
+	end
+
+
+
+/*	No.14 Boss (Right Leg)	*/
+	begin
+
+	pos	0	-1020	-1120	/* y = 340	*/
+	mrot	0	-128	0
+	vrot	-64	0
+	speed	0
+	count	1
+
+	speed	160
+	count	16
+
+	speed	-2560
+	count	1
+
+/*	Thud	no.14	*/
+	vrot	64	0
+	count	1
+	count	17
+
+/*	turn around	no.14	*/
+
+	mrot	0	4	0
+	count	8
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+	mrot	0	4	0
+	count	8
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+/*	Go over there	no.14	*/
+	vrot	0	128
+	count	1
+
+	speed	136
+	pos	0	0	32
+	count	6
+
+	pos	0	-16	-32
+	count	3
+	pos	0	16	-32
+	count	3
+
+	pos	0	0	32
+	count	6
+
+	pos	0	-16	-32
+	count	3
+	pos	0	16	-32
+	count	3
+
+	pos	0	0	32
+	count	6
+
+	speed	-136
+	pos	0	-16	-32
+	count	3
+	speed	-136
+	pos	0	16	-32
+	count	3
+
+/*	Turn around	no.14	*/
+
+	mrot	0	4	0
+	count	8
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+	mrot	0	4	0
+	count	8
+
+	pos	0	-16	0
+	mrot	0	4	0
+	count	4
+	pos	0	16	0
+	mrot	0	4	0
+	count	4
+
+loopstart
+
+/*	Retreat	no.14	*/
+	speed	256
+	count	1
+
+	pos	0	0	16
+	count	16
+
+	pos	16	-16	-32
+	count	8
+	pos	16	16	-32
+	count	8
+
+	pos	-16	0	32
+	count	16
+
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+
+	pos	-16	0	32
+	count	16
+
+	pos	16	-16	-32
+	count	8
+	pos	16	16	-32
+	count	8
+
+
+	pos	0	0	32
+	count	16
+
+	pos	19	-16	-32
+	count	8
+	pos	19	16	-32
+	count	8
+
+	pos	-19	0	32
+	count	16
+
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+
+	pos	-19	0	32
+	count	16
+
+	pos	19	-16	-32
+	count	8
+	pos	19	16	-32
+	count	8
+
+
+	pos	0	0	32
+	count	16
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+	pos	0	0	32
+	count	16
+	pos	0	-16	-32
+	count	8
+	pos	0	16	-32
+	count	8
+	pos	0	0	32
+	count	16
+	pos	0	-16	-16
+	count	8
+	pos	0	16	-16
+	count	8
+
+
+/*	Charge	no.14	*/
+	vrot	0	128
+	count	1
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+	pos	0	0	-32
+	count	4
+
+	pos	0	-16	32
+	count	2
+	pos	0	16	32
+	count	2
+
+/*	Backflip	no.14	*/
+
+	vrot	64	0
+	speed	1792	/*	Butt wipe-256	*/
+	count	1
+
+	pos	0	0	-75
+	speed	-128
+	count	32
+
+	vrot	-64	128
+	speed	2048
+	count	1
+
+/*	Thud 2	no.14	*/
+	count	18
+
+/*	Rotating rod	*/
+	speed	256
+	count	1
+
+	pos	0	0	16
+	count	12
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+
+	pos	0	0	32
+	count	12
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+
+	pos	0	0	32
+	count	12
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+
+	pos	0	0	32
+	count	12
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+
+	pos	0	0	32
+	count	12
+	pos	0	-16	-32
+	count	6
+	pos	0	16	-32
+	count	6
+
+	pos	0	0	32
+	count	12
+	pos	0	-16	-16
+	count	6
+	pos	0	16	-16
+	count	6
+
+/*	Jump	no.14	*/
+
+	vrot	64	0
+	speed	1792	/*	Butt wipe-256	*/
+	count	1
+
+	pos	0	0	24
+	speed	-128
+	count	32
+
+	speed	2048
+	count	1
+
+	speed	2048
+	count	1
+
+	pos	0	0	-67
+	speed	-128
+	count	32
+
+	vrot	-64	0
+	speed	2048
+	count	1
+
+/*	Thud 3	no.14	*/
+	count	18
+
+loopend
+
+	count	30000
+	end
+
+/*	No.15	Boss Bullet 1	*/
+	begin
+
+	speed	768
+	count	1
+
+	count	30000
+	end
+
+/*	No.16	Boss Bullet 2	*/
+	begin
+
+	speed	310
+	count	1
+
+	mrot	0	0	3
+	count	30000
+	end
+
+
+/*	No.17	Bomber (wings)	*/
+	begin
+
+	pos	1120	-256	-560
+	vrot	0	64
+	mrot	0	64	0
+	speed	512
+	count	1
+
+	count	28
+
+	vrot	0	1
+	mrot	0	1	0
+	count	32
+	vrot	0	1
+	mrot	0	1	-1
+	count	32
+
+	vrot	0	1
+	mrot	0	1	0
+	count	32
+	vrot	0	1
+	mrot	0	1	1
+	count	32
+
+	vrot	0	1
+	mrot	0	1	0
+	count	30000
+	end
+
+
+/*	No.18	Bomber (propeller)	*/
+	begin
+
+	pos	1120	-256	-560
+	vrot	0	64
+	mrot	0	64	0
+	speed	512
+	count	1
+
+	mrot	0	0	16
+	count	28
+
+	vrot	0	1
+	mrot	0	1	16
+	count	32
+	vrot	0	1
+	mrot	0	1	16
+	count	32
+
+	vrot	0	1
+	mrot	0	1	16
+	count	32
+
+	vrot	0	1
+	mrot	0	1	16
+	born	6	10	19	1	0
+	count	16
+	vrot	0	1
+	mrot	0	1	16
+	born	12	10	19	1	0
+	count	16
+
+	vrot	0	1
+	mrot	0	1	16
+	count	30000
+	end
+
+
+/*	No.19	Rolling Bomb	*/
+	begin
+
+	pos	1	-256	-800
+	count	1
+
+	vrot	-64	0
+	mrot	0	64	0
+	count	1
+
+	speed	50
+	pos	0	0	3
+	mrot	0	0	16
+	count	22
+
+	speed	-1100
+	count	1
+	speed	-1000
+	count	1
+
+	speed	50
+	pos	0	0	3
+	mrot	0	0	16
+	count	40
+
+	speed	-1000
+	count	1
+
+	speed	-900
+	count	1
+
+	speed	50
+	pos	0	0	3
+	mrot	0	0	16
+	count	30000
+	end
+
+/*	No.20	Stay still	*/
+	begin
+
+	count	1
+
+	mrot	0	0	1
+	count	30000
+	end
+
+/*	No.21	Boss Bullet 3	*/
+	begin
+
+	speed	310
+	mrot	0	0	32
+	count	1
+
+	count	30000
+	end
+
+/*	No.22	Boss Bullet 2 II	*/
+	begin
+
+	speed	310
+	mrot	0	0	64
+	count	1
+
+	mrot	0	0	3
+	count	30000
+	end

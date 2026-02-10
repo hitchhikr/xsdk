@@ -7,8 +7,8 @@
 #ifndef	_ANSIDECL_H_
 #define	_ANSIDECL_H_
 
-#include <newlib.h>
-#include <sys/config.h>
+//#include <newlib.h>
+#include <config.h>
 
 /*  ISO C++.  */
 

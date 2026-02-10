@@ -1,0 +1,395 @@
+\	model.st3 : stage 3 modeling data	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+
+	\1...metal   2...blue   3...yellow   4...red	6... blue	7...orange	8...akamura	9...mura	11...green\
+       \x	y	z	col\
+
+\Enemy No. 0 Stick Laser    3 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	1	\hit point\
+	0	\score / 100\
+	
+	0	0	-32	8
+	0	0	0	8
+	0	0	32	8
+}
+
+\Enemy No. 1 Ring Laser     4 boxes\
+{
+	120	\Magnification (%)\
+	1	\sprite pattern No.\	\Circle\
+	1	\hit point\
+	0	\score / 100\
+	
+	0	-20	0	8
+	20	0	0	8
+	0	20	0	8
+	-20	0	0	8
+}
+
+\Enemy No. 2 Monolith       10 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	2	\score / 100\
+	
+	-28	-64	0	1
+	0	-64	0	1
+	28	-64	0	1
+
+	-28	-24	0	1
+	-28	24	0	1
+
+	-28	64	0	1
+	0	64	0	1
+	28	64	0	1
+
+	28	-24	0	1
+	28	24	0	1
+}
+
+\Enemy No. 3: Small enemy   5 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+
+\copper\
+	0	0	24	3
+	0	12	8	9
+	0	12	-16	9
+\Flip left\
+	-32	32	0	4
+\Fly right\
+	32	32	0	4
+}
+
+\Enemy No. 4 Warp-kun   13 boxes\
+{
+	120	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	5	\hit point\
+	4	\score / 100\
+
+	0	0	48	2
+
+	-32	0	24	2
+	0	-16	24	9
+	32	0	24	2
+
+	-64	0	0	2
+	-22	-32	0	9
+	22	-32	0	9
+	64	0	0	2
+
+	-96	0	-24	2
+	-48	-32	-24	9
+	0	-40	-24	9
+	48	-32	-24	9
+	96	0	-24	2
+}
+
+\Enemy No. 5 mine   16 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	1	\score / 100\
+
+	0	0	24	1
+	
+	-24	-24	0	1
+	24	-24	0	1
+	24	24	0	1
+	-24	24	0	1
+
+	0	0	-24	1
+}
+
+\Enemy No. 6 Escort aircraft    15 boxes\
+{
+	110	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	3	\hit point\
+	3	\score / 100\
+
+\neck\
+	0	0	72	2
+	0	-24	48	2
+	-16	0	48	2
+	16	0	48	2
+	0	0	40	2
+	0	0	0	9
+
+\feather\
+	0	0	-32	1
+
+	-24	-16	-32	1
+	-48	-32	-32	1
+
+	-24	16	-32	1
+	-48	32	-32	1
+
+	24	-16	-32	1
+	48	-32	-32	1
+
+	24	16	-32	1
+	48	32	-32	1
+}
+
+\Enemy No. 7 High-speed fighter     13 boxes\
+{
+	70	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\
+	3	\score / 100\
+
+	0	0	0	4
+	
+	60	0	64	1
+	60	-64	32	1
+	60	-64	-32	1
+
+	60	0	-64	1
+	60	64	32	1
+	60	64	-32	1
+
+	-60	0	64	1
+	-60	-64	32	1
+	-60	-64	-32	1
+
+	-60	0	-64	1
+	-60	64	32	1
+	-60	64	-32	1
+}
+
+\Enemy No. 8 Fighter Formation  10 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	2	\hit point\
+	3	\score / 100\
+
+	80	0	32	1
+	-80	0	32	1
+	56	0	64	1
+	-56	0	64	1
+	32	0	96	1
+	-32	0	96	1
+
+	0	24	0	6
+	0	-24	0	6
+	0	32	-48	6
+	0	-32	-48	6
+}
+
+\Enemy No. 9 dummy      0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 10 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 11 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 12 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 13 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 14 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 15 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 16 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 17 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 18 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 19 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 20 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 21 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 22 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+\Enemy No. 23 dummy     0 boxes\
+{
+	0	0	0	0	0	0	0	0
+}
+
+\Enemy No. 24 Boss "Taman"  14 boxes\
+{
+	80	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\	\dummy\
+	140	\score / 100\
+
+	-32	-32	32	4
+	32	-32	32	4
+	32	32	32	4
+	-32	32	32	4
+
+	-32	-32	-32	4
+	32	-32	-32	4
+	32	32	-32	4
+	-32	32	-32	4
+
+	0	0	-48	4
+	0	0	48	4
+	-48	0	0	4
+	48	0	0	4
+	0	-48	0	4
+	0	48	0	4
+}
+
+\Enemy No. 25 Guard     30 boxes\
+{
+	200	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\	\dummy\
+	0	\score / 100\
+
+	-64	-32	64	12
+	-64	0	64	12
+	-64	32	64	12
+
+	-32	-32	64	12
+	-32	0	64	12
+	-32	32	64	12
+
+	0	-32	64	12
+	0	0	64	12
+	0	32	64	12
+
+	32	-32	64	12
+	32	0	64	12
+	32	32	64	12
+
+	64	-32	64	12
+	64	0	64	12
+	64	32	64	12
+
+
+	-64	-32	-64	12
+	-64	0	-64	12
+	-64	32	-64	12
+
+	-32	-32	-64	12
+	-32	0	-64	12
+	-32	32	-64	12
+
+	0	-32	-64	12
+	0	0	-64	12
+	0	32	-64	12
+
+	32	-32	-64	12
+	32	0	-64	12
+	32	32	-64	12
+
+	64	-32	-64	12
+	64	0	-64	12
+	64	32	-64	12
+}
+
+\Enemy No. 26 Circle K  12 boxes\
+{
+	100	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\	\dummy\
+	0	\score / 100\
+
+	192	0	0	1
+	166	95	0	1
+	96	166	0	1
+	0	192	0	1
+	-95	166	0	1
+	-166	96	0	1
+	-192	0	0	1
+	-166	-95	0	1
+	-96	-166	0	1
+	0	-192	0	1
+	95	-166	0	1
+	166	-96	0	1
+}
+
+\Enemy No. 27 Circle K Beam     16 boxes\
+{
+	100	\Magnification (%)\
+	1	\sprite pattern No.\
+	1	\hit point\	\dummy\
+	0	\score / 100\
+
+	256	0	0	8
+	236	97	0	8
+	181	181	0	8
+	97	236	0	8
+	0	256	0	8
+	-97	236	0	8
+	-181	181	0	8
+	-236	97	0	8
+	-256	0	0	8
+	-236	-97	0	8
+	-181	-181	0	8
+	-97	-236	0	8
+	0	-256	0	8
+	97	-236	0	8
+	181	-181	0	8
+	236	-97	0	8
+}
+
+\Enemy No. 28 Boss "Taman" Escape   14 boxes\
+{
+	80	\Magnification (%)\
+	0	\sprite pattern No.\	\Square\
+	1	\hit point\	\dummy\
+	0	\score / 100\
+
+	-32	-32	32	4
+	32	-32	32	4
+	32	32	32	4
+	-32	32	32	4
+
+	-32	-32	-32	4
+	32	-32	-32	4
+	32	32	-32	4
+	-32	32	-32	4
+
+	0	0	-48	4
+	0	0	48	4
+	-48	0	0	4
+	48	0	0	4
+	0	-48	0	4
+	0	48	0	4
+}

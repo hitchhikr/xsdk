@@ -23,9 +23,9 @@
 #define 	OFFSET_PROGRAM	0x100
 
 /* The following three variables are set in the startup routine (__main). */
-extern int _PSP;		/* Start address of the process management pointer */
-extern int _PSTA;		/* Start address of the program area */
-extern int _HEND;		/* End address of the heap area */
+extern unsigned int _PSP;       /* Start address of the process management pointer */
+extern int _PSTA;               /* Start address of the program area */
+extern int _HEND;               /* End address of the heap area */
 
 /*=====================================================================*\
 | Resident part                                                         |

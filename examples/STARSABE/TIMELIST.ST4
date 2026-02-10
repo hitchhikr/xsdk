@@ -1,0 +1,148 @@
+\	timelist.st4 : stage 4 time chart	\
+\	Comments are enclosed in backslashes	\
+\	Please make sure to put a separator (TAB or SPACE or , or | or etc..) on both sides of the number.	\
+\	You can force the end of the file with ~	\
+
+	\	time	model	motion	sign x	sign y	\
+
+	(	40	7	13	1	1	)	\Swing\
+	(	50	7	13	-1	1	)	\Swing\
+
+	(	80	13	25	-1	1	)	\Honon\
+
+	(	70	2	1	1	1	)	\Lava (high)\
+	(	10	2	2	-1	1	)	\Lava (low)\
+
+	(	50	2	1	-1	1	)	\Lava (high)\
+	(	10	2	2	1	1	)	\Lava (low)\
+
+	(	50	2	2	-1	1	)	\Lava (low)\
+	(	10	2	1	-1	1	)	\Lava (high)\
+	(	10	2	2	1	1	)	\Lava (low)\
+	(	10	2	1	1	1	)	\Lava (high)\
+
+	(	50	13	25	-1	1	)	\Flame\
+
+	(	70	3	3	-1	1	)	\Icicle (fixed)\
+
+	(	40	3	3	1	1	)	\Icicle (fixed)\
+
+	(	40	3	3	-1	1	)	\Icicle (fixed)\
+	(	40	2	2	-1	1	)	\Lava (low)\
+	(	10	2	1	1	1	)	\Lava (high)\
+
+	(	50	13	25	1	1	)	\Flame\
+
+	(	100	6	6	1	1	)	\Bat\
+	(	130	6	6	-1	1	)	\Bat\
+	(	130	6	6	1	1	)	\Bat\
+	(	20	2	2	1	1	)	\Lava (low)\
+	(	10	2	2	-1	1	)	\Lava (low)\
+	(	50	2	1	1	1	)	\Lava (high)\
+	(	10	2	1	-1	1	)	\Lava (high)\
+
+	(	180	13	25	-1	1	)	\Flame\
+
+	(	70	4	4	-1	1	)	\Icicles (falling)\
+	(	30	3	3	1	1	)	\Icicle (fixed)\
+	(	10	4	4	1	1	)	\Icicles (falling)\
+
+	(	50	4	4	1	1	)	\Icicles (falling)\
+	(	30	3	3	-1	1	)	\Icicle (fixed)\
+	(	30	4	4	-1	1	)	\Icicles (falling)\
+
+	(	50	4	4	-1	1	)	\Icicles (falling)\
+	(	30	3	3	1	1	)	\Icicle (fixed)\
+	(	30	4	4	1	1	)	\Icicles (falling)\
+	(	10	2	1	1	1	)	\Lava (high)\
+	(	10	2	1	-1	1	)	\Lava (high)\
+
+	(	60	13	25	-1	1	)	\Flame\
+
+	(	80	7	7	1	1	)	\Tenagaan\
+	(	20	8	8	1	1	)	\Rock 1\
+	(	5	8	9	1	1	)	\Rock 2\
+	(	5	8	10	1	1	)	\Rock 3\
+	(	25	7	7	-1	1	)	\Tenagaan\
+	(	20	8	8	-1	1	)	\Rock 1\
+	(	5	8	9	-1	1	)	\Rock 2\
+	(	5	8	10	-1	1	)	\Rock 3\
+	(	25	7	7	1	1	)	\Tenagaan\
+	(	20	8	8	-1	1	)	\Rock 1\
+	(	5	8	10	-1	1	)	\Rock 2\
+	(	5	8	9	-1	1	)	\Rock 3\
+
+	(	95	9	11	1	1	)	\Spider\
+	(	90	9	11	-1	1	)	\Spider\
+	(	110	9	11	1	1	)	\Spider\
+	(	0	9	11	-1	1	)	\Spider\
+
+	(	50	6	6	1	1	)	\Bat\
+	(	60	7	7	-1	1	)	\Tenagaan\
+	(	20	8	10	-1	1	)	\Rock 1\
+	(	5	8	9	-1	1	)	\Rock 2\
+	(	5	8	8	-1	1	)	\Rock 3\
+	(	25	7	7	1	1	)	\Tenagaan\
+	(	20	8	10	1	1	)	\Rock 1\
+	(	5	8	9	1	1	)	\Rock 2\
+	(	5	8	8	1	1	)	\Rock 3\
+	(	25	7	7	-1	1	)	\Tenagaan\
+	(	20	8	8	1	1	)	\Rock 1\
+	(	5	8	10	1	1	)	\Rock 2\
+	(	5	8	9	1	1	)	\Rock 3\
+
+	(	85	9	14	1	1	)	\Spinning spider\
+	(	80	9	14	-1	1	)	\Spinning spider\
+	(	100	9	14	1	1	)	\Spinning spider\
+	(	0	9	14	-1	1	)	\Spinning spider\
+
+	(	80	13	25	1	1	)	\Flame\
+
+	(	70	3	3	1	1	)	\Icicle (fixed)\
+	(	30	4	4	-1	1	)	\Icicles (falling)\
+	(	10	2	1	-1	1	)	\Lava (high)\
+	(	10	2	2	1	1	)	\Lava (low)\
+	(	0	13	25	1	1	)	\Flame\
+
+	(	100	11	15	1	1	)	\Rock-spitting quiver\
+	(	70	11	15	-1	1	)	\Rock-spitting quiver\
+
+	(	100	12	18	1	1	)	\Fire Bird\
+	(	120	12	18	-1	1	)	\Fire Bird\
+
+	(	100	3	3	-1	1	)	\Icicle (fixed)\
+	(	30	4	4	1	1	)	\Icicles (falling)\
+	(	10	2	1	1	1	)	\Lava (high)\
+	(	10	2	2	-1	1	)	\Lava (low)\
+	(	0	13	25	-1	1	)	\Flame\
+
+	(	100	12	18	1	1	)	\Fire Bird\
+	(	30	11	15	-1	1	)	\Rock-spitting quiver\
+	(	90	12	18	-1	1	)	\Fire Bird\
+	(	30	11	15	1	1	)	\Rock-spitting quiver\
+
+	(	110	7	13	1	1	)	\Swing\
+	(	0	7	13	-1	1	)	\Swing\
+
+\Boss\
+	(	150	24	19	1	1	)	\Right eye seen from the front\
+	(	0	24	20	1	1	)	\Left eye seen from the front\
+	(	0	25	21	1	1	)	\Right scissors seen from the front\
+	(	0	25	22	1	1	)	\Left scissors seen from the front\
+~
+\enemies\
+	(	0	2	1	1	1	)	\Lava (high)\
+	(	0	2	2	1	1	)	\Lava (low)\
+	(	0	3	3	1	1	)	\Icicle (fixed)\
+	(	0	4	4	1	1	)	\Icicle (falling)\
+	(	0	13	25	1	1	)	\Honon\
+	(	0	6	6	1	1	)	\Bat\
+	(	0	7	7	1	1	)	\Tenagaan\
+	(	0	8	8	1	1	)	\Rock 1\
+	(	0	8	9	1	1	)	\Rock 2\
+	(	0	8	10	1	1	)	\Rock 3\
+	(	0	9	11	1	1	)	\Spider\
+	(	0	9	14	1	1	)	\Spinning spider\
+	(	0	7	13	1	1	)	\Swing\
+	(	0	11	15	1	1	)	\Rock-spitting quiver\
+	(	0	12	18	1	1	)	\Fire Bird\

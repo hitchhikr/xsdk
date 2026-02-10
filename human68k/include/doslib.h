@@ -1,7 +1,7 @@
 #ifndef _DOS_H
 #define _DOS_H
 
-#include <sys/cdefs.h>
+//#include <sys/cdefs.h>
 #include <stdio.h>
 
 #define _DOS_IRDONLY	0x001
@@ -413,7 +413,7 @@ struct dos_prcptr {
 } __attribute__((__packed__));
 #define PRCPTR dos_prcptr
 
-__BEGIN_DECLS
+//__BEGIN_DECLS
 
 extern void	_dos_allclose (void);
 #define ALLCLOSE _dos_allclose
@@ -781,13 +781,13 @@ extern void	_dos_verify (int);
 #define VERIFY _dos_verify
 extern int	_dos_verifyg (void);
 #define VERIFYG _dos_verifyg
-extern int	_dos_vernum (void) __attribute_pure__;
+extern int	_dos_vernum (void);// __attribute_pure__;
 #define VERNUM _dos_vernum
 extern int	_dos_wait (void);
 #define WAIT _dos_wait
 extern int	_dos_write (int, const char *, int);
 #define WRITE _dos_write
 
-__END_DECLS
+//__END_DECLS
 
 #endif /* _DOS_H */

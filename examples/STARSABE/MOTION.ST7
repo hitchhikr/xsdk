@@ -1,0 +1,1130 @@
+/*	motion.st7 : stage 7 motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0	For debugging	*/
+	begin
+
+	pos	1	1	512
+	mrot	0	0	0
+	count	1
+
+	pos	0	0	-30
+	mrot	0	1	0
+	count	30000
+	end
+
+
+/*	No.1	1 that pops out from the wall	*/
+	begin
+
+	pos	-720	112	-1120
+	mrot	0	-64	0
+	count	1
+
+	pos	16	0	0
+	mrot	0	0	0
+	count	24
+
+	count	30000
+	end
+
+/*	No.2	Coming out from the wall 2	*/
+	begin
+
+	pos	-720	400	-1120
+	mrot	0	-64	0
+	count	1
+
+	pos	16	0	0
+	mrot	0	0	0
+	count	24
+
+	count	30000
+	end
+
+
+/*	No.3	It pops out of the wall and shoots bullets.	*/
+	begin
+
+	pos	-470	112	-1120
+	mrot	0	-64	0
+	count	1
+
+	pos	16	0	0
+	mrot	0	0	0
+	shot	1	1
+	count	24
+
+	count	30000
+	end
+
+/*	No.4	2. It pops out of the wall and shoots bullets.	*/
+	begin
+
+	pos	-470	400	-1120
+	mrot	0	-64	0
+	count	1
+
+	pos	16	0	0
+	mrot	0	0	0
+	shot	1	1
+	count	24
+
+	count	30000
+	end
+
+
+/*	No.5	Hopping from wall to wall, climbing up	*/
+	begin
+
+	pos	320	640	-1130
+	vrot	64	0
+	mrot	0	64	0
+	count	1
+
+loopstart
+	speed	600
+	count	1
+
+	pos	-40	0	-8
+	mrot	0	8	0
+	speed	-50
+	count	16
+
+	speed	200
+	count	1
+
+	count	1
+
+	speed	600
+	count	1
+
+	pos	40	0	-8
+	mrot	0	-8	0
+	speed	-50
+	count	16
+
+	speed	200
+	count	1
+	
+	count	1
+loopend
+	end
+
+/*	No.6	Hopping down from wall to wall	*/
+	begin
+
+/*	pos	320	-768	-1130	*/
+	pos	320	-480	-1130
+	vrot	64	0
+	mrot	0	64	0
+	count	1
+
+loopstart
+	speed	200
+	count	1
+
+	pos	-40	0	-8
+	mrot	0	8	0
+	speed	-50
+	count	16
+
+	speed	600
+	count	1
+
+	count	1
+
+	speed	200
+	count	1
+
+	pos	40	0	-8
+	mrot	0	-8	0
+	speed	-50
+	count	16
+
+	speed	600
+	count	1
+	
+	count	1
+loopend
+	end
+
+/*	No.7	Turn towards me and shoot	*/
+	begin
+
+	pos	-340	-360	-1130
+	mrot	62	-18	64
+	count	1
+
+	mrot	-4	0	0
+	count	21
+
+	count	8
+
+loopstart
+	shot	12	0
+	count	12
+loopend
+	count	30000
+	end
+
+/*	No.8	Coming down the wall 1	*/
+	begin
+
+	pos	-320	-360	1120
+	mrot	0	0	64
+	vrot	-64	0
+	count	1
+
+	pos	0	0	-64
+	mrot	0	0	4
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-4
+	count	4
+
+	shot	8	1
+	count	8
+
+	pos	0	0	-64
+	mrot	0	0	4
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-4
+	count	4
+
+	shot	8	1
+	count	8
+
+	pos	0	0	-64
+	mrot	0	0	4
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-4
+	count	4
+
+	shot	32	1
+	count	32
+
+	pos	10	0	0
+	speed	32
+	mrot	0	0	8
+	count	30000
+	end
+
+/*	No.9	Crawling down the wall 2	*/
+	begin
+
+	pos	-320	-120	1120
+	mrot	0	0	64
+	vrot	-64	0
+	count	1
+
+	pos	0	0	-64
+	mrot	0	0	4
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-4
+	count	4
+
+	shot	8	1
+	count	8
+
+	pos	0	0	-64
+	mrot	0	0	4
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-4
+	count	4
+
+	shot	8	1
+	count	8
+
+	pos	0	0	-64
+	mrot	0	0	4
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	8
+	count	4
+	pos	0	0	-64
+	mrot	0	0	-4
+	count	4
+
+	shot	32	1
+	count	32
+
+	pos	20	0	0
+	speed	24
+	mrot	0	0	8
+	count	30000
+	end
+
+/*	No.10	Boss Tamar II's Movement	*/
+	begin
+
+	pos	-1000	-1000	0
+	count	1
+
+	count	32
+
+	pos	1250	0	0
+	count	1
+
+	pos	0	2000	0
+	count	1
+	pos	-500	-1950	0
+	count	1
+	pos	0	1900	0
+	count	1
+	pos	475	-1850	0
+	count	1
+	pos	0	1800	0
+	count	1
+	pos	-450	-1750	0
+	count	1
+	pos	0	1700	0
+	count	1
+	pos	425	-1650	0
+	count	1
+	pos	0	1600	0
+	count	1
+	pos	-400	-1550	0
+	count	1
+	pos	0	1500	0
+	count	1
+	pos	375	-1450	0
+	count	1
+	pos	0	1400	0
+	count	1
+	pos	-350	-1350	0
+	count	1
+	pos	0	1300	0
+	count	1
+	pos	325	-1250	0
+	count	1
+	pos	0	1200	0
+	count	1
+	pos	-300	-1150	0
+	count	1
+	pos	0	1100	0
+	count	1
+	pos	275	-1050	0
+	count	1
+
+	pos	0	1000	0
+	count	1
+	pos	-250	-950	0
+	count	1
+	pos	0	900	0
+	count	1
+	pos	225	-850	0
+	count	1
+	pos	0	800	0
+	count	1
+	pos	-200	-750	0
+	count	1
+	pos	0	700	0
+	count	1
+	pos	175	-650	0
+	count	1
+	pos	0	600	0
+	count	1
+	pos	-150	-550	0
+	count	1
+	pos	0	500	0
+	count	1
+	pos	125	-450	0
+	count	1
+	pos	0	400	0
+	count	1
+	pos	-100	-350	0
+	count	1
+	pos	0	300	0
+	count	1
+	pos	75	-250	0
+	count	1
+	pos	0	200	0
+	count	1
+	pos	-50	-150	0
+	count	1
+	pos	0	100	0
+	count	1
+	pos	25	-50	0
+	count	1
+
+loopstart
+
+	vrot	0	64
+	speed	480
+	count	1
+
+	speed	-20
+	count	24
+
+	born	1	27	11	1	1
+	count	1
+
+	vrot	0	128
+	count	1
+
+	mrot	0	0	5
+	count	38
+
+	speed	20
+	count	24
+
+	mrot	0	0	66
+	count	1
+
+	speed	-20
+	count	24
+
+	born	1	27	12	1	0
+	count	1
+
+	mrot	0	0	5
+	count	38
+
+	speed	-20
+	count	24
+
+	speed	480
+	mrot	0	0	66
+	count	1
+
+	pos	0	-32	0
+	count	8
+
+	pos	32	0	0
+	count	10
+
+	pos	0	16	0
+	count	16
+
+	born	1	25	13	1	0
+	count	1
+
+	mrot	8	0	0
+	count	32
+
+	pos	0	16	0
+	count	16
+
+	pos	-32	0	0
+	count	20
+
+	born	1	26	13	-1	0
+	count	1
+
+	mrot	8	0	0
+	count	32
+
+	pos	0	-16	0
+	count	32
+
+	born	1	26	13	-1	0
+	count	1
+
+	mrot	8	0	0
+	count	32
+
+	pos	32	0	0
+	count	10
+
+	pos	0	32	0
+	count	8
+
+	vrot	0	64
+	count	1
+
+loopend
+	end
+
+/*	No.11	Prominence K    left	*/
+	begin
+
+	pos	0	0	0
+	count	1
+
+	mrot	0	0	2
+	pos	0	0	16
+	count	30000
+	end
+
+/*	No.12	Prominence K    right	*/
+	begin
+
+	pos	0	0	0
+	mrot	0	0	128
+	count	1
+
+	mrot	0	0	2
+	pos	0	0	16
+	count	30000
+	end
+
+/*	No.13	‚¢‚½	*/
+	begin
+
+	pos	0	0	0
+	count	1
+
+	pos	-16	0	16
+	count	24
+	
+	pos	0	0	16
+	count	30000
+	end
+
+/*	No.14	Final boss	*/
+	begin
+
+	pos	-1000	-1000	0
+	count	1
+
+	born	1	28	15	1	1
+	count	32
+
+	pos	1250	0	0
+	count	1
+
+	pos	0	2000	0
+	count	1
+	pos	-500	-1950	0
+	count	1
+	pos	0	1900	0
+	count	1
+	pos	475	-1850	0
+	count	1
+	pos	0	1800	0
+	count	1
+	pos	-450	-1750	0
+	count	1
+	pos	0	1700	0
+	count	1
+	pos	425	-1650	0
+	count	1
+	pos	0	1600	0
+	count	1
+	pos	-400	-1550	0
+	count	1
+	pos	0	1500	0
+	count	1
+	pos	375	-1450	0
+	count	1
+	pos	0	1400	0
+	count	1
+	pos	-350	-1350	0
+	count	1
+	pos	0	1300	0
+	count	1
+	pos	325	-1250	0
+	count	1
+	pos	0	1200	0
+	count	1
+	pos	-300	-1150	0
+	count	1
+	pos	0	1100	0
+	count	1
+	pos	275	-1050	0
+	count	1
+
+	pos	0	1000	0
+	count	1
+	pos	-250	-950	0
+	count	1
+	pos	0	900	0
+	count	1
+	pos	225	-850	0
+	count	1
+	pos	0	800	0
+	count	1
+	pos	-200	-750	0
+	count	1
+	pos	0	700	0
+	count	1
+	pos	175	-650	0
+	count	1
+	pos	0	600	0
+	count	1
+	pos	-150	-550	0
+	count	1
+	pos	0	500	0
+	count	1
+	pos	125	-450	0
+	count	1
+	pos	0	400	0
+	count	1
+	pos	-100	-350	0
+	count	1
+	pos	0	300	0
+	count	1
+	pos	75	-250	0
+	count	1
+	pos	0	200	0
+	count	1
+	pos	-50	-150	0
+	count	1
+	pos	0	100	0
+	count	1
+	pos	25	-50	0
+	count	1
+
+	pos	0	-20	0
+	count	25
+
+loopstart
+
+	pos	-2	-10	0
+	shot	1	1
+	count	25
+
+	count	10
+
+	pos	25	50	0
+	count	15
+
+	pos	25	50	0
+	born	1	7	16	-1	0
+	count	1
+	pos	25	50	0
+	born	1	7	17	-1	0
+	count	1
+	pos	-25	50	0
+	born	1	7	18	-1	0
+	count	1
+
+	pos	-25	50	0
+	count	7
+
+/*	sync 1	*/
+
+	pos	-25	-10	0
+	count	21
+
+	pos	-25	-10	0
+	born	1	7	16	1	0
+	count	1
+	pos	25	-10	0
+	born	1	7	18	1	0
+	count	1
+
+	pos	25	-10	0
+	count	28
+
+	pos	25	-10	0
+	born	1	7	16	-1	0
+	count	1
+	pos	-25	-10	0
+	born	1	7	18	-1	0
+	count	1
+
+	pos	-25	-10	0
+	count	28
+
+	pos	-25	-10	0
+	born	1	7	16	1	0
+	count	1
+	pos	25	-10	0
+	born	1	7	18	1	0
+	count	1
+
+	pos	25	-10	0
+	count	17
+
+/*	sync 2	*/
+
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	9
+
+	pos	50	5	0
+	born	1	7	17	-1	0
+	count	15
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	15
+	pos	50	5	0
+	born	1	7	17	-1	0
+	count	15
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	15
+	pos	50	5	0
+	born	1	7	17	-1	0
+	count	15
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	15
+	pos	50	5	0
+	born	1	7	17	-1	0
+	count	15
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	15
+	pos	50	5	0
+	born	1	7	17	-1	0
+	count	15
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	15
+	pos	50	5	0
+	born	1	7	17	-1	0
+	count	15
+	pos	-50	5	0
+	born	1	7	17	1	0
+	count	15
+
+	pos	50	5	0
+	count	11
+
+/*	sync 3	*/
+
+	pos	25	-50	0
+	count	6
+
+	pos	25	-50	0
+	born	1	7	18	-1	0
+	count	1
+	pos	25	-50	0
+	born	1	7	17	-1	0
+	count	1
+	pos	-25	-50	0
+	born	1	7	16	-1	0
+	count	1
+
+	pos	-25	-50	0
+	count	11
+
+/*	sync 4	*/
+
+	pos	-25	50	0
+	count	16
+
+	pos	-25	50	0
+	born	1	7	17	1	0
+	count	1
+	pos	-25	50	0
+	born	1	7	16	1	0
+	count	1
+	pos	25	50	0
+	born	1	7	18	1	0
+	count	1
+
+	pos	25	50	0
+	count	1
+
+/*	sync 5	*/
+
+	pos	25	-30	0
+	count	13
+	
+	pos	0	-22	0
+	shot	1	1
+	count	5
+
+	pos	0	-20	0
+	shot	1	1
+	count	25
+loopend
+	end
+
+/*	No.15	scissors	*/
+	begin
+
+	pos	0	0	0
+	count	1
+
+	pos	0	500	0
+	mrot	0	-64	0
+	count	1
+
+	count	35
+
+	pos	20	0	0
+	count	31
+
+loopstart
+	mrot	1	0	0
+	count	25
+
+	count	10
+
+	mrot	-5	0	0
+	count	10
+
+	pos	-62	0	0
+	count	10
+
+	pos	1800	1000	0
+	mrot	25	128	128
+	count	1
+
+	pos	-60	0	0
+	count	4
+
+/*	sync 1	*/
+
+	pos	60	0	0
+	count	4
+
+	pos	200	-1000	0
+	mrot	0	0	128
+	count	1
+
+	count	69
+
+	pos	-20	0	0
+	count	26
+
+/*	sync 2	*/
+
+	pos	-20	0	0
+	count	4
+
+	pos	20	0	0
+	count	30
+
+	pos	0	1000	0
+	mrot	0	0	128
+	count	1
+
+	count	84
+
+	pos	-10	0	0
+	count	45
+
+	mrot	-1	0	0
+	count	30
+
+	mrot	5	0	0
+	count	6
+
+/*	sync 3	*/
+
+	mrot	5	0	0
+	count	4
+
+	pos	50	0	0
+	count	5
+
+	pos	200	-1000	0
+	mrot	-20	0	128
+	count	1
+
+	pos	-200	0	0
+	count	1
+
+	pos	-50	0	0
+	mrot	3	0	0
+	count	7
+
+	mrot	-7	0	0
+	count	2
+
+/*	sync 4	*/
+
+	mrot	-7	0	0
+	count	1
+
+	pos	70	0	0
+	count	5
+
+	pos	200	0	0
+	count	1
+
+	pos	-2000	1000	0
+	mrot	0	128	128
+	count	1
+
+	pos	200	0	0
+	count	1
+
+	pos	20	0	0
+	count	11
+
+/*	sync 5	*/
+
+	pos	-44	0	0
+	count	5
+
+	pos	-200	0	0
+	count	1
+
+	pos	0	-1000	0
+	mrot	0	0	128
+	count	1
+
+	count	11
+
+	pos	31	0	0
+	count	20
+
+	count	5
+
+loopend
+	end
+
+/*	No.16	Fragment top left	*/
+	begin
+
+	pos	-375	0	0
+	vrot	12	-46
+	speed	400
+	count	1
+
+	mrot	1	3	1
+	vrot	0	1
+	count	30000
+
+	end
+
+/*	No.17	Fragment left center	*/
+	begin
+
+	pos	-375	0	0
+	vrot	0	-46
+	speed	400
+	count	1
+
+	mrot	1	3	1
+	vrot	0	1
+	count	30000
+
+	end
+
+/*	No.18	Fragment bottom left	*/
+	begin
+
+	pos	-375	0	0
+	vrot	-12	-46
+	speed	400
+	count	1
+
+	mrot	1	3	1
+	vrot	0	1
+	count	30000
+
+	end
+
+/*	No.19	Bosunige	*/
+	begin
+
+	vrot	0	64
+	count	1
+
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+	pos	16	16	16
+	count	1
+	pos	-16	-16	-16
+	count	1
+
+	speed	384
+	vrot	64	0
+	count	30000
+	end
+
+/*	No.20	Your ship	*/
+	begin
+
+	vrot	0	128
+	mrot	0	128	0
+	speed	512
+	count	1
+
+	speed	1
+	count	24
+
+	vrot	1	0
+	mrot	1	0	0
+	speed	1
+	count	4
+
+	vrot	2	0
+	mrot	2	0	0
+	speed	1
+	count	4
+
+	vrot	2	0
+	mrot	2	0	3
+	speed	2
+	count	60
+
+	pos	9999	0	0
+	count	30000
+	end
+
+/*	No.21	Boss On Parade	*/
+	begin
+
+	pos	0	1	-1150
+	count	1
+
+	mrot	1	2	0
+	pos	0	0	16
+	count	30000
+	end
+
+/*	No.22	Boss On Parade 1	*/
+	begin
+
+	pos	0	1	-1150
+	count	1
+
+	mrot	-2	0	1
+	pos	0	0	16
+	count	30000
+	end
+
+/*	No.23	Boss On Parade 5-1	*/
+	begin
+
+	pos	160	-255	-1150
+	mrot	-32	20	0
+	count	1
+	
+	pos	0	0	16
+	count	30000
+	end

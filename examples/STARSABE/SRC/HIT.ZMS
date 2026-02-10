@@ -1,0 +1,6 @@
+/		The sound of a bullet hitting an enemy
+
+(i)(m8,3000)(aFm8,8)
+(t8)	@o @112 @m100 @s1 @h0 @av15 o6 e*8 _15e*4 @v0r*2 r1r1
+
+(p)

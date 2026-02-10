@@ -1,0 +1,63 @@
+STAR SABER Copyright (C) 1995 Hideyuki Nakanishi
+
+    This is a 3D shooting game with 7 levels.
+    It is mostly written in C.
+
+  How to run
+    Type start and press return.
+
+  How to operate
+    The D-pad (up, down, left, right), A button, and B button correspond to the numeric keypad (8, 2, 4, 6), 
+    X key, and Z key, respectively.
+    You can exit at any time by pressing ESC.
+
+    During the game... D-pad                                    : Movement (normal and reverse)
+                     A button                                   : Shoot bullets (auto-fire)
+                     B button                                   : PAUSE
+    When selected: Up and down on the directional pad: Choice
+                     B button                                   : Decision
+    When entering a name... Up and down on the directional pad  : Character selection
+                     A button                                   : Correction (Go back one character)
+                     B button                                   : Decide (move forward one character)
+
+  How to play
+    Pressing the button on the title screen will take you to the control method selection screen.
+    Once you decide whether to go with normal or reverse, the game begins.
+
+    The screen shows the view from the cockpit of your aircraft.
+    Control your ship, avoid enemy attacks, and shoot bullets to destroy the enemy.
+    Some enemies can be destroyed with one shot, while others require several hits to be destroyed.
+    Enemies will flash white when they take damage.
+
+    The circle in the middle is the crosshair, and the frames around it represent the limits (edges) of movement.
+    The distance traveled by your aircraft between the start (S) and the goal (G) is displayed on the right side of the screen.
+    The gauge at the bottom of the screen is your shield, which decreases when you receive enemy attacks, 
+    and when it runs out it's game over.
+
+    When you reach the goal, a boss will appear and its durability will be displayed at the top of the screen.
+    Defeating the boss clears the stage.
+    If you clear a stage without taking any damage, you will receive bonus points.
+
+    When the game is over, if you get a high score, you will be taken to name input mode.
+    Then choose whether to continue or not.
+
+    The ending is reached when you clear stage 7.
+    There are three different messages available depending on how you clear the level.
+
+  Modification method
+    The data for each stage consists of enemy appearance time (timelist), shape (model), and movement (motion).
+    Detailed explanations of each are written in data.doc.
+    Please read this if you want to edit your own stages.
+    For execution options etc., please refer to main.c.
+    If you want to change the parameters, please analyze each source file.
+
+  Copyright etc.
+    This software is free software.
+    The following tools and data were used to create this.
+
+        GNU C compiler
+        C compiler PRO-68K library
+        High-speed Assembler
+        Hi-Speed Linker
+        MicroEMACS
+        ZMUSIC

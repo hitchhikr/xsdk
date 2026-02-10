@@ -1,0 +1,1634 @@
+/*	motion.st5 : stage 5 motion data	*/
+/*	Please separate both sides of the comment with space, tab, return, etc.	*/
+/*
+	begin
+	end
+	pos	( x, y, z )
+	mrot	( x, y, z )
+	vrot	( x, y )
+	speed	( speed )
+	count	( count )
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+	born	( count, mod_k, mot_k, sign[ H-reverse ] flag[ 0 - pos, 1 - pos & rot ])
+	loopstart
+	loopend
+*/
+
+/*	No.0	For debugging	*/
+	begin
+
+	pos	1	1	512
+	count	1
+
+	mrot	0	2	0
+	count	30000
+	end
+
+
+/*	No.1	Coming towards me at high speed	*/
+	begin
+
+	pos	-111	-301	-1120
+	speed	1024
+	count	1
+
+	shot	1	0
+	count	16
+
+	mrot	-1	-1	1
+	vrot	-1	-1
+	count	30000
+	end
+
+/*	No.2	It comes out from the side and hits you	*/
+	begin
+
+	pos	-1121	-201	0
+	mrot	0	128	0
+	vrot	0	128
+	speed	320
+	count	1
+
+	pos	28	24	0
+	speed	-24
+	count	18
+
+	pos	24	0	0
+	mrot	0	0	-4
+	speed	-24
+	count	16
+
+	pos	16	-6	0
+	mrot	0	0	-8
+	speed	-24
+	count	30000
+	end
+
+/*	No.3	Appear 1	*/
+	begin
+
+	pos	-128	-128	-1120
+	speed	896
+	count	1
+
+	mrot	0	0	8
+	count	30000
+	end
+
+/*	No.4	Appear 2	*/
+	begin
+
+	pos	-192	-384	-1120
+	speed	896
+	count	1
+
+	mrot	0	8	0
+	count	30000
+	end
+
+/*	No.5	Appear 3	*/
+	begin
+
+	pos	-384	-192	-1120
+	speed	896
+	count	1
+
+	mrot	8	0	0
+	count	30000
+	end
+
+/*	No.6	Appear 4	*/
+	begin
+
+	pos	-424	-424	-1120
+	speed	896
+	count	1
+
+	mrot	8	0	0
+	count	30000
+	end
+
+/*	No.7	pass in front of me in an instant	*/
+	begin
+
+	pos	-521	-1001	-128
+	mrot	-64	-64	0
+	vrot	-64	-64
+	speed	576
+	count	1
+
+	vrot	1	1
+	mrot	1	1	4
+	shot	1	1
+	count	14
+
+	vrot	1	1
+	mrot	1	1	4
+	shot	1	1
+	count	28
+
+	vrot	1	1
+	mrot	1	1	4
+	count	30000
+	end
+
+/*	No.8	The boss appears	*/
+	begin
+
+	pos	-101	-101	-1120
+	count	1
+
+	pos	0	0	16
+	mrot	0	0	2
+	count	16
+
+	pos	0	0	16
+	mrot	0	0	4
+	count	16
+
+	pos	0	0	16
+	mrot	0	0	8
+	count	16
+
+	born	1	5	9	1	0
+	count	1
+	born	1	5	10	1	0
+	count	1
+	born	1	5	10	-1	0
+	count	1
+	born	1	5	11	1	0
+	count	1
+	born	1	5	11	-1	0
+	count	1
+
+	pos	9999	0	0
+	count	30000
+	end
+
+/*	No.9	Manager UP	*/
+	begin
+
+	pos	0	-15	0
+	count	1
+
+	pos	0	-7	12
+	count	12
+	pos	0	-7	12
+	mrot	0	0	8
+/*	shot	12	1	*/
+	count	12
+
+	born	1	6	12	1	0
+	count	1
+
+	pos	9999	0	0
+	count	30000
+	end
+
+/*	No.10	Manager SIDE */
+	begin
+
+	pos	-16	0	0
+	count	1
+
+	pos	-8	0	12
+	count	12
+	pos	-8	0	12
+	mrot	0	0	8
+/*	shot	12	1	*/
+	count	12
+
+	born	1	6	12	1	0
+	count	1
+
+	pos	9999	0	0
+	count	30000
+	end
+
+
+/*	No.11	Manager DOWN	*/
+	begin
+
+	pos	-12	22	0
+	count	1
+
+	pos	-6	11	12
+	count	12
+	pos	-6	11	12
+	mrot	0	0	8
+/*	shot	12	1	*/
+	count	12
+
+	born	1	6	12	1	0
+	count	1
+
+	pos	9999	0	0
+	count	30000
+	end
+
+
+/*	No.12	Henchmen UP	*/
+	begin
+
+	pos	0	-16	0
+	count	1
+
+	born	1	6	13	1	0
+	count	1
+	born	1	6	13	-1	0
+	count	1
+	born	1	6	14	1	0
+	count	1
+	born	1	6	14	-1	0
+	count	1
+
+	pos	0	-8	8
+	count	12
+
+	pos	0	0	8
+	mrot	0	0	16
+	count	32
+
+	pos	0	-4	8
+	mrot	0	0	16
+	count	30000
+
+	end
+
+/*	No.13	Henchman SIDE	*/
+	begin
+
+	pos	-16	0	0
+	count	1
+
+	pos	-8	0	8
+	count	12
+
+	pos	0	0	8
+	mrot	0	0	16
+	count	32
+
+	pos	-4	0	8
+	mrot	0	0	16
+	count	30000
+	end
+
+/*	No.14	Minion DOWN	*/
+	begin
+
+	pos	-12	16	0
+	count	1
+
+	pos	-6	8	8
+	count	12
+
+	pos	0	0	8
+	mrot	0	0	16
+	count	32
+
+	pos	-3	4	8
+	mrot	0	0	16
+	count	30000
+	end
+
+/*	No.15	Missile head	*/
+	begin
+
+	pos	0	0	-1120
+	count	1
+
+	pos	0	0	32
+	mrot	0	0	4
+	count	30000
+	end
+
+/*	No.16	Missile body 1	*/
+	begin
+
+	pos	0	0	-1120
+	count	1
+
+	pos	0	0	32
+	count	48
+
+	pos	-24	-24	0
+	count	16
+
+	shot	1	0
+	mrot	2	0	0
+	count	4
+	shot	1	0
+	mrot	-2	-2	0
+	count	4
+	shot	1	0
+	mrot	-2	2	0
+	count	4
+	shot	1	0
+	mrot	2	2	0
+	count	4
+	mrot	0	-2	0
+	count	4
+
+	shot	1	0
+	mrot	2	2	0
+	count	4
+	shot	1	0
+	mrot	0	-4	0
+	count	4
+	shot	1	0
+	mrot	-4	0	0
+	count	4
+	shot	1	0
+	mrot	0	4	0
+	count	4
+	mrot	2	-2	0
+	count	4
+
+	speed	16
+	count	30000
+	end
+
+/*	No.17	Missile body 2	*/
+	begin
+
+	pos	0	0	-1120
+	count	1
+
+	pos	0	0	32
+	count	48
+
+	pos	-8	-8	0
+	count	16
+
+	shot	1	0
+	mrot	2	0	0
+	count	4
+	shot	1	0
+	mrot	-2	-2	0
+	count	4
+	shot	1	0
+	mrot	-2	2	0
+	count	4
+	shot	1	0
+	mrot	2	2	0
+	count	4
+	mrot	0	-2	0
+	count	4
+
+	shot	1	0
+	mrot	2	2	0
+	count	4
+	shot	1	0
+	mrot	0	-4	0
+	count	4
+	shot	1	0
+	mrot	-4	0	0
+	count	4
+	shot	1	0
+	mrot	0	4	0
+	count	4
+	mrot	2	-2	0
+	count	4
+
+	speed	16
+	count	30000
+	end
+
+/*	No.18	Comes from the side and passes in front in an instant	*/
+	begin
+
+	pos	1001	-545	128
+	mrot	0	64	0
+	vrot	0	64
+	speed	640
+	count	1
+
+	pos	0	0	16
+	vrot	-1	0
+	mrot	-1	0	4
+	shot	1	1
+	count	20
+
+	pos	0	0	16
+	vrot	-1	0
+	mrot	-1	0	4
+	count	30000
+	end
+
+/*	No.19	Balloon Level 1	*/
+	begin
+
+	pos	0	0	0
+	count	1
+
+	pos	0	0	16
+	born	1	10	20	1	0
+	count	8
+
+	pos	9999	0	0
+	count	30000
+	end
+
+/*	No.20	Balloon Level 2	*/
+	begin
+
+	count	1
+
+	pos	0	0	16
+	born	1	11	21	1	0
+	count	4
+
+	pos	9999	0	0
+	count	30000
+	end
+
+/*	No.21	Balloon Level 3	*/
+	begin
+
+	count	1
+
+	pos	0	0	16
+	born	1	12	22	1	0
+	count	4
+
+	pos	9999	0	0
+	count	30000
+	end
+
+/*	No.22	Balloon Level 4	*/
+	begin
+
+	count	1
+
+	pos	0	0	16
+	count	32
+/*
+	shot	1	0
+	count	1
+
+	mrot	24	24	0
+	shot	1	0
+	count	1
+
+	mrot	-48	0	0
+	shot	1	0
+	count	1
+
+	mrot	0	-48	0
+	shot	1	0
+	count	1
+
+	mrot	48	0	0
+	shot	1	0
+	count	1
+
+	pos	9999	0	0
+*/
+	pos	0	0	16
+	count	30000
+	end
+
+/*	No.23	cargo ship body	*/
+	begin
+
+	pos	-1120	512	800
+	vrot	20	-80
+	mrot	20	-80	20
+	speed	480
+	count	1
+
+	count	48
+
+	vrot	0	-1
+	mrot	0	-1	0
+	speed	-10
+	count	28
+
+	vrot	-1	-1
+	mrot	-1	-1	-1
+	speed	-10
+	count	20
+
+	count	16
+
+	vrot	-16	-64
+	count	1
+
+	speed	16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+
+	speed	-16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	-16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	-16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	-16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+
+	vrot	0	128
+	count	1
+
+	speed	16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	16
+	mrot	0	0	-1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+
+	speed	-16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	-16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	-16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+	speed	-16
+	mrot	0	0	1
+	born	1	9	19	1	0
+	pos	0	0	-2
+	count	8
+
+	count	16
+
+	vrot	16	-64
+	count	1
+
+	speed	16
+	vrot	1	-4
+	mrot	1	-4	1
+	count	16
+
+	speed	16
+	vrot	0	-4
+	mrot	0	-4	1
+	count	12
+
+	count	30000
+	end
+
+/*	No.24	cargo ship hatch	*/
+	begin
+
+	pos	-1120	512	800
+	vrot	20	-80
+	mrot	20	-80	20
+	speed	480
+	count	1
+
+	count	48
+
+	vrot	0	-1
+	mrot	0	-1	0
+	speed	-10
+	count	28
+
+	vrot	-1	-1
+	mrot	-1	-1	-1
+	speed	-10
+	count	20
+
+	pos	0	-4	0
+	count	16
+
+	vrot	-16	-64
+	count	1
+
+	speed	16
+	mrot	0	0	1
+	pos	0	0	-2
+	count	32
+
+	speed	-16
+	mrot	0	0	-1
+	pos	0	0	-2
+	count	32
+
+	vrot	0	128
+	count	1
+
+	speed	16
+	mrot	0	0	-1
+	pos	0	0	-2
+	count	32
+
+	speed	-16
+	mrot	0	0	1
+	pos	0	0	-2
+	count	32
+
+	pos	0	4	0
+	count	16
+
+	vrot	16	-64
+	count	1
+
+	speed	16
+	vrot	1	-4
+	mrot	1	-4	1
+	count	16
+
+	speed	16
+	vrot	0	-4
+	mrot	0	-4	1
+	count	12
+
+	count	30000
+	end
+
+/*	No.25	cargo ship 2	*/
+	begin
+
+	pos	1120	416	-128
+	vrot	0	64
+	speed	384
+	count	1
+
+	born	1	9	19	1	0
+	count	48
+
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-1
+	count	8
+
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	1
+	count	8
+
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	2
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-2
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-1
+	count	8
+
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-1
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	-2
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	2
+	count	8
+	vrot	3	0
+	born	1	9	19	1	0
+	mrot	0	0	1
+	count	8
+
+	count	30000
+	born	1	9	19	1	0
+	count	30000
+	end
+
+/*	No.26	Lie Battleship	*/
+	begin
+
+	pos	1400	0	-1120
+	mrot	0	32	0
+	vrot	0	32
+	speed	128
+	count	1
+
+	count	30000
+	end
+
+/*	No.27	Behind the door	*/
+	begin
+
+	pos	1188	0	-908
+	mrot	12	32	0
+	vrot	0	32
+	speed	128
+	count	1
+
+	count	64
+
+	pos	0	-5	0
+	count	32
+
+	mrot	0	-2	0
+	count	16
+
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+
+	count	30000
+	end
+
+/*	No.28	Before the announcement	*/
+	begin
+
+	pos	912	0	-632
+	mrot	-4	32	0
+	vrot	0	32
+	speed	128
+	count	1
+
+	count	48
+
+	pos	0	-2	0
+	count	16
+
+	mrot	0	-2	0
+	count	16
+
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+
+	count	30000
+	end
+
+/*	No.29	Under the brochure	*/
+	begin
+
+	pos	1118	0	-838
+	mrot	0	32	128
+	vrot	0	32
+	speed	128
+	count	1
+
+	count	56
+
+	pos	0	8	0
+	count	24
+
+	mrot	0	-2	0
+	count	16
+
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+	shot	1	1
+	count	24
+
+	count	30000
+	end
+
+/*	No.30	battleship	*/
+	begin
+
+	pos	-400	-900	1112
+	vrot	0	-64
+	mrot	0	128	0
+	count	1
+
+	pos	4	9	-21
+	count	100
+
+	pos	0	0	30
+	count	50
+
+loopstart
+	born	1	25	31	1	0
+	count	1
+	born	1	25	32	1	0
+	count	1
+	born	1	25	33	1	0
+	count	1
+
+	count	466
+
+	pos	0	4	2
+	count	120
+
+	count	106
+
+	speed	224
+	vrot	1	0
+	count	1
+
+	vrot	1	0
+	count	5
+	vrot	1	0
+	count	5
+	vrot	1	0
+	count	5
+	vrot	1	0
+	count	5
+	vrot	1	0
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	10
+	vrot	1	0
+	shot	1	1
+	count	9
+	vrot	1	0
+	shot	1	1
+	count	6
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+	vrot	1	0
+	shot	1	1
+	count	5
+
+	vrot	1	0
+	shot	1	1
+	count	5
+
+	speed	-224
+	count	1
+
+	pos	0	-8	-4
+	count	60
+loopend
+	end
+
+/*	No.31	burner	*/
+	begin
+
+/*	pos	0	200	-1152	*/
+/*	pos	0	160	-1152	*/
+	pos	0	0	-1152
+	count	1
+
+	count	2
+	mrot	0	0	16
+	count	16
+
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+
+	count	16
+	pos	0	16	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+
+	count	16
+	pos	0	-16	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+
+	count	16
+	pos	0	20	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+
+	count	16
+	pos	0	-20	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+
+	count	16
+	pos	0	20	0
+	count	10
+	count	16
+
+	pos	-8	-2	2
+	born	1	28	34	1	0
+	count	20
+	pos	0	-4	2
+	born	1	28	34	1	0
+	count	20
+	pos	8	-2	2
+	born	1	28	34	1	0
+	count	20
+	pos	8	10	2
+	born	1	28	34	1	0
+	count	20
+	pos	0	12	2
+	born	1	28	34	1	0
+	count	20
+	pos	-8	10	2
+	born	1	28	34	1	0
+	count	20
+
+	count	16
+	pos	0	-20	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+	born	3	28	34	1	0
+	count	3
+
+	count	16
+
+	pos	-9999	0	0
+	count	30000
+	end
+
+
+/*	No.32	burner	*/
+	begin
+
+/*	pos	60	-180	-1152	*/
+/*	pos	170	-90	-1152	*/
+	pos	0	0	-1152
+	count	1
+
+	count	17
+
+	count	48
+
+	count	16
+	pos	17	-9	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+
+	count	16
+	pos	-17	9	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	count	48
+
+	count	16
+	pos	6	-18	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+
+	count	16
+	pos	-6	18	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	count	48
+	
+	count	16
+	pos	8	-14	0
+	count	10
+	count	16
+
+	pos	8	10	2
+	born	1	28	34	1	0
+	count	10
+	pos	0	12	2
+	born	1	28	34	1	0
+	count	20
+	pos	-8	10	2
+	born	1	28	34	1	0
+	count	20
+	pos	-8	-2	2
+	born	1	28	34	1	0
+	count	20
+	pos	0	-4	2
+	born	1	28	34	1	0
+	count	20
+	pos	8	-2	2
+	born	1	28	34	1	0
+	count	20
+	pos	8	10	2
+	count	10
+
+	count	16
+	pos	-8	14	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	pos	-9999	0	0
+	count	30000
+	end
+
+/*	No.33	burner	*/
+	begin
+
+/*	pos	-60	-180	-1152	*/
+/*	pos	-170	-90	-1152	*/
+	pos	0	0	-1152
+	count	1
+
+	count	16
+
+	count	48
+
+	count	16
+	pos	-17	-9	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+
+	count	16
+	pos	17	9	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	count	48
+
+	count	16
+	pos	-6	-18	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+	born	1	28	34	1	0
+	count	3
+
+	count	16
+	pos	6	18	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	count	48
+
+	count	16
+	pos	-8	-14	0
+	count	10
+	count	16
+
+	pos	8	-2	2
+	born	1	28	34	1	0
+	count	10
+	pos	8	10	2
+	born	1	28	34	1	0
+	count	20
+	pos	0	12	2
+	born	1	28	34	1	0
+	count	20
+	pos	-8	10	2
+	born	1	28	34	1	0
+	count	20
+	pos	-8	-2	2
+	born	1	28	34	1	0
+	count	20
+	pos	0	-4	2
+	born	1	28	34	1	0
+	count	20
+	pos	8	-2	2
+	count	10
+
+	count	16
+	pos	8	14	0
+	count	10
+	mrot	0	0	16
+	count	16
+
+	pos	-9999	0	0
+	count	30000
+	end
+
+/*	No.34	injection */
+	begin
+
+	pos	0	0	192
+	count	30000
+	end

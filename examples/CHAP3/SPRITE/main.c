@@ -50,8 +50,8 @@ void init( void )
 		(obj[i].spdata)->sp->code = 0x100;
 		obj[i].vx = (rand() & 511) + 1024;
 		obj[i].vy = (rand() & 511) + 1024;
-		obj[i].x = rand() % 65534;
-		obj[i].y = rand() % 65534;
+		obj[i].x = rand() * 2;
+		obj[i].y = rand() * 2;
 	}
 }
 

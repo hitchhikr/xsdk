@@ -1,0 +1,86 @@
+*** Explanation of various data files ***
+
+* timelist.* --- Enemy appearance times
+
+Format ( time model motion sign x sign y )
+
+Meaning time		Time difference between the previous enemy and the next enemy (30 = 1 second)
+        model		Shape Number
+        motion		Movement Number
+        sign x		Flip horizontally (1 - normal, -1 - reverse)
+        sign y		Flip vertically (1 - normal, -1 - reverse)
+
+
+
+* model.* --- Enemy shape data
+
+Format
+	{
+		Magnification (%)
+		sprite pattern (0 - square, 1 - circle)
+		hit point
+		score / 100
+		
+		x coordinate / y coordinate / z coordinate / color
+		:
+	}
+
+Color	1...metal
+        2...blue
+        3...yellow
+        4...red
+        6... blue
+        7...orange
+        8...akamura
+        9...mura
+        11...green
+
+The files are numbered 0, 1, 2, ... from the beginning.
+Number 24 is the boss shape, and numbers 25 and above are treated as objects (invincible).
+
+
+* motion.* --- Describes the enemy's movements.
+
+Command Description
+	begin
+	end
+		An enemy movement starts with begin and ends with end.
+
+	pos	( x, y, z )
+		pos specifies the translation amount as a difference
+
+	mrot	( x, y, z )
+		mrot specifies the pattern orientation by the difference in rotation angle (256 = 360 degrees) around each axis.
+
+	vrot	( x, y )
+		vrot specifies the direction of movement by the difference in rotation angle (256 = 360 degrees) around each axis.
+
+	speed	( speed )
+		speed specifies the difference in speed
+
+	count	( count )
+		Repeats the previous command the number of times specified by count (30 = 1 second)
+
+	shot	( count, kind [ 0 - stick   1 - ring ] )
+		Shot fires when count - number (stick - facing direction, ring - aiming at player)
+
+	born	( count, mod_k, mot_k, sign[ H-reverse ], flag(0 - pos, 1 - pos & rot )
+		born will spawn the specified enemy when count - number
+
+	loopstart
+	loopend
+		Enclose the infinite loop part of the movement with loopstart loopend
+
+	Initialization is done with a count of 1.
+	If you use an odd number for pos, it will refer to the coordinates relative to the player's ship at that time.
+	Speed: 16 corresponds to 1 in the coordinate system.
+	The files are numbered 0, 1, 2, ... from the beginning.
+
+
+*Note
+	Since the system was originally not designed to be edited by anyone other than me,
+    there are some stages where exception handling is performed within the program.
+	If you want to tweak the details, please analyze it, even though it is a messy program.
+	Please note that there are not many comments.
+
+							(February 20, 1995 by Hideyuki Nakanishi)
