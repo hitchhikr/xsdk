@@ -10,8 +10,8 @@
 #define _STDINT_H
 
 #include <machine/_default_types.h>
-#include <sys/_intsup.h>
-#include <sys/_stdint.h>
+//#include <sys/_intsup.h>
+//#include <sys/_stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
