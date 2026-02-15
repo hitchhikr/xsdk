@@ -334,6 +334,7 @@ $10 _CRTMOD         Get or set the screen mode
         $0019   24          1024x424    65536               512x512             1
         $001A   24          1024x848    65536               512x512             1
         $001B   24          640x480     65536               512x512             1
+
         $0100 to $0113 Settings only, do not initialize
 
         -1  Retrieval only

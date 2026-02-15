@@ -18,7 +18,7 @@
 #endif
 
 #define	RAND_MAX	32767
-/* It is used as a fixed value in CLIB.L and should not be changed or redefined to a different value. */
+/* It is used as a fixed value in libc.a and should not be changed or redefined to a different value. */
 
 #ifndef	EXIT_SUCCESS
 #define	EXIT_SUCCESS	0
@@ -42,7 +42,7 @@ extern	int		sys_nerr;
 
 int	rand(void);
 void	srand(unsigned);
-/*int	free(void *);*/
+int	free(void *);
 void	abort(void);
 void	exit(int);
 void	_exit(int);
@@ -103,7 +103,7 @@ long	atol();
 int	rand();
 void	srand();
 void	*calloc();
-/*int	free();*/
+int	free();
 void	*malloc();
 void	*realloc();
 void	abort();

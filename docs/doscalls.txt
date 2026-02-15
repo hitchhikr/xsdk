@@ -2494,7 +2494,7 @@ $FF43 _CHMOD        Read or set attributes of a file or directory
 $FF44 _IOCTRL       Direct control of a handler by the device
 $FF45 _DUP          Duplicate a Handler
 $FF46 _DUP2         Duplicate a Handler
-$FF47 _CURDIR       Get the current directory'
+$FF47 _CURDIR       Get the current directory
 $FF48 _MALLOC       Allocate a memory block (from the bottom)
 $FF49 _MFREE        Free a memory block
 $FF4A _SETBLOCK     Change the size of a memory block
