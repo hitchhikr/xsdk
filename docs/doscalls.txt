@@ -1015,18 +1015,18 @@ $FF33 _BREAKCK      Get or set break and off
 
 The specified DOS calls monitor breaks:
 
-        $FF01   GETCHAR
-        $FF02   PUTCHAR
-        $FF03   COMINP
-        $FF04   COMOUT
-        $FF05   PRNOUT
-        $FF08   GETC
-        $FF09   PRINT
-        $FF0A   GETS
-        $FF0B   KEYSNS
-        $FF0C   KFLUSH
-        $FF0D   FFLUSH
-        $FF1E   FPUTS
+        $FF01   _GETCHAR
+        $FF02   _PUTCHAR
+        $FF03   _COMINP
+        $FF04   _COMOUT
+        $FF05   _PRNOUT
+        $FF08   _GETC
+        $FF09   _PRINT
+        $FF0A   _GETS
+        $FF0B   _KEYSNS
+        $FF0C   _KFLUSH
+        $FF0D   _FFLUSH
+        $FF1E   _FPUTS
 
 ------------------------------------------------------------------
 $FF34 _DRVXCHG      Swap drive numbers
