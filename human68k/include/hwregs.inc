@@ -1744,7 +1744,7 @@ SYS_PORT8           equ     $E8E00F         ; Main unit power OFF control (w)
 ;       0 = Timer B is stopped
 ;       1 = Timer B is started
 ;
-;   bit 0: LOAD(B)
+;   bit 0: LOAD(A)
 ;
 ;       0 = Timer A is stopped
 ;       1 = Timer A is started
