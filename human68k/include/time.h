@@ -8,8 +8,8 @@
 #define _TIME_H_
 
 #include "_ansi.h"
-#include <sys/cdefs.h>
-#include <sys/reent.h>
+#include <cdefs.h>
+#include <reent.h>
 
 #define __need_size_t
 #define __need_NULL

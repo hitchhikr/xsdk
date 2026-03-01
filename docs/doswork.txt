@@ -428,8 +428,8 @@ Drive management table
 ------------------------------------------------------------------
 
 0000    .b[2]   'A:'        Internal drive name at startup
-                            If it is a virtual drive Å® Internal drive name of the actual drive 
-                            If it is an actual drive of a virtual directory Å® Internal drive name of the virtual directory
+                            If it is a virtual drive -> Internal drive name of the actual drive 
+                            If it is an actual drive of a virtual directory -> Internal drive name of the virtual directory
 0002    .b[67]  $09,$00     Current directory: If it is a virtual drive, the directory name of the actual drive. 
                             If it is a virtual directory, the directory name of the actual drive.
 0045    .b  $00             _ASSIGN mode $40 = normal, $50 = virtual drive, $60 = drive of virtual directory
@@ -939,7 +939,7 @@ Device error messages
 
 1010                        Issued for IOCS disk access when switch -x is specified for FAST*.X
 001F,301F                   Interrupt switch was pressed
-FE00Å-FEFF                  The calculation package is not registered.
+FE00ÅEFEFF                  The calculation package is not registered.
 
 
 ------------------------------------------------------------------
