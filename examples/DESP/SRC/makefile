@@ -7,6 +7,7 @@ RM = $(XSDK)/bin/rm
 OBJCOPY	= $(XSDK)/bin/human68k-objcopy
 STRIP = $(XSDK)/bin/stripx
 CFLAGS = -Ofast -Wno-multichar -fomit-frame-pointer -fstrength-reduce -fforce-addr -fcall-used-d2 -fcall-used-a2
+LDFLAGS = -Wl,--no-warn-rwx-segments
 LIBS = -ldos -liocs -lbas -lc -lfloatfnc
 
 .c.o:
@@ -21,7 +22,7 @@ files = atari.o bomb.o decode.o disp2.o display.o dsp.o dspmove.o ending.o enebo
 all: DSP.X
 
 DSP.X: $(files)
-	$(CC) -Wl,--no-warn-rwx-segments -o ../$@ $(files) $(LIBS)
+	$(CC) $(LDFLAGS) -o ../$@ $(files) $(LIBS)
 	$(OBJCOPY) -O xfile ../$@ ../$@
 	$(STRIP) ../$@
  

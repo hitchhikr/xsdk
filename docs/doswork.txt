@@ -781,7 +781,7 @@ x format executable file header
 0008    .l                  Execution start position
 000C    .l                  Text size
 0010    .l                  Data size
-0014    .l                  bss+comm+stack size
+0014    .l                  Bss+comm+stack size
 0018    .l                  Relocate table size
 001C    .l                  Symbol table size
 0020    .l                  Line information (ln) size

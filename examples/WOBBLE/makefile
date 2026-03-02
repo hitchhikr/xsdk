@@ -8,6 +8,7 @@ OBJCOPY	= $(XSDK)/bin/human68k-objcopy
 STRIP = $(XSDK)/bin/stripx
 PACKER = $(XSDK)/bin/salvador
 CFLAGS = -Ofast -Wno-multichar -fomit-frame-pointer -fstrength-reduce -fforce-addr -fcall-used-d2 -fcall-used-a2
+LDFLAGS = -s -Wl,--no-warn-rwx-segments -nostartfiles
 LIBS = 
 
 .c.o:
@@ -21,12 +22,12 @@ depacker = unzx0_68000.o
 all: WOBBLE WOBBLE.R
 
 WOBBLE: $(files)
-	$(CC) -Wl,--no-warn-rwx-segments -nostartfiles -o $@ $(files) $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $(files) $(LIBS)
 	$(OBJCOPY) -O binary $@ $@
 	$(PACKER) -stats $@ PACKED
 
 WOBBLE.R: $(depacker)
-	$(CC) -Wl,--no-warn-rwx-segments -nostartfiles -o $@ $(depacker) $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $(depacker) $(LIBS)
 	$(OBJCOPY) -O binary $@ $@
 	-$(RM) WOBBLE PACKED
 

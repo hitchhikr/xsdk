@@ -7,6 +7,7 @@ RM = $(XSDK)/bin/rm
 OBJCOPY	= $(XSDK)/bin/human68k-objcopy
 STRIP = $(XSDK)/bin/stripx
 CFLAGS = -Ofast -Wno-multichar -fomit-frame-pointer -fstrength-reduce -fforce-addr -fcall-used-d2 -fcall-used-a2
+LDFLAGS = -s -Wl,--no-warn-rwx-segments
 LIBS = -ldos -liocs -lbas -lc -lfloatfnc
 
 .c.o:
@@ -19,7 +20,7 @@ files = main.o display.o bgput.o
 all: BGED.X
 
 BGED.X: $(files)
-	$(CC) -Wl,--no-warn-rwx-segments -o $@ $(files) $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $(files) $(LIBS)
 	$(OBJCOPY) -O xfile $@ $@
 	$(STRIP) $@
 

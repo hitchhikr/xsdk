@@ -7,6 +7,7 @@ RM = $(XSDK)/bin/rm
 OBJCOPY	= $(XSDK)/bin/human68k-objcopy
 STRIP = $(XSDK)/bin/stripx
 CFLAGS = -Ofast -Wno-multichar -fomit-frame-pointer -fstrength-reduce -fforce-addr -fcall-used-d2 -fcall-used-a2
+LDFLAGS = -s -Wl,--no-warn-rwx-segments
 LIBS = -ldos -liocs -lbas -lc -lfloatfnc
 
 all: SPLOAD.X SPSAVE.X
@@ -19,12 +20,12 @@ spsave.o : main.c
 	$(AS) -I$(XSDK)/human68k/include -quiet -Felf -o $@ $<
 
 SPLOAD.X: spload.o
-	$(CC) -Wl,--no-warn-rwx-segments -o $@ $< $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $< $(LIBS)
 	$(OBJCOPY) -O xfile $@ $@
 	$(STRIP) $@
 
 SPSAVE.X: spsave.o
-	$(CC) -Wl,--no-warn-rwx-segments -o $@ $< $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $< $(LIBS)
 	$(OBJCOPY) -O xfile $@ $@
 	$(STRIP) $@
 
