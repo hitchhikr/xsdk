@@ -1,4 +1,4 @@
-// remove any debug informations from an X68000 executable file.
+// Remove any debug informations from an X68000 relocatable executable file.
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("usage: stripx <infile.x> <outfile.x>\n");
+        printf("usage: stripx <infile.x> [outfile.x]\n");
     }
     return EXIT_SUCCESS;
 }
