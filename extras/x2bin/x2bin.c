@@ -3,6 +3,39 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define CODE_SIZE 0
+#define DATA_SIZE 1
+#define BSS_SIZE 2
+#define RELOC_SIZE 3
+
+//#define BIG_ENDIAN 
+
+struct x68_x_header
+{
+    unsigned short magic;           // 0x4855
+    unsigned char reserved1;        // 0
+    unsigned char loadmode;         // 0 = normal
+                                    // 1 = minimal memory
+                                    // 2 = high address
+    unsigned int base;              // base address (0)
+    unsigned int entrypoint;
+    unsigned int size[5];           // code, data, bss, reloc, symbols
+	unsigned int db_line;	        // size of debugging info (line #)
+	unsigned int db_syms;	        // size of debugging info (symbol)
+	unsigned int db_str;	        // size of debugging info (string)
+	unsigned int reserved2[4];	    // 0
+	unsigned int bindlist;	        // bind list offset
+} __attribute__((packed));          // 64/0x40 bytes
+
+unsigned int get_dword(unsigned int data)
+{
+#if defined(BIG_ENDIAN)
+    return data;
+#else
+    return (((data & 0xff000000) >> 24) | ((data & 0xff0000) >> 8) | ((data & 0xff00) << 8) | ((data & 0xff) << 24));
+#endif
+}
+
 int main(int argc, char *argv[])
 {
     FILE *in;
@@ -15,6 +48,7 @@ int main(int argc, char *argv[])
     unsigned char *code_data_mem;
     unsigned char *reloc_mem;
     unsigned int base_address;
+    struct x68_x_header *header;
     int reloc_data;
     int reloc_offset;
     unsigned int reloc_orig;
@@ -46,6 +80,16 @@ int main(int argc, char *argv[])
                 fclose(in);
                 if(in_mem[0] == 'H' && in_mem[1] == 'U')
                 {
+                    header = (struct x68_x_header *) in_mem;
+                    printf("\n  Code size: 0x%x\n", get_dword(header->size[CODE_SIZE]));
+                    printf("  Data size: 0x%x\n", get_dword(header->size[DATA_SIZE]));
+                    printf("   Bss size: 0x%x\n", get_dword(header->size[BSS_SIZE]));
+                    printf(" Reloc size: 0x%x\n", get_dword(header->size[RELOC_SIZE]));
+                    if(header->entrypoint)
+                    {
+                        printf("Entry point: 0x%x\n", get_dword(header->entrypoint));
+                    }
+                    printf("\n");
                     out = fopen(argv[3], "wb");
                     if(out)
                     {
