@@ -54,26 +54,26 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        fprintf(stderr, "error: can't open output file\n");
+                        fprintf(stderr, "Error: can't open output file\n");
                         return EXIT_FAILURE;
                     }
                 }
                 else
                 {
-                    fprintf(stderr, "error: wrong file format\n");
+                    fprintf(stderr, "Error: wrong file format\n");
                     return EXIT_FAILURE;
                 }
             }
             else
             {
                 fclose(in);
-                fprintf(stderr, "error: not enough memory\n");
+                fprintf(stderr, "Error: not enough memory\n");
                 return EXIT_FAILURE;
             }
         }
         else
         {
-            fprintf(stderr, "error: can't open input file\n");
+            fprintf(stderr, "Error: can't open input file\n");
             return EXIT_FAILURE;
         }
     }

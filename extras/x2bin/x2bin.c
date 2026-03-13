@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
         base_address = strtoul(argv[1], &end, 16);
         if(argv[1] == end)
         {
-            fprintf(stderr, "error: wrong relocation address\n");
+            fprintf(stderr, "Error: wrong relocation address\n");
             return EXIT_FAILURE;
         }
         
@@ -85,11 +85,7 @@ int main(int argc, char *argv[])
                     printf("  Data size: 0x%x\n", get_dword(header->size[DATA_SIZE]));
                     printf("   Bss size: 0x%x\n", get_dword(header->size[BSS_SIZE]));
                     printf(" Reloc size: 0x%x\n", get_dword(header->size[RELOC_SIZE]));
-                    if(header->entrypoint)
-                    {
-                        printf("Entry point: 0x%x\n", get_dword(header->entrypoint));
-                    }
-                    printf("\n");
+                    printf("Entry point: 0x%x\n\n", get_dword(header->entrypoint));
                     out = fopen(argv[3], "wb");
                     if(out)
                     {
@@ -135,37 +131,37 @@ int main(int argc, char *argv[])
                             memset(bss_mem, 0, bss_size);
                             fwrite(bss_mem, 1, bss_size, out);
                             fclose(out);
-                            printf("relocated %s into %s at 0x%x\n", argv[2], argv[3], base_address);
+                            printf("Relocated %s into %s at 0x%x\n", argv[2], argv[3], base_address);
                         }
                         else
                         {
                             fclose(out);
-                            fprintf(stderr, "error: not enough memory\n");
+                            fprintf(stderr, "Error: not enough memory\n");
                             return EXIT_FAILURE;
                         }
                     }
                     else
                     {
-                        fprintf(stderr, "error: can't open output file\n");
+                        fprintf(stderr, "Error: can't open output file\n");
                         return EXIT_FAILURE;
                     }
                 }
                 else
                 {
-                    fprintf(stderr, "error: wrong file format\n");
+                    fprintf(stderr, "Error: wrong file format\n");
                     return EXIT_FAILURE;
                 }
             }
             else
             {
                 fclose(in);
-                fprintf(stderr, "error: not enough memory\n");
+                fprintf(stderr, "Error: not enough memory\n");
                 return EXIT_FAILURE;
             }
         }
         else
         {
-            fprintf(stderr, "error: can't open input file\n");
+            fprintf(stderr, "Error: can't open input file\n");
             return EXIT_FAILURE;
         }
     }
