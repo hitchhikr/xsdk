@@ -817,7 +817,7 @@ void usage(void)
           "                '[UNDO]'   Switch the screen mode back to 31kHz/768x512.\n"
           "                '[CLR]'    Clear the screen.\n"
           "                '[HOME]'   Redraw the screen.\n"
-          "                '[RETURN]' Output the current values to a file (crtc.000, crtc.001, ...).\n"
+          "                '[RETURN]' Output the current values to a file (crtc.xxx and xxx.asm).\n"
           "                '[ESC]'    End.\n"
           , stderr);
     exit(1);
