@@ -1487,7 +1487,7 @@ $FF4E _FILES        Directory entry search (first)
 
 <(SP).l:_FILES buffer (53 bytes or 141 bytes)
 
-        bit 31  1=Append the 88-byte path to the end of the _FILES buffer.
+        bit 31  1 = Append the 88-byte path to the end of the _FILES buffer.
 
         0000    .b      Attributes to search for
         0001    .b      Internal drive number to search (0=A:)
@@ -1495,7 +1495,7 @@ $FF4E _FILES        Directory entry search (first)
         0006    .w      Number of consecutive sectors - 1
         0008    .w      Offset from the beginning of the sector
 
-                        $FFFF=There is no matching file anymore
+                        $FFFF = There is no matching file anymore
 
         000A    .b[8]   The file name to search for
         0012    .b[3]   The extension to search for

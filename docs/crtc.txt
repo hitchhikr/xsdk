@@ -1,0 +1,61 @@
+crtc.x                              CRTC operator
+
+
+        CRTC Operator Ver. 1.04 User Manual
+
+
+- Overview:
+
+    Oh!X June issue:
+    Interactively operate a CRTC to help you on your way to a mega display.
+
+- How to use:
+
+    crtc [options] [datafile]
+
+    Options:
+    -q       Read from [datafile], set the CRTC and end the process.
+    -n       Support newer models such as the CompactXVI and X68030
+             (50MHz frequency band added, but the frequency band is slightly different).
+    -o <num> Change the oscillator frequency, which should be 69MHz.
+
+- How to operate:
+
+    'Up' 'Down'     Select the value to change.
+    'Left' 'Right'  Increase or decrease the value
+                    (holding down Ctrl will increase or decrease it by 10).
+    '[SPACE]'       Send the values to CRTC.
+    '[UNDO]'        Switch the screen mode back to 31kHz/768x512.
+    '[CLR]'         Clear the screen.
+    '[HOME]'        Redraw the screen.
+    '[RETURN]       Output the current values to a file (crtc.000, crtc.001, ...).
+    '[ESC]'         End.
+
+- Version update history:
+
+    Ver.1.00 (1994/ 5/23)   Oh!X July 1994 Issue GENIE Supplement Edition
+    Ver.1.01 (1994/ 6/18)   Fixed a bug that prevented the reading of CRTC files.
+    Ver.1.02 (1994/ 8/30)   I stopped mixing B_LOCATE and fputs.
+    Ver.1.03 (1994/10/15)   I made an effort to make part of the source easier to read.
+    Ver.1.04 (2026/ 3/30)   (hitchhikr).
+                            Translated. 
+                            Added assembly code generation.
+                            Up/Down cursor wrap.
+                            Added some colors and more on-screen infos.
+
+- Misc.:
+    
+    I created this tool after reading the June issue of Oh!X magazine
+    and realizing I wanted a tool to interactively manipulate CRTC.
+
+    Inside/out X68030 was extremely helpful in creating this program.
+
+    Without this, crtc.x could not have been created.
+
+
+                1994/10/23 Project Team DoGA Taka2
+
+                    taka2@ise.eng.osaka-u.ac.jp
+                    TBD00456@niftyserve.or.jp
+                    VAM28517@pcvan.or.jp
+                    pcs33268@asciinet.or.jp

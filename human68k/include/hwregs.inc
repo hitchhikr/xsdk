@@ -199,7 +199,7 @@ CRT_VSYNC_END       equ     $E8000A         ; Vertical Sync End Position
 ;
 CRT_VDISP_STRT      equ     $E8000C         ; Vertical Display Start Position
 ;
-;       V-Sync synchronization period + vertical front porch
+;       V-Sync synchronization period + vertical front porch    
 ; R07 = ---------------------------------------------------- -1
 ;                      H-Sync period
 ;
@@ -295,6 +295,7 @@ CRT_GFX_Y3          equ     $E80026         ; Y3
 ;   11 = Clock 50 MHz mode (Compact XVI or later only)
 ;
 CRT_CTRL1           equ     $E80028         ; Memory Mode/View Mode Control (R/W)
+CRT_R20             equ     CRT_CTRL1
 ;
 ; Simultaneous access/raster copy/Fast clear plane
 ;
@@ -320,6 +321,7 @@ CRT_CTRL1           equ     $E80028         ; Memory Mode/View Mode Control (R/W
 ;   1 = selected
 ;
 CRT_CTRL2           equ     $E8002A         ; (R/W)
+CRT_R21             equ     CRT_CTRL2
 ;
 ; bit 15-8: Source raster
 ; bit 7-0: Destination raster

@@ -100,7 +100,7 @@ $04 _BITSNS         Get key press status
 
 >D0.l:Key press status (each bit 0 = released, 1 = pressed)
 
-        Group   bit7    bit6    bit5    bit4    bit3    bit2    bit1    bit0
+        Group   bit 7   bit 6   bit 5   bit 4   bit 3   bit 2   bit 1   bit 0
 
         $0000   6&      5%      4$      3#      2"      1!      ESC     None
         $0001   BS      \|      ^~      -=      0       9)      8(      7'
