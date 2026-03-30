@@ -546,10 +546,12 @@ void datawrite(void)
 {
     int i;
     char str[128];
+    char str_asm[128];
     FILE *fp;
     for (i = 0; i < 1000; ++i)
     {
         sprintf(str, "crtc.%03d", i);
+        sprintf(str_asm, "%03d.asm", i);
         if ((fp = fopen(str, "r")) != NULL)
         {
             fclose(fp);
@@ -566,6 +568,11 @@ void datawrite(void)
         {
             fprintf(fp, "%d %d %d %d %d %d %d %d %d %d\n", inter, dotclock, hdisp, hpulse, hback, hfront, vdisp, vpulse, vback, vfront);
             fprintf(fp, "%d %d %d %d %d %d %d %d %d %d\n", reg[0], reg[1], reg[2], reg[3], reg[4], reg[5], reg[6], reg[7], reg20, hrl);
+            fclose(fp);
+        }
+        fp = fopen(str_asm, "w");
+        if (fp != NULL)
+        {
             fprintf(fp, "           xdef    _setup_screen\n");
             fprintf(fp, "_setup_screen:\n");
             fprintf(fp, "           movem.l d0-d2/a0-a5,-(a7)\n");
@@ -797,8 +804,8 @@ void usage(void)
 {
     fputs("CRTC Operator Ver. " VERSION "." REVISION " Copyright (C) Taka2 1994\n"
           "Improved in 2026 by Franck 'hitchhikr' Charlet.\n\n"
-          "Usage: crtc [options] [datafile]\n\n"
-          "Options:        -q        Read from [datafile], set the CRTC and end the process.\n"
+          "Usage: crtc [options] [crtc.xxx]\n\n"
+          "Options:        -q        Read from [crtc.xxx], set the CRTC and end the process.\n"
           "                -n        Support newer models such as the CZ-500\n"
           "                          (50MHz has been added, but the frequency is slightly different).\n"
           "                -o <num>  Change the oscillator frequency, which should be 69MHz.\n"
