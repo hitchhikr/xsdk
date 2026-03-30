@@ -566,7 +566,7 @@ void datawrite(void)
         {
             fprintf(fp, "%d %d %d %d %d %d %d %d %d %d\n", inter, dotclock, hdisp, hpulse, hback, hfront, vdisp, vpulse, vback, vfront);
             fprintf(fp, "%d %d %d %d %d %d %d %d %d %d\n", reg[0], reg[1], reg[2], reg[3], reg[4], reg[5], reg[6], reg[7], reg20, hrl);
-            fprintf(fp, "           xdef _setup_screen\n");
+            fprintf(fp, "           xdef    _setup_screen\n");
             fprintf(fp, "_setup_screen:\n");
             fprintf(fp, "           movem.l d0-d2/a0-a5,-(a7)\n");
             fprintf(fp, ";           move.l  (9*4)+4(a7),a0\n");
