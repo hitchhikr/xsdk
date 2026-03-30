@@ -28,7 +28,7 @@ crtc.x                              CRTC operator
     '[UNDO]'        Switch the screen mode back to 31kHz/768x512.
     '[CLR]'         Clear the screen.
     '[HOME]'        Redraw the screen.
-    '[RETURN]       Output the current values to a file (crtc.xxx and xxx.asm).
+    '[RETURN]       Output the current values to a file (crtc.xxx and xxx.s).
     '[ESC]'         End.
 
 - Version update history:
