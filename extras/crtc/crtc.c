@@ -15,7 +15,7 @@
 #define style(xxx) fprintf(stderr, "\x1b[%dm", (xxx))
 
 #define VERSION "1"
-#define REVISION "04"
+#define REVISION "05"
 
 #define O38 38.86363
 #define O69 69.55199
@@ -130,6 +130,17 @@ void recalc(void)
     reg20     = hf * 16 + VD[hf][inter] * 4 + HD[dotclock];
 }
 
+void print_status(char *msg)
+{
+    locate(37, 26);
+    style(32);
+    style(1);
+    fprintf(stderr, "                                         ");
+    locate(37, 26);
+    fprintf(stderr, msg);
+    style(0);
+}
+
 void showdemand(void)
 {
     if (o_inter != inter)
@@ -202,53 +213,62 @@ void showdemand(void)
     if (o_reg[0] != reg[0])
     {
         locate(24, 15);
-        fprintf(stderr, "%5d (%4x)", reg[0], reg[0]);
+        fprintf(stderr, "%5d (%4x)    ", reg[0], reg[0]);
     }
     if (o_reg[1] != reg[1])
     {
         locate(24, 16);
-        fprintf(stderr, "%5d (%4x)", reg[1], reg[1]);
+        fprintf(stderr, "%5d (%4x)    ", reg[1], reg[1]);
     }
     if (o_reg[2] != reg[2])
     {
         locate(24, 17);
-        fprintf(stderr, "%5d (%4x)", reg[2], reg[2]);
+        fprintf(stderr, "%5d (%4x)    ", reg[2], reg[2]);
     }
     if (o_reg[3] != reg[3])
     {
         locate(24, 18);
-        fprintf(stderr, "%5d (%4x)", reg[3], reg[3]);
+        fprintf(stderr, "%5d (%4x)    ", reg[3], reg[3]);
     }
     if (o_reg[4] != reg[4])
     {
         locate(24, 19);
-        fprintf(stderr, "%5d (%4x)", reg[4], reg[4]);
+        fprintf(stderr, "%5d (%4x)    ", reg[4], reg[4]);
     }
     if (o_reg[5] != reg[5])
     {
         locate(24, 20);
-        fprintf(stderr, "%5d (%4x)", reg[5], reg[5]);
+        fprintf(stderr, "%5d (%4x)    ", reg[5], reg[5]);
     }
     if (o_reg[6] != reg[6])
     {
         locate(24, 21);
-        fprintf(stderr, "%5d (%4x)", reg[6], reg[6]);
+        fprintf(stderr, "%5d (%4x)    ", reg[6], reg[6]);
     }
     if (o_reg[7] != reg[7])
     {
         locate(24, 22);
-        fprintf(stderr, "%5d (%4x)", reg[7], reg[7]);
+        fprintf(stderr, "%5d (%4x)    ", reg[7], reg[7]);
     }
     if (o_reg20 != reg20)
     {
         locate(24, 23);
-        fprintf(stderr, "%5d (%4x)", reg20, reg20);
+        fprintf(stderr, "%5d (%4x)    ", reg20, reg20);
     }
     if (o_hrl != hrl)
     {
         locate(24, 24);
         fprintf(stderr, "%5d", hrl);
     }
+    if((1000.0 / dhsync) >= 32 || (1000.0 / dhsync) < 15)
+    {
+        print_status("Caution: frequency may be out of range!");
+    }
+    else
+    {
+        print_status("");
+    }
+
     o_inter = inter;
     o_dotclock = dotclock;
     o_hdisp = hdisp;
@@ -298,15 +318,15 @@ void showall(int select, FILE *fp)
     style(1);
     fprintf(fp, "    Vertical sync            %7.3lfms %7.3lfHz\n\n",  dvsync, 1000.0 / dvsync);
     style(0);
-    fprintf(fp, "    Reg 0  (0xE80000) = %5d (%4x)\n", reg[0], reg[0]);
-    fprintf(fp, "    Reg 1  (0xE80002) = %5d (%4x)\n", reg[1], reg[1]);
-    fprintf(fp, "    Reg 2  (0xE80004) = %5d (%4x)\n", reg[2], reg[2]);
-    fprintf(fp, "    Reg 3  (0xE80006) = %5d (%4x)\n", reg[3], reg[3]);
-    fprintf(fp, "    Reg 4  (0xE80008) = %5d (%4x)\n", reg[4], reg[4]);
-    fprintf(fp, "    Reg 5  (0xE8000A) = %5d (%4x)\n", reg[5], reg[5]);
-    fprintf(fp, "    Reg 6  (0xE8000C) = %5d (%4x)\n", reg[6], reg[6]);
-    fprintf(fp, "    Reg 7  (0xE8000E) = %5d (%4x)\n", reg[7], reg[7]);
-    fprintf(fp, "    Reg 20 (0xE80028) = %5d (%4x)\n", reg20, reg20);
+    fprintf(fp, "    Reg 0  (0xE80000) = %5d (%4x)    \n", reg[0], reg[0]);
+    fprintf(fp, "    Reg 1  (0xE80002) = %5d (%4x)    \n", reg[1], reg[1]);
+    fprintf(fp, "    Reg 2  (0xE80004) = %5d (%4x)    \n", reg[2], reg[2]);
+    fprintf(fp, "    Reg 3  (0xE80006) = %5d (%4x)    \n", reg[3], reg[3]);
+    fprintf(fp, "    Reg 4  (0xE80008) = %5d (%4x)    \n", reg[4], reg[4]);
+    fprintf(fp, "    Reg 5  (0xE8000A) = %5d (%4x)    \n", reg[5], reg[5]);
+    fprintf(fp, "    Reg 6  (0xE8000C) = %5d (%4x)    \n", reg[6], reg[6]);
+    fprintf(fp, "    Reg 7  (0xE8000E) = %5d (%4x)    \n", reg[7], reg[7]);
+    fprintf(fp, "    Reg 20 (0xE80028) = %5d (%4x)    \n", reg20, reg20);
     fprintf(fp, "    HRL               = %5d\n\n", hrl);
     style(31);
     fprintf(fp, "    CRTC Operator Ver. " VERSION "." REVISION "\n");
@@ -570,6 +590,7 @@ void datawrite(void)
             fprintf(fp, "%d %d %d %d %d %d %d %d %d %d\n", reg[0], reg[1], reg[2], reg[3], reg[4], reg[5], reg[6], reg[7], reg20, hrl);
             fclose(fp);
         }
+        _dos_delete(str_asm);
         fp = fopen(str_asm, "w");
         if (fp != NULL)
         {
@@ -654,6 +675,7 @@ void datawrite(void)
                                                                              reg[5], reg[6], reg[7], reg20, hrl);
             fclose(fp);
         }
+        print_status("Files saved.");
     }
 }
 

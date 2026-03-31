@@ -1,7 +1,7 @@
 crtc.x                              CRTC operator
 
 
-        CRTC Operator Ver. 1.04 User Manual
+        CRTC Operator Ver. 1.05 User Manual
 
 
 - Overview:
@@ -31,6 +31,32 @@ crtc.x                              CRTC operator
     '[RETURN]       Output the current values to a file (crtc.xxx and xxx.s).
     '[ESC]'         End.
 
+- Provided examples:
+
+                     w   h
+    25622460.15     256 224 60hz 15khz
+    25622455.31     256 224 55hz 31khz
+    32020055.31     320 200 55hz 31khz
+    38422460.15     384 224 60hz 15khz (capcom)
+    38425655.31     384 256 55hz 31khz
+    32020060.15     320 200 60hz 15khz
+    32020050.24     320 200 50hz 24khz
+    51251255.31     512 512 55hz 31khz
+    25625655.31     256 256 55hz 31khz
+    24025655.31     240 256 55hz 31khz (tate)
+    25624060.15     256 240 60hz 15khz
+    25624055.31     256 240 55hz 31khz
+    25620055.15     256 200 55hz 15khz
+    32022460.15     320 224 60hz 15khz (neogeo)
+    32022455.31     320 224 55hz 31khz
+    32022460.31     320 224 60hz 31khz
+    32025655.31     320 256 55hz 31khz (amigaish)
+    24026855.31     240 268 55hz 31khz (tate)
+    64020055.24     640 200 55hz 24khz
+    64040054.24     640 400 55hz 24khz
+    64048048.24     640 480 48hz 24khz
+    51248060.15     512 480 60hz 15khz
+
 - Version update history:
 
     Ver.1.00 (1994/ 5/23)   Oh!X July 1994 Issue GENIE Supplement Edition
@@ -42,6 +68,9 @@ crtc.x                              CRTC operator
                             Added assembly code generation.
                             Up/Down cursor wrap.
                             Added some colors and more on-screen infos.
+    Ver.1.05 (2026/ 3/31)   (hitchhikr).
+                            Now displays some status messages.
+                            Added several examples.
 
 - Misc.:
     
