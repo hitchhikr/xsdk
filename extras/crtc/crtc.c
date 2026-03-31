@@ -15,7 +15,7 @@
 #define style(xxx) fprintf(stderr, "\x1b[%dm", (xxx))
 
 #define VERSION "1"
-#define REVISION "05"
+#define REVISION "05b"
 
 #define O38 38.86363
 #define O69 69.55199
@@ -447,9 +447,10 @@ void updown(int select, int dir)
 
 void setregister()
 {
-    volatile static unsigned short *crtc = (unsigned short *) 0xe80000;
-    volatile static unsigned short *scon = (unsigned short *) 0xeb080a;
-    volatile static unsigned char  *sysp = (unsigned char  *) 0xe8e007;
+    volatile static unsigned short *crtc = (unsigned short *) 0xE80000;
+    volatile static unsigned short *scon = (unsigned short *) 0xEB080A;
+    volatile static unsigned char  *sysp = (unsigned char  *) 0xE8E007;
+    volatile static unsigned char  *gpip = (unsigned char  *) 0xE88001;
 
     unsigned int stack;
     unsigned int i;
@@ -482,12 +483,24 @@ void setregister()
         *sysp &= ~0x02;
     }
     scon[1] = reg[2] + 4;
-    for (i = 0; i < 0x200; i++)
-        ;
+    // Wait a bit (emulators don't care).
+    for (i = 0; i < 100; i++)
+    {
+        while ((*gpip & 0x10) == 0)
+        {
+        };
+        while ((*gpip & 0x10) != 0)
+        {
+        };
+    }
     if ((reg20 & 0x1f) == 0)
+    {
         *scon = reg[0];
+    }
     else
+    {
         *scon = 0xff;
+    }
     scon[2] = reg[6];
     scon[3] = reg20 & 0xff;
     SUPER(stack);
@@ -647,7 +660,7 @@ void datawrite(void)
             fprintf(fp, "           move.w  (2*2)(a0),d0\n");
             fprintf(fp, "           addq.w  #4,d0\n");
             fprintf(fp, "           move.w  d1,(1*2)(a4)\n");
-            fprintf(fp, "           moveq   #10-1,d0\n");
+            fprintf(fp, "           moveq   #100-1,d0\n");
             fprintf(fp, ".wait_screen:\n");
             fprintf(fp, "           btst    #4,($E88001)\n");
             fprintf(fp, "           beq.b   .wait_screen\n");

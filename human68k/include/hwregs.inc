@@ -344,6 +344,7 @@ CRT_R23             equ     $E8002E         ; Text Screen Access mask pattern
 ;
 ;   0 = Stop
 ;   1 = Start
+;
 ;   * It automatically becomes 0 when the high-speed clear operation ends.
 ;
 ; bit 0: VI Image import start
@@ -509,7 +510,7 @@ GFX_PRI             equ     $E82500
 ;   0 = off
 ;   (When the graphic size is 1024 * 1024 dots)
 ;
-; bit 3-0: GS3-GS0 Graphic screen control
+; bit 3-0: GS3-GS0 Graphic screen control (relative to GPx)
 ;
 ;   1 = on
 ;   0 = off
@@ -897,12 +898,12 @@ MFP_DRR             equ     $E88005         ; Data direction register
 ;
 ; bit 7: CRTC H-SYNC (horizontal synchronization signal)
 ; bit 6: CRTC raster interrupt
-; bit 5: timer A
+; bit 5: Timer A
 ; bit 4: MPSC receive buffer full (receive data read request)
 ; bit 3: MPSC receive reception error
 ; bit 2: MPSC transmission buffer empty (transmission data write request)
 ; bit 1: MPSC transmission error
-; bit 0: timer B
+; bit 0: Timer B
 ;
 ; Set whether to enable or disable the occurrence of each interrupt.
 ;

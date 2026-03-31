@@ -1,7 +1,7 @@
 crtc.x                              CRTC operator
 
 
-        CRTC Operator Ver. 1.05 User Manual
+        CRTC Operator Ver. 1.05b User Manual
 
 
 - Overview:
@@ -71,6 +71,8 @@ crtc.x                              CRTC operator
     Ver.1.05 (2026/ 3/31)   (hitchhikr).
                             Now displays some status messages.
                             Added several examples.
+    Ver.1.05b (2026/ 3/31)  (hitchhikr).
+                            Generated code wait longer for the screen to cope.
 
 - Misc.:
     
