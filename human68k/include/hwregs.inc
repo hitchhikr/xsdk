@@ -311,8 +311,8 @@ CRT_R20             equ     CRT_CTRL1
 ;
 ; bit 7-4: AP3-AP0 Text screen simultaneous access target plane selection
 ;
-;   0 = selected
-;   1 = unselected
+;   0 = unselected
+;   1 = selected
 ;
 ; bit 3-0: CP3-CP0 - Text screen raster copy target plane selection
 ;                  - Graphic screen high-speed clear target page
@@ -347,7 +347,7 @@ CRT_R23             equ     $E8002E         ; Text Screen Access mask pattern
 ;
 ;   * It automatically becomes 0 when the high-speed clear operation ends.
 ;
-; bit 0: VI Image import start
+; bit 0: VI Image capture start
 ;
 ;   0 = Stop
 ;   1 = Start
@@ -2563,6 +2563,10 @@ SCREEN_SET_RES      equ     $EB0810         ; Resolution settings
 ;
 ; Tiles are 8x8 if resolution is 256x256
 ; and 16x16 if resolution is 512*512
+;
+; Format of PCG is 4 bit chunky
+;
+; Format of BGx is the same as SPR_INF
 ;
 PCG_DATA            equ     $EB8000         ; PCG data (16x16 / 8x8) (16k) (Shared PCG area) (r/w)
 BG0_DATA            equ     $EBC000         ; BG0 tiles offsets (8k) (r/w)
