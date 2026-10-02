@@ -1,10 +1,10 @@
-CC	= g++
-LD	= ld
-CFLAGS	= -Os
+CC = g++
+LD = ld
+CPPFLAGS = -std=c++17 -O2 -Wall -Wextra
 LDFLAGS	= -s
 
 .cpp.o:
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CPPFLAGS) -o $@ -c $<
 
 files = elf2x68k.o
 
