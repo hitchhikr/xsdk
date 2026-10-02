@@ -1,9 +1,8 @@
-//
 // elf2x68k.cpp
-// ============
+// ======================================================================
 // Original by yunkya2
 // Converted from Python by DeepSeek.
-// ============
+// ======================================================================
 //
 // Convert an m68k (Motorola 68000) ELF32 executable (big endian) into an
 // X68000 executable file (.x).
