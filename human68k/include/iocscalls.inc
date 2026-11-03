@@ -358,7 +358,8 @@ KEY_SHIFT           equ     $70
 KEY_CTRL            equ     $71
 KEY_OPT1            equ     $72
 KEY_OPT2            equ     $73
-KEY_END             equ     $74
+KEY_LAST            equ     $74
+KEY_PRESSED         equ     $80
 
 ; ------------------------------------------------------------------
 KB_LED              equ     $810            ; .b
