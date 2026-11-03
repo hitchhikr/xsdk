@@ -1,4 +1,4 @@
-// elf2x68k.cpp
+// elf2x68k
 // ======================================================================
 // Original by yunkya2
 // Converted from Python by DeepSeek.

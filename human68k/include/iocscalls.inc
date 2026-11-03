@@ -1,4 +1,4 @@
-; ------------------------------------------------------------------
+    ; ------------------------------------------------------------------
 ; IOCS calls
 ; ------------------------------------------------------------------
 _B_KEYINP           equ     $00
@@ -220,6 +220,152 @@ TRAP_COPYKEY        equ     12
 TRAP_CTRLC          equ     13
 TRAP_ERROR          equ     14
 TRAP_IOSCALL        equ     15
+
+; ------------------------------------------------------------------
+KEY_ESC             equ     $01
+KEY_1               equ     $02
+KEY_EXCLAIM         equ     KEY_1
+KEY_2               equ     $03
+KEY_DBLAPOSTROPHE   equ     KEY_2
+KEY_3               equ     $04
+KEY_HASH            equ     KEY_3
+KEY_4               equ     $05
+KEY_DOLLAR          equ     KEY_4
+KEY_5               equ     $06
+KEY_PERCENT         equ     KEY_5
+KEY_6               equ     $07
+KEY_AMPERSAND       equ     KEY_6
+KEY_7               equ     $08
+KEY_APOSTROPHE      equ     KEY_7
+KEY_8               equ     $09
+KEY_LEFTPAREN       equ     KEY_8
+KEY_9               equ     $0A
+KEY_RIGHTPAREN      equ     KEY_9
+KEY_0               equ     $0B
+KEY_MINUS           equ     $0C
+KEY_EQUALS          equ     KEY_MINUS
+KEY_CARET           equ     $0D
+KEY_TILDE           equ     KEY_CARET
+KEY_YEN             equ     $0E
+KEY_BACKSLASH       equ     KEY_YEN
+KEY_PIPE            equ     KEY_YEN
+KEY_BACKSPACE       equ     $0F
+KEY_TAB             equ     $10
+KEY_Q               equ     $11
+KEY_W               equ     $12
+KEY_E               equ     $13
+KEY_R               equ     $14
+KEY_T               equ     $15
+KEY_Y               equ     $16
+KEY_U               equ     $17
+KEY_I               equ     $18
+KEY_O               equ     $19
+KEY_P               equ     $1A
+KEY_AT              equ     $1B
+KEY_GRAVE           equ     KEY_AT
+KEY_LEFTBRACKET     equ     $1C
+KEY_LEFTBRACE       equ     KEY_LEFTBRACKET
+KEY_RETURN          equ     $1D
+KEY_A               equ     $1E
+KEY_S               equ     $1F
+KEY_D               equ     $20
+KEY_F               equ     $21
+KEY_G               equ     $22
+KEY_H               equ     $23
+KEY_J               equ     $24
+KEY_K               equ     $25
+KEY_L               equ     $26
+KEY_SEMICOLON       equ     $27
+KEY_PLUS            equ     KEY_SEMICOLON
+KEY_COLON           equ     $28
+KEY_ASTERISK        equ     KEY_COLON
+KEY_RIGHTBRACKET    equ     $29
+KEY_RIGHTBRACE      equ     KEY_RIGHTBRACKET
+KEY_Z               equ     $2A
+KEY_X               equ     $2B
+KEY_C               equ     $2C
+KEY_V               equ     $2D
+KEY_B               equ     $2E
+KEY_N               equ     $2F
+KEY_M               equ     $30
+KEY_COMMA           equ     $31
+KEY_LESS            equ     KEY_COMMA
+KEY_PERIOD          equ     $32
+KEY_GREATER         equ     KEY_PERIOD
+KEY_SLASH           equ     $33
+KEY_QUESTION        equ     KEY_SLASH
+KEY_UNDERSCORE      equ     $34
+KEY_SPACE           equ     $35
+KEY_HOME            equ     $36
+KEY_DELETE          equ     $37
+KEY_ROLLUP          equ     $38
+KEY_PAGEUP          equ     KEY_ROLLUP
+KEY_ROLLDOWN        equ     $39
+KEY_PAGEDOWN        equ     KEY_ROLLDOWN
+KEY_UNDO            equ     $3A
+KEY_LEFT            equ     $3B
+KEY_UP              equ     $3C
+KEY_RIGHT           equ     $3D
+KEY_DOWN            equ     $3E
+KEY_KP_CLEAR        equ     $3F
+KEY_KP_DIVIDE       equ     $40
+KEY_KP_MULTIPLY     equ     $41
+KEY_KP_MINUS        equ     $42
+KEY_KP_7            equ     $43
+KEY_KP_8            equ     $44
+KEY_KP_9            equ     $45
+KEY_KP_PLUS         equ     $46
+KEY_KP_4            equ     $47
+KEY_KP_5            equ     $48
+KEY_KP_6            equ     $49
+KEY_KP_EQUALS       equ     $4A
+KEY_KP_1            equ     $4B
+KEY_KP_2            equ     $4C
+KEY_KP_3            equ     $4D
+KEY_KP_ENTER        equ     $4E
+KEY_KP_0            equ     $4F
+KEY_KP_COMMA        equ     $50
+KEY_KP_PERIOD       equ     $51
+KEY_SYMBOL          equ     $52
+KEY_REGISTER        equ     $53
+KEY_HELP            equ     $54
+KEY_XF1             equ     $55
+KEY_XF2             equ     $56
+KEY_XF3             equ     $57
+KEY_XF4             equ     $58
+KEY_XF5             equ     $59
+KEY_KANA            equ     $5A
+KEY_ROMAJI          equ     $5B
+KEY_HEXADECIMAL     equ     $5C
+KEY_CODE            equ     KEY_HEXADECIMAL
+KEY_CAPSLOCK        equ     $5D
+KEY_INSERT          equ     $5E
+KEY_HIRAGANA        equ     $5F
+KEY_FULLWIDTH       equ     $60
+KEY_BREAK           equ     $61
+KEY_COPY            equ     $62
+KEY_F1              equ     $63
+KEY_F2              equ     $64
+KEY_F3              equ     $65
+KEY_F4              equ     $66
+KEY_F5              equ     $67
+KEY_F6              equ     $68
+KEY_F7              equ     $69
+KEY_F8              equ     $6A
+KEY_F9              equ     $6B
+KEY_F10             equ     $6C
+KEY_SHIFT           equ     $70
+KEY_CTRL            equ     $71
+KEY_OPT1            equ     $72
+KEY_OPT2            equ     $73
+
+; ------------------------------------------------------------------
+KB_LED              equ     $810            ; .b
+KB_SHIFT            equ     $811            ; .b
+MOUSE_BUF_CNT       equ     $92A            ; .w
+MOUSE_BUF_PTR       equ     $92C            ; .l
+MOUSE_BUF           equ     $930            ; .b
+FM_SOURCE           equ     $9DA            ; .b
 
 ; ------------------------------------------------------------------
 IOCS                MACRO

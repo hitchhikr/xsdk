@@ -68,7 +68,7 @@ DMAC_2_ERR_IRQ      equ     $1A4        ; $69 DMAC #2 Error ("")
 DMAC_3_END_IRQ      equ     $1A8        ; $6a DMAC #3 End (ADPCM)
 DMAC_3_ERR_IRQ      equ     $1AC        ; $6b DMAC #3 Error ("")
 SCSI_INT_IRQ        equ     $200        ; $6c SPC SCSI interruption (Internal SCSI)
-SCSI_EXT_IRQ        equ     $3d8        ; $f6 SPC SCSI interruption (SCSI board)
+SCSI_EXT_IRQ        equ     $3D8        ; $f6 SPC SCSI interruption (SCSI board)
 ;
 ; =================================================================================
 ; Graphic VRAM
