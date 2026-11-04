@@ -4,7 +4,7 @@ endif
 CC = $(XSDK)/bin/human68k-gcc
 AS = $(XSDK)/bin/vasm
 RM = $(XSDK)/bin/rm
-OBJCOPY	= $(XSDK)/bin/human68k-objcopy
+ELF2X68K = $(XSDK)/bin/elf2x68k
 STRIP = $(XSDK)/bin/stripx
 CFLAGS = -Ofast -Wno-multichar -fomit-frame-pointer -fstrength-reduce -fforce-addr -fcall-used-d2 -fcall-used-a2
 LDFLAGS = -s -Wl,--no-warn-rwx-segments
@@ -17,12 +17,11 @@ LIBS = -ldos -liocs -lbas -lc -lfloatfnc
 
 files = crtc.o
 
-all: CRTC.X
+all: CRTC
 
-CRTC.X: $(files)
+CRTC: $(files)
 	$(CC) $(LDFLAGS) -o $@ $(files) $(LIBS)
-	$(OBJCOPY) -O xfile $@ $@
-	$(STRIP) $@
+	$(ELF2X68K) -o ../$@.X -s $@
 
 clean:
-	-$(RM) $(files)
+	-$(RM) $(files) CRTC
