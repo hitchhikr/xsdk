@@ -15,8 +15,10 @@
 ;=====================================================
                 section program,code
 
+                xdef    _start
+
 ;=====================================================
-device_header:
+_start:
                 dc.l    $FFFFFFFF
                 dc.w    $8020
                 dc.l    strategy
